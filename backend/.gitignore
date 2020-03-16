@@ -1,0 +1,21 @@
+# IDE
+.idea/
+
+# virtualenv
+.venv
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Configurate
+.env
+
+# Tmp Files
+tmp/
+
+# Database
+*.db
+
+# uWSGI
+#uwsgi.ini
