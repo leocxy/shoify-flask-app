@@ -1,0 +1,19 @@
+[uwsgi]
+# flask wsgi file
+module = wsgi:app
+# master
+master = true
+# maximum num of worker processes
+processes = 2
+# the base directory (full path)
+chdir = /var/www/vend/backend
+# the virtualenv (full path
+home = /var/www/vend/backend/.venv
+# the socket (use the full path to be safe)
+socket = /tmp/vend-app.sock
+# log
+logto = /var/log/nginx/vend-app.log
+# with appropriate permissions
+chmod-socket = 666
+# clear environment on exit
+vacuum = true

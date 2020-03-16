@@ -1,0 +1,8 @@
+[uwsgi]
+# Heroku uwsgi config
+http-socket = :$(PORT)
+master = ture
+processes = 4
+die-on-term = true
+module = wsgi:app
+memory-report = true
