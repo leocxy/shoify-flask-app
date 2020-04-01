@@ -157,9 +157,9 @@ def check_proxy(fn):
             resp.status_code = 401
             return resp
         # Setup Store
-        store = Store.query.filter_by(domain=request.args.get('shop')).first()
+        store = Store.query.filter_by(key=request.args.get('shop')).first()
         if not store:
-            resp = jsonify(status=401, message='proxy validation fail!')
+            resp = jsonify(status=401, message='proxy validation fail!!')
             resp.status_code = 401
             return resp
         g.store_id = store.id

@@ -21,9 +21,9 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(ROOT_PATH, 'app.db') \
         if not getenv('DATABASE_URL') else getenv('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # Session
-    SESSION_USE_SIGNER = True
-    SESSION_TYPE = 'filesystem'
-    SESSION_FILE_DIR = path.join(ROOT_PATH, 'tmp', 'session')
+    # Flask Session
+    SESSION_COOKIE_SAMESITE = 'None'
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = False
     # Upload Folder
     UPLOAD_FOLDER = path.join(ROOT_PATH, 'tmp')

@@ -118,13 +118,34 @@ def admin():
     from jinja2 import TemplateNotFound
     try:
         resp = make_response(render_template('index.html'))
-        resp.set_cookie('apiKey', environ.get('APP_KEY'))
-        resp.set_cookie('shop', store.key)
+        resp.set_cookie(
+            'apiKey',
+            environ.get('APP_KEY'),
+            secure=True,
+            samesite='None',
+            domain='.' + environ.get('SERVER_NAME', 'localhost'))
+        resp.set_cookie(
+            'shop',
+            store.key,
+            secure=True,
+            samesite='None',
+            domain='.' + environ.get('SERVER_NAME', 'localhost'))
         return resp
     except TemplateNotFound:
         resp = jsonify({'status': 404, 'message': "Template missing"})
         resp.status_code = 404
         return resp
+
+
+@basic_bp.route('/', methods=['GET'])
+def index():
+    """ Handle Request """
+    params = request.args
+    if len([x for x in params.keys() if x in ['timestamp', 'shop', 'hmac']]) == 3 and len(params) == 3:
+        return redirect(url_for('.install', **params))
+    if 'session' in params.keys() and len(params) == 5:
+        return redirect(url_for('.admin', **params))
+    return 'Please contact Pocket Square <dev@pocketsquare.co.nz> for more information about this app.'
 
 
 @basic_bp.route('/webhook/shop/redact', methods=['POST'], endpoint='redact')

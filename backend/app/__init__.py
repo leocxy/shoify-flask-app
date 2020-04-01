@@ -26,10 +26,6 @@ def init_app():
     # Load Config From Object
     app.config.from_object('app.config.Config')
 
-    # Session
-    from flask_session import Session
-    Session(app)
-
     # Init Database
     db = SQLAlchemy(app)
     Migrate(app, db)
