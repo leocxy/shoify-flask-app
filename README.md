@@ -1,7 +1,7 @@
 ### Introduction
 
-This is an _**custom app**_ for `Community Organics`.
-Because this is a `Custom App`, so this app will only able to install to one merchant.
+This app created by Pocket Square.
+It build for <MERCHANT_NAME>.
 
 Backend is using [Flask](https://www.palletsprojects.com/p/flask/). 
 Admin panel is using [VueJS](https://vuejs.org/).
@@ -9,27 +9,20 @@ Admin panel is using [VueJS](https://vuejs.org/).
 ### Environment
 
 - OS: MacOX / Centos
-- Python: 3.6.*
+- Python: 3
 - VueJS: ^2.6.10
+
 ---
 
 ### Install to Shopify
 
-`https://organics.pocketsquare.co.nz/install?shop=your-domain.myshopify.com`
+https://your-domain.com/install?shop=your-store.myshopify.com
 
 ---
 
 ### Development & Deployment
 
 Please check the README.md under **admin** and **backend** folder 
-
----
-
-### Install Recharge App
-
-Replace the CLIENT_ID with Recharge App Client ID
-
-`https://shopifysubscriptions.com/partners/app/CLIENT_ID/install?myshopify_domain=communityorganics`
 
 ---
 

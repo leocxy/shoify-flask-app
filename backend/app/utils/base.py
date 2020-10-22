@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-GraphQL Client
-"""
+'''
+@Project: app-sherry-kitchen
+@File: base.py
+@Author: Leo Chen <leo.cxy88@gmail.com>
+@Date: 2020-10-20 09:35
+'''
 from sgqlc.endpoint.http import HTTPEndpoint
 from urllib.error import HTTPError, URLError
 from os import getenv, environ
-from time import sleep
+from time import sleep, time
 from contextlib import contextmanager
 # Request validation
 from hashlib import sha256
@@ -108,34 +111,113 @@ class Base(object):
         return 'https://{}'.format(self.app_url) + url.format(version=self.version)
 
 
-def check_hmac(params):
-    """ Validation Shopify request """
-    def hmac_calculate(params):
-        def calculate(params):
-            def encode_pairs(params):
-                for k, v in params.items():
-                    if k == 'hmac':
-                        continue
-                    if k.endswith('[]'):
-                        k = k.rstrip('[]')
-                        v = json.dumps(list(map(str, v)))
-                    # escape delimiters to avoid tampering
-                    k = str(k).replace("%", "%25").replace("=", "%3D")
-                    v = str(v).replace("%", "%25")
-                    yield '{0}={1}'.format(k, v).replace("&", "%26")
-            return '&'.join(sorted(encode_pairs(params)))
-        return hmac.new(environ.get('APP_SECRET').encode(), calculate(params).encode(), sha256).hexdigest()
-    # Wow
-    my_hmac = hmac_calculate(params).encode('utf-8')
-    get_hmac = params['hmac'].encode('utf-8')
-    try:
-        return hmac.compare_digest(my_hmac, get_hmac)
-    except AttributeError:
-        return get_hmac == my_hmac
+def check_hmac(fn):
+    """ verify hmac """
+
+    def before(*args, **kwargs):
+        # for development mode
+        if getenv('FLASK_ENV', 'production') == 'development':
+            store = Store.query.first()
+            g.store_id = store.id
+            g.store = store
+            return fn(*args, **kwargs)
+
+        # production mode
+        def hmac_calculate(params):
+            def calculate(params):
+                def encode_pairs(params):
+                    for k, v in params.items():
+                        if k == 'hmac':
+                            continue
+                        if k.endswith('[]'):
+                            k = k.rstrip('[]')
+                            v = json.dumps(list(map(str, v)))
+                        # escape delimiters to avoid tampering
+                        k = str(k).replace("%", "%25").replace("=", "%3D")
+                        v = str(v).replace("%", "%25")
+                        yield '{0}={1}'.format(k, v).replace("&", "%26")
+
+                return '&'.join(sorted(encode_pairs(params)))
+
+            return hmac.new(environ.get('APP_SECRET').encode(), calculate(params).encode(), sha256).hexdigest()
+
+        params = request.args
+        my_hmac = hmac_calculate(params).encode('utf-8')
+        get_hmac = params['hmac'].encode('utf-8')
+        valid = False
+        try:
+            valid = hmac.compare_digest(my_hmac, get_hmac)
+        except AttributeError:
+            pass
+        if not valid:
+            resp = jsonify({'status': 401, 'message': 'Invalid HMAC'})
+            resp.status_code = 401
+            return resp
+        store = Store.query.filter_by(key=params['shop']).first()
+        if not store:
+            resp = jsonify(dict(status=401, message='Unknow store name'))
+            resp.status_code = 401
+            return resp
+        g.store_id = store.id
+        g.store = store
+        return fn(*args, **kwargs)
+
+    return before
+
+
+def check_callback(fn):
+    def before(*args, **kwargs):
+        params = request.args
+        # Check cookie
+        state = request.cookies.get('state')
+        if state is None or state != params['state']:
+            resp = jsonify({'status': 403, 'message': 'Request origin cannot be verified'})
+            resp.status_code = 403
+            return resp
+        # Timestamp
+        one_day = 86400
+        if int(request.args.get('timestamp', 0)) < time() - one_day:
+            resp = jsonify({'status': 401, 'message': 'The request has expired'})
+            resp.status_code = 401
+            return resp
+
+        def hmac_calculate(params):
+            def calculate(params):
+                def encode_pairs(params):
+                    for k, v in params.items():
+                        if k == 'hmac':
+                            continue
+                        if k.endswith('[]'):
+                            k = k.rstrip('[]')
+                            v = json.dumps(list(map(str, v)))
+                        # escape delimiters to avoid tampering
+                        k = str(k).replace("%", "%25").replace("=", "%3D")
+                        v = str(v).replace("%", "%25")
+                        yield '{0}={1}'.format(k, v).replace("&", "%26")
+
+                return '&'.join(sorted(encode_pairs(params)))
+
+            return hmac.new(environ.get('APP_SECRET').encode(), calculate(params).encode(), sha256).hexdigest()
+
+        my_hmac = hmac_calculate(params).encode('utf-8')
+        get_hmac = params['hmac'].encode('utf-8')
+        valid = False
+        try:
+            valid = hmac.compare_digest(my_hmac, get_hmac)
+        except AttributeError:
+            pass
+        if not valid:
+            resp = jsonify({'status': 401, 'message': 'Invalid HMAC'})
+            resp.status_code = 401
+            return resp
+        return fn(*args, **kwargs)
+
+    return before
 
 
 def check_proxy(fn):
     """ verify proxy request """
+
     def before(*args, **kwargs):
         # for development mode
         if getenv('FLASK_ENV', 'production') == 'development':
@@ -153,7 +235,8 @@ def check_proxy(fn):
         for key in sorted(params):
             query += '{}={}'.format(key, params[key].join(',') if isinstance(params[key], list) else params[key])
         if signature != hmac.new(environ.get('APP_SECRET').encode(), query.encode(), sha256).hexdigest():
-            resp = jsonify(status=401, message='proxy validation fail!')
+            resp = jsonify(status=401, message='proxy validation fail!', headers=request.headers.get_all(),
+                           params=request.args)
             resp.status_code = 401
             return resp
         # Setup Store
@@ -162,13 +245,16 @@ def check_proxy(fn):
             resp = jsonify(status=401, message='proxy validation fail!!')
             resp.status_code = 401
             return resp
+        g.store = store
         g.store_id = store.id
         return fn(*args, **kwargs)
+
     return before
 
 
 def check_webhook(fn):
     """ verify webhook request by public app """
+
     def before(*args, **kwargs):
         data = request.get_data()
         hmac_string = request.headers.get('X-Shopify-Hmac-Sha256')
@@ -178,11 +264,13 @@ def check_webhook(fn):
             resp = jsonify(dict(status=400, message="Invalid Session, Please refresh the page"))
             return resp
         return fn(*args, **kwargs)
+
     return before
 
 
 def check_session(fn):
     """ Check session """
+
     def before(*args, **kwargs):
         # for development debug
         if getenv('FLASK_ENV', 'production') == 'development':
@@ -195,4 +283,5 @@ def check_session(fn):
             return resp
         g.store_id = store_id
         return fn(*args, **kwargs)
+
     return before

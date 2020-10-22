@@ -3,8 +3,9 @@
 """
 Flask Application Routes
 """
-from .shopify import basic_bp
 
 
 def register_routes(app):
+    from .shopify import basic_bp, docs_bp
     app.register_blueprint(basic_bp)
+    app.register_blueprint(docs_bp)

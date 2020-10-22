@@ -1,18 +1,17 @@
 'use strict';
-import Axios from 'axios'
+import Axios from "axios"
 import PolarisVue from '@eastsideco/polaris-vue'
 import '@eastsideco/polaris-vue/lib/polaris-vue.css'
-import { Plugin } from 'vue-fragment'
+import {Plugin} from 'vue-fragment'
 import VueCookie from 'vue-cookies'
 
 export default {
     install: (Vue) => {
-        Axios.interceptors.response.use(function(response) {
-            if (response.data.status !== 0) {
-                console.error('There is something wrong!', response)
-            }
+        Axios.interceptors.response.use(function (response) {
+            if (response.status === 200 && response.data instanceof Blob) return response;
+            if (response.data.status !== 0) return Promise.reject(response);
             return response
-        }, function(error) {
+        }, function (error) {
             return Promise.reject(error)
         });
         Vue.prototype.$http = Axios;

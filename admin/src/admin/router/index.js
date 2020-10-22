@@ -1,13 +1,11 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter from "vue-router"
 
 Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/',
-        name: 'Admin',
-        component: () => import('@/views/index')
+        path: '*', component: () => import('@/views/index.vue')
     }
 ];
 

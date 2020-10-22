@@ -17,3 +17,4 @@ logto = /var/log/nginx/vend-app.log
 chmod-socket = 666
 # clear environment on exit
 vacuum = true
+gid = nginx

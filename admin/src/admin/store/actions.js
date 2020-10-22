@@ -1,18 +1,23 @@
 'use strict';
-import {Toast, ResourcePicker, Redirect} from '@shopify/app-bridge/actions';
+import isEmpty from 'lodash/isEmpty'
+import state from './state'
+import {Toast, ResourcePicker, Redirect} from "@shopify/app-bridge/actions";
 
 export default {
-    toastNotice({state}, payload) {
-        let toastMsg = Toast.create(state.bridge, payload)
-        toastMsg.dispatch(Toast.Action.SHOW)
+    toastNotice(payload) {
+        if (isEmpty(state.bridge)) return;
+        let toastMsg = Toast.create(state.bridge, payload);
+        toastMsg.dispatch(Toast.Action.SHOW);
     },
-    redirectAdmin({state}, path) {
+    redirectAdmin(path) {
+        if (isEmpty(state.bridge)) return;
         let redirect = Redirect.create(state.bridge);
         redirect.dispatch(Redirect.Action.ADMIN_PATH, path)
     },
-    productPicker({state}, payload) {
+    productPicker(payload) {
+        if (isEmpty(state.bridge)) return;
         let picker = ResourcePicker.create(state.bridge, {
-                options: {showVariants: false},
+                options: {showVariants: false, selectMultiple: payload['selectMultiple'] || false},
                 resourceType: ResourcePicker.ResourceType.Product
             }),
             cancel_cb = (payload && payload['cancel_cb'] && typeof payload['cancel_cb'] === 'function') ? payload['cancel_cb'] : () => {
@@ -30,8 +35,10 @@ export default {
         // dispatch picker
         picker.dispatch(ResourcePicker.Action.OPEN)
     },
-    collectionPicker({state}, payload) {
+    collectionPicker(payload) {
+        if (isEmpty(state.bridge)) return;
         let picker = ResourcePicker.create(state.bridge, {
+                options: {showVariants: false, selectMultiple: payload['selectMultiple'] || false},
                 resourceType: ResourcePicker.ResourceType.Collection
             }),
             cancel_cb = (payload && payload['cancel_cb'] && typeof payload['cancel_cb'] === 'function') ? payload['cancel_cb'] : () => {

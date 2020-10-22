@@ -4,10 +4,7 @@
 Configuration for Flask
 """
 from os import path, getenv
-from dotenv import load_dotenv
 from app import ROOT_PATH
-# Load env variables
-load_dotenv(dotenv_path=path.join(ROOT_PATH, '.env'))
 
 
 class Config:

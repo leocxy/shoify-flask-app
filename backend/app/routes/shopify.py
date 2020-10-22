@@ -1,21 +1,38 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import re, uuid, requests
-from flask import request, Blueprint, jsonify, url_for, redirect, session
+"""
+@Project: app-sherry-kitchen
+@File: shopify.py
+@Author: Leo Chen <leo.cxy88@gmail.com>
+@Date: 2020-10-20 09:40
+"""
+import re
+import requests
+import uuid
 from os import environ, path
 from urllib.parse import urlencode
-from time import time
+from flask import request, Blueprint, jsonify, url_for, redirect, session, render_template, make_response, g
+from jinja2 import TemplateNotFound
 # App Package
-from app import db, ROOT_PATH
+from app import db, ROOT_PATH, logger
 from app.models.shopify import Store
-from app.utils.base import Base, check_hmac, check_webhook
+from app.utils.base import Base, check_webhook, check_hmac, check_callback
 
 basic_bp = Blueprint(
     'shopify',
-    __name__,
-    static_url_path='/admin',
+    'default_shopify',
+    static_url_path='',
     static_folder=path.dirname(ROOT_PATH) + '/admin/dist',
     template_folder=path.dirname(ROOT_PATH) + '/admin/dist',
+)
+
+docs_bp = Blueprint(
+    'app_docs',
+    __name__,
+    url_prefix='/docs',
+    static_url_path='',
+    static_folder=path.dirname(ROOT_PATH) + '/admin/dist/front',
+    template_folder=path.dirname(ROOT_PATH) + '/admin/dist/front',
 )
 
 
@@ -39,28 +56,10 @@ def install():
     return resp
 
 
-@basic_bp.route('/callback', methods=['GET'])
+@basic_bp.route('/callback', methods=['GET'], endpoint='callback')
+@check_callback
 def callback():
-    params = {}
-    for arg in request.args:
-        params[arg] = request.args.get(arg)
-    # Check cookie
-    state = request.cookies.get('state')
-    if state is None or state != params['state']:
-        resp = jsonify({'status': 403, 'message': 'Request origin cannot be verified'})
-        resp.status_code = 403
-        return resp
-    # Timestamp
-    one_day = 86400
-    if int(request.args.get('timestamp', 0)) < time() - one_day:
-        resp = jsonify({'status': 401, 'message': 'The request has expired'})
-        resp.status_code = 401
-        return resp
-    # Hmac valid
-    if not check_hmac(params):
-        resp = jsonify({'status': 401, 'message': 'Invalid HMAC'})
-        resp.status_code = 401
-        return resp
+    params = request.args
     # Store Token IN Database
     code = params['code']
     query = dict(client_id=environ.get('APP_KEY'), client_secret=environ.get('APP_SECRET'), code=code)
@@ -92,32 +91,23 @@ def callback():
         record.token = data['access_token']
         record.domain = domain
     db.session.commit()
-    return redirect('https://{}/admin/apps'.format(params['shop']))
+    # Register GDPR mandatory webhooks
+    from app.schemas.webhook import mutation as mutation_schema
+    mutation = mutation_schema % ('APP_UNINSTALLED', url_for('shopify.shop_redact', _scheme='https', _external=True))
+    res = base.fetch_data(mutation)['webhookSubscriptionCreate']
+    if len(res['userErrors']):
+        logger.error('Store Redact Mutation Error: %s', res['userErrors'])
+    return redirect('https://{}/admin/apps/{}'.format(params['shop'], environ.get('APP_KEY')))
 
 
-@basic_bp.route('/admin', methods=['GET'])
+@basic_bp.route('/admin', methods=['GET'], endpoint='admin')
+@check_hmac
 def admin():
     """ Shopfiy Admin Embedded App """
-    params = {}
-    for arg in request.args:
-        params[arg] = request.args.get(arg)
-    # HMAC Check
-    if not check_hmac(params):
-        resp = jsonify({'status': 401, 'message': 'Invalid HMAC'})
-        resp.status_code = 401
-        return resp
-    # Store Check
-    store = Store.query.filter_by(key=params['shop']).first()
-    if not store:
-        resp = jsonify(dict(status=401, message='Unknow store name'))
-        resp.status_code = 401
-        return resp
-    session['store_id'] = store.id
+    session['store_id'] = g.store_id
     # VueJS
-    from flask import render_template, make_response
-    from jinja2 import TemplateNotFound
     try:
-        resp = make_response(render_template('index.html'))
+        resp = make_response(render_template('admin/index.html'))
         resp.set_cookie(
             'apiKey',
             environ.get('APP_KEY'),
@@ -126,7 +116,7 @@ def admin():
             domain='.' + environ.get('SERVER_NAME', 'localhost'))
         resp.set_cookie(
             'shop',
-            store.key,
+            g.store.key,
             secure=True,
             samesite='None',
             domain='.' + environ.get('SERVER_NAME', 'localhost'))
@@ -142,21 +132,50 @@ def index():
     """ Handle Request """
     params = request.args
     if len([x for x in params.keys() if x in ['timestamp', 'shop', 'hmac']]) == 3 and len(params) == 3:
-        return redirect(url_for('.install', **params))
-    if 'session' in params.keys() and len(params) == 5:
-        return redirect(url_for('.admin', **params))
-    return 'Please contact Pocket Square <dev@pocketsquare.co.nz> for more information about this app.'
+        return redirect(url_for('shopify.install', **params))
+    if 'session' in params.keys() and len(params) >= 5:
+        return redirect(url_for('shopify.admin', **params))
+    return redirect(url_for('app_docs.index'))
 
 
-@basic_bp.route('/webhook/shop/redact', methods=['POST'], endpoint='redact')
+@basic_bp.route('/webhook/shop/redact', methods=['POST'], endpoint='shop_redact')
 @check_webhook
-def redact():
+def shop_redact():
+    """ erase the customer information for that store from your database """
     data = request.get_json()
-    record = Store.query.filter_by(key=data.shop_domain).first()
+    record = Store.query.filter_by(key=data['myshopify_domain']).first()
     if record:
-        themes = record.themes.all()
-        for theme in themes:
-            db.session.delete(theme)
+        # store record
         db.session.delete(record)
     db.session.commit()
     return 'success'
+
+
+@basic_bp.route('/webhook/customers/redact', methods=['POST'], endpoint='customer_redact')
+@check_webhook
+def customer():
+    """ If your app has been granted access to the store's customers or orders,
+    then you receive a redaction request webhook with the resource IDs that you need to redact or delete.
+    In some cases, a customer record contains only the customer's email address. """
+    # @todo
+    return 'success'
+
+
+@basic_bp.route('/webhook/customers/data_request', methods=['POST'], endpoint='customer_data_request')
+@check_webhook
+def customer_data():
+    """ If your app has been granted access to customers or orders, then you receive a data request webhook
+    with the resource IDs of the data that you need to provide to the store owner.
+    It's your responsibility to provide this data to the store owner directly.
+    In some cases, a customer record contains only the customer's email address. """
+    # @todo
+    return 'success'
+
+
+@docs_bp.route('/', methods=['GET'])
+def index():
+    """ Docs """
+    try:
+        return make_response(render_template('index.html'))
+    except TemplateNotFound:
+        return 'Please contact support@laybuy.com for more information about this page.'
