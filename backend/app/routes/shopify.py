@@ -178,4 +178,4 @@ def index():
     try:
         return make_response(render_template('index.html'))
     except TemplateNotFound:
-        return 'Please contact support@laybuy.com for more information about this page.'
+        return 'Please contact dev@pocketsquare.co.nz for more information about this page.'
