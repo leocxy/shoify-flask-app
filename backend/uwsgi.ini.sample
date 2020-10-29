@@ -17,4 +17,15 @@ logto = /var/log/nginx/vend-app.log
 chmod-socket = 666
 # clear environment on exit
 vacuum = true
+# security - drop privileges
 gid = nginx
+# memory report
+memory-report = true
+# coroutine
+gevent = 100
+# stats
+stats = /tmp/stats-path
+# thread
+enable-threads = true
+# read more
+# https://uwsgi-docs.readthedocs.io/en/latest/ThingsToKnow.html
