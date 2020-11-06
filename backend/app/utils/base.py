@@ -258,10 +258,13 @@ def check_webhook(fn):
     def before(*args, **kwargs):
         data = request.get_data()
         hmac_string = request.headers.get('X-Shopify-Hmac-Sha256')
+        resp = jsonify(dict(status=401, message="Invalid Hmac Header, Please refresh the page"))
+        resp.status_code = 401
+        if not hmac_string:
+            return resp
         digest = hmac.new(environ.get('APP_SECRET').encode('utf-8'), data, sha256).digest()
         computed_hmac = base64.b64encode(digest)
         if not hmac.compare_digest(computed_hmac, hmac_string.encode('utf-8')):
-            resp = jsonify(dict(status=400, message="Invalid Session, Please refresh the page"))
             return resp
         return fn(*args, **kwargs)
 
