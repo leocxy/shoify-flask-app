@@ -21,11 +21,13 @@ vacuum = true
 gid = nginx
 # memory report
 memory-report = true
-# coroutine
-gevent = 100
 # stats
 stats = /tmp/stats-path
+# ------------
+# coroutine config
+# ------------
+# gevent = 100
 # thread
-enable-threads = true
+# enable-threads = true
 # read more
 # https://uwsgi-docs.readthedocs.io/en/latest/ThingsToKnow.html

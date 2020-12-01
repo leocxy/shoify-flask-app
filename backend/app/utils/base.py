@@ -13,11 +13,34 @@ from time import sleep, time
 from contextlib import contextmanager
 # Request validation
 from hashlib import sha256
-import hmac, json, base64, shopify
+import hmac
+from json import dumps
+from base64 import b64encode
+import shopify
 from flask import g, jsonify, session, request
-from pyactiveresource.connection import ResourceNotFound
+from pyactiveresource.connection import ResourceNotFound, ClientError
+from shopify.base import ShopifyConnection
 # Custom
 from app.models.shopify import Store
+
+
+def patch_shopify_with_limits():
+    func = ShopifyConnection._open
+
+    def patched_open(self, *args, **kwargs):
+        while True:
+            try:
+                return func(self, *args, **kwargs)
+            except ClientError as e:
+                if e.response.code == 429:
+                    retry_after = float(e.response.headers.get('Retry-After', 4))
+                    print('Service exceeds Shopify API call limit, '
+                          'will retry to send request in %s seconds' % retry_after)
+                    sleep(retry_after)
+                else:
+                    raise e
+
+    ShopifyConnection._open = patched_open
 
 
 @contextmanager
@@ -28,6 +51,7 @@ def init_api(version=None):
         raise Exception('can not init shopify api, something wrong from database')
     if version is None:
         version = environ.get('API_VERSION')
+    patch_shopify_with_limits()
     api_session = shopify.Session(app.key, version, app.token)
     shopify.ShopifyResource.activate_session(api_session)
     yield shopify, app
@@ -131,7 +155,7 @@ def check_hmac(fn):
                             continue
                         if k.endswith('[]'):
                             k = k.rstrip('[]')
-                            v = json.dumps(list(map(str, v)))
+                            v = dumps(list(map(str, v)))
                         # escape delimiters to avoid tampering
                         k = str(k).replace("%", "%25").replace("=", "%3D")
                         v = str(v).replace("%", "%25")
@@ -189,7 +213,7 @@ def check_callback(fn):
                             continue
                         if k.endswith('[]'):
                             k = k.rstrip('[]')
-                            v = json.dumps(list(map(str, v)))
+                            v = dumps(list(map(str, v)))
                         # escape delimiters to avoid tampering
                         k = str(k).replace("%", "%25").replace("=", "%3D")
                         v = str(v).replace("%", "%25")
@@ -263,7 +287,7 @@ def check_webhook(fn):
         if not hmac_string:
             return resp
         digest = hmac.new(environ.get('APP_SECRET').encode('utf-8'), data, sha256).digest()
-        computed_hmac = base64.b64encode(digest)
+        computed_hmac = b64encode(digest)
         if not hmac.compare_digest(computed_hmac, hmac_string.encode('utf-8')):
             return resp
         return fn(*args, **kwargs)
