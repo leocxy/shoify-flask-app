@@ -8,9 +8,12 @@
 '''
 from sgqlc.endpoint.http import HTTPEndpoint
 from urllib.error import HTTPError, URLError
-from os import getenv, environ
+from os import getenv, environ, path, getpid, remove
+from sys import exc_info
 from time import sleep, time
 from contextlib import contextmanager
+from psutil import pid_exists
+from datetime import datetime
 # Request validation
 from hashlib import sha256
 import hmac
@@ -21,6 +24,7 @@ from flask import g, jsonify, session, request
 from pyactiveresource.connection import ResourceNotFound, ClientError
 from shopify.base import ShopifyConnection
 # Custom
+from app import ROOT_PATH, TIMEZONE
 from app.models.shopify import Store
 
 
@@ -312,3 +316,31 @@ def check_session(fn):
         return fn(*args, **kwargs)
 
     return before
+
+
+def get_now(f='%Y-%m-%d %H:%M:%S'):
+    return datetime.now(TIMEZONE).strftime(f)
+
+
+@contextmanager
+def prevent_concurrency(key='main'):
+    flag = path.join(ROOT_PATH, 'tmp', 'worker-{}.flag'.format(key))
+    try:
+        if path.isfile(flag):
+            with open(flag, 'r') as f:
+                pid = f.read()
+                if pid_exists(int(pid)):
+                    raise RuntimeError('%s [%s - %s] is running!' % (get_now(), key, getpid()))
+            with open(flag, 'w+') as f:
+                f.write(str(getpid()))
+        else:
+            with open(flag, 'w+') as f:
+                f.write(str(getpid()))
+        yield
+        remove(flag)
+    except RuntimeError as e:
+        raise e
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = exc_info()
+        print(exc_type, exc_obj, exc_tb)
+        raise e
