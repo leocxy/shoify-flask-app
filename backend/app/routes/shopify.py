@@ -11,12 +11,12 @@ import requests
 import uuid
 from os import environ, path
 from urllib.parse import urlencode
-from flask import request, Blueprint, jsonify, url_for, redirect, session, render_template, make_response, g
+from flask import request, Blueprint, jsonify, url_for, redirect, render_template, make_response, g
 from jinja2 import TemplateNotFound
 # App Package
 from app import db, ROOT_PATH, logger
 from app.models.shopify import Store
-from app.utils.base import Base, check_webhook, check_hmac, check_callback
+from app.utils.base import Base, check_webhook, check_hmac, check_callback, create_jwt_token
 
 basic_bp = Blueprint(
     'shopify',
@@ -103,23 +103,14 @@ def callback():
 @basic_bp.route('/admin', methods=['GET'], endpoint='admin')
 @check_hmac
 def admin():
-    """ Shopfiy Admin Embedded App """
-    session['store_id'] = g.store_id
-    # VueJS
+    """ Shopfiy Admin Embedded App - Vue SPA """
     try:
-        resp = make_response(render_template('admin/index.html'))
-        resp.set_cookie(
-            'apiKey',
-            environ.get('APP_KEY'),
-            secure=True,
-            samesite='None',
-            domain='.' + environ.get('SERVER_NAME', 'localhost'))
-        resp.set_cookie(
-            'shop',
-            g.store.key,
-            secure=True,
-            samesite='None',
-            domain='.' + environ.get('SERVER_NAME', 'localhost'))
+        resp = make_response(render_template(
+            'admin/index.html',
+            apiKey=environ.get('APP_KEY'),
+            shop=g.store.key,
+            jwtToken=create_jwt_token()
+        ))
         return resp
     except TemplateNotFound:
         resp = jsonify({'status': 404, 'message': "Template missing"})

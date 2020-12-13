@@ -13,7 +13,6 @@ from os import path, environ
 from pytz import timezone
 from logging.config import dictConfig
 from dotenv import load_dotenv
-from gevent import monkey
 __version__ = '0.0.1'
 __author__ = 'Leo Chen'
 __email__ = 'leo.cxy88@gmail.com'
@@ -25,7 +24,6 @@ logger = None
 ROOT_PATH = path.abspath(path.dirname(path.dirname(__file__)))
 TIMEZONE = timezone('Pacific/Auckland')
 load_dotenv(dotenv_path=path.join(ROOT_PATH, '.env'))
-monkey.patch_all()
 
 
 def init_app():

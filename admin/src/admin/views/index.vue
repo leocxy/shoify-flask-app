@@ -1,5 +1,5 @@
 <template>
-    <polaris-page>
+    <polaris-page title="">
         <polaris-empty-state
                 heading="Empty State Page"
                 :action="{content: 'Add transfer', onAction: testAlert}"
@@ -10,8 +10,18 @@
     </polaris-page>
 </template>
 
+
 <script>
+    import {getter, action} from '@/store';
+
     export default {
-        name: "SamplePage"
+        name: "SamplePage",
+        methods: {
+            testAlert: function () {
+                this.$http.get(getter.getApi('test_jwt')).then((res) => {
+                    action.toastNotice({message: res.data['message']})
+                });
+            }
+        }
     }
 </script>

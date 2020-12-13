@@ -13,10 +13,11 @@ from sys import exc_info
 from time import sleep, time
 from contextlib import contextmanager
 from psutil import pid_exists
-from datetime import datetime
+from datetime import datetime, timedelta
 # Request validation
-from hashlib import sha256
 import hmac
+import jwt
+from hashlib import sha256
 from json import dumps
 from base64 import b64encode
 import shopify
@@ -320,6 +321,44 @@ def check_session(fn):
 
 def get_now(f='%Y-%m-%d %H:%M:%S'):
     return datetime.now(TIMEZONE).strftime(f)
+
+
+def create_jwt_token():
+    return jwt.encode(dict(
+        store_id=g.store_id,
+        exp=datetime.utcnow() + timedelta(minutes=30)
+    ), environ.get('APP_SECRET'), algorithm='HS256').decode('utf-8')
+
+
+def check_jwt(fn):
+    """ Check JWT Session Token """
+
+    def before(*args, **kwargs):
+        store_id = 1 if getenv('FLASK_ENV', 'production') == 'development' else None
+        if store_id:
+            g.store_id = store_id
+            return fn(*args, **kwargs)
+        # Regular Validation
+        token = request.headers.get('Authorization', None)
+        if not token:
+            resp = jsonify(dict(status=401, message='Invalid Session Token, Please refresh the page'))
+            resp.status_code = 401
+            return resp
+        try:
+            res = jwt.decode(token[7:], environ.get('APP_SECRET'), algorithms='HS256')
+            g.store_id = res['store_id']
+            # @todo refresh the token
+            return fn(*args, **kwargs)
+        except jwt.ExpiredSignatureError:
+            resp = jsonify(dict(status=400, message='Session Token Expire, Please refresh the page'))
+            resp.status_code = 400
+            return resp
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = exc_info()
+            print(exc_type, exc_obj, exc_tb)
+            raise e
+
+    return before
 
 
 @contextmanager

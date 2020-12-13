@@ -3,7 +3,7 @@ import Axios from "axios"
 import PolarisVue from '@eastsideco/polaris-vue'
 import '@eastsideco/polaris-vue/lib/polaris-vue.css'
 import {Plugin} from 'vue-fragment'
-import VueCookie from 'vue-cookies'
+
 
 export default {
     install: (Vue) => {
@@ -16,7 +16,6 @@ export default {
         });
         Vue.prototype.$http = Axios;
         Vue.use(PolarisVue);
-        Vue.use(VueCookie);
         Vue.use(Plugin);
     }
 }
