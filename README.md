@@ -1,7 +1,7 @@
 ### Introduction
 
-This app created by Pocket Square.
-It build for <MERCHANT_NAME>.
+This repository created by Leo Chen <leo.cxy88@gmail.com>.
+
 
 Backend is using [Flask](https://www.palletsprojects.com/p/flask/). 
 Admin panel is using [VueJS](https://vuejs.org/).
@@ -9,7 +9,7 @@ Admin panel is using [VueJS](https://vuejs.org/).
 ### Environment
 
 - OS: MacOX / Centos
-- Python: 3
+- Python: ^3.8
 - VueJS: ^2.6.10
 
 ---
