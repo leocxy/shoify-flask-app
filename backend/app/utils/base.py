@@ -327,7 +327,7 @@ def create_jwt_token():
     return jwt.encode(dict(
         store_id=g.store_id,
         exp=datetime.utcnow() + timedelta(minutes=30)
-    ), environ.get('APP_SECRET'), algorithm='HS256').decode('utf-8')
+    ), environ.get('APP_SECRET'), algorithm='HS256')
 
 
 def check_jwt(fn):
@@ -383,3 +383,25 @@ def prevent_concurrency(key='main'):
         exc_type, exc_obj, exc_tb = exc_info()
         print(exc_type, exc_obj, exc_tb)
         raise e
+
+
+def generate_token(data):
+    from Crypto.Random import get_random_bytes
+    from Crypto.Cipher import AES
+    from Crypto.Util.Padding import pad
+
+    secret = environ.get('MP_TOKEN')
+    if not secret:
+        raise Exception('MP_TOKEN is none!')
+    hash = sha256(secret.encode()).digest()
+    encrypt_key = hash[:16]
+    signature_key = hash[16:32]
+
+    # Genreate Token
+    data['created_at'] = datetime.utcnow().replace(microsecond=0).isoformat()
+    data = dumps(data)
+    iv = get_random_bytes(AES.block_size)
+    cipher = AES.new(encrypt_key, AES.MODE_CBC, iv=iv)
+    cipher_bytes = iv + cipher.encrypt(pad(data.encode(), AES.block_size))
+    sign_bytes = hmac.new(signature_key, cipher_bytes, sha256).digest()
+    return b64encode(cipher_bytes + sign_bytes).decode('utf-8').replace('+', '-').replace('/', '_')
