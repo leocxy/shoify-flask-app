@@ -1,0 +1,25 @@
+# if gevent is enable
+[uwsgi]
+# flask wsgi file
+module = wsgi:app
+# master
+master = true
+# maximum num of worker processes
+processes = 2
+# the base directory (full path)
+chdir = /YOUR/PATH/app-scaffold/backend
+http = 0.0.0.0:5000
+# log
+#logto = /var/log/nginx/vend-app.log
+# with appropriate permissions
+chmod-socket = 666
+# clear environment on exit
+vacuum = true
+# memory report
+memory-report = true
+# coroutine
+gevent = 10
+# stats
+stats = /YOUR/PATH/app-scaffold/backend/tmp/stats
+# thread
+enable-threads = true
