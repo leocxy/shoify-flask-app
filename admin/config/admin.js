@@ -17,7 +17,7 @@ module.exports = merge(commonConfig, {
     publicPath: process.env.NODE_ENV === 'production' ? '/admin' : '/',
     devServer: {
         // Redirect all api path to backend
-        proxy: {'/api': {target: 'http://127.0.0.1:5000'}}
+        proxy: {'/admin': {target: 'http://127.0.0.1:5000'}}
     },
     configureWebpack: config => {
         config.resolve.alias['@'] = path.resolve('src/admin/')
