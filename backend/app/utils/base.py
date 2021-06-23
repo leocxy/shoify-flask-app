@@ -148,7 +148,7 @@ def check_hmac(fn):
         if getenv('FLASK_ENV', 'production') == 'development':
             store = Store.query.first()
             g.store_id = store.id
-            g.store = store
+            g.store_key = store.key
             return fn(*args, **kwargs)
 
         # production mode
@@ -188,7 +188,6 @@ def check_hmac(fn):
             resp.status_code = 401
             return resp
         g.store_id = store.id
-        g.store = store
         return fn(*args, **kwargs)
 
     return before
@@ -274,7 +273,6 @@ def check_proxy(fn):
             resp = jsonify(status=401, message='proxy validation fail!!')
             resp.status_code = 401
             return resp
-        g.store = store
         g.store_id = store.id
         return fn(*args, **kwargs)
 
@@ -384,24 +382,24 @@ def prevent_concurrency(key='main'):
         print(exc_type, exc_obj, exc_tb)
         raise e
 
-
-def generate_token(data):
-    from Crypto.Random import get_random_bytes
-    from Crypto.Cipher import AES
-    from Crypto.Util.Padding import pad
-
-    secret = environ.get('MP_TOKEN')
-    if not secret:
-        raise Exception('MP_TOKEN is none!')
-    hash = sha256(secret.encode()).digest()
-    encrypt_key = hash[:16]
-    signature_key = hash[16:32]
-
-    # Genreate Token
-    data['created_at'] = datetime.utcnow().replace(microsecond=0).isoformat()
-    data = dumps(data)
-    iv = get_random_bytes(AES.block_size)
-    cipher = AES.new(encrypt_key, AES.MODE_CBC, iv=iv)
-    cipher_bytes = iv + cipher.encrypt(pad(data.encode(), AES.block_size))
-    sign_bytes = hmac.new(signature_key, cipher_bytes, sha256).digest()
-    return b64encode(cipher_bytes + sign_bytes).decode('utf-8').replace('+', '-').replace('/', '_')
+# MultiPass Only
+# def generate_token(data):
+#     from Crypto.Random import get_random_bytes
+#     from Crypto.Cipher import AES
+#     from Crypto.Util.Padding import pad
+#
+#     secret = environ.get('MP_TOKEN')
+#     if not secret:
+#         raise Exception('MP_TOKEN is none!')
+#     hash = sha256(secret.encode()).digest()
+#     encrypt_key = hash[:16]
+#     signature_key = hash[16:32]
+#
+#     # Genreate Token
+#     data['created_at'] = datetime.utcnow().replace(microsecond=0).isoformat()
+#     data = dumps(data)
+#     iv = get_random_bytes(AES.block_size)
+#     cipher = AES.new(encrypt_key, AES.MODE_CBC, iv=iv)
+#     cipher_bytes = iv + cipher.encrypt(pad(data.encode(), AES.block_size))
+#     sign_bytes = hmac.new(signature_key, cipher_bytes, sha256).digest()
+#     return b64encode(cipher_bytes + sign_bytes).decode('utf-8').replace('+', '-').replace('/', '_')

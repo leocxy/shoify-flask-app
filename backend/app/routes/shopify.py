@@ -108,7 +108,7 @@ def admin():
         resp = make_response(render_template(
             'admin/index.html',
             apiKey=environ.get('APP_KEY'),
-            shop=g.store.key,
+            shop=g.store_key,
             jwtToken=create_jwt_token()
         ))
         return resp
