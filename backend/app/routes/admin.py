@@ -6,9 +6,9 @@
 @Author: Leo Chen <leo.cxy88@gmail.com>
 @Date: 2020-12-14 11:28
 """
-from flask import Blueprint, jsonify
+from flask import Blueprint
 # Custom Modules
-from app.utils.base import check_jwt
+from app.utils.base import check_jwt, refresh_jwt_token as jsonify
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 

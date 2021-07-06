@@ -1,15 +1,17 @@
 'use strict';
 import Axios from "axios"
-import PolarisVue from '@eastsideco/polaris-vue'
-import '@eastsideco/polaris-vue/lib/polaris-vue.css'
+import PolarisVue from '@hulkapps/polaris-vue'
+import '@hulkapps/polaris-vue/dist/polaris-vue.css'
 import {Plugin} from 'vue-fragment'
 
 
 export default {
     install: (Vue) => {
         Axios.interceptors.response.use(function (response) {
-            if (response.status === 200 && response.data instanceof Blob) return response;
-            if (response.data.status !== 0) return Promise.reject(response);
+            if (response.status === 200 && response.data instanceof Blob) return response
+            // jwtToken
+            if (response.data?.jwtToken) Vue.prototype.$http.defaults.headers.common['Authorization'] = `Bearer ${response.data.jwtToken}`
+            if (response.data.status !== 0) return Promise.reject(response)
             return response
         }, function (error) {
             return Promise.reject(error)

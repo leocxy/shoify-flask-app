@@ -5,31 +5,31 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "docs:dev": "vuepress dev src/front",
-    "docs:build": "vuepress build src/front",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "serve:docs": "vuepress dev src/front",
+    "build:docs": "vuepress build src/front"
   },
   "dependencies": {
+    "@shopify/app-bridge": "^2.0.3",
+    "@shopify/app-bridge-utils": "^2.0.3",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@eastsideco/polaris-vue": "^0.1.19",
-    "@shopify/app-bridge": "^1.28.0",
-    "@shopify/app-bridge-utils": "^1.28.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "axios": "^0.20.0",
+    "@hulkapps/polaris-vue": "^2.2.4",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint": "^7.30.0",
+    "eslint-plugin-vue": "^7.13.0",
     "lodash": "^4.17.20",
     "vue-fragment": "^1.5.1",
     "vue-router": "^3.4.9",
     "vue-template-compiler": "^2.6.11",
-    "vuepress": "^1.7.1",
+    "vuepress": "^1.8.2",
     "webpack-merge": "^5.2.0"
   },
   "eslintConfig": {

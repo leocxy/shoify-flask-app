@@ -332,31 +332,40 @@ def check_jwt(fn):
     """ Check JWT Session Token """
 
     def before(*args, **kwargs):
-        store_id = 1 if getenv('FLASK_ENV', 'production') == 'development' else None
+        store_id = 1 if getenv(
+            'FLASK_ENV', 'production') == 'development' else None
         if store_id:
-            g.store_id = store_id
+            store = Store.query.filter_by(id=store_id).first()
+            g.store_id = store.id
+            g.jwt_expire_time = 0
             return fn(*args, **kwargs)
         # Regular Validation
         token = request.headers.get('Authorization', None)
         if not token:
-            resp = jsonify(dict(status=401, message='Invalid Session Token, Please refresh the page'))
-            resp.status_code = 401
-            return resp
+            return jsonify(dict(status=401, message='Invalid Session Token, Please refresh the page'))
         try:
-            res = jwt.decode(token[7:], environ.get('APP_SECRET'), algorithms='HS256')
+            res = jwt.decode(token[7:], environ.get(
+                'APP_SECRET'), algorithms='HS256')
             g.store_id = res['store_id']
-            # @todo refresh the token
+            g.jwt_expire_time = res['expire_time']
             return fn(*args, **kwargs)
         except jwt.ExpiredSignatureError:
-            resp = jsonify(dict(status=400, message='Session Token Expire, Please refresh the page'))
-            resp.status_code = 400
-            return resp
+            return jsonify(dict(status=401, message='Session Token Expire, Please refresh the page'))
         except Exception as e:
             exc_type, exc_obj, exc_tb = exc_info()
             print(exc_type, exc_obj, exc_tb)
             raise e
 
     return before
+
+
+def refresh_jwt_token(data: dict):
+    """ Refresh JWT Token """
+    expire_time = int(datetime.utcnow().timestamp()) + 600
+    if g.jwt_expire_time != 0 and expire_time >= g.jwt_expire_time:
+        data['jwtToken'] = create_jwt_token()
+    return jsonify(data)
+
 
 
 @contextmanager
