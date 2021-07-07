@@ -26,6 +26,8 @@
     "eslint": "^7.30.0",
     "eslint-plugin-vue": "^7.13.0",
     "lodash": "^4.17.20",
+    "sass": "^1.35.1",
+    "sass-loader": "^10.0.0",
     "vue-fragment": "^1.5.1",
     "vue-router": "^3.4.9",
     "vue-template-compiler": "^2.6.11",
