@@ -322,9 +322,11 @@ def get_now(f='%Y-%m-%d %H:%M:%S'):
 
 
 def create_jwt_token():
+    expire_time = datetime.utcnow() + timedelta(minutes=30)
     return jwt.encode(dict(
         store_id=g.store_id,
-        exp=datetime.utcnow() + timedelta(minutes=30)
+        expire_time=int(expire_time.timestamp()),
+        exp=expire_time,
     ), environ.get('APP_SECRET'), algorithm='HS256')
 
 
