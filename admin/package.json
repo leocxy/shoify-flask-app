@@ -10,7 +10,7 @@
     "build:docs": "vuepress build src/front"
   },
   "dependencies": {
-    "@shopify/app-bridge": "^2.0.3",
+    "@shopify/app-bridge": "^1.30.0",
     "@shopify/app-bridge-utils": "^2.0.3",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
