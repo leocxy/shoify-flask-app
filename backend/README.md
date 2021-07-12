@@ -44,3 +44,14 @@ flask run
 ```
 
 ---
+
+### Generate Shopify GraphQL schema
+
+python -m sgqlc.introspection \
+     --exclude-deprecated \
+     --exclude-description \
+     -H "X-Shopify-Access-Token: ${token}" \
+     https://${SHOP}.myshopify.com/admin/api/${VERSION}/graphql \
+     shopify_schema.json
+
+---

@@ -188,6 +188,7 @@ def check_hmac(fn):
             resp.status_code = 401
             return resp
         g.store_id = store.id
+        g.store_key = store.key
         return fn(*args, **kwargs)
 
     return before
