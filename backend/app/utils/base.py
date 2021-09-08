@@ -370,7 +370,6 @@ def refresh_jwt_token(data: dict):
     return jsonify(data)
 
 
-
 @contextmanager
 def prevent_concurrency(key='main'):
     flag = path.join(ROOT_PATH, 'tmp', 'worker-{}.flag'.format(key))
@@ -393,6 +392,24 @@ def prevent_concurrency(key='main'):
         exc_type, exc_obj, exc_tb = exc_info()
         print(exc_type, exc_obj, exc_tb)
         raise e
+
+
+def get_version(version=None):
+    if not version:
+        version = environ.get('API_VERSION')
+    current = datetime.today()
+    current_year = current.strftime('%Y')
+    current_num = int(current.strftime('%Y%m'))
+    for m in ['10', '07', '04', '01']:
+        num = int('{}{}'.format(current_year, m))
+        if num <= current_num:
+            prefer = num
+            break
+    if version:
+        version = int(version.replace('-', ''))
+        prefer = prefer if prefer - version > 100 else version
+    prefer = str(prefer)
+    return '{}-{}'.format(prefer[:4], prefer[-2:])
 
 # MultiPass Only
 # def generate_token(data):

@@ -9,7 +9,8 @@
 
 
 def register_scripts(app):
-    pass
+    from .shopify import shopify_bp
+    app.register_blueprint(shopify_bp)
 
 
 __all__ = register_scripts
