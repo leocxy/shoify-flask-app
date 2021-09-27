@@ -4,9 +4,9 @@ import state from './state'
 import createApp from "@shopify/app-bridge"
 
 export default {
-    initAppBridge({apiKey, shopOrigin}) {
-        if (apiKey && shopOrigin) {
-            let app = createApp({apiKey, shopOrigin});
+    initAppBridge({apiKey, host}) {
+        if (apiKey && host) {
+            let app = createApp({apiKey, host});
             Vue.set(state, 'bridge', app);
         }
     },

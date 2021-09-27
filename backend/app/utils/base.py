@@ -411,6 +411,28 @@ def get_version(version=None):
     prefer = str(prefer)
     return '{}-{}'.format(prefer[:4], prefer[-2:])
 
+
+def paginate_response(paginate):
+    """ Paginate for vue table 2 """
+    from_num = paginate.page if paginate.page == 1 else paginate.page * paginate.per_page
+    to_num = int(paginate.page * paginate.per_page + 0 if paginate.page == 1 else paginate.per_page)
+    data = {
+        'total': paginate.total,
+        'per_page': paginate.per_page,
+        'current_page': paginate.page,
+        'last_page': paginate.pages,
+        'next_page_url': '',
+        'prev_page_url': '',
+        'from': from_num,
+        'to': to_num,
+        'data': list(map(lambda x: x.to_dict(), paginate.items))
+    }
+    return refresh_jwt_token(dict(status=0, message='success', data=data))
+
+
+############################
+# Custom method start here #
+############################
 # MultiPass Only
 # def generate_token(data):
 #     from Crypto.Random import get_random_bytes

@@ -12,10 +12,10 @@ export default {
     data: () => ({}),
     mounted() {
         // Init App Bridge
-        const key = window.AppInfo['apiKey'] || null,
-            shop = window.AppInfo['shop'] || null;
-        this.$set(this.$http.defaults.headers.common, 'Authorization', `Bearer ${window.AppInfo['jwtToken'] || null}`)
-        if (key && shop) mutation.initAppBridge({apiKey: key, shopOrigin: shop})
+        const apiKey = window?.AppInfo.apiKey,
+            host = window?.AppInfo.host;
+        this.$set(this.$http.defaults.headers.common, 'Authorization', `Bearer ${window?.AppInfo.jwtToken}`)
+        if (apiKey && host) mutation.initAppBridge({apiKey, host})
     }
 }
 </script>

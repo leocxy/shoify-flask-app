@@ -108,6 +108,9 @@ def admin():
         resp = make_response(render_template(
             'admin/index.html',
             apiKey=environ.get('APP_KEY'),
+            # App bridge 2+
+            host=request.args.get('host', None),
+            # App bridge 1+
             shop=g.store_key,
             jwtToken=create_jwt_token()
         ))

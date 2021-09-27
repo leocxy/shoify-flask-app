@@ -22,8 +22,9 @@ shopify_bp = Blueprint('default', __name__, cli_group=None)
 
 @shopify_bp.cli.command('generate_schema')
 @option('-s', 'store_id', default=1, help='Store ID')
-@option('-v', 'version', default=None, help='Version: 20xx-01 or 20xx-04 ...')
-def generate_schema(store_id, version):
+@option('-v', 'version', default=None, help='Schema Version: 20xx-01 or 20xx-04 ...')
+@option('--with-deprecated', 'deprecate', default=False, help="With deprecated or not, Default False")
+def generate_schema(store_id, version, deprecate):
     """ Generate Shopify GraphQL Schema """
     version = get_version(version)
     store = Store.query.filter_by(id=store_id).first()
@@ -34,7 +35,7 @@ def generate_schema(store_id, version):
     endpoint = HTTPEndpoint(url, headers)
     data = endpoint(query, variables(
         include_description=False,
-        include_deprecated=False,
+        include_deprecated=deprecate,
     ))
     with open('schema.json', 'w') as f:
         dump(data, f, sort_keys=True, indent=2, default=str)
@@ -44,7 +45,7 @@ def generate_schema(store_id, version):
     args.func(args)
     # Remove the file
     remove('schema.json')
-    print('Version: {} - Done'.format(version))
+    print('Schema Version: {} - Done'.format(version))
 
 
 __all__ = shopify_bp
