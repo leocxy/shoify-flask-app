@@ -6,7 +6,9 @@
 @Author: Leo Chen <leo.cxy88@gmail.com>
 @Date: 2020-10-20 09:29
 """
-from app import app
+from app import create_app
+
+
 
 if __name__ == '__main__':
     # Run

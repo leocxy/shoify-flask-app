@@ -414,8 +414,8 @@ def get_version(version=None):
 
 def paginate_response(paginate):
     """ Paginate for vue table 2 """
-    from_num = paginate.page if paginate.page == 1 else paginate.page * paginate.per_page
-    to_num = int(paginate.page * paginate.per_page + 0 if paginate.page == 1 else paginate.per_page)
+    from_num = 1 if paginate.page == 1 else (paginate.page - 1) * paginate.per_page + 1
+    to_num = paginate.per_page if paginate.page == 1 else paginate.page * paginate.per_page
     data = {
         'total': paginate.total,
         'per_page': paginate.per_page,
@@ -435,6 +435,7 @@ def paginate_response(paginate):
 ############################
 # MultiPass Only
 # def generate_token(data):
+#     # pycryptodome
 #     from Crypto.Random import get_random_bytes
 #     from Crypto.Cipher import AES
 #     from Crypto.Util.Padding import pad

@@ -19,14 +19,14 @@ __email__ = 'leo.cxy88@gmail.com'
 __copyright__ = 'Copyright © Pocketsquare'
 # Global Setting
 app = None
-db = None
+db = SQLAlchemy()
 logger = None
 ROOT_PATH = path.abspath(path.dirname(path.dirname(__file__)))
 TIMEZONE = timezone('Pacific/Auckland')
 load_dotenv(dotenv_path=path.join(ROOT_PATH, '.env'))
 
 
-def init_app():
+def create_app(test_config: dict = None):
     global app, db, logger
     dictConfig({
         'version': 1,
@@ -36,12 +36,14 @@ def init_app():
     logger = app.logger
     # Load Config From Object
     app.config.from_object('app.config.Config')
+    # Update Testing Config
+    if test_config:
+        app.config.update(test_config)
 
     # Init Database
-    db = SQLAlchemy(app)
+    # db = SQLAlchemy(app)
+    db.init_app(app)
     Migrate(app, db)
-    # Load Models
-    from .models import shopify
 
     # Init Routes
     from .routes import register_routes
@@ -51,6 +53,9 @@ def init_app():
     from .scripts import register_scripts
     register_scripts(app)
 
+    if test_config is not None:
+        return app, db
+    return app
 
-init_app()
-__all__ = (app, db, logger, ROOT_PATH, TIMEZONE)
+
+__all__ = (app, db, logger, ROOT_PATH, TIMEZONE, create_app())
