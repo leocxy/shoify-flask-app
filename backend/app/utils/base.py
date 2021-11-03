@@ -370,6 +370,28 @@ def refresh_jwt_token(data: dict):
     return jsonify(data)
 
 
+def check_cid_token(fn):
+    """ Check Shopify Customer Id Token """
+
+    def before(*args, **kwargs):
+        # validation
+        token1 = request.headers.get('custom-token', None)
+        token2 = request.headers.get('Authorization', None)
+        if not token1 and not token2:
+            return jsonify(dict(status=401, message="Missing custom-token in header", data=[]))
+        token = token1 if token1 else token2[7:]
+        store = Store.query.filter_by(id=g.store_id).first()
+        if not store:
+            return jsonify(dict(status=400, message='Store record does not exists!', data=[]))
+        secret = store.key
+        cid = str(int(kwargs['cid'] if 'cid' in kwargs else 0) + int(datetime.now(TIMEZONE).strftime('%Y%m%d')))
+        if hmac.new(secret.encode('utf-8'), cid.encode('utf-8'), digestmod=sha256).hexdigest() != token:
+            return jsonify(dict(status=401, message='Invalid custom-token, please refresh the page', data=[]))
+        return fn(*args, **kwargs)
+
+    return before
+
+
 @contextmanager
 def prevent_concurrency(key='main'):
     flag = path.join(ROOT_PATH, 'tmp', 'worker-{}.flag'.format(key))
