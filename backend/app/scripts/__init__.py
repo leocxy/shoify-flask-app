@@ -11,6 +11,9 @@
 def register_scripts(app):
     from .shopify import shopify_bp
     app.register_blueprint(shopify_bp)
+    # add webhook CLI if you need
+    # from .webhooks import webhook_bp
+    # app.register_blueprint(webhook_bp)
 
 
 __all__ = register_scripts
