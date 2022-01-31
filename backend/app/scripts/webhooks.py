@@ -12,6 +12,7 @@ from sgqlc.operation import Operation
 from prettytable import PrettyTable
 from json import dumps
 # Custom Modules
+# app.schemas.shopify should generate by `flask generate_schema`
 from app.schemas.shopify import shopify as shopify_schema
 from app.utils.base import init_gql
 from app.models.shopify import Store
