@@ -17,7 +17,7 @@ admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 @check_jwt
 def test():
     """ This is a test admin's api """
-    return jsonify(dict(status=0, message='success', data=[]))
+    return jsonify()
 
 
 __all__ = [admin_bp]

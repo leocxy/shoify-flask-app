@@ -58,4 +58,4 @@ def create_app(test_config: dict = None):
     return app
 
 
-__all__ = (app, db, logger, ROOT_PATH, TIMEZONE, create_app())
+__all__ = (app, db, logger, ROOT_PATH, TIMEZONE, create_app)

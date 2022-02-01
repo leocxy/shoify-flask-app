@@ -362,12 +362,14 @@ def check_jwt(fn):
     return before
 
 
-def refresh_jwt_token(data: dict):
+def refresh_jwt_token(status: int = 0, message: str = 'success', data: dict = None):
     """ Refresh JWT Token """
+    data = data if data else []
+    result = dict(status=status, message=message, data=data)
     expire_time = int(datetime.utcnow().timestamp()) + 600
     if g.jwt_expire_time != 0 and expire_time >= g.jwt_expire_time:
-        data['jwtToken'] = create_jwt_token()
-    return jsonify(data)
+        result['jwtToken'] = create_jwt_token()
+    return jsonify(result)
 
 
 def check_cid_token(fn):
@@ -434,7 +436,7 @@ def get_version(version=None):
     return '{}-{}'.format(prefer[:4], prefer[-2:])
 
 
-def paginate_response(paginate):
+def paginate_response(paginate, is_admin: bool = True):
     """ Paginate for vue table 2 """
     from_num = 1 if paginate.page == 1 else (paginate.page - 1) * paginate.per_page + 1
     to_num = paginate.per_page if paginate.page == 1 else paginate.page * paginate.per_page
@@ -449,7 +451,7 @@ def paginate_response(paginate):
         'to': to_num,
         'data': list(map(lambda x: x.to_dict(), paginate.items))
     }
-    return refresh_jwt_token(dict(status=0, message='success', data=data))
+    return refresh_jwt_token(data=data) if is_admin else jsonify(dict(status=0, message='success', data=data))
 
 
 ############################
