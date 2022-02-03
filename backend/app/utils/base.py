@@ -362,7 +362,7 @@ def check_jwt(fn):
     return before
 
 
-def refresh_jwt_token(status: int = 0, message: str = 'success', data: dict = None):
+def refresh_jwt_token(status: int = 0, message: str = 'success', data=None):
     """ Refresh JWT Token """
     data = data if data else []
     result = dict(status=status, message=message, data=data)
