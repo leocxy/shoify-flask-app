@@ -7,7 +7,7 @@
 @Date: 2020-10-20 09:39
 """
 from app import db
-from . import current_time
+from . import current_time, BasicMethod
 
 
 class Store(db.Model):
@@ -44,3 +44,22 @@ class Theme(db.Model):
 
     def __repr__(self):
         return '<StoreTheme {}>'.format(self.id)
+
+
+class Webhook(db.Model, BasicMethod):
+    """ Shopify Webhook """
+    id = db.Column(db.Integer, primary_key=True)
+    store_id = db.Column(db.Integer, db.ForeignKey('stores.id'))
+    webhook_id = db.Column(db.BigInteger, comment="Webhook ID")
+    target = db.Column(db.String(24), comment='Action Target')
+    action = db.Column(db.String(24), comment='Action')
+    data = db.Column(db.Text, comment='JSON string')
+    remark = db.Column(db.Text)
+    status = db.Column(db.SmallInteger, default=0)
+    created_at = db.Column(db.DateTime, default=current_time)
+    updated_at = db.Column(db.DateTime, default=current_time, onupdate=current_time)
+
+    @staticmethod
+    def get_status(name):
+        names = dict(wait=0, done=1, error=2, ignore=3, unknown=9)
+        return names.get(name, 9)

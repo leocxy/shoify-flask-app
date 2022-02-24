@@ -55,3 +55,5 @@ python -m sgqlc.introspection \
      shopify_schema.json
 
 ---
+
+Update react webhook URL
