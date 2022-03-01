@@ -12,13 +12,12 @@
     "build:ext": "cross-env NODE_APP=app-extension webpack-cli -c vue.config.js --node-env=production"
   },
   "dependencies": {
-    "@shopify/app-bridge-utils": "^2.0.3",
+    "@hulkapps/polaris-vue": "^3.0.9",
+    "@shopify/app-bridge": "^2.0.13",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@hulkapps/polaris-vue": "^2.2.4",
-    "@shopify/app-bridge": "^2.0.3",
     "@types/webpack": "^5.28.0",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
