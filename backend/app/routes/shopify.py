@@ -13,10 +13,12 @@ from os import environ, path
 from urllib.parse import urlencode
 from flask import request, Blueprint, jsonify, url_for, redirect, render_template, make_response, g
 from jinja2 import TemplateNotFound
+from sgqlc.operation import Operation
 # App Package
 from app import db, ROOT_PATH, logger
 from app.models.shopify import Store
 from app.utils.base import Base, check_webhook, check_hmac, check_callback, create_jwt_token
+from app.schemas.shopify import shopify as shopify_schema
 
 basic_bp = Blueprint(
     'shopify',
@@ -72,8 +74,11 @@ def callback():
         return resp
     # GraphQL Shop Info
     base = Base(params['shop'], data['access_token'])
-    from app.schemas.shop import QUERY_DOMAIN
-    res = base.fetch_data(QUERY_DOMAIN)['shop']
+    op = Operation(shopify_schema.query_type, 'QueryShopDomain')
+    query = op.shop()
+    query.name()
+    query.url()
+    res = base.fetch_data(op)['shop']
     domain = res['url'].split('/')[-1]
     # Store To Database
     record = Store.query.filter_by(key=params['shop']).first()
@@ -92,9 +97,12 @@ def callback():
         record.domain = domain
     db.session.commit()
     # Register GDPR mandatory webhooks
-    from app.schemas.webhook import mutation as mutation_schema
-    mutation = mutation_schema % ('APP_UNINSTALLED', url_for('shopify.shop_redact', _scheme='https', _external=True))
-    res = base.fetch_data(mutation)['webhookSubscriptionCreate']
+    op = Operation(shopify_schema.mutation_type, 'AddUninstallWebhook')
+    mutation = op.webhook_subscription_create(topic='APP_UNINSTALLED', webhook_subscription=dict(
+        callback_url=url_for('shopify.shop_redact', _scheme='https', _external=True)
+    ))
+    mutation.user_errors()
+    res = base.fetch_data(op)['webhookSubscriptionCreate']
     if len(res['userErrors']):
         logger.error('Store Redact Mutation Error: %s', res['userErrors'])
     return redirect('https://{}/admin/apps/{}'.format(params['shop'], environ.get('APP_KEY')))
