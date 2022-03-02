@@ -133,7 +133,7 @@ def admin():
 def index():
     """ Handle Request """
     params = request.args
-    if len([x for x in params.keys() if x in ['timestamp', 'shop', 'hmac']]) == 3 and len(params) == 3:
+    if len([x for x in params.keys() if x in ['timestamp', 'shop', 'hmac', 'host']]) == 4 and len(params) == 4
         return redirect(url_for('shopify.install', **params))
     if 'session' in params.keys() and len(params) >= 5:
         return redirect(url_for('shopify.admin', **params))
