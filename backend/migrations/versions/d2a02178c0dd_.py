@@ -49,7 +49,7 @@ def upgrade():
     sa.Column('webhook_id', sa.BigInteger(), nullable=True, comment='Webhook ID'),
     sa.Column('target', sa.String(length=24), nullable=True, comment='Action Target'),
     sa.Column('action', sa.String(length=24), nullable=True, comment='Action'),
-    sa.Column('data', sa.Text(), nullable=True, comment='JSON string'),
+    sa.Column('data', sa.Text(length=64000), nullable=True, comment='JSON string'),
     sa.Column('remark', sa.Text(), nullable=True),
     sa.Column('status', sa.SmallInteger(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),

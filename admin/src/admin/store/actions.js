@@ -1,13 +1,7 @@
 'use strict';
 import isEmpty from 'lodash/isEmpty'
 import state from './state'
-import {Toast, ResourcePicker, Redirect, Loading} from "@shopify/app-bridge/actions";
-
-const toastNotice = function (payload) {
-    if (isEmpty(state.bridge)) return;
-    const toastMsg = Toast.create(state.bridge, payload);
-    toastMsg.dispatch(Toast.Action.SHOW);
-}
+import {ResourcePicker, Redirect, Loading} from "@shopify/app-bridge/actions";
 
 const redirectAdmin = function (path) {
     if (isEmpty(state.bridge)) return;
@@ -96,14 +90,12 @@ const triggerLoading = function (v) {
 
 const errorCB = function (err) {
     console.error(err)
-    if (err.data?.message) return toastNotice({message: err.data.message, isError: true})
-    return toastNotice({message: 'Unknown error!', isError: true})
+    // do something here.
 }
 
-export {toastNotice, redirectAdmin, productPicker, variantPicker, collectionPicker, triggerLoading, errorCB}
+export {redirectAdmin, productPicker, variantPicker, collectionPicker, triggerLoading, errorCB}
 
 export default {
-    toastNotice: toastNotice,
     redirectAdmin: redirectAdmin,
     productPicker: productPicker,
     variantPicker: variantPicker,

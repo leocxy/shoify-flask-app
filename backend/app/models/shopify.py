@@ -53,7 +53,7 @@ class Webhook(db.Model, BasicMethod):
     webhook_id = db.Column(db.BigInteger, comment="Webhook ID")
     target = db.Column(db.String(24), comment='Action Target')
     action = db.Column(db.String(24), comment='Action')
-    data = db.Column(db.Text, comment='JSON string')
+    data = db.Column(db.Text(64000), comment='JSON string -> 64kb medium text for MYSQL/MariaDB')
     remark = db.Column(db.Text)
     status = db.Column(db.SmallInteger, default=0)
     created_at = db.Column(db.DateTime, default=current_time)

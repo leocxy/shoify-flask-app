@@ -264,7 +264,7 @@ def check_proxy(fn):
         for key in sorted(params):
             query += '{}={}'.format(key, params[key].join(',') if isinstance(params[key], list) else params[key])
         if signature != hmac.new(environ.get('APP_SECRET').encode(), query.encode(), sha256).hexdigest():
-            resp = jsonify(status=401, message='proxy validation fail!', headers=request.headers.get_all(),
+            resp = jsonify(status=401, message='proxy validation fail!', headers=dict(request.headers) if getenv('FLASK_ENV', 'production') != 'production' else None,
                            params=request.args)
             resp.status_code = 401
             return resp
