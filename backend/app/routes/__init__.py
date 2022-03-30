@@ -11,6 +11,8 @@ def register_routes(app):
     app.register_blueprint(docs_bp)
     from .admin import admin_bp
     app.register_blueprint(admin_bp)
+    # from .webhook import webhook_bp
+    # app.register_blueprint(webhook_bp)
 
 
 __all__ = register_routes

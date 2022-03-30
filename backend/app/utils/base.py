@@ -114,9 +114,9 @@ class Base(object):
     def header(self):
         return self._header
 
-    def fetch_data(self, query, attempts=5):
+    def fetch_data(self, query, timeout=None, attempts=5):
         try:
-            res = self._endpoint(query)
+            res = self._endpoint(query, timeout=timeout if timeout else self.timeout)
             if 'errors' in res.keys():
                 if res['errors'][0]['message'] == 'Throttled':
                     sleep(2)
@@ -124,7 +124,7 @@ class Base(object):
                         raise Exception(res)
                     # Try again
                     attempts -= 1
-                    return self.fetch_data(query, attempts)
+                    return self.fetch_data(query, timeout, attempts)
                 # Something wrong
                 raise Exception(res)
             else:
@@ -134,7 +134,7 @@ class Base(object):
                 raise err
             else:
                 attempts -= 1
-                return self.fetch_data(query, attempts)
+                return self.fetch_data(query, timeout, attempts)
 
     def get_url(self, url):
         return 'https://{}'.format(self.app_url) + url.format(version=self.version)

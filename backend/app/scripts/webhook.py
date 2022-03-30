@@ -106,7 +106,7 @@ def webhook_register(store_id):
     check_store(store_id)
     topics = dict()
     topics['APP_UNINSTALLED'] = url_for('shopify.shop_redact', _scheme='https', _external=True)
-    topics['ORDERS_CREATE'] = url_for('webhook.endpoint', target='order', action='created', _scheme='https',
+    topics['ORDERS_CREATE'] = url_for('webhook.endpoint', target='orders', action='created', _scheme='https',
                                       _external=True)
     table = PrettyTable(field_names=['Topic', 'CallbackUrl', 'Message'])
     with init_gql() as api:
