@@ -48,7 +48,12 @@ class Theme(db.Model):
 
 class Webhook(db.Model, BasicMethod):
     """ Shopify Webhook """
-    id = db.Column(db.Integer, primary_key=True)
+    __tablename__ = 'webhook'
+    __table_args__ = (
+        db.PrimaryKeyConstraint('id'),
+        db.Index('store_webhook', 'store_id', 'webhook_id')
+    )
+    id = db.Column(db.Integer)
     store_id = db.Column(db.Integer, db.ForeignKey('stores.id'))
     webhook_id = db.Column(db.BigInteger, comment="Webhook ID")
     target = db.Column(db.String(24), comment='Action Target')
@@ -58,8 +63,3 @@ class Webhook(db.Model, BasicMethod):
     status = db.Column(db.SmallInteger, default=0)
     created_at = db.Column(db.DateTime, default=current_time)
     updated_at = db.Column(db.DateTime, default=current_time, onupdate=current_time)
-
-    @staticmethod
-    def get_status(name):
-        names = dict(wait=0, done=1, error=2, ignore=3, unknown=9)
-        return names.get(name, 9)

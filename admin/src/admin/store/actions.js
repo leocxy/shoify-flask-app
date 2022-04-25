@@ -3,10 +3,13 @@ import isEmpty from 'lodash/isEmpty'
 import state from './state'
 import {ResourcePicker, Redirect, Loading} from "@shopify/app-bridge/actions";
 
-const redirectAdmin = function (path) {
+const redirectAdmin = function (payload) {
     if (isEmpty(state.bridge)) return;
     const redirect = Redirect.create(state.bridge);
-    redirect.dispatch(Redirect.Action.ADMIN_PATH, path)
+    redirect.dispatch(Redirect.Action.ADMIN_PATH, {
+        url: (typeof payload === 'string') ? payload : payload.path,
+        newContext: (typeof payload === 'string') ? true : payload.newContext,
+    })
 }
 
 const productPicker = function (payload) {
