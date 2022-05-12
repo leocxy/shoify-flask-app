@@ -7,8 +7,8 @@ const redirectAdmin = function (payload) {
     if (isEmpty(state.bridge)) return;
     const redirect = Redirect.create(state.bridge);
     redirect.dispatch(Redirect.Action.ADMIN_PATH, {
-        url: (typeof payload === 'string') ? payload : payload.path,
-        newContext: (typeof payload === 'string') ? true : payload.newContext,
+        path: payload?.path || payload,
+        newContext: payload?.newContext === undefined ? true : payload.newContext,
     })
 }
 

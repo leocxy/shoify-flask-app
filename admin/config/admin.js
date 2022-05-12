@@ -14,7 +14,7 @@ module.exports = merge(commonConfig, {
         }
     },
     outputDir: 'dist/admin',
-    publicPath: process.env.NODE_ENV === 'production' ? '/admin' : '/',
+    publicPath: process.env.npm_lifecycle_event === 'build' ? '/admin' : '/',
     devServer: {
         // Redirect all api path to backend
         proxy: {'/admin': {target: 'http://127.0.0.1:5000'}}
