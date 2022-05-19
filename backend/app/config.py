@@ -15,8 +15,7 @@ class Config:
     SECRET_KEY = getenv('SECRET_KEY', 'this-is-flask-secret-key123123123123')
     SERVER_NAME = getenv('SERVER_NAME')
     # Flask-SQLAlchemy
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(ROOT_PATH, 'app.db') \
-        if not getenv('DATABASE_URL') else getenv('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = getenv('DATABASE_URL', 'sqlite:///' + path.join(ROOT_PATH, 'app.db'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Embedded apps currently rely on 3rd party cookies to authenticate.
     # When the app loads, it sets a cookie in the browser.
