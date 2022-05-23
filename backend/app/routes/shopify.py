@@ -86,15 +86,22 @@ def callback():
         record = Store(
             key=params['shop'],
             domain=domain,
-            scopes=data['scope'],
             token=data['access_token'],
             extra=''
         )
         db.session.add(record)
     else:
-        record.scopes = data['scope']
         record.token = data['access_token']
         record.domain = domain
+    # Query accessScopes
+    op = Operation(shopify_schema.query_type, 'QueryAccessScopes')
+    query = op.app_installation.access_scopes()
+    query.handle()
+    res = base.fetch_data(op)['appInstallation']
+    scopes = []
+    for val in res['accessScopes']:
+        scopes.append(val['handle'])
+    record.scopes = ','.join(scopes)
     db.session.commit()
     # Register GDPR mandatory webhooks
     op = Operation(shopify_schema.mutation_type, 'AddUninstallWebhook')

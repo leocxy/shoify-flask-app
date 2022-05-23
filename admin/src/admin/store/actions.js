@@ -8,7 +8,16 @@ const redirectAdmin = function (payload) {
     const redirect = Redirect.create(state.bridge);
     redirect.dispatch(Redirect.Action.ADMIN_PATH, {
         path: payload?.path || payload,
-        newContext: payload?.newContext === undefined ? true : payload.newContext,
+        newContext: payload?.newContext || true
+    })
+}
+
+const redirectRemote = function (payload) {
+    if (isEmpty(state.bridge)) return;
+    const redirect = Redirect.create(state.bridge);
+    redirect.dispatch(Redirect.Action.REMOTE, {
+        url: payload?.url || payload,
+        newContext: payload?.newContext || true
     })
 }
 
@@ -96,10 +105,24 @@ const errorCB = function (err) {
     // do something here.
 }
 
-export {redirectAdmin, productPicker, variantPicker, collectionPicker, triggerLoading, errorCB}
+const checkBridge = function () {
+    return isEmpty(state.bridge) === false
+}
+
+export {
+    redirectAdmin,
+    redirectRemote,
+    productPicker,
+    variantPicker,
+    collectionPicker,
+    triggerLoading,
+    errorCB,
+    checkBridge
+}
 
 export default {
     redirectAdmin: redirectAdmin,
+    redirectRemote: redirectRemote,
     productPicker: productPicker,
     variantPicker: variantPicker,
     collectionPicker: collectionPicker,
