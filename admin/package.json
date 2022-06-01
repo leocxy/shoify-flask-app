@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@hulkapps/polaris-vue": "^3.0.9",
-    "@shopify/app-bridge": "^2.0.13",
+    "@shopify/app-bridge": "^3.0.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
