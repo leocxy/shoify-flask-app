@@ -3,7 +3,7 @@ import Axios from "axios"
 import PolarisVue from '@hulkapps/polaris-vue'
 import '@hulkapps/polaris-vue/dist/polaris-vue.css'
 import {Plugin} from 'vue-fragment'
-
+import VueSimpleAlert from "vue-simple-alert";
 
 export default {
     install: (Vue) => {
@@ -19,5 +19,6 @@ export default {
         Vue.prototype.$http = Axios;
         Vue.use(PolarisVue);
         Vue.use(Plugin);
+        Vue.use(VueSimpleAlert, { reverseButtons: true})
     }
 }

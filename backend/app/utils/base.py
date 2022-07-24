@@ -14,6 +14,7 @@ from time import sleep, time
 from contextlib import contextmanager
 from psutil import pid_exists
 from datetime import datetime, timedelta
+from functools import wraps, partial
 # Request validation
 import hmac
 import jwt
@@ -372,24 +373,50 @@ def refresh_jwt_token(status: int = 0, message: str = 'success', data=None):
     return jsonify(result)
 
 
-def check_cid_token(fn):
-    """ Check Shopify Customer Id Token """
+def proxy_response(status: int = 0, message: str = 'success', data=None):
+    if data is None:
+        data = []
+    return jsonify(status=status, message=message, data=data)
 
+
+def generate_hash_for_internal_id(value, expire_time: str = None):
+    """ generate hash string via internal record ID? """
+    value = str(value)
+    if expire_time is not None:
+        expire_types = dict(year='%Y', month='%Y%m', day='%Y%m%d', hour='%Y%m%d%H')
+        dynamic_variable = expire_types.get(expire_time, '%Y%m%d')
+        value = '{}-{}'.format(datetime.now(TIMEZONE).strftime(dynamic_variable), value)
+    hash_string = hmac.new(environ.get('APP_KEY').encode('utf-8'), value.encode('utf-8'), sha256).hexdigest()
+    return hash_string
+
+
+def check_hash_for_internal_id(func=None, key_name: str = 'account_id', expire_time: str = 'day'):
+    """ check hash string is correct or not """
+    if func is None:
+        return partial(check_hash_for_internal_id, key_name=key_name, expire_time=expire_time)
+
+    @wraps(func)
     def before(*args, **kwargs):
-        # validation
-        token1 = request.headers.get('custom-token', None)
-        token2 = request.headers.get('Authorization', None)
-        if not token1 and not token2:
-            return jsonify(dict(status=401, message="Missing custom-token in header", data=[]))
-        token = token1 if token1 else token2[7:]
-        store = Store.query.filter_by(id=g.store_id).first()
-        if not store:
-            return jsonify(dict(status=400, message='Store record does not exists!', data=[]))
-        secret = store.key
-        cid = str(int(kwargs['cid'] if 'cid' in kwargs else 0) + int(datetime.now(TIMEZONE).strftime('%Y%m%d')))
-        if hmac.new(secret.encode('utf-8'), cid.encode('utf-8'), digestmod=sha256).hexdigest() != token:
-            return jsonify(dict(status=401, message='Invalid custom-token, please refresh the page', data=[]))
-        return fn(*args, **kwargs)
+        hash_string = request.headers.get('Custom-Token')
+        if not hash:
+            hash_string = request.args.get('hash')
+        resp = jsonify(status=400, message='Invalid Custom-Token')
+        resp.status_code = 400
+        if hash_string is None:
+            return resp
+        value = str(kwargs.get(key_name, ''))
+        if expire_time:
+            expire_types = dict(year='%Y', month='%Y%m', day='%Y%m%d', hour='%Y%m%d%H')
+            dynamic_variable = expire_types.get(expire_time, '%Y%m%d')
+            value = '{}-{}'.format(datetime.now(TIMEZONE).strftime(dynamic_variable), value)
+        my_hash = hmac.new(
+            environ.get('APP_KEY').encode('utf-8'),
+            value.encode('utf-8'),
+            sha256
+        ).hexdigest()
+        if not hmac.compare_digest(hash_string, my_hash):
+            return resp
+        return func(*args, **kwargs)
 
     return before
 
@@ -452,6 +479,31 @@ def paginate_response(paginate, is_admin: bool = True):
         'data': list(map(lambda x: x.to_dict(), paginate.items))
     }
     return refresh_jwt_token(data=data) if is_admin else jsonify(dict(status=0, message='success', data=data))
+
+
+def form_validate(data: dict, schema: dict, is_jwt: bool = True):
+    """ validate JSON data with Cerberus """
+    fn = refresh_jwt_token if is_jwt else jsonify
+    if not data:
+        status = 400
+        message = 'Invalid JSON data'
+        return False, fn(status=status, message=message)
+    from cerberus.validator import Validator
+    validator = Validator(schema)
+    if not validator.validate(data):
+        keys = []
+        key = list(validator.errors.keys())[0]
+        first_error = validator.errors[key][0]
+        keys.append(str(key))
+        while type(first_error) == dict:
+            key = list(first_error.keys())[0]
+            first_error = first_error[key][0]
+            keys.append(str(key))
+        first_error = '{}: {}'.format('.'.join(keys), first_error)
+        status = 400
+        message = first_error
+        return False, fn(status=status, message=message, data=validator.errors)
+    return True, None
 
 
 ############################
