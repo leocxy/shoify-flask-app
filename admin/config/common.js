@@ -8,7 +8,6 @@ const https = process.argv.indexOf('--ssl') !== -1 ?  {
 
 module.exports = {
     devServer: {
-        disableHostCheck: true,
         allowedHosts: ['0.0.0.0', 'localhost', '127.0.0.1'],
         https: https
     },

@@ -19,8 +19,14 @@ module.exports = merge(commonConfig, {
         // Redirect all api path to backend
         proxy: {'/admin': {target: 'http://127.0.0.1:5000'}}
     },
-    configureWebpack: config => {
-        config.resolve.alias['@'] = path.resolve('src/admin/')
-        config.devtool = 'source-map'
+    chainWebpack: config => {
+        // Vue CLI 5.x
+        // https://github.com/neutrinojs/webpack-chain#getting-started
+        config.resolve.alias.set('@', path.resolve('src/admin/'))
+        config.merge({ devtool: 'source-map' })
+        config.plugin('html-index').tap(args => {
+            args[0]['template'] = 'src/admin/public/index.html'
+            return args
+        })
     },
 });
