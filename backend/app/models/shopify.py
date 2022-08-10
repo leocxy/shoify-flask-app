@@ -10,7 +10,7 @@ from app import db
 from . import current_time, BasicMethod
 
 
-class Store(db.Model):
+class Store(db.Model, BasicMethod):
     """ Shopify list/unlist App """
     __tablename__ = 'stores'
     id = db.Column(db.Integer, primary_key=True)
@@ -27,7 +27,7 @@ class Store(db.Model):
         return '<Store {}>'.format(self.id)
 
 
-class Theme(db.Model):
+class Theme(db.Model, BasicMethod):
     """ Install Theme """
     __tablename__ = 'store_themes'
     id = db.Column(db.Integer, primary_key=True)
@@ -41,9 +41,6 @@ class Theme(db.Model):
 
     def to_dict(self):
         return dict(theme_id=self.theme_id, theme_name=self.theme_name, id=self.id)
-
-    def __repr__(self):
-        return '<StoreTheme {}>'.format(self.id)
 
 
 class Webhook(db.Model, BasicMethod):

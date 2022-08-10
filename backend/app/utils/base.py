@@ -95,7 +95,7 @@ class Base(object):
         self._app_url = app_url
         self._token = token
         self._header = {'X-Shopify-Access-Token': self.token}
-        self.version = getenv('API_VERSION')
+        self.version = get_version()
         self.timeout = timeout
         if self.version:
             url = 'https://{}/admin/api/{}/graphql.json'.format(self._app_url, self.version)
@@ -397,9 +397,7 @@ def check_hash_for_internal_id(func=None, key_name: str = 'account_id', expire_t
 
     @wraps(func)
     def before(*args, **kwargs):
-        hash_string = request.headers.get('Custom-Token')
-        if not hash:
-            hash_string = request.args.get('hash')
+        hash_string = request.headers.get('Custom-Token', request.args.get('hash'))
         resp = jsonify(status=400, message='Invalid Custom-Token')
         resp.status_code = 400
         if hash_string is None:

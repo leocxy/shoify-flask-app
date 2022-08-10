@@ -2,9 +2,6 @@ import {errorCB} from "@/store/actions";
 
 export default {
     methods: {
-        priceChange: function (e, i) {
-            this.groups[i]['unit_price'] = parseFloat(e) * 100
-        },
         formatPrice: function (e) {
             return (parseFloat(e) * 0.01).toFixed(2)
         },
