@@ -19,7 +19,7 @@ __email__ = 'leo.cxy88@gmail.com'
 __copyright__ = 'Copyright © Pocketsquare'
 # Global Setting
 app = None
-db = SQLAlchemy()
+db = None
 logger = None
 ROOT_PATH = path.abspath(path.dirname(path.dirname(__file__)))
 TIMEZONE = timezone('Pacific/Auckland')
@@ -41,8 +41,7 @@ def create_app(test_config: dict = None):
         app.config.update(test_config)
 
     # Init Database
-    # db = SQLAlchemy(app)
-    db.init_app(app)
+    db = SQLAlchemy(app)
     Migrate(app, db)
 
     # Init Routes

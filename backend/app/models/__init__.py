@@ -18,12 +18,21 @@ def current_time():
 class BasicMethod(object):
     """ Basic Model carry with frequency methods """
 
-    @staticmethod
+    @classmethod
     def create_or_update(cls, cond: dict, **kwargs):
         record = cls.query.filter_by(**cond).first()
         if not record:
             record = cls()
             db.session.add(record)
+        for key in kwargs:
+            if hasattr(record, key):
+                setattr(record, key, kwargs[key])
+        return record
+
+    @classmethod
+    def create(cls, **kwargs):
+        record = cls()
+        db.session.add(record)
         for key in kwargs:
             if hasattr(record, key):
                 setattr(record, key, kwargs[key])

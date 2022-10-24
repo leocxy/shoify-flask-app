@@ -15,6 +15,8 @@ from contextlib import contextmanager
 from psutil import pid_exists
 from datetime import datetime, timedelta
 from functools import wraps, partial
+from logging import Formatter, Logger
+from logging.handlers import RotatingFileHandler
 # Request validation
 import hmac
 import jwt
@@ -265,7 +267,8 @@ def check_proxy(fn):
         for key in sorted(params):
             query += '{}={}'.format(key, params[key].join(',') if isinstance(params[key], list) else params[key])
         if signature != hmac.new(environ.get('APP_SECRET').encode(), query.encode(), sha256).hexdigest():
-            resp = jsonify(status=401, message='proxy validation fail!', headers=dict(request.headers) if getenv('FLASK_ENV', 'production') != 'production' else None,
+            resp = jsonify(status=401, message='proxy validation fail!',
+                           headers=dict(request.headers) if getenv('FLASK_ENV', 'production') != 'production' else None,
                            params=request.args)
             resp.status_code = 401
             return resp
@@ -503,6 +506,41 @@ def form_validate(data: dict, schema: dict, is_jwt: bool = True):
         return False, fn(status=status, message=message, data=validator.errors)
     return True, None
 
+
+class BasicHelper:
+    def __init__(self, store_id: int = 1, log_name: str = 'basic_helper'):
+        self._store = Store.query.filter_by(id=store_id).first()
+        if not self._store:
+            raise Exception('Store[{}] does not exists!'.format(store_id))
+        # Shopify API
+        self._gql = None
+        self._api = None
+        # Logger
+        self.logger = Logger('Recharge')
+        handler = RotatingFileHandler(path.join(ROOT_PATH, 'tmp', f'{log_name}.log'), maxBytes=5120000, backupCount=5)
+        handler.setLevel('DEBUG' if environ.get('FLASK_DEBUG', '1') == '1' else 'INFO')
+        handler.setFormatter(Formatter('[%(asctime)s] %(threadName)s %(levelname)s:%(message)s'))
+        self.logger.addHandler(handler)
+
+    @property
+    def store(self):
+        return self._store
+
+    @property
+    def gql(self):
+        if not self._gql:
+            self._gql = Base(self.store.key, self.store.token)
+        return self._gql
+
+    @property
+    def api(self):
+        if not self._api:
+            import shopify
+            patch_shopify_with_limits()
+            api_session = shopify.Session(self.store.key, get_version(), self.store.token)
+            shopify.ShopifyResource.activate_session(api_session)
+            self._api = shopify
+        return self._api
 
 ############################
 # Custom method start here #
