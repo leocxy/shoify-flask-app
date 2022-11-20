@@ -57,8 +57,7 @@ def init_api(version=None):
     app = Store.query.filter_by(id=g.store_id).first()
     if not app:
         raise Exception('can not init shopify api, something wrong from database')
-    if version is None:
-        version = environ.get('API_VERSION')
+    version = get_version(version, True)
     patch_shopify_with_limits()
     api_session = shopify.Session(app.key, version, app.token)
     shopify.ShopifyResource.activate_session(api_session)
@@ -446,22 +445,32 @@ def prevent_concurrency(key='main'):
         raise e
 
 
-def get_version(version=None):
+def get_version(version: str = None, restful: bool = False):
     if not version:
         version = environ.get('API_VERSION')
     current = datetime.today()
-    current_year = current.strftime('%Y')
-    current_num = int(current.strftime('%Y%m'))
-    for m in ['10', '07', '04', '01']:
-        num = int('{}{}'.format(current_year, m))
-        if num <= current_num:
-            prefer = num
+    month = int(current.strftime('%-m'))
+    for v in [10, 7, 4, 1]:
+        if month >= v:
+            month = v
             break
+    latest_version = int('{}{:02d}'.format(current.strftime('%Y'), month))
     if version:
         version = int(version.replace('-', ''))
-        prefer = prefer if prefer - version > 100 else version
-    prefer = str(prefer)
-    return '{}-{}'.format(prefer[:4], prefer[-2:])
+        if version > latest_version:
+            version = latest_version
+        else:
+            if latest_version - 100 > version:
+                version = latest_version
+    else:
+        version = latest_version
+    version = str(version)
+    version = '{}-{}'.format(version[:4], version[-2:])
+    if restful:
+        versions = list(shopify.ApiVersion.versions.keys())
+        if version not in versions:
+            version = versions[0]
+    return version
 
 
 def paginate_response(paginate, is_admin: bool = True):
@@ -535,9 +544,8 @@ class BasicHelper:
     @property
     def api(self):
         if not self._api:
-            import shopify
+            api_session = shopify.Session(self.store.key, get_version(restful=True), self.store.token)
             patch_shopify_with_limits()
-            api_session = shopify.Session(self.store.key, get_version(), self.store.token)
             shopify.ShopifyResource.activate_session(api_session)
             self._api = shopify
         return self._api

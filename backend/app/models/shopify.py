@@ -45,7 +45,7 @@ class Theme(db.Model, BasicMethod):
 
 class Webhook(db.Model, BasicMethod):
     """ Shopify Webhook """
-    __tablename__ = 'webhook'
+    __tablename__ = 'webhooks'
     __table_args__ = (
         db.PrimaryKeyConstraint('id'),
         db.Index('store_webhook', 'store_id', 'webhook_id')

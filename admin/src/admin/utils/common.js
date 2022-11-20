@@ -1,4 +1,4 @@
-import {errorCB} from "@/store/actions";
+import {errorCB} from "../store/actions";
 
 export default {
     methods: {

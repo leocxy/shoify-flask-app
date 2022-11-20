@@ -1,9 +1,9 @@
-import {getApi} from "@/store/getters";
+import {getApi} from "../store/getters";
 import VueTable from "vuetable-2/src/components/Vuetable"
-import VuetablePagination from "vuetable-2/src/components/VuetablePagination"
+import VueTablePagination from "vuetable-2/src/components/VuetablePagination"
 
 export default {
-    components: {VueTable, VuetablePagination},
+    components: {VueTable, VueTablePagination},
     computed: {
         tableHeaders: function () {
             return {headers: {'Authorization': this.$http.defaults.headers?.common?.Authorization || ''}}
