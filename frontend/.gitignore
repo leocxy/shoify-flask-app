@@ -1,7 +1,5 @@
 .DS_Store
-node_modules
 /dist
-/app-extension
 
 # local env files
 .env.local

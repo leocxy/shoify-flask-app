@@ -1,4 +1,4 @@
-### Introduction
+### Instruction
 
 This repository created by Leo Chen <leo.cxy88@gmail.com>.
 

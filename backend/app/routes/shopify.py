@@ -24,8 +24,8 @@ basic_bp = Blueprint(
     'shopify',
     'default_shopify',
     static_url_path='',
-    static_folder=path.dirname(ROOT_PATH) + '/admin/dist',
-    template_folder=path.dirname(ROOT_PATH) + '/admin/dist',
+    static_folder=path.dirname(ROOT_PATH) + '/frontend/dist',
+    template_folder=path.dirname(ROOT_PATH) + '/frontend/dist',
 )
 
 docs_bp = Blueprint(
@@ -33,8 +33,8 @@ docs_bp = Blueprint(
     __name__,
     url_prefix='/docs',
     static_url_path='',
-    static_folder=path.dirname(ROOT_PATH) + '/admin/dist/front',
-    template_folder=path.dirname(ROOT_PATH) + '/admin/dist/front',
+    static_folder=path.dirname(ROOT_PATH) + '/frontend/dist/front',
+    template_folder=path.dirname(ROOT_PATH) + '/frontend/dist/front',
 )
 
 

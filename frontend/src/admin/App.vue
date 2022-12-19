@@ -1,5 +1,5 @@
 <template>
-    <PPage title="Pocket Square App">
+    <PPage title="Pocket Square App" full-width>
         <router-view></router-view>
         <PFooterHelp v-if="change"><PLink @click="reinstall()">Update</PLink> App permissions to get full functionality.</PFooterHelp>
     </PPage>

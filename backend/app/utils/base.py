@@ -28,7 +28,7 @@ from flask import g, jsonify, session, request
 from pyactiveresource.connection import ResourceNotFound, ClientError
 from shopify.base import ShopifyConnection
 # Custom
-from app import ROOT_PATH, TIMEZONE
+from app import ROOT_PATH, TIMEZONE, logger
 from app.models.shopify import Store
 
 
@@ -303,7 +303,8 @@ def check_webhook(fn):
 
 
 def check_session(fn):
-    """ Check session """
+    """ Deprecate - Because we are embedding the app on Shopify Admin,
+    so we need to use JWT instead of the session(cookie). """
 
     def before(*args, **kwargs):
         # for development debug
@@ -530,6 +531,8 @@ class BasicHelper:
         handler.setLevel('DEBUG' if environ.get('FLASK_DEBUG', '1') == '1' else 'INFO')
         handler.setFormatter(Formatter('[%(asctime)s] %(threadName)s %(levelname)s:%(message)s'))
         self.logger.addHandler(handler)
+        if environ.get('FLASK_DEBUG', '1') == '1':
+            self.logger.addHandler(logger.handlers[0])
 
     @property
     def store(self):

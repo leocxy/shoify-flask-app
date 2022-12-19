@@ -1,0 +1,11 @@
+name = "PS Bundle Sales"
+type = "order_discounts"
+api_version = "2022-10"
+
+[build]
+command = "cargo wasi build --release"
+path = "target/wasm32-wasi/release/ps-bundle-sales.wasm"
+
+[ui.paths]
+create = "/ps-bundle-sales/create"
+details = "/ps-bundle-sales/:record_id"
