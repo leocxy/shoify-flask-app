@@ -1,6 +1,6 @@
 <template>
-    <PPage title="Pocket Square App" full-width>
-        <router-view></router-view>
+    <PPage :title="title">
+        <router-view @title="updateTitle"></router-view>
         <PFooterHelp v-if="change"><PLink @click="reinstall()">Update</PLink> App permissions to get full functionality.</PFooterHelp>
     </PPage>
 </template>
@@ -13,7 +13,8 @@ import {getApi} from "@/store/getters";
 export default {
     name: 'App',
     data: () => ({
-        change: false
+        change: false,
+        title: "Pocket Square App"
     }),
     methods: {
         initial: function () {
@@ -31,7 +32,10 @@ export default {
                 if (window.self === window.top) return window.location.href = data?.data
                 redirectRemote(data?.data)
             }).catch(errorCB)
-        }
+        },
+        updateTitle: function (e) {
+            this.title = e
+        },
     },
     mounted() {
         this.initial()

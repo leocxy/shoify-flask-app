@@ -16,6 +16,7 @@ export default {
     name: "SamplePage",
     methods: {
         testAlert: function () {
+            console.log(this.$router, 'test');
             this.$http.get(getApi('test_jwt')).then((res) => {
                 this.$pToast.open({message: res.data['message']})
             });

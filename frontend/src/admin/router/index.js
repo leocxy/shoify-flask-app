@@ -5,8 +5,13 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '*', component: () => import('@/views/Index')
-    }
+        path: '/ext/discount_code/:record_id',
+        name: 'discount.edit',
+        component: () => import('@/views/Discount'),
+        props: true
+    },
+    {path: '/ext/discount_code/create', name: 'discount', component: () => import('@/views/Discount')},
+    {path: '*', component: () => import('@/views/Index')}
 ];
 
 const router = new VueRouter({

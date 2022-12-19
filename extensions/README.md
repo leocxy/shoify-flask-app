@@ -38,4 +38,5 @@ When I said `current folder`, mean the current folder.
 ### Reference
 
 1. [Build a discount experience](https://shopify.dev/apps/discounts/create)
-2. [Discount tutorial](https://github.com/Shopify/function-examples/tree/main/sample-apps/discounts-tutorial)
+2. [Automatic discount tutorial](https://github.com/Shopify/function-examples/tree/main/sample-apps/discount-functions-sample-app)
+3. [Discount tutorial](https://github.com/Shopify/function-examples/tree/main/sample-apps/discounts-tutorial)

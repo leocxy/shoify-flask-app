@@ -6,13 +6,44 @@
 @Author: Leo Chen <leo.cxy88@gmail.com>
 @Date: 2020-12-14 11:28
 """
-from flask import Blueprint, g, url_for
-from os import environ
+from flask import Blueprint, g, url_for, render_template, request
+from os import environ, path
 # Custom Modules
+from app import ROOT_PATH
 from app.models.shopify import Store
-from app.utils.base import check_jwt, refresh_jwt_token as jsonify
+from app.utils.base import check_jwt, refresh_jwt_token as jsonify, check_hmac, create_jwt_token
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
+ext_bp = Blueprint(
+    'extension', 'extension_discount', url_prefix='/ext',
+    static_folder=path.join(path.dirname(ROOT_PATH), 'frontend/dist'),
+    template_folder=path.join(path.dirname(ROOT_PATH), 'frontend/dist'),
+)
+
+
+def static_html():
+    """ Return the same Static file """
+    return render_template(
+        'admin/index.html',
+        apiKey=environ.get('APP_KEY'),
+        # App bridge 2+
+        host=request.args.get('host', None),
+        # App bridge 1+
+        shop=g.store_key,
+        jwtToken=create_jwt_token()
+    )
+
+
+@ext_bp.get('/discount_code/create', endpoint='discount_code')
+@check_hmac
+def discount_code():
+    return static_html()
+
+
+@ext_bp.get('/discount_code/<int:record_id>', endpoint='edit_discount_code')
+@check_hmac
+def edit_discount_code(record_id):
+    return static_html()
 
 
 @admin_bp.route('test_jwt')
