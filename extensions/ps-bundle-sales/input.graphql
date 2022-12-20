@@ -1,6 +1,58 @@
 query Input {
+  cart {
+    attribute {
+      key
+      value
+    }
+    cost {
+      subtotalAmount {
+        amount
+      }
+      totalAmount {
+        amount
+      }
+    }
+    buyerIdentity {
+      email
+      customer {
+        amountSpent {
+          amount
+        }
+        numberOfOrders
+        metafield(namespace: "test-function", key: "test-config") {
+          value
+        }
+      }
+    }
+    lines {
+      quantity
+      cost {
+        amountPerQuantity {
+          amount
+        }
+        compareAtAmountPerQuantity {
+          amount
+        }
+        subtotalAmount {
+          amount
+        }
+        totalAmount {
+          amount
+        }
+      }
+      merchandise {
+        ...on ProductVariant {
+          id
+          sku
+          metafield(namespace: "test-function", key: "test-config") {
+            value
+          }
+        }
+      }
+    }
+  }
   discountNode {
-    metafield(namespace: "ps-bundle-sales", key: "function-configuration") {
+    metafield(namespace: "test-function", key: "test-config") {
       value
     }
   }

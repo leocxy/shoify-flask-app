@@ -4,13 +4,13 @@ import VueRouter from "vue-router"
 Vue.use(VueRouter);
 
 const routes = [
+    {path: '/ext/discount_code/create', name: 'discount', component: () => import('@/views/Discount')},
     {
-        path: '/ext/discount_code/:record_id',
+        path: '/ext/discount_code/:code_id',
         name: 'discount.edit',
         component: () => import('@/views/Discount'),
         props: true
     },
-    {path: '/ext/discount_code/create', name: 'discount', component: () => import('@/views/Discount')},
     {path: '*', component: () => import('@/views/Index')}
 ];
 

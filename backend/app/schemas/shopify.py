@@ -19,6 +19,11 @@ class ARN(sgqlc.types.Scalar):
     __schema__ = shopify
 
 
+class AppDeveloperType(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('MERCHANT', 'PARTNER', 'SHOPIFY', 'UNKNOWN')
+
+
 class AppInstallationCategory(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('CHANNEL', 'POS_EMBEDDED')
@@ -37,6 +42,11 @@ class AppInstallationSortKeys(sgqlc.types.Enum):
 class AppPricingInterval(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('ANNUAL', 'EVERY_30_DAYS')
+
+
+class AppPublicCategory(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CUSTOM', 'OTHER', 'PRIVATE', 'PUBLIC')
 
 
 class AppPurchaseStatus(sgqlc.types.Enum):
@@ -64,6 +74,11 @@ class AppRevenueAttributionType(sgqlc.types.Enum):
     __choices__ = ('APPLICATION_PURCHASE', 'APPLICATION_SUBSCRIPTION', 'APPLICATION_USAGE', 'OTHER')
 
 
+class AppSubscriptionReplacementBehavior(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('APPLY_IMMEDIATELY', 'APPLY_ON_NEXT_BILLING_CYCLE', 'STANDARD')
+
+
 class AppSubscriptionSortKeys(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('CREATED_AT', 'ID', 'RELEVANCE')
@@ -72,6 +87,11 @@ class AppSubscriptionSortKeys(sgqlc.types.Enum):
 class AppSubscriptionStatus(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('ACTIVE', 'CANCELLED', 'DECLINED', 'EXPIRED', 'FROZEN', 'PENDING')
+
+
+class AppSubscriptionTrialExtendUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('SUBSCRIPTION_NOT_ACTIVE', 'SUBSCRIPTION_NOT_FOUND', 'TRIAL_NOT_ACTIVE')
 
 
 class AppTransactionSortKeys(sgqlc.types.Enum):
@@ -87,6 +107,11 @@ class AppUsageRecordSortKeys(sgqlc.types.Enum):
 class AutomaticDiscountSortKeys(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('CREATED_AT', 'ID', 'RELEVANCE')
+
+
+class BadgeType(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('ATTENTION', 'DEFAULT', 'INFO', 'SUCCESS', 'WARNING')
 
 
 class BillingAttemptUserErrorCode(sgqlc.types.Enum):
@@ -121,14 +146,29 @@ class BulkProductResourceFeedbackCreateUserErrorCode(sgqlc.types.Enum):
     __choices__ = ('BLANK', 'INVALID', 'LESS_THAN_OR_EQUAL_TO', 'MAXIMUM_FEEDBACK_LIMIT_EXCEEDED', 'OUTDATED_FEEDBACK', 'PRESENT', 'PRODUCT_NOT_FOUND')
 
 
+class BusinessCustomerErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BLANK', 'FAILED_TO_DELETE', 'INTERNAL_ERROR', 'INVALID', 'INVALID_INPUT', 'LIMIT_REACHED', 'NO_INPUT', 'REQUIRED', 'RESOURCE_NOT_FOUND', 'TAKEN', 'TOO_LONG', 'UNEXPECTED_TYPE')
+
+
+class CheckoutProfileSortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CREATED_AT', 'ID', 'IS_PUBLISHED', 'RELEVANCE', 'UPDATED_AT')
+
+
 class CodeDiscountSortKeys(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('CREATED_AT', 'ENDS_AT', 'ID', 'RELEVANCE', 'STARTS_AT', 'TITLE', 'UPDATED_AT')
 
 
+class CollectionAddProductsV2UserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CANT_ADD_TO_SMART_COLLECTION', 'COLLECTION_DOES_NOT_EXIST')
+
+
 class CollectionRuleColumn(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('IS_PRICE_REDUCED', 'TAG', 'TITLE', 'TYPE', 'VARIANT_COMPARE_AT_PRICE', 'VARIANT_INVENTORY', 'VARIANT_PRICE', 'VARIANT_TITLE', 'VARIANT_WEIGHT', 'VENDOR')
+    __choices__ = ('IS_PRICE_REDUCED', 'PRODUCT_TAXONOMY_NODE_ID', 'TAG', 'TITLE', 'TYPE', 'VARIANT_COMPARE_AT_PRICE', 'VARIANT_INVENTORY', 'VARIANT_PRICE', 'VARIANT_TITLE', 'VARIANT_WEIGHT', 'VENDOR')
 
 
 class CollectionRuleRelation(sgqlc.types.Enum):
@@ -146,6 +186,36 @@ class CollectionSortOrder(sgqlc.types.Enum):
     __choices__ = ('ALPHA_ASC', 'ALPHA_DESC', 'BEST_SELLING', 'CREATED', 'CREATED_DESC', 'MANUAL', 'PRICE_ASC', 'PRICE_DESC')
 
 
+class CompanyAddressType(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BILLING', 'SHIPPING')
+
+
+class CompanyContactRoleAssignmentSortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CREATED_AT', 'ID', 'LOCATION_NAME', 'RELEVANCE', 'UPDATED_AT')
+
+
+class CompanyContactRoleSortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CREATED_AT', 'ID', 'RELEVANCE', 'UPDATED_AT')
+
+
+class CompanyContactSortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('COMPANY_ID', 'CREATED_AT', 'EMAIL', 'ID', 'NAME', 'NAME_EMAIL', 'RELEVANCE', 'TITLE', 'UPDATED_AT')
+
+
+class CompanyLocationSortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('COMPANY_AND_LOCATION_NAME', 'COMPANY_ID', 'CREATED_AT', 'ID', 'NAME', 'RELEVANCE', 'UPDATED_AT')
+
+
+class CompanySortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CREATED_AT', 'ID', 'NAME', 'ORDER_COUNT', 'RELEVANCE', 'SINCE_DATE', 'TOTAL_SPENT', 'UPDATED_AT')
+
+
 class CountryCode(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('AC', 'AD', 'AE', 'AF', 'AG', 'AI', 'AL', 'AM', 'AN', 'AO', 'AR', 'AT', 'AU', 'AW', 'AX', 'AZ', 'BA', 'BB', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BL', 'BM', 'BN', 'BO', 'BQ', 'BR', 'BS', 'BT', 'BV', 'BW', 'BY', 'BZ', 'CA', 'CC', 'CD', 'CF', 'CG', 'CH', 'CI', 'CK', 'CL', 'CM', 'CN', 'CO', 'CR', 'CU', 'CV', 'CW', 'CX', 'CY', 'CZ', 'DE', 'DJ', 'DK', 'DM', 'DO', 'DZ', 'EC', 'EE', 'EG', 'EH', 'ER', 'ES', 'ET', 'FI', 'FJ', 'FK', 'FO', 'FR', 'GA', 'GB', 'GD', 'GE', 'GF', 'GG', 'GH', 'GI', 'GL', 'GM', 'GN', 'GP', 'GQ', 'GR', 'GS', 'GT', 'GW', 'GY', 'HK', 'HM', 'HN', 'HR', 'HT', 'HU', 'ID', 'IE', 'IL', 'IM', 'IN', 'IO', 'IQ', 'IR', 'IS', 'IT', 'JE', 'JM', 'JO', 'JP', 'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KP', 'KR', 'KW', 'KY', 'KZ', 'LA', 'LB', 'LC', 'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV', 'LY', 'MA', 'MC', 'MD', 'ME', 'MF', 'MG', 'MK', 'ML', 'MM', 'MN', 'MO', 'MQ', 'MR', 'MS', 'MT', 'MU', 'MV', 'MW', 'MX', 'MY', 'MZ', 'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NL', 'NO', 'NP', 'NR', 'NU', 'NZ', 'OM', 'PA', 'PE', 'PF', 'PG', 'PH', 'PK', 'PL', 'PM', 'PN', 'PS', 'PT', 'PY', 'QA', 'RE', 'RO', 'RS', 'RU', 'RW', 'SA', 'SB', 'SC', 'SD', 'SE', 'SG', 'SH', 'SI', 'SJ', 'SK', 'SL', 'SM', 'SN', 'SO', 'SR', 'SS', 'ST', 'SV', 'SX', 'SY', 'SZ', 'TA', 'TC', 'TD', 'TF', 'TG', 'TH', 'TJ', 'TK', 'TL', 'TM', 'TN', 'TO', 'TR', 'TT', 'TV', 'TW', 'TZ', 'UA', 'UG', 'UM', 'US', 'UY', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VN', 'VU', 'WF', 'WS', 'XK', 'YE', 'YT', 'ZA', 'ZM', 'ZW', 'ZZ')
@@ -158,12 +228,32 @@ class CropRegion(sgqlc.types.Enum):
 
 class CurrencyCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD', 'CDF', 'CHF', 'CLP', 'CNY', 'COP', 'CRC', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JEP', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KID', 'KMF', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', 'LVL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRU', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'SSP', 'STD', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VES', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XOF', 'XPF', 'XXX', 'YER', 'ZAR', 'ZMW')
+    __choices__ = ('AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD', 'CDF', 'CHF', 'CLP', 'CNY', 'COP', 'CRC', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'ISK', 'JEP', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KID', 'KMF', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LTL', 'LVL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRU', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'SSP', 'STN', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VED', 'VES', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XOF', 'XPF', 'XXX', 'YER', 'ZAR', 'ZMW')
 
 
 class CustomerConsentCollectedFrom(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('OTHER', 'SHOPIFY')
+
+
+class CustomerEmailAddressMarketingState(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('INVALID', 'NOT_SUBSCRIBED', 'PENDING', 'SUBSCRIBED', 'UNSUBSCRIBED')
+
+
+class CustomerEmailAddressOpenTrackingLevel(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('OPTED_IN', 'OPTED_OUT', 'UNKNOWN')
+
+
+class CustomerEmailMarketingConsentUpdateUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('INCLUSION', 'INTERNAL_ERROR', 'INVALID', 'MISSING_ARGUMENT')
+
+
+class CustomerEmailMarketingState(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('INVALID', 'NOT_SUBSCRIBED', 'PENDING', 'REDACTED', 'SUBSCRIBED', 'UNSUBSCRIBED')
 
 
 class CustomerMarketingOptInLevel(sgqlc.types.Enum):
@@ -178,17 +268,22 @@ class CustomerPaymentMethodGetUpdateUrlUserErrorCode(sgqlc.types.Enum):
 
 class CustomerPaymentMethodRemoteUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('AUTHORIZE_NET_NOT_ENABLED_FOR_SUBSCRIPTIONS', 'EXACTLY_ONE_REMOTE_REFERENCE_REQUIRED', 'INVALID', 'PRESENT', 'TAKEN')
+    __choices__ = ('AUTHORIZE_NET_NOT_ENABLED_FOR_SUBSCRIPTIONS', 'BRAINTREE_NOT_ENABLED_FOR_SUBSCRIPTIONS', 'EXACTLY_ONE_REMOTE_REFERENCE_REQUIRED', 'INVALID', 'PRESENT', 'TAKEN')
 
 
 class CustomerPaymentMethodRevocationReason(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('AUTHORIZE_NET_GATEWAY_NOT_ENABLED', 'AUTHORIZE_NET_RETURNED_NO_PAYMENT_METHOD', 'FAILED_TO_UPDATE_CREDIT_CARD', 'MANUALLY_REVOKED', 'STRIPE_API_AUTHENTICATION_ERROR', 'STRIPE_API_INVALID_REQUEST_ERROR', 'STRIPE_GATEWAY_NOT_ENABLED', 'STRIPE_PAYMENT_METHOD_NOT_CARD', 'STRIPE_RETURNED_NO_PAYMENT_METHOD')
+    __choices__ = ('AUTHORIZE_NET_GATEWAY_NOT_ENABLED', 'AUTHORIZE_NET_RETURNED_NO_PAYMENT_METHOD', 'BRAINTREE_API_AUTHENTICATION_ERROR', 'BRAINTREE_GATEWAY_NOT_ENABLED', 'BRAINTREE_PAYMENT_METHOD_NOT_CARD', 'BRAINTREE_RETURNED_NO_PAYMENT_METHOD', 'FAILED_TO_UPDATE_CREDIT_CARD', 'MANUALLY_REVOKED', 'MERGED', 'STRIPE_API_AUTHENTICATION_ERROR', 'STRIPE_API_INVALID_REQUEST_ERROR', 'STRIPE_GATEWAY_NOT_ENABLED', 'STRIPE_PAYMENT_METHOD_NOT_CARD', 'STRIPE_RETURNED_NO_PAYMENT_METHOD')
 
 
 class CustomerPaymentMethodUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('INVALID', 'PRESENT', 'TAKEN')
+
+
+class CustomerPredictedSpendTier(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('HIGH', 'LOW', 'MEDIUM')
 
 
 class CustomerProductSubscriberStatus(sgqlc.types.Enum):
@@ -213,7 +308,7 @@ class CustomerSmsMarketingState(sgqlc.types.Enum):
 
 class CustomerSortKeys(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('ID', 'LAST_ORDER_DATE', 'LOCATION', 'NAME', 'ORDERS_COUNT', 'RELEVANCE', 'TOTAL_SPENT', 'UPDATED_AT')
+    __choices__ = ('CREATED_AT', 'ID', 'LAST_ORDER_DATE', 'LOCATION', 'NAME', 'ORDERS_COUNT', 'RELEVANCE', 'TOTAL_SPENT', 'UPDATED_AT')
 
 
 class CustomerState(sgqlc.types.Enum):
@@ -232,6 +327,11 @@ class DayOfTheWeek(sgqlc.types.Enum):
 
 class Decimal(sgqlc.types.Scalar):
     __schema__ = shopify
+
+
+class DelegateAccessTokenCreateUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('DELEGATE_ACCESS_TOKEN', 'EMPTY_ACCESS_SCOPE', 'EXPIRES_AFTER_PARENT', 'NEGATIVE_EXPIRES_IN', 'PERSISTENCE_FAILED', 'REFRESH_TOKEN', 'UNKNOWN_SCOPES')
 
 
 class DeletionEventSortKeys(sgqlc.types.Enum):
@@ -256,7 +356,7 @@ class DeliveryConditionOperator(sgqlc.types.Enum):
 
 class DeliveryLegacyModeBlockedReason(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('MULTI_LOCATION_DISABLED', 'NO_LOCATIONS_FULFILLING_ONLINE_ORDERS')
+    __choices__ = ('NO_LOCATIONS_FULFILLING_ONLINE_ORDERS',)
 
 
 class DeliveryMethodDefinitionType(sgqlc.types.Enum):
@@ -294,6 +394,11 @@ class DiscountApplicationTargetType(sgqlc.types.Enum):
     __choices__ = ('LINE_ITEM', 'SHIPPING_LINE')
 
 
+class DiscountClass(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('ORDER', 'PRODUCT', 'SHIPPING')
+
+
 class DiscountCodeSortKeys(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('CODE', 'CREATED_AT', 'ID', 'RELEVANCE')
@@ -301,12 +406,17 @@ class DiscountCodeSortKeys(sgqlc.types.Enum):
 
 class DiscountErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('ACTIVE_PERIOD_OVERLAP', 'BLANK', 'CONFLICT', 'DUPLICATE', 'EQUAL_TO', 'EXCEEDED_MAX', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL_TO', 'IMPLICIT_DUPLICATE', 'INCLUSION', 'INTERNAL_ERROR', 'INVALID', 'LESS_THAN', 'LESS_THAN_OR_EQUAL_TO', 'MINIMUM_SUBTOTAL_AND_QUANTITY_RANGE_BOTH_PRESENT', 'MISSING_ARGUMENT', 'PRESENT', 'TAKEN', 'TOO_LONG', 'TOO_MANY_ARGUMENTS', 'TOO_SHORT', 'VALUE_OUTSIDE_RANGE')
+    __choices__ = ('ACTIVE_PERIOD_OVERLAP', 'BLANK', 'CONFLICT', 'DUPLICATE', 'EQUAL_TO', 'EXCEEDED_MAX', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL_TO', 'IMPLICIT_DUPLICATE', 'INCLUSION', 'INTERNAL_ERROR', 'INVALID', 'INVALID_COMBINES_WITH_FOR_DISCOUNT_CLASS', 'INVALID_DISCOUNT_CLASS_FOR_PRICE_RULE', 'LESS_THAN', 'LESS_THAN_OR_EQUAL_TO', 'MAX_APP_DISCOUNTS', 'MINIMUM_SUBTOTAL_AND_QUANTITY_RANGE_BOTH_PRESENT', 'MISSING_ARGUMENT', 'PRESENT', 'TAKEN', 'TOO_LONG', 'TOO_MANY_ARGUMENTS', 'TOO_SHORT', 'VALUE_OUTSIDE_RANGE')
 
 
 class DiscountShareableUrlTargetType(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('COLLECTION', 'HOME', 'PRODUCT')
+
+
+class DiscountSortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CREATED_AT', 'ENDS_AT', 'ID', 'RELEVANCE', 'STARTS_AT', 'TITLE', 'UPDATED_AT')
 
 
 class DiscountStatus(sgqlc.types.Enum):
@@ -322,6 +432,11 @@ class DiscountTargetType(sgqlc.types.Enum):
 class DiscountType(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('CODE_DISCOUNT', 'MANUAL')
+
+
+class DisputeEvidenceUpdateUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('DISPUTE_EVIDENCE_NOT_FOUND', 'EVIDENCE_ALREADY_ACCEPTED', 'EVIDENCE_PAST_DUE_DATE', 'FILES_SIZE_EXCEEDED_LIMIT', 'INVALID', 'TOO_LARGE')
 
 
 class DisputeStatus(sgqlc.types.Enum):
@@ -349,6 +464,11 @@ class DraftOrderStatus(sgqlc.types.Enum):
     __choices__ = ('COMPLETED', 'INVOICE_SENT', 'OPEN')
 
 
+class ErrorsWebPixelUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BLANK', 'INVALID_SETTINGS', 'NOT_FOUND', 'TAKEN', 'UNABLE_TO_DELETE')
+
+
 class EventSortKeys(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('CREATED_AT', 'ID', 'RELEVANCE')
@@ -356,7 +476,7 @@ class EventSortKeys(sgqlc.types.Enum):
 
 class FileContentType(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('FILE', 'IMAGE')
+    __choices__ = ('FILE', 'IMAGE', 'VIDEO')
 
 
 class FileErrorCode(sgqlc.types.Enum):
@@ -376,7 +496,7 @@ class FileStatus(sgqlc.types.Enum):
 
 class FilesErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('ALT_VALUE_LIMIT_EXCEEDED', 'BLANK_SEARCH', 'FILE_DOES_NOT_EXIST', 'FILE_LOCKED', 'INVALID', 'INVALID_QUERY', 'MISSING_ARGUMENTS', 'TOO_MANY_ARGUMENTS', 'UNACCEPTABLE_ASSET', 'UNACCEPTABLE_TRIAL_ASSET', 'UNACCEPTABLE_UNVERIFIED_TRIAL_ASSET')
+    __choices__ = ('ALT_VALUE_LIMIT_EXCEEDED', 'BLANK_SEARCH', 'FILE_DOES_NOT_EXIST', 'FILE_LOCKED', 'INVALID', 'INVALID_QUERY', 'MISSING_ARGUMENTS', 'NON_IMAGE_MEDIA_PER_SHOP_LIMIT_EXCEEDED', 'TOO_MANY_ARGUMENTS', 'UNACCEPTABLE_ASSET', 'UNACCEPTABLE_TRIAL_ASSET', 'UNACCEPTABLE_UNVERIFIED_TRIAL_ASSET')
 
 
 Float = sgqlc.types.Float
@@ -402,7 +522,7 @@ class FulfillmentEventStatus(sgqlc.types.Enum):
 
 class FulfillmentHoldReason(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('AWAITING_PAYMENT', 'HIGH_RISK_OF_FRAUD', 'INCORRECT_ADDRESS', 'INVENTORY_OUT_OF_STOCK', 'OTHER')
+    __choices__ = ('AWAITING_PAYMENT', 'HIGH_RISK_OF_FRAUD', 'INCORRECT_ADDRESS', 'INVENTORY_OUT_OF_STOCK', 'OTHER', 'UNKNOWN_DELIVERY_DATE')
 
 
 class FulfillmentOrderAction(sgqlc.types.Enum):
@@ -417,12 +537,17 @@ class FulfillmentOrderAssignmentStatus(sgqlc.types.Enum):
 
 class FulfillmentOrderHoldUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('FULFILLMENT_ORDER_NOT_FOUND',)
+    __choices__ = ('FULFILLMENT_ORDER_NOT_FOUND', 'TAKEN')
 
 
 class FulfillmentOrderMerchantRequestKind(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('CANCELLATION_REQUEST', 'FULFILLMENT_REQUEST')
+
+
+class FulfillmentOrderRejectionReason(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('INCORRECT_ADDRESS', 'INELIGIBLE_PRODUCT', 'INVENTORY_OUT_OF_STOCK', 'OTHER', 'UNDELIVERABLE_DESTINATION')
 
 
 class FulfillmentOrderReleaseHoldUserErrorCode(sgqlc.types.Enum):
@@ -450,6 +575,11 @@ class FulfillmentOrderStatus(sgqlc.types.Enum):
     __choices__ = ('CANCELLED', 'CLOSED', 'INCOMPLETE', 'IN_PROGRESS', 'ON_HOLD', 'OPEN', 'SCHEDULED')
 
 
+class FulfillmentOrdersSetFulfillmentDeadlineUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('FULFILLMENT_ORDERS_NOT_FOUND',)
+
+
 class FulfillmentServiceType(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('GIFT_CARD', 'MANUAL', 'THIRD_PARTY')
@@ -457,7 +587,7 @@ class FulfillmentServiceType(sgqlc.types.Enum):
 
 class FulfillmentStatus(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('CANCELLED', 'ERROR', 'FAILURE', 'OPEN', 'PENDING', 'SUCCESS')
+    __choices__ = ('CANCELLED', 'ERROR', 'FAILURE', 'SUCCESS')
 
 
 class GiftCardErrorCode(sgqlc.types.Enum):
@@ -483,6 +613,11 @@ class ImageContentType(sgqlc.types.Enum):
 
 Int = sgqlc.types.Int
 
+class InventoryBulkToggleActivationUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('GENERIC_ERROR',)
+
+
 class JSON(sgqlc.types.Scalar):
     __schema__ = shopify
 
@@ -497,9 +632,49 @@ class LocalizationExtensionPurpose(sgqlc.types.Enum):
     __choices__ = ('SHIPPING', 'TAX')
 
 
+class LocationActivateUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('GENERIC_ERROR', 'HAS_ONGOING_RELOCATION', 'LOCATION_LIMIT', 'LOCATION_NOT_FOUND')
+
+
+class LocationAddUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BLANK', 'GENERIC_ERROR', 'INVALID', 'INVALID_US_ZIPCODE', 'TAKEN', 'TOO_LONG')
+
+
+class LocationDeactivateUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CANNOT_DISABLE_ONLINE_ORDER_FULFILLMENT', 'DESTINATION_LOCATION_IS_THE_SAME_LOCATION', 'DESTINATION_LOCATION_NOT_FOUND_OR_INACTIVE', 'FAILED_TO_RELOCATE_ACTIVE_INVENTORIES', 'FAILED_TO_RELOCATE_INCOMING_MOVEMENTS', 'FAILED_TO_RELOCATE_OPEN_PURCHASE_ORDERS', 'FAILED_TO_RELOCATE_OPEN_TRANSFERS', 'HAS_ACTIVE_INVENTORY_ERROR', 'HAS_ACTIVE_RETAIL_SUBSCRIPTIONS', 'HAS_FULFILLMENT_ORDERS_ERROR', 'HAS_INCOMING_MOVEMENTS_ERROR', 'HAS_OPEN_PURCHASE_ORDERS_ERROR', 'HAS_OPEN_TRANSFERS_ERROR', 'INVALID', 'LOCATION_NOT_FOUND', 'PERMANENTLY_BLOCKED_FROM_DEACTIVATION_ERROR', 'TEMPORARILY_BLOCKED_FROM_DEACTIVATION_ERROR')
+
+
+class LocationDeleteUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('GENERIC_ERROR', 'LOCATION_HAS_ACTIVE_RETAIL_SUBSCRIPTION', 'LOCATION_HAS_INVENTORY', 'LOCATION_HAS_PENDING_ORDERS', 'LOCATION_IS_ACTIVE', 'LOCATION_NOT_FOUND')
+
+
+class LocationEditUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BLANK', 'CANNOT_DISABLE_ONLINE_ORDER_FULFILLMENT', 'GENERIC_ERROR', 'INVALID', 'INVALID_US_ZIPCODE', 'NOT_FOUND', 'TOO_LONG')
+
+
 class LocationSortKeys(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('ID', 'NAME', 'RELEVANCE')
+
+
+class MarketCurrencySettingsUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('MANAGED_MARKET', 'MARKET_NOT_FOUND', 'MULTIPLE_CURRENCIES_NOT_SUPPORTED', 'NO_LOCAL_CURRENCIES_ON_SINGLE_COUNTRY_MARKET', 'PRIMARY_MARKET_USES_SHOP_CURRENCY', 'UNSUPPORTED_CURRENCY')
+
+
+class MarketLocalizableResourceType(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('METAFIELD',)
+
+
+class MarketUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BLANK', 'CANNOT_ADD_CUSTOMER_DOMAIN', 'CANNOT_ADD_REGIONS_TO_PRIMARY_MARKET', 'CANNOT_ADD_WEB_PRESENCE_TO_PRIMARY_MARKET', 'CANNOT_DELETE_ONLY_REGION', 'CANNOT_DELETE_PRIMARY_MARKET', 'CANNOT_DELETE_PRIMARY_MARKET_WEB_PRESENCE', 'CANNOT_DISABLE_PRIMARY_MARKET', 'CANNOT_HAVE_SUBFOLDER_AND_DOMAIN', 'CANNOT_SET_DEFAULT_LOCALE_TO_NULL', 'DISABLED_LANGUAGE', 'DOMAIN_NOT_FOUND', 'DUPLICATE_LANGUAGES', 'INVALID', 'MARKET_NOT_FOUND', 'NO_LANGUAGES', 'PRIMARY_MARKET_MUST_USE_PRIMARY_DOMAIN', 'REGION_NOT_FOUND', 'REGION_SPECIFIC_LANGUAGE', 'REQUIRES_DOMAIN_OR_SUBFOLDER', 'REQUIRES_EXACTLY_ONE_OPTION', 'SHOP_REACHED_MARKETS_LIMIT', 'SUBFOLDER_NOT_ALLOWED_FOR_CCTLD_DOMAINS', 'SUBFOLDER_SUFFIX_MUST_CONTAIN_ONLY_LETTERS', 'TAKEN', 'TOO_LONG', 'TOO_SHORT', 'UNPUBLISHED_LANGUAGE', 'UNSUPPORTED_COUNTRY_REGION', 'WEB_PRESENCE_NOT_FOUND')
 
 
 class MarketingActivityExtensionAppErrorCode(sgqlc.types.Enum):
@@ -520,6 +695,11 @@ class MarketingActivityStatus(sgqlc.types.Enum):
 class MarketingActivityStatusBadgeType(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('ATTENTION', 'DEFAULT', 'INFO', 'SUCCESS', 'WARNING')
+
+
+class MarketingActivityUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('INVALID', 'TAKEN')
 
 
 class MarketingBudgetBudgetType(sgqlc.types.Enum):
@@ -577,14 +757,19 @@ class MediaWarningCode(sgqlc.types.Enum):
     __choices__ = ('MODEL_LARGE_PHYSICAL_SIZE', 'MODEL_SMALL_PHYSICAL_SIZE')
 
 
+class MerchandiseDiscountClass(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('ORDER', 'PRODUCT')
+
+
 class MetafieldDefinitionCreateUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('DUPLICATE_OPTION', 'INCLUSION', 'INVALID', 'INVALID_OPTION', 'LIMIT_EXCEEDED', 'PINNED_LIMIT_REACHED', 'PRESENT', 'RESERVED_NAMESPACE_KEY', 'RESOURCE_TYPE_LIMIT_EXCEEDED', 'TAKEN', 'TOO_LONG', 'TOO_SHORT', 'UNSTRUCTURED_ALREADY_EXISTS')
+    __choices__ = ('DUPLICATE_OPTION', 'INCLUSION', 'INVALID', 'INVALID_CHARACTER', 'INVALID_OPTION', 'LIMIT_EXCEEDED', 'PINNED_LIMIT_REACHED', 'PRESENT', 'RESERVED_NAMESPACE_KEY', 'RESOURCE_TYPE_LIMIT_EXCEEDED', 'TAKEN', 'TOO_LONG', 'TOO_SHORT', 'UNSTRUCTURED_ALREADY_EXISTS')
 
 
 class MetafieldDefinitionDeleteUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('INTERNAL_ERROR', 'NOT_FOUND', 'PRESENT')
+    __choices__ = ('INTERNAL_ERROR', 'NOT_FOUND', 'PRESENT', 'REFERENCE_TYPE_DELETION_ERROR')
 
 
 class MetafieldDefinitionPinUserErrorCode(sgqlc.types.Enum):
@@ -619,7 +804,7 @@ class MetafieldDefinitionValidationStatus(sgqlc.types.Enum):
 
 class MetafieldOwnerType(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('ARTICLE', 'BLOG', 'COLLECTION', 'CUSTOMER', 'DRAFTORDER', 'ORDER', 'PAGE', 'PRODUCT', 'PRODUCTIMAGE', 'PRODUCTVARIANT', 'SHOP')
+    __choices__ = ('API_PERMISSION', 'ARTICLE', 'BLOG', 'COLLECTION', 'CUSTOMER', 'DISCOUNT', 'DRAFTORDER', 'LOCATION', 'ORDER', 'PAGE', 'PRODUCT', 'PRODUCTIMAGE', 'PRODUCTVARIANT', 'SHOP')
 
 
 class MetafieldValidationStatus(sgqlc.types.Enum):
@@ -634,7 +819,7 @@ class MetafieldValueType(sgqlc.types.Enum):
 
 class MetafieldsSetUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('BLANK', 'INCLUSION', 'INVALID_TYPE', 'INVALID_VALUE', 'LESS_THAN_OR_EQUAL_TO', 'PRESENT', 'TOO_LONG', 'TOO_SHORT')
+    __choices__ = ('APP_NOT_AUTHORIZED', 'BLANK', 'INCLUSION', 'INVALID_TYPE', 'INVALID_VALUE', 'LESS_THAN_OR_EQUAL_TO', 'PRESENT', 'TOO_LONG', 'TOO_SHORT')
 
 
 class MethodDefinitionSortKeys(sgqlc.types.Enum):
@@ -656,6 +841,11 @@ class OrderCancelReason(sgqlc.types.Enum):
     __choices__ = ('CUSTOMER', 'DECLINED', 'FRAUD', 'INVENTORY', 'OTHER')
 
 
+class OrderCreateMandatePaymentUserErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('ORDER_MANDATE_PAYMENT_ERROR_CODE',)
+
+
 class OrderDisplayFinancialStatus(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('AUTHORIZED', 'EXPIRED', 'PAID', 'PARTIALLY_PAID', 'PARTIALLY_REFUNDED', 'PENDING', 'REFUNDED', 'VOIDED')
@@ -669,6 +859,11 @@ class OrderDisplayFulfillmentStatus(sgqlc.types.Enum):
 class OrderInvoiceSendUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('ORDER_INVOICE_SEND_UNSUCCESSFUL',)
+
+
+class OrderPaymentStatusResult(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('AUTHORIZED', 'CAPTURED', 'ERROR', 'PROCESSING', 'PURCHASED', 'REDIRECT_REQUIRED', 'REFUNDED', 'RETRYABLE', 'SUCCESS', 'UNKNOWN', 'VOIDED')
 
 
 class OrderRiskLevel(sgqlc.types.Enum):
@@ -748,7 +943,7 @@ class PriceListSortKeys(sgqlc.types.Enum):
 
 class PriceListUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('CONTEXT_RULE_COUNTRIES_LIMIT', 'CONTEXT_RULE_COUNTRY_TAKEN', 'CONTEXT_RULE_LIMIT_REACHED', 'COUNTRY_CURRENCY_MISMATCH', 'CURRENCY_COUNTRY_MISMATCH', 'INVALID_ADJUSTMENT_VALUE', 'PRICE_LIST_NOT_FOUND', 'TAKEN')
+    __choices__ = ('CONTEXT_RULE_COUNTRIES_LIMIT', 'CONTEXT_RULE_COUNTRY_TAKEN', 'CONTEXT_RULE_LIMIT_ONE_OPTION', 'CONTEXT_RULE_MARKET_NOT_FOUND', 'CONTEXT_RULE_MARKET_TAKEN', 'COUNTRY_CURRENCY_MISMATCH', 'CURRENCY_COUNTRY_MISMATCH', 'CURRENCY_MARKET_MISMATCH', 'CURRENCY_NOT_SUPPORTED', 'INVALID_ADJUSTMENT_VALUE', 'MARKET_CURRENCY_MISMATCH', 'PRICE_LIST_NOT_ALLOWED_FOR_PRIMARY_MARKET', 'PRICE_LIST_NOT_FOUND', 'TAKEN')
 
 
 class PriceRuleAllocationMethod(sgqlc.types.Enum):
@@ -758,7 +953,7 @@ class PriceRuleAllocationMethod(sgqlc.types.Enum):
 
 class PriceRuleErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('ALLOCATION_METHOD_MUST_BE_ACROSS_FOR_GIVEN_TARGET_SELECTION', 'APPLIES_ON_NOTHING', 'BLANK', 'BOGO_INVALID_TARGET_SELECTION', 'BOGO_INVALID_TARGET_TYPE', 'BOGO_INVALID_VALUE_TYPE', 'BOTH_CUSTOMER_AND_SAVED_SEARCH_PREREQUISITES_SELECTED', 'CANNOT_ENTITLE_COLLECTIONS_WITH_PRODUCTS_OR_VARIANTS', 'CANNOT_PREREQUISITE_COLLECTION_WITH_PRODUCT_OR_VARIANTS', 'CUSTOMER_PREREQUISITES_EXCEEDED_MAX', 'CUSTOMER_PREREQUISITES_INVALID_SELECTION', 'CUSTOMER_PREREQUISITES_MISSING', 'CUSTOMER_PREREQUISITE_DUPLICATE', 'CUSTOMER_SAVED_SEARCH_DUPLICATE', 'CUSTOMER_SAVED_SEARCH_EXCEEDED_MAX', 'CUSTOMER_SAVED_SEARCH_INVALID', 'DISCOUNT_CODE_DUPLICATE', 'END_DATE_BEFORE_START_DATE', 'EQUAL_TO', 'EXCEEDED_MAX', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL_TO', 'INTERNAL_ERROR', 'INVALID', 'INVALID_TARGET_TYPE_PREREQUISITE_SHIPPING_PRICE_RANGE', 'ITEM_ENTITLEMENTS_DUPLICATE_COLLECTION', 'ITEM_ENTITLEMENTS_DUPLICATE_PRODUCT', 'ITEM_ENTITLEMENTS_DUPLICATE_VARIANT', 'ITEM_ENTITLEMENTS_EXCEEDED_MAX_COLLECTION', 'ITEM_ENTITLEMENTS_EXCEEDED_MAX_PRODUCT', 'ITEM_ENTITLEMENTS_EXCEEDED_MAX_VARIANT', 'ITEM_ENTITLEMENTS_INVALID_COLLECTION', 'ITEM_ENTITLEMENTS_INVALID_PRODUCT', 'ITEM_ENTITLEMENTS_INVALID_TARGET_TYPE_OR_SELECTION', 'ITEM_ENTITLEMENTS_INVALID_VARIANT', 'ITEM_ENTITLEMENTS_MISSING', 'ITEM_ENTITLEMENT_INVALID_TYPE', 'ITEM_PREREQUISITES_DUPLICATE_COLLECTION', 'ITEM_PREREQUISITES_DUPLICATE_PRODUCT', 'ITEM_PREREQUISITES_DUPLICATE_VARIANT', 'ITEM_PREREQUISITES_EXCEEDED_MAX', 'ITEM_PREREQUISITES_INVALID_COLLECTION', 'ITEM_PREREQUISITES_INVALID_PRODUCT', 'ITEM_PREREQUISITES_INVALID_TYPE', 'ITEM_PREREQUISITES_INVALID_VARIANT', 'ITEM_PREREQUISITES_MISSING', 'ITEM_PREREQUISITES_MUST_BE_EMPTY', 'LESS_THAN', 'LESS_THAN_OR_EQUAL_TO', 'MISSING_ARGUMENT', 'MULTIPLE_RECURRING_CYCLE_LIMIT_FOR_NON_SUBSCRIPTION_ITEMS', 'PREREQUISITE_SUBTOTAL_AND_QUANTITY_RANGE_BOTH_PRESENT', 'PRICE_RULE_ALLOCATION_LIMIT_IS_ZERO', 'PRICE_RULE_ALLOCATION_LIMIT_ON_NON_BOGO', 'PRICE_RULE_EXCEEDED_MAX_DISCOUNT_CODE', 'PRICE_RULE_PERCENTAGE_VALUE_OUTSIDE_RANGE', 'SHIPPING_ENTITLEMENTS_DUPLICATE_COUNTRY', 'SHIPPING_ENTITLEMENTS_EXCEEDED_MAX', 'SHIPPING_ENTITLEMENTS_INVALID_COUNTRY', 'SHIPPING_ENTITLEMENTS_INVALID_TARGET_TYPE_OR_SELECTION', 'SHIPPING_ENTITLEMENTS_MISSING', 'SHIPPING_ENTITLEMENTS_UNSUPPORTED_DESTINATION_TYPE', 'SHOP_EXCEEDED_MAX_PRICE_RULES', 'TAKEN', 'TOO_LONG', 'TOO_MANY_ARGUMENTS', 'TOO_SHORT', 'VARIANT_ALREADY_ENTITLED_THROUGH_PRODUCT')
+    __choices__ = ('ALLOCATION_METHOD_MUST_BE_ACROSS_FOR_GIVEN_TARGET_SELECTION', 'APPLIES_ON_NOTHING', 'BLANK', 'BOGO_INVALID_TARGET_SELECTION', 'BOGO_INVALID_TARGET_TYPE', 'BOGO_INVALID_VALUE_TYPE', 'BOTH_CUSTOMER_AND_SAVED_SEARCH_PREREQUISITES_SELECTED', 'BOTH_CUSTOMER_AND_SEGMENT_PREREQUISITES_SELECTED', 'BOTH_SAVED_SEARCH_AND_SEGMENT_PREREQUISITES_SELECTED', 'CANNOT_ENTITLE_COLLECTIONS_WITH_PRODUCTS_OR_VARIANTS', 'CANNOT_PREREQUISITE_COLLECTION_WITH_PRODUCT_OR_VARIANTS', 'CUSTOMER_PREREQUISITES_EXCEEDED_MAX', 'CUSTOMER_PREREQUISITES_INVALID_SELECTION', 'CUSTOMER_PREREQUISITES_MISSING', 'CUSTOMER_PREREQUISITE_DUPLICATE', 'CUSTOMER_SAVED_SEARCH_DUPLICATE', 'CUSTOMER_SAVED_SEARCH_EXCEEDED_MAX', 'CUSTOMER_SAVED_SEARCH_INVALID', 'CUSTOMER_SEGMENT_EXCEEDED_MAX', 'CUSTOMER_SEGMENT_INVALID', 'CUSTOMER_SEGMENT_PREREQUISITE_DUPLICATE', 'DISCOUNT_CODE_DUPLICATE', 'END_DATE_BEFORE_START_DATE', 'EQUAL_TO', 'EXCEEDED_MAX', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL_TO', 'INTERNAL_ERROR', 'INVALID', 'INVALID_COMBINES_WITH_FOR_DISCOUNT_CLASS', 'INVALID_DISCOUNT_CLASS_FOR_PRICE_RULE', 'INVALID_TARGET_TYPE_PREREQUISITE_SHIPPING_PRICE_RANGE', 'ITEM_ENTITLEMENTS_DUPLICATE_COLLECTION', 'ITEM_ENTITLEMENTS_DUPLICATE_PRODUCT', 'ITEM_ENTITLEMENTS_DUPLICATE_VARIANT', 'ITEM_ENTITLEMENTS_EXCEEDED_MAX_COLLECTION', 'ITEM_ENTITLEMENTS_EXCEEDED_MAX_PRODUCT', 'ITEM_ENTITLEMENTS_EXCEEDED_MAX_VARIANT', 'ITEM_ENTITLEMENTS_INVALID_COLLECTION', 'ITEM_ENTITLEMENTS_INVALID_PRODUCT', 'ITEM_ENTITLEMENTS_INVALID_TARGET_TYPE_OR_SELECTION', 'ITEM_ENTITLEMENTS_INVALID_VARIANT', 'ITEM_ENTITLEMENTS_MISSING', 'ITEM_ENTITLEMENT_INVALID_TYPE', 'ITEM_PREREQUISITES_DUPLICATE_COLLECTION', 'ITEM_PREREQUISITES_DUPLICATE_PRODUCT', 'ITEM_PREREQUISITES_DUPLICATE_VARIANT', 'ITEM_PREREQUISITES_EXCEEDED_MAX', 'ITEM_PREREQUISITES_INVALID_COLLECTION', 'ITEM_PREREQUISITES_INVALID_PRODUCT', 'ITEM_PREREQUISITES_INVALID_TYPE', 'ITEM_PREREQUISITES_INVALID_VARIANT', 'ITEM_PREREQUISITES_MISSING', 'ITEM_PREREQUISITES_MUST_BE_EMPTY', 'LESS_THAN', 'LESS_THAN_OR_EQUAL_TO', 'MISSING_ARGUMENT', 'MULTIPLE_RECURRING_CYCLE_LIMIT_FOR_NON_SUBSCRIPTION_ITEMS', 'PREREQUISITE_SUBTOTAL_AND_QUANTITY_RANGE_BOTH_PRESENT', 'PRICE_RULE_ALLOCATION_LIMIT_IS_ZERO', 'PRICE_RULE_ALLOCATION_LIMIT_ON_NON_BOGO', 'PRICE_RULE_EXCEEDED_MAX_DISCOUNT_CODE', 'PRICE_RULE_PERCENTAGE_VALUE_OUTSIDE_RANGE', 'SHIPPING_ENTITLEMENTS_DUPLICATE_COUNTRY', 'SHIPPING_ENTITLEMENTS_EXCEEDED_MAX', 'SHIPPING_ENTITLEMENTS_INVALID_COUNTRY', 'SHIPPING_ENTITLEMENTS_INVALID_TARGET_TYPE_OR_SELECTION', 'SHIPPING_ENTITLEMENTS_MISSING', 'SHIPPING_ENTITLEMENTS_UNSUPPORTED_DESTINATION_TYPE', 'SHOP_EXCEEDED_MAX_PRICE_RULES', 'TAKEN', 'TOO_LONG', 'TOO_MANY_ARGUMENTS', 'TOO_SHORT', 'VARIANT_ALREADY_ENTITLED_THROUGH_PRODUCT')
 
 
 class PriceRuleFeature(sgqlc.types.Enum):
@@ -921,9 +1116,39 @@ class SearchResultType(sgqlc.types.Enum):
     __choices__ = ('COLLECTION', 'CUSTOMER', 'DISCOUNT_REDEEM_CODE', 'DRAFT_ORDER', 'FILE', 'ONLINE_STORE_ARTICLE', 'ONLINE_STORE_BLOG', 'ONLINE_STORE_PAGE', 'ORDER', 'PRICE_RULE', 'PRODUCT', 'URL_REDIRECT')
 
 
+class SegmentSortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CREATION_DATE', 'ID', 'LAST_EDIT_DATE', 'RELEVANCE')
+
+
 class SellingPlanAnchorType(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('MONTHDAY', 'WEEKDAY', 'YEARDAY')
+
+
+class SellingPlanCategory(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('OTHER', 'PRE_ORDER', 'SUBSCRIPTION', 'TRY_BEFORE_YOU_BUY')
+
+
+class SellingPlanCheckoutChargeType(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('PERCENTAGE', 'PRICE')
+
+
+class SellingPlanFixedDeliveryPolicyIntent(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('FULFILLMENT_BEGIN',)
+
+
+class SellingPlanFixedDeliveryPolicyPreAnchorBehavior(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('ASAP', 'NEXT')
+
+
+class SellingPlanFulfillmentTrigger(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('ANCHOR', 'ASAP', 'EXACT_TIME', 'UNKNOWN')
 
 
 class SellingPlanGroupSortKeys(sgqlc.types.Enum):
@@ -933,7 +1158,7 @@ class SellingPlanGroupSortKeys(sgqlc.types.Enum):
 
 class SellingPlanGroupUserErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('BLANK', 'ERROR_ADDING_RESOURCE_TO_GROUP', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL_TO', 'GROUP_COULD_NOT_BE_DELETED', 'GROUP_DOES_NOT_EXIST', 'INVALID', 'LESS_THAN', 'LESS_THAN_OR_EQUAL_TO', 'NOT_A_NUMBER', 'ONLY_NEED_ONE_PRICING_POLICY_TYPE', 'ONLY_NEED_ONE_PRICING_POLICY_VALUE', 'PLAN_DOES_NOT_EXIST', 'PLAN_ID_MUST_BE_SPECIFIED_TO_UPDATE', 'PRESENT', 'PRICING_POLICY_ADJUSTMENT_VALUE_AND_TYPE_MUST_MATCH', 'PRODUCT_DOES_NOT_EXIST', 'PRODUCT_VARIANT_DOES_NOT_EXIST', 'RESOURCE_LIST_CONTAINS_INVALID_IDS', 'SELLING_PLAN_BILLING_AND_DELIVERY_POLICY_ANCHORS_MUST_BE_EQUAL', 'SELLING_PLAN_BILLING_CYCLE_MUST_BE_A_MULTIPLE_OF_DELIVERY_CYCLE', 'SELLING_PLAN_BILLING_POLICY_MISSING', 'SELLING_PLAN_COUNT_LOWER_BOUND', 'SELLING_PLAN_COUNT_UPPER_BOUND', 'SELLING_PLAN_DELIVERY_POLICY_MISSING', 'SELLING_PLAN_DUPLICATE_NAME', 'SELLING_PLAN_DUPLICATE_OPTIONS', 'SELLING_PLAN_MAX_CYCLES_MUST_BE_GREATER_THAN_MIN_CYCLES', 'SELLING_PLAN_MISSING_OPTION2_LABEL_ON_PARENT_GROUP', 'SELLING_PLAN_MISSING_OPTION3_LABEL_ON_PARENT_GROUP', 'SELLING_PLAN_OPTION2_REQUIRED_AS_DEFINED_ON_PARENT_GROUP', 'SELLING_PLAN_OPTION3_REQUIRED_AS_DEFINED_ON_PARENT_GROUP', 'SELLING_PLAN_PRICING_POLICIES_LIMIT', 'SELLING_PLAN_PRICING_POLICIES_MUST_CONTAIN_A_FIXED_PRICING_POLICY', 'TAKEN', 'TOO_LONG', 'TOO_SHORT')
+    __choices__ = ('BILLING_AND_DELIVERY_POLICY_TYPES_MUST_BE_THE_SAME', 'BLANK', 'CHECKOUT_CHARGE_VALUE_AND_TYPE_MUST_MATCH', 'EQUAL_TO', 'ERROR_ADDING_RESOURCE_TO_GROUP', 'FULFILLMENT_EXACT_TIME_NOT_ALLOWED', 'FULFILLMENT_EXACT_TIME_REQUIRED', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL_TO', 'GROUP_COULD_NOT_BE_DELETED', 'GROUP_DOES_NOT_EXIST', 'INCLUSION', 'INVALID', 'LESS_THAN', 'LESS_THAN_OR_EQUAL_TO', 'NOT_A_NUMBER', 'NOT_FOUND', 'ONLY_NEED_ONE_BILLING_POLICY_TYPE', 'ONLY_NEED_ONE_CHECKOUT_CHARGE_VALUE', 'ONLY_NEED_ONE_DELIVERY_POLICY_TYPE', 'ONLY_NEED_ONE_PRICING_POLICY_TYPE', 'ONLY_NEED_ONE_PRICING_POLICY_VALUE', 'ONLY_ONE_OF_FIXED_OR_RECURRING_BILLING', 'ONLY_ONE_OF_FIXED_OR_RECURRING_DELIVERY', 'PLAN_DOES_NOT_EXIST', 'PLAN_ID_MUST_BE_SPECIFIED_TO_UPDATE', 'PRESENT', 'PRICING_POLICY_ADJUSTMENT_VALUE_AND_TYPE_MUST_MATCH', 'PRODUCT_DOES_NOT_EXIST', 'PRODUCT_VARIANT_DOES_NOT_EXIST', 'REMAINING_BALANCE_CHARGE_EXACT_TIME_NOT_ALLOWED', 'REMAINING_BALANCE_CHARGE_EXACT_TIME_REQUIRED', 'REMAINING_BALANCE_CHARGE_TIME_AFTER_CHECKOUT_MUST_BE_GREATER_THAN_ZERO', 'REMAINING_BALANCE_CHARGE_TRIGGER_NO_REMAINING_BALANCE_ON_PARTIAL_PERCENTAGE_CHECKOUT_CHARGE', 'REMAINING_BALANCE_CHARGE_TRIGGER_NO_REMAINING_BALANCE_ON_PRICE_CHECKOUT_CHARGE', 'REMAINING_BALANCE_CHARGE_TRIGGER_ON_FULL_CHECKOUT', 'RESOURCE_LIST_CONTAINS_INVALID_IDS', 'SELLING_PLAN_ANCHORS_NOT_ALLOWED', 'SELLING_PLAN_ANCHORS_REQUIRED', 'SELLING_PLAN_BILLING_AND_DELIVERY_POLICY_ANCHORS_MUST_BE_EQUAL', 'SELLING_PLAN_BILLING_CYCLE_MUST_BE_A_MULTIPLE_OF_DELIVERY_CYCLE', 'SELLING_PLAN_BILLING_POLICY_MISSING', 'SELLING_PLAN_COUNT_LOWER_BOUND', 'SELLING_PLAN_COUNT_UPPER_BOUND', 'SELLING_PLAN_DELIVERY_POLICY_MISSING', 'SELLING_PLAN_DUPLICATE_NAME', 'SELLING_PLAN_DUPLICATE_OPTIONS', 'SELLING_PLAN_FIXED_PRICING_POLICIES_LIMIT', 'SELLING_PLAN_MAX_CYCLES_MUST_BE_GREATER_THAN_MIN_CYCLES', 'SELLING_PLAN_MISSING_OPTION2_LABEL_ON_PARENT_GROUP', 'SELLING_PLAN_MISSING_OPTION3_LABEL_ON_PARENT_GROUP', 'SELLING_PLAN_OPTION2_REQUIRED_AS_DEFINED_ON_PARENT_GROUP', 'SELLING_PLAN_OPTION3_REQUIRED_AS_DEFINED_ON_PARENT_GROUP', 'SELLING_PLAN_PRICING_POLICIES_LIMIT', 'SELLING_PLAN_PRICING_POLICIES_MUST_CONTAIN_A_FIXED_PRICING_POLICY', 'TAKEN', 'TOO_BIG', 'TOO_LONG', 'TOO_SHORT', 'WRONG_LENGTH')
 
 
 class SellingPlanInterval(sgqlc.types.Enum):
@@ -954,6 +1179,21 @@ class SellingPlanRecurringDeliveryPolicyIntent(sgqlc.types.Enum):
 class SellingPlanRecurringDeliveryPolicyPreAnchorBehavior(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('ASAP', 'NEXT')
+
+
+class SellingPlanRemainingBalanceChargeTrigger(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('EXACT_TIME', 'NO_REMAINING_BALANCE', 'TIME_AFTER_CHECKOUT')
+
+
+class SellingPlanReserve(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('ON_FULFILLMENT', 'ON_SALE')
+
+
+class ShippingDiscountClass(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('SHIPPING',)
 
 
 class ShopBranding(sgqlc.types.Enum):
@@ -986,6 +1226,11 @@ class ShopifyPaymentsBankAccountStatus(sgqlc.types.Enum):
     __choices__ = ('ERRORED', 'NEW', 'VALIDATED', 'VERIFIED')
 
 
+class ShopifyPaymentsDisputeEvidenceFileType(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CANCELLATION_POLICY_FILE', 'CUSTOMER_COMMUNICATION_FILE', 'REFUND_POLICY_FILE', 'SERVICE_DOCUMENTATION_FILE', 'SHIPPING_DOCUMENTATION_FILE', 'UNCATEGORIZED_FILE')
+
+
 class ShopifyPaymentsDisputeReason(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('BANK_CANNOT_PROCESS', 'CREDIT_NOT_PROCESSED', 'CUSTOMER_INITIATED', 'DEBIT_NOT_AUTHORIZED', 'DUPLICATE', 'FRAUDULENT', 'GENERAL', 'INCORRECT_ACCOUNT_DETAILS', 'INSUFFICIENT_FUNDS', 'PRODUCT_NOT_RECEIVED', 'PRODUCT_UNACCEPTABLE', 'SUBSCRIPTION_CANCELLED', 'UNRECOGNIZED')
@@ -1016,6 +1261,16 @@ class ShopifyPaymentsVerificationStatus(sgqlc.types.Enum):
     __choices__ = ('PENDING', 'UNVERIFIED', 'VERIFIED')
 
 
+class StaffMemberDefaultImage(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('DEFAULT', 'NOT_FOUND', 'TRANSPARENT')
+
+
+class StaffMemberPermission(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('APPLICATIONS', 'CHANNELS', 'CUSTOMERS', 'DASHBOARD', 'DOMAINS', 'DRAFT_ORDERS', 'EDIT_ORDERS', 'GIFT_CARDS', 'LINKS', 'LOCATIONS', 'MARKETING', 'MARKETING_SECTION', 'ORDERS', 'OVERVIEWS', 'PAGES', 'PAY_ORDERS_BY_VAULTED_CARD', 'PREFERENCES', 'PRODUCTS', 'REPORTS', 'THEMES')
+
+
 class StagedUploadHttpMethodType(sgqlc.types.Enum):
     __schema__ = shopify
     __choices__ = ('POST', 'PUT')
@@ -1023,7 +1278,7 @@ class StagedUploadHttpMethodType(sgqlc.types.Enum):
 
 class StagedUploadTargetGenerateUploadResource(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('BULK_MUTATION_VARIABLES', 'COLLECTION_IMAGE', 'FILE', 'IMAGE', 'MODEL_3D', 'PRODUCT_IMAGE', 'SHOP_IMAGE', 'TIMELINE', 'URL_REDIRECT_IMPORT', 'VIDEO')
+    __choices__ = ('BULK_MUTATION_VARIABLES', 'COLLECTION_IMAGE', 'FILE', 'IMAGE', 'MODEL_3D', 'PRODUCT_IMAGE', 'SHOP_IMAGE', 'URL_REDIRECT_IMPORT', 'VIDEO')
 
 
 class StandardMetafieldDefinitionEnableUserErrorCode(sgqlc.types.Enum):
@@ -1039,7 +1294,32 @@ String = sgqlc.types.String
 
 class SubscriptionBillingAttemptErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('AUTHENTICATION_ERROR', 'BUYER_CANCELED_PAYMENT_METHOD', 'CUSTOMER_INVALID', 'CUSTOMER_NOT_FOUND', 'EXPIRED_PAYMENT_METHOD', 'INVALID_PAYMENT_METHOD', 'INVALID_SHIPPING_ADDRESS', 'PAYMENT_METHOD_DECLINED', 'PAYMENT_METHOD_NOT_FOUND', 'PAYMENT_PROVIDER_IS_NOT_ENABLED', 'TEST_MODE', 'UNEXPECTED_ERROR')
+    __choices__ = ('AMOUNT_TOO_SMALL', 'AUTHENTICATION_ERROR', 'BUYER_CANCELED_PAYMENT_METHOD', 'CUSTOMER_INVALID', 'CUSTOMER_NOT_FOUND', 'EXPIRED_PAYMENT_METHOD', 'INVALID_CUSTOMER_BILLING_AGREEMENT', 'INVALID_PAYMENT_METHOD', 'INVALID_SHIPPING_ADDRESS', 'INVOICE_ALREADY_PAID', 'PAYMENT_METHOD_DECLINED', 'PAYMENT_METHOD_INCOMPATIBLE_WITH_GATEWAY_CONFIG', 'PAYMENT_METHOD_NOT_FOUND', 'PAYMENT_PROVIDER_IS_NOT_ENABLED', 'TEST_MODE', 'UNEXPECTED_ERROR')
+
+
+class SubscriptionBillingCycleBillingCycleStatus(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BILLED', 'UNBILLED')
+
+
+class SubscriptionBillingCycleErrorCode(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BILLING_DATE_SET_ON_SKIPPED', 'CYCLE_NOT_FOUND', 'EMPTY_BILLING_CYCLE_EDIT_SCHEDULE_INPUT', 'INVALID', 'INVALID_CYCLE_INDEX', 'INVALID_DATE', 'NO_CYCLE_EDITS', 'OUT_OF_BOUNDS')
+
+
+class SubscriptionBillingCycleScheduleEditInputScheduleEditReason(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('BUYER_INITIATED', 'DEV_INITIATED', 'MERCHANT_INITIATED')
+
+
+class SubscriptionBillingCyclesSortKeys(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('CYCLE_INDEX', 'ID', 'RELEVANCE')
+
+
+class SubscriptionBillingCyclesTargetSelection(sgqlc.types.Enum):
+    __schema__ = shopify
+    __choices__ = ('ALL',)
 
 
 class SubscriptionContractErrorCode(sgqlc.types.Enum):
@@ -1064,7 +1344,7 @@ class SubscriptionDiscountRejectionReason(sgqlc.types.Enum):
 
 class SubscriptionDraftErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('ALREADY_REMOVED', 'BLANK', 'COMMITTED', 'CURRENCY_NOT_ENABLED', 'CUSTOMER_DOES_NOT_EXIST', 'CUSTOMER_MISMATCH', 'CYCLE_DISCOUNTS_UNIQUE_AFTER_CYCLE', 'DELIVERY_METHOD_REQUIRED', 'DELIVERY_MUST_BE_MULTIPLE_OF_BILLING', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL_TO', 'INVALID', 'INVALID_ADJUSTMENT_TYPE', 'INVALID_ADJUSTMENT_VALUE', 'INVALID_BILLING_DATE', 'INVALID_LINES', 'INVALID_NOTE_LENGTH', 'LESS_THAN', 'LESS_THAN_OR_EQUAL_TO', 'NOT_AN_INTEGER', 'NOT_IN_RANGE', 'NO_ENTITLED_LINES', 'PRESENCE', 'SELLING_PLAN_MAX_CYCLES_MUST_BE_GREATER_THAN_MIN_CYCLES', 'STALE_CONTRACT', 'TOO_LONG', 'TOO_SHORT')
+    __choices__ = ('ALREADY_REMOVED', 'BILLING_CYCLE_ABSENT', 'BILLING_CYCLE_CONTRACT_DRAFT_BILLING_POLICY_INVALID', 'BILLING_CYCLE_CONTRACT_DRAFT_DELIVERY_POLICY_INVALID', 'BILLING_CYCLE_PRESENT', 'BLANK', 'COMMITTED', 'CONCATENATION_BILLING_CYCLE_CONTRACT_DRAFT_REQUIRED', 'CURRENCY_NOT_ENABLED', 'CUSTOMER_DOES_NOT_EXIST', 'CUSTOMER_MISMATCH', 'CYCLE_DISCOUNTS_UNIQUE_AFTER_CYCLE', 'CYCLE_INDEX_OUT_OF_RANGE', 'CYCLE_SELECTOR_VALIDATE_ONE_OF', 'CYCLE_START_DATE_OUT_OF_RANGE', 'DELIVERY_METHOD_REQUIRED', 'DELIVERY_MUST_BE_MULTIPLE_OF_BILLING', 'DUPLICATE_CONCATENATED_CONTRACTS', 'EXCEEDED_MAX_CONCATENATED_CONTRACTS', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL_TO', 'HAS_FUTURE_EDITS', 'INVALID', 'INVALID_ADJUSTMENT_TYPE', 'INVALID_ADJUSTMENT_VALUE', 'INVALID_BILLING_DATE', 'INVALID_LINES', 'INVALID_NOTE_LENGTH', 'LESS_THAN', 'LESS_THAN_OR_EQUAL_TO', 'NOT_AN_INTEGER', 'NOT_IN_RANGE', 'NO_ENTITLED_LINES', 'PRESENCE', 'SELLING_PLAN_MAX_CYCLES_MUST_BE_GREATER_THAN_MIN_CYCLES', 'STALE_CONTRACT', 'TOO_LONG', 'TOO_SHORT', 'UPCOMING_CYCLE_LIMIT_EXCEEDED')
 
 
 class SuggestedOrderTransactionKind(sgqlc.types.Enum):
@@ -1074,17 +1354,17 @@ class SuggestedOrderTransactionKind(sgqlc.types.Enum):
 
 class TaxExemption(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('CA_BC_COMMERCIAL_FISHERY_EXEMPTION', 'CA_BC_CONTRACTOR_EXEMPTION', 'CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION', 'CA_BC_RESELLER_EXEMPTION', 'CA_BC_SUB_CONTRACTOR_EXEMPTION', 'CA_DIPLOMAT_EXEMPTION', 'CA_MB_COMMERCIAL_FISHERY_EXEMPTION', 'CA_MB_FARMER_EXEMPTION', 'CA_MB_RESELLER_EXEMPTION', 'CA_NS_COMMERCIAL_FISHERY_EXEMPTION', 'CA_NS_FARMER_EXEMPTION', 'CA_ON_PURCHASE_EXEMPTION', 'CA_PE_COMMERCIAL_FISHERY_EXEMPTION', 'CA_SK_COMMERCIAL_FISHERY_EXEMPTION', 'CA_SK_CONTRACTOR_EXEMPTION', 'CA_SK_FARMER_EXEMPTION', 'CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION', 'CA_SK_RESELLER_EXEMPTION', 'CA_SK_SUB_CONTRACTOR_EXEMPTION', 'CA_STATUS_CARD_EXEMPTION')
+    __choices__ = ('CA_BC_COMMERCIAL_FISHERY_EXEMPTION', 'CA_BC_CONTRACTOR_EXEMPTION', 'CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION', 'CA_BC_RESELLER_EXEMPTION', 'CA_BC_SUB_CONTRACTOR_EXEMPTION', 'CA_DIPLOMAT_EXEMPTION', 'CA_MB_COMMERCIAL_FISHERY_EXEMPTION', 'CA_MB_FARMER_EXEMPTION', 'CA_MB_RESELLER_EXEMPTION', 'CA_NS_COMMERCIAL_FISHERY_EXEMPTION', 'CA_NS_FARMER_EXEMPTION', 'CA_ON_PURCHASE_EXEMPTION', 'CA_PE_COMMERCIAL_FISHERY_EXEMPTION', 'CA_SK_COMMERCIAL_FISHERY_EXEMPTION', 'CA_SK_CONTRACTOR_EXEMPTION', 'CA_SK_FARMER_EXEMPTION', 'CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION', 'CA_SK_RESELLER_EXEMPTION', 'CA_SK_SUB_CONTRACTOR_EXEMPTION', 'CA_STATUS_CARD_EXEMPTION', 'EU_REVERSE_CHARGE_EXEMPTION_RULE', 'US_AK_RESELLER_EXEMPTION', 'US_AL_RESELLER_EXEMPTION', 'US_AR_RESELLER_EXEMPTION', 'US_AZ_RESELLER_EXEMPTION', 'US_CA_RESELLER_EXEMPTION', 'US_CO_RESELLER_EXEMPTION', 'US_CT_RESELLER_EXEMPTION', 'US_DC_RESELLER_EXEMPTION', 'US_DE_RESELLER_EXEMPTION', 'US_FL_RESELLER_EXEMPTION', 'US_GA_RESELLER_EXEMPTION', 'US_HI_RESELLER_EXEMPTION', 'US_IA_RESELLER_EXEMPTION', 'US_ID_RESELLER_EXEMPTION', 'US_IL_RESELLER_EXEMPTION', 'US_IN_RESELLER_EXEMPTION', 'US_KS_RESELLER_EXEMPTION', 'US_KY_RESELLER_EXEMPTION', 'US_LA_RESELLER_EXEMPTION', 'US_MA_RESELLER_EXEMPTION', 'US_MD_RESELLER_EXEMPTION', 'US_ME_RESELLER_EXEMPTION', 'US_MI_RESELLER_EXEMPTION', 'US_MN_RESELLER_EXEMPTION', 'US_MO_RESELLER_EXEMPTION', 'US_MS_RESELLER_EXEMPTION', 'US_MT_RESELLER_EXEMPTION', 'US_NC_RESELLER_EXEMPTION', 'US_ND_RESELLER_EXEMPTION', 'US_NE_RESELLER_EXEMPTION', 'US_NH_RESELLER_EXEMPTION', 'US_NJ_RESELLER_EXEMPTION', 'US_NM_RESELLER_EXEMPTION', 'US_NV_RESELLER_EXEMPTION', 'US_NY_RESELLER_EXEMPTION', 'US_OH_RESELLER_EXEMPTION', 'US_OK_RESELLER_EXEMPTION', 'US_OR_RESELLER_EXEMPTION', 'US_PA_RESELLER_EXEMPTION', 'US_RI_RESELLER_EXEMPTION', 'US_SC_RESELLER_EXEMPTION', 'US_SD_RESELLER_EXEMPTION', 'US_TN_RESELLER_EXEMPTION', 'US_TX_RESELLER_EXEMPTION', 'US_UT_RESELLER_EXEMPTION', 'US_VA_RESELLER_EXEMPTION', 'US_VT_RESELLER_EXEMPTION', 'US_WA_RESELLER_EXEMPTION', 'US_WI_RESELLER_EXEMPTION', 'US_WV_RESELLER_EXEMPTION', 'US_WY_RESELLER_EXEMPTION')
 
 
 class TranslatableResourceType(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('COLLECTION', 'DELIVERY_METHOD_DEFINITION', 'EMAIL_TEMPLATE', 'LINK', 'METAFIELD', 'ONLINE_STORE_ARTICLE', 'ONLINE_STORE_BLOG', 'ONLINE_STORE_MENU', 'ONLINE_STORE_PAGE', 'ONLINE_STORE_THEME', 'PACKING_SLIP_TEMPLATE', 'PAYMENT_GATEWAY', 'PRODUCT', 'PRODUCT_OPTION', 'PRODUCT_VARIANT', 'SHOP', 'SHOP_POLICY', 'SMS_TEMPLATE')
+    __choices__ = ('COLLECTION', 'DELIVERY_METHOD_DEFINITION', 'EMAIL_TEMPLATE', 'LINK', 'METAFIELD', 'ONLINE_STORE_ARTICLE', 'ONLINE_STORE_BLOG', 'ONLINE_STORE_MENU', 'ONLINE_STORE_PAGE', 'ONLINE_STORE_THEME', 'PACKING_SLIP_TEMPLATE', 'PAYMENT_GATEWAY', 'PRODUCT', 'PRODUCT_OPTION', 'PRODUCT_VARIANT', 'SELLING_PLAN', 'SELLING_PLAN_GROUP', 'SHOP', 'SHOP_POLICY')
 
 
 class TranslationErrorCode(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('BLANK', 'FAILS_RESOURCE_VALIDATION', 'INVALID', 'INVALID_CODE', 'INVALID_FORMAT', 'INVALID_KEY_FOR_MODEL', 'INVALID_LOCALE_FOR_SHOP', 'INVALID_TRANSLATABLE_CONTENT', 'RESOURCE_NOT_FOUND', 'TOO_MANY_KEYS_FOR_RESOURCE')
+    __choices__ = ('BLANK', 'FAILS_RESOURCE_VALIDATION', 'INVALID', 'INVALID_CODE', 'INVALID_FORMAT', 'INVALID_KEY_FOR_MODEL', 'INVALID_LOCALE_FOR_MARKET', 'INVALID_LOCALE_FOR_SHOP', 'INVALID_MARKET_LOCALIZABLE_CONTENT', 'INVALID_TRANSLATABLE_CONTENT', 'MARKET_CUSTOM_CONTENT_NOT_ALLOWED', 'MARKET_DOES_NOT_EXIST', 'MARKET_LOCALE_CREATION_FAILED', 'RESOURCE_NOT_FOUND', 'RESOURCE_NOT_MARKET_CUSTOMIZABLE', 'TOO_MANY_KEYS_FOR_RESOURCE')
 
 
 class URL(sgqlc.types.Scalar):
@@ -1146,7 +1426,7 @@ class WebhookSubscriptionSortKeys(sgqlc.types.Enum):
 
 class WebhookSubscriptionTopic(sgqlc.types.Enum):
     __schema__ = shopify
-    __choices__ = ('APP_PURCHASES_ONE_TIME_UPDATE', 'APP_SUBSCRIPTIONS_UPDATE', 'APP_UNINSTALLED', 'ATTRIBUTED_SESSIONS_FIRST', 'ATTRIBUTED_SESSIONS_LAST', 'BULK_OPERATIONS_FINISH', 'CARTS_CREATE', 'CARTS_UPDATE', 'CHANNELS_DELETE', 'CHECKOUTS_CREATE', 'CHECKOUTS_DELETE', 'CHECKOUTS_UPDATE', 'COLLECTIONS_CREATE', 'COLLECTIONS_DELETE', 'COLLECTIONS_UPDATE', 'COLLECTION_LISTINGS_ADD', 'COLLECTION_LISTINGS_REMOVE', 'COLLECTION_LISTINGS_UPDATE', 'COLLECTION_PUBLICATIONS_CREATE', 'COLLECTION_PUBLICATIONS_DELETE', 'COLLECTION_PUBLICATIONS_UPDATE', 'CUSTOMERS_CREATE', 'CUSTOMERS_DELETE', 'CUSTOMERS_DISABLE', 'CUSTOMERS_ENABLE', 'CUSTOMERS_MARKETING_CONSENT_UPDATE', 'CUSTOMERS_UPDATE', 'CUSTOMER_GROUPS_CREATE', 'CUSTOMER_GROUPS_DELETE', 'CUSTOMER_GROUPS_UPDATE', 'CUSTOMER_PAYMENT_METHODS_CREATE', 'CUSTOMER_PAYMENT_METHODS_REVOKE', 'CUSTOMER_PAYMENT_METHODS_UPDATE', 'DISPUTES_CREATE', 'DISPUTES_UPDATE', 'DOMAINS_CREATE', 'DOMAINS_DESTROY', 'DOMAINS_UPDATE', 'DRAFT_ORDERS_CREATE', 'DRAFT_ORDERS_DELETE', 'DRAFT_ORDERS_UPDATE', 'FULFILLMENTS_CREATE', 'FULFILLMENTS_UPDATE', 'FULFILLMENT_EVENTS_CREATE', 'FULFILLMENT_EVENTS_DELETE', 'INVENTORY_ITEMS_CREATE', 'INVENTORY_ITEMS_DELETE', 'INVENTORY_ITEMS_UPDATE', 'INVENTORY_LEVELS_CONNECT', 'INVENTORY_LEVELS_DISCONNECT', 'INVENTORY_LEVELS_UPDATE', 'LOCALES_CREATE', 'LOCALES_UPDATE', 'LOCATIONS_CREATE', 'LOCATIONS_DELETE', 'LOCATIONS_UPDATE', 'ORDERS_CANCELLED', 'ORDERS_CREATE', 'ORDERS_DELETE', 'ORDERS_EDITED', 'ORDERS_FULFILLED', 'ORDERS_PAID', 'ORDERS_PARTIALLY_FULFILLED', 'ORDERS_UPDATED', 'ORDER_TRANSACTIONS_CREATE', 'PAYMENT_TERMS_CREATE', 'PAYMENT_TERMS_DELETE', 'PAYMENT_TERMS_UPDATE', 'PRODUCTS_CREATE', 'PRODUCTS_DELETE', 'PRODUCTS_UPDATE', 'PRODUCT_LISTINGS_ADD', 'PRODUCT_LISTINGS_REMOVE', 'PRODUCT_LISTINGS_UPDATE', 'PRODUCT_PUBLICATIONS_CREATE', 'PRODUCT_PUBLICATIONS_DELETE', 'PRODUCT_PUBLICATIONS_UPDATE', 'PROFILES_CREATE', 'PROFILES_DELETE', 'PROFILES_UPDATE', 'REFUNDS_CREATE', 'SCHEDULED_PRODUCT_LISTINGS_ADD', 'SCHEDULED_PRODUCT_LISTINGS_REMOVE', 'SCHEDULED_PRODUCT_LISTINGS_UPDATE', 'SELLING_PLAN_GROUPS_CREATE', 'SELLING_PLAN_GROUPS_DELETE', 'SELLING_PLAN_GROUPS_UPDATE', 'SHIPPING_ADDRESSES_CREATE', 'SHIPPING_ADDRESSES_UPDATE', 'SHOP_UPDATE', 'SUBSCRIPTION_BILLING_ATTEMPTS_CHALLENGED', 'SUBSCRIPTION_BILLING_ATTEMPTS_FAILURE', 'SUBSCRIPTION_BILLING_ATTEMPTS_SUCCESS', 'SUBSCRIPTION_CONTRACTS_CREATE', 'SUBSCRIPTION_CONTRACTS_UPDATE', 'TAX_SERVICES_CREATE', 'TAX_SERVICES_UPDATE', 'TENDER_TRANSACTIONS_CREATE', 'THEMES_CREATE', 'THEMES_DELETE', 'THEMES_PUBLISH', 'THEMES_UPDATE', 'VARIANTS_IN_STOCK', 'VARIANTS_OUT_OF_STOCK')
+    __choices__ = ('APP_PURCHASES_ONE_TIME_UPDATE', 'APP_SUBSCRIPTIONS_APPROACHING_CAPPED_AMOUNT', 'APP_SUBSCRIPTIONS_UPDATE', 'APP_UNINSTALLED', 'ATTRIBUTED_SESSIONS_FIRST', 'ATTRIBUTED_SESSIONS_LAST', 'BULK_OPERATIONS_FINISH', 'CARTS_CREATE', 'CARTS_UPDATE', 'CHANNELS_DELETE', 'CHECKOUTS_CREATE', 'CHECKOUTS_DELETE', 'CHECKOUTS_UPDATE', 'COLLECTIONS_CREATE', 'COLLECTIONS_DELETE', 'COLLECTIONS_UPDATE', 'COLLECTION_LISTINGS_ADD', 'COLLECTION_LISTINGS_REMOVE', 'COLLECTION_LISTINGS_UPDATE', 'COLLECTION_PUBLICATIONS_CREATE', 'COLLECTION_PUBLICATIONS_DELETE', 'COLLECTION_PUBLICATIONS_UPDATE', 'CUSTOMERS_CREATE', 'CUSTOMERS_DELETE', 'CUSTOMERS_DISABLE', 'CUSTOMERS_ENABLE', 'CUSTOMERS_MARKETING_CONSENT_UPDATE', 'CUSTOMERS_UPDATE', 'CUSTOMER_GROUPS_CREATE', 'CUSTOMER_GROUPS_DELETE', 'CUSTOMER_GROUPS_UPDATE', 'CUSTOMER_PAYMENT_METHODS_CREATE', 'CUSTOMER_PAYMENT_METHODS_REVOKE', 'CUSTOMER_PAYMENT_METHODS_UPDATE', 'DISPUTES_CREATE', 'DISPUTES_UPDATE', 'DOMAINS_CREATE', 'DOMAINS_DESTROY', 'DOMAINS_UPDATE', 'DRAFT_ORDERS_CREATE', 'DRAFT_ORDERS_DELETE', 'DRAFT_ORDERS_UPDATE', 'FULFILLMENTS_CREATE', 'FULFILLMENTS_UPDATE', 'FULFILLMENT_EVENTS_CREATE', 'FULFILLMENT_EVENTS_DELETE', 'INVENTORY_ITEMS_CREATE', 'INVENTORY_ITEMS_DELETE', 'INVENTORY_ITEMS_UPDATE', 'INVENTORY_LEVELS_CONNECT', 'INVENTORY_LEVELS_DISCONNECT', 'INVENTORY_LEVELS_UPDATE', 'LOCALES_CREATE', 'LOCALES_UPDATE', 'LOCATIONS_CREATE', 'LOCATIONS_DELETE', 'LOCATIONS_UPDATE', 'MARKETS_CREATE', 'MARKETS_DELETE', 'MARKETS_UPDATE', 'ORDERS_CANCELLED', 'ORDERS_CREATE', 'ORDERS_DELETE', 'ORDERS_EDITED', 'ORDERS_FULFILLED', 'ORDERS_PAID', 'ORDERS_PARTIALLY_FULFILLED', 'ORDERS_UPDATED', 'ORDER_TRANSACTIONS_CREATE', 'PAYMENT_TERMS_CREATE', 'PAYMENT_TERMS_DELETE', 'PAYMENT_TERMS_UPDATE', 'PRODUCTS_CREATE', 'PRODUCTS_DELETE', 'PRODUCTS_UPDATE', 'PRODUCT_LISTINGS_ADD', 'PRODUCT_LISTINGS_REMOVE', 'PRODUCT_LISTINGS_UPDATE', 'PRODUCT_PUBLICATIONS_CREATE', 'PRODUCT_PUBLICATIONS_DELETE', 'PRODUCT_PUBLICATIONS_UPDATE', 'PROFILES_CREATE', 'PROFILES_DELETE', 'PROFILES_UPDATE', 'REFUNDS_CREATE', 'SCHEDULED_PRODUCT_LISTINGS_ADD', 'SCHEDULED_PRODUCT_LISTINGS_REMOVE', 'SCHEDULED_PRODUCT_LISTINGS_UPDATE', 'SEGMENTS_CREATE', 'SEGMENTS_DELETE', 'SEGMENTS_UPDATE', 'SELLING_PLAN_GROUPS_CREATE', 'SELLING_PLAN_GROUPS_DELETE', 'SELLING_PLAN_GROUPS_UPDATE', 'SHIPPING_ADDRESSES_CREATE', 'SHIPPING_ADDRESSES_UPDATE', 'SHOP_UPDATE', 'SUBSCRIPTION_BILLING_ATTEMPTS_CHALLENGED', 'SUBSCRIPTION_BILLING_ATTEMPTS_FAILURE', 'SUBSCRIPTION_BILLING_ATTEMPTS_SUCCESS', 'SUBSCRIPTION_CONTRACTS_CREATE', 'SUBSCRIPTION_CONTRACTS_UPDATE', 'TAX_SERVICES_CREATE', 'TAX_SERVICES_UPDATE', 'TENDER_TRANSACTIONS_CREATE', 'THEMES_CREATE', 'THEMES_DELETE', 'THEMES_PUBLISH', 'THEMES_UPDATE', 'VARIANTS_IN_STOCK', 'VARIANTS_OUT_OF_STOCK')
 
 
 class WeightUnit(sgqlc.types.Enum):
@@ -1167,9 +1447,10 @@ class AppPlanInput(sgqlc.types.Input):
 
 class AppRecurringPricingInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('interval', 'price')
+    __field_names__ = ('interval', 'price', 'discount')
     interval = sgqlc.types.Field(AppPricingInterval, graphql_name='interval')
     price = sgqlc.types.Field(sgqlc.types.non_null('MoneyInput'), graphql_name='price')
+    discount = sgqlc.types.Field('AppSubscriptionDiscountInput', graphql_name='discount')
 
 
 class AppRevenueAttributionRecordInput(sgqlc.types.Input):
@@ -1180,6 +1461,20 @@ class AppRevenueAttributionRecordInput(sgqlc.types.Input):
     amount = sgqlc.types.Field(sgqlc.types.non_null('MoneyInput'), graphql_name='amount')
     type = sgqlc.types.Field(sgqlc.types.non_null(AppRevenueAttributionType), graphql_name='type')
     test = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='test')
+
+
+class AppSubscriptionDiscountInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('value', 'duration_limit_in_intervals')
+    value = sgqlc.types.Field('AppSubscriptionDiscountValueInput', graphql_name='value')
+    duration_limit_in_intervals = sgqlc.types.Field(Int, graphql_name='durationLimitInIntervals')
+
+
+class AppSubscriptionDiscountValueInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('percentage', 'amount')
+    percentage = sgqlc.types.Field(Float, graphql_name='percentage')
+    amount = sgqlc.types.Field(Decimal, graphql_name='amount')
 
 
 class AppSubscriptionLineItemInput(sgqlc.types.Input):
@@ -1202,6 +1497,13 @@ class AttributeInput(sgqlc.types.Input):
     value = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='value')
 
 
+class BuyerExperienceConfigurationInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('checkout_to_draft', 'payment_terms_template_id')
+    checkout_to_draft = sgqlc.types.Field(Boolean, graphql_name='checkoutToDraft')
+    payment_terms_template_id = sgqlc.types.Field(ID, graphql_name='paymentTermsTemplateId')
+
+
 class CollectionDeleteInput(sgqlc.types.Input):
     __schema__ = shopify
     __field_names__ = ('id',)
@@ -1210,13 +1512,12 @@ class CollectionDeleteInput(sgqlc.types.Input):
 
 class CollectionInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('description_html', 'handle', 'id', 'image', 'products', 'publications', 'private_metafields', 'rule_set', 'template_suffix', 'sort_order', 'title', 'metafields', 'seo', 'redirect_new_handle')
+    __field_names__ = ('description_html', 'handle', 'id', 'image', 'products', 'private_metafields', 'rule_set', 'template_suffix', 'sort_order', 'title', 'metafields', 'seo', 'redirect_new_handle')
     description_html = sgqlc.types.Field(String, graphql_name='descriptionHtml')
     handle = sgqlc.types.Field(String, graphql_name='handle')
     id = sgqlc.types.Field(ID, graphql_name='id')
     image = sgqlc.types.Field('ImageInput', graphql_name='image')
     products = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='products')
-    publications = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('CollectionPublicationInput')), graphql_name='publications')
     private_metafields = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('PrivateMetafieldInput')), graphql_name='privateMetafields')
     rule_set = sgqlc.types.Field('CollectionRuleSetInput', graphql_name='ruleSet')
     template_suffix = sgqlc.types.Field(String, graphql_name='templateSuffix')
@@ -1229,10 +1530,8 @@ class CollectionInput(sgqlc.types.Input):
 
 class CollectionPublicationInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('publication_id', 'channel_id', 'channel_handle')
+    __field_names__ = ('publication_id',)
     publication_id = sgqlc.types.Field(ID, graphql_name='publicationId')
-    channel_id = sgqlc.types.Field(ID, graphql_name='channelId')
-    channel_handle = sgqlc.types.Field(String, graphql_name='channelHandle')
 
 
 class CollectionPublishInput(sgqlc.types.Input):
@@ -1264,10 +1563,93 @@ class CollectionUnpublishInput(sgqlc.types.Input):
     collection_publications = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CollectionPublicationInput))), graphql_name='collectionPublications')
 
 
+class CompanyAddressInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('address1', 'address2', 'city', 'zip', 'recipient', 'phone', 'zone_code', 'country_code')
+    address1 = sgqlc.types.Field(String, graphql_name='address1')
+    address2 = sgqlc.types.Field(String, graphql_name='address2')
+    city = sgqlc.types.Field(String, graphql_name='city')
+    zip = sgqlc.types.Field(String, graphql_name='zip')
+    recipient = sgqlc.types.Field(String, graphql_name='recipient')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    zone_code = sgqlc.types.Field(String, graphql_name='zoneCode')
+    country_code = sgqlc.types.Field(CountryCode, graphql_name='countryCode')
+
+
+class CompanyContactInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('first_name', 'last_name', 'email', 'title', 'locale', 'phone')
+    first_name = sgqlc.types.Field(String, graphql_name='firstName')
+    last_name = sgqlc.types.Field(String, graphql_name='lastName')
+    email = sgqlc.types.Field(String, graphql_name='email')
+    title = sgqlc.types.Field(String, graphql_name='title')
+    locale = sgqlc.types.Field(String, graphql_name='locale')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+
+
+class CompanyContactRoleAssign(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('company_contact_role_id', 'company_location_id')
+    company_contact_role_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='companyContactRoleId')
+    company_location_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='companyLocationId')
+
+
+class CompanyCreateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('company', 'company_contact', 'company_location')
+    company = sgqlc.types.Field(sgqlc.types.non_null('CompanyInput'), graphql_name='company')
+    company_contact = sgqlc.types.Field(CompanyContactInput, graphql_name='companyContact')
+    company_location = sgqlc.types.Field('CompanyLocationInput', graphql_name='companyLocation')
+
+
+class CompanyInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('name', 'note', 'external_id', 'customer_since')
+    name = sgqlc.types.Field(String, graphql_name='name')
+    note = sgqlc.types.Field(String, graphql_name='note')
+    external_id = sgqlc.types.Field(String, graphql_name='externalId')
+    customer_since = sgqlc.types.Field(DateTime, graphql_name='customerSince')
+
+
+class CompanyLocationInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('name', 'phone', 'locale', 'external_id', 'note', 'buyer_experience_configuration', 'billing_address', 'shipping_address', 'billing_same_as_shipping', 'tax_registration_id', 'tax_exemptions')
+    name = sgqlc.types.Field(String, graphql_name='name')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    locale = sgqlc.types.Field(String, graphql_name='locale')
+    external_id = sgqlc.types.Field(String, graphql_name='externalId')
+    note = sgqlc.types.Field(String, graphql_name='note')
+    buyer_experience_configuration = sgqlc.types.Field(BuyerExperienceConfigurationInput, graphql_name='buyerExperienceConfiguration')
+    billing_address = sgqlc.types.Field(CompanyAddressInput, graphql_name='billingAddress')
+    shipping_address = sgqlc.types.Field(CompanyAddressInput, graphql_name='shippingAddress')
+    billing_same_as_shipping = sgqlc.types.Field(Boolean, graphql_name='billingSameAsShipping')
+    tax_registration_id = sgqlc.types.Field(String, graphql_name='taxRegistrationId')
+    tax_exemptions = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(TaxExemption)), graphql_name='taxExemptions')
+
+
+class CompanyLocationRoleAssign(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('company_contact_role_id', 'company_contact_id')
+    company_contact_role_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='companyContactRoleId')
+    company_contact_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='companyContactId')
+
+
+class CompanyLocationUpdateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('name', 'phone', 'locale', 'external_id', 'note', 'buyer_experience_configuration')
+    name = sgqlc.types.Field(String, graphql_name='name')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    locale = sgqlc.types.Field(String, graphql_name='locale')
+    external_id = sgqlc.types.Field(String, graphql_name='externalId')
+    note = sgqlc.types.Field(String, graphql_name='note')
+    buyer_experience_configuration = sgqlc.types.Field(BuyerExperienceConfigurationInput, graphql_name='buyerExperienceConfiguration')
+
+
 class ContextualPricingContext(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('country',)
+    __field_names__ = ('country', 'company_location_id')
     country = sgqlc.types.Field(CountryCode, graphql_name='country')
+    company_location_id = sgqlc.types.Field(ID, graphql_name='companyLocationId')
 
 
 class CountryHarmonizedSystemCodeInput(sgqlc.types.Input):
@@ -1291,23 +1673,36 @@ class CustomerDeleteInput(sgqlc.types.Input):
     id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
 
 
+class CustomerEmailMarketingConsentInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('marketing_opt_in_level', 'marketing_state', 'consent_updated_at')
+    marketing_opt_in_level = sgqlc.types.Field(CustomerMarketingOptInLevel, graphql_name='marketingOptInLevel')
+    marketing_state = sgqlc.types.Field(sgqlc.types.non_null(CustomerEmailMarketingState), graphql_name='marketingState')
+    consent_updated_at = sgqlc.types.Field(DateTime, graphql_name='consentUpdatedAt')
+
+
+class CustomerEmailMarketingConsentUpdateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('customer_id', 'email_marketing_consent')
+    customer_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='customerId')
+    email_marketing_consent = sgqlc.types.Field(sgqlc.types.non_null(CustomerEmailMarketingConsentInput), graphql_name='emailMarketingConsent')
+
+
 class CustomerInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('accepts_marketing', 'accepts_marketing_updated_at', 'addresses', 'email', 'first_name', 'id', 'last_name', 'locale', 'marketing_opt_in_level', 'metafields', 'note', 'phone', 'private_metafields', 'tags', 'sms_marketing_consent', 'tax_exempt', 'tax_exemptions')
-    accepts_marketing = sgqlc.types.Field(Boolean, graphql_name='acceptsMarketing')
-    accepts_marketing_updated_at = sgqlc.types.Field(DateTime, graphql_name='acceptsMarketingUpdatedAt')
+    __field_names__ = ('addresses', 'email', 'first_name', 'id', 'last_name', 'locale', 'metafields', 'note', 'phone', 'private_metafields', 'tags', 'email_marketing_consent', 'sms_marketing_consent', 'tax_exempt', 'tax_exemptions')
     addresses = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('MailingAddressInput')), graphql_name='addresses')
     email = sgqlc.types.Field(String, graphql_name='email')
     first_name = sgqlc.types.Field(String, graphql_name='firstName')
     id = sgqlc.types.Field(ID, graphql_name='id')
     last_name = sgqlc.types.Field(String, graphql_name='lastName')
     locale = sgqlc.types.Field(String, graphql_name='locale')
-    marketing_opt_in_level = sgqlc.types.Field(CustomerMarketingOptInLevel, graphql_name='marketingOptInLevel')
     metafields = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldInput')), graphql_name='metafields')
     note = sgqlc.types.Field(String, graphql_name='note')
     phone = sgqlc.types.Field(String, graphql_name='phone')
     private_metafields = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('PrivateMetafieldInput')), graphql_name='privateMetafields')
     tags = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='tags')
+    email_marketing_consent = sgqlc.types.Field(CustomerEmailMarketingConsentInput, graphql_name='emailMarketingConsent')
     sms_marketing_consent = sgqlc.types.Field('CustomerSmsMarketingConsentInput', graphql_name='smsMarketingConsent')
     tax_exempt = sgqlc.types.Field(Boolean, graphql_name='taxExempt')
     tax_exemptions = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(TaxExemption)), graphql_name='taxExemptions')
@@ -1315,9 +1710,10 @@ class CustomerInput(sgqlc.types.Input):
 
 class CustomerPaymentMethodRemoteInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('stripe_payment_method', 'authorize_net_customer_payment_profile')
+    __field_names__ = ('stripe_payment_method', 'authorize_net_customer_payment_profile', 'braintree_payment_method')
     stripe_payment_method = sgqlc.types.Field('RemoteStripePaymentMethodInput', graphql_name='stripePaymentMethod')
     authorize_net_customer_payment_profile = sgqlc.types.Field('RemoteAuthorizeNetCustomerPaymentProfileInput', graphql_name='authorizeNetCustomerPaymentProfile')
+    braintree_payment_method = sgqlc.types.Field('RemoteBraintreePaymentMethodInput', graphql_name='braintreePaymentMethod')
 
 
 class CustomerSmsMarketingConsentInput(sgqlc.types.Input):
@@ -1333,6 +1729,13 @@ class CustomerSmsMarketingConsentUpdateInput(sgqlc.types.Input):
     __field_names__ = ('customer_id', 'sms_marketing_consent')
     customer_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='customerId')
     sms_marketing_consent = sgqlc.types.Field(sgqlc.types.non_null(CustomerSmsMarketingConsentInput), graphql_name='smsMarketingConsent')
+
+
+class DelegateAccessTokenInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('delegate_access_scope', 'expires_in')
+    delegate_access_scope = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='delegateAccessScope')
+    expires_in = sgqlc.types.Field(Int, graphql_name='expiresIn')
 
 
 class DeliveryCountryInput(sgqlc.types.Input):
@@ -1462,9 +1865,21 @@ class DiscountAmountInput(sgqlc.types.Input):
     applies_on_each_item = sgqlc.types.Field(Boolean, graphql_name='appliesOnEachItem')
 
 
+class DiscountAutomaticAppInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('combines_with', 'function_id', 'title', 'starts_at', 'ends_at', 'metafields')
+    combines_with = sgqlc.types.Field('DiscountCombinesWithInput', graphql_name='combinesWith')
+    function_id = sgqlc.types.Field(String, graphql_name='functionId')
+    title = sgqlc.types.Field(String, graphql_name='title')
+    starts_at = sgqlc.types.Field(DateTime, graphql_name='startsAt')
+    ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
+    metafields = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldInput')), graphql_name='metafields')
+
+
 class DiscountAutomaticBasicInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('title', 'starts_at', 'ends_at', 'minimum_requirement', 'customer_gets')
+    __field_names__ = ('combines_with', 'title', 'starts_at', 'ends_at', 'minimum_requirement', 'customer_gets')
+    combines_with = sgqlc.types.Field('DiscountCombinesWithInput', graphql_name='combinesWith')
     title = sgqlc.types.Field(String, graphql_name='title')
     starts_at = sgqlc.types.Field(DateTime, graphql_name='startsAt')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
@@ -1474,7 +1889,8 @@ class DiscountAutomaticBasicInput(sgqlc.types.Input):
 
 class DiscountAutomaticBxgyInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('starts_at', 'ends_at', 'title', 'uses_per_order_limit', 'customer_buys', 'customer_gets')
+    __field_names__ = ('combines_with', 'starts_at', 'ends_at', 'title', 'uses_per_order_limit', 'customer_buys', 'customer_gets')
+    combines_with = sgqlc.types.Field('DiscountCombinesWithInput', graphql_name='combinesWith')
     starts_at = sgqlc.types.Field(DateTime, graphql_name='startsAt')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
     title = sgqlc.types.Field(String, graphql_name='title')
@@ -1483,9 +1899,25 @@ class DiscountAutomaticBxgyInput(sgqlc.types.Input):
     customer_gets = sgqlc.types.Field('DiscountCustomerGetsInput', graphql_name='customerGets')
 
 
+class DiscountCodeAppInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('combines_with', 'function_id', 'title', 'starts_at', 'ends_at', 'usage_limit', 'applies_once_per_customer', 'customer_selection', 'code', 'metafields')
+    combines_with = sgqlc.types.Field('DiscountCombinesWithInput', graphql_name='combinesWith')
+    function_id = sgqlc.types.Field(String, graphql_name='functionId')
+    title = sgqlc.types.Field(String, graphql_name='title')
+    starts_at = sgqlc.types.Field(DateTime, graphql_name='startsAt')
+    ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
+    usage_limit = sgqlc.types.Field(Int, graphql_name='usageLimit')
+    applies_once_per_customer = sgqlc.types.Field(Boolean, graphql_name='appliesOncePerCustomer')
+    customer_selection = sgqlc.types.Field('DiscountCustomerSelectionInput', graphql_name='customerSelection')
+    code = sgqlc.types.Field(String, graphql_name='code')
+    metafields = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldInput')), graphql_name='metafields')
+
+
 class DiscountCodeBasicInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('title', 'starts_at', 'ends_at', 'usage_limit', 'applies_once_per_customer', 'minimum_requirement', 'customer_gets', 'customer_selection', 'code', 'recurring_cycle_limit')
+    __field_names__ = ('combines_with', 'title', 'starts_at', 'ends_at', 'usage_limit', 'applies_once_per_customer', 'minimum_requirement', 'customer_gets', 'customer_selection', 'code', 'recurring_cycle_limit')
+    combines_with = sgqlc.types.Field('DiscountCombinesWithInput', graphql_name='combinesWith')
     title = sgqlc.types.Field(String, graphql_name='title')
     starts_at = sgqlc.types.Field(DateTime, graphql_name='startsAt')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
@@ -1500,7 +1932,8 @@ class DiscountCodeBasicInput(sgqlc.types.Input):
 
 class DiscountCodeBxgyInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('title', 'starts_at', 'ends_at', 'customer_buys', 'customer_gets', 'customer_selection', 'code', 'usage_limit', 'uses_per_order_limit', 'applies_once_per_customer')
+    __field_names__ = ('combines_with', 'title', 'starts_at', 'ends_at', 'customer_buys', 'customer_gets', 'customer_selection', 'code', 'usage_limit', 'uses_per_order_limit', 'applies_once_per_customer')
+    combines_with = sgqlc.types.Field('DiscountCombinesWithInput', graphql_name='combinesWith')
     title = sgqlc.types.Field(String, graphql_name='title')
     starts_at = sgqlc.types.Field(DateTime, graphql_name='startsAt')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
@@ -1515,7 +1948,8 @@ class DiscountCodeBxgyInput(sgqlc.types.Input):
 
 class DiscountCodeFreeShippingInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('title', 'starts_at', 'ends_at', 'code', 'usage_limit', 'applies_once_per_customer', 'minimum_requirement', 'customer_selection', 'destination', 'maximum_shipping_price', 'recurring_cycle_limit', 'applies_on_one_time_purchase', 'applies_on_subscription')
+    __field_names__ = ('combines_with', 'title', 'starts_at', 'ends_at', 'code', 'usage_limit', 'applies_once_per_customer', 'minimum_requirement', 'customer_selection', 'destination', 'maximum_shipping_price', 'recurring_cycle_limit', 'applies_on_one_time_purchase', 'applies_on_subscription')
+    combines_with = sgqlc.types.Field('DiscountCombinesWithInput', graphql_name='combinesWith')
     title = sgqlc.types.Field(String, graphql_name='title')
     starts_at = sgqlc.types.Field(DateTime, graphql_name='startsAt')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
@@ -1536,6 +1970,14 @@ class DiscountCollectionsInput(sgqlc.types.Input):
     __field_names__ = ('add', 'remove')
     add = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='add')
     remove = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='remove')
+
+
+class DiscountCombinesWithInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('product_discounts', 'order_discounts', 'shipping_discounts')
+    product_discounts = sgqlc.types.Field(Boolean, graphql_name='productDiscounts')
+    order_discounts = sgqlc.types.Field(Boolean, graphql_name='orderDiscounts')
+    shipping_discounts = sgqlc.types.Field(Boolean, graphql_name='shippingDiscounts')
 
 
 class DiscountCountriesInput(sgqlc.types.Input):
@@ -1577,7 +2019,7 @@ class DiscountCustomerGetsValueInput(sgqlc.types.Input):
     discount_amount = sgqlc.types.Field(DiscountAmountInput, graphql_name='discountAmount')
 
 
-class DiscountCustomerSavedSearchesInput(sgqlc.types.Input):
+class DiscountCustomerSegmentsInput(sgqlc.types.Input):
     __schema__ = shopify
     __field_names__ = ('add', 'remove')
     add = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='add')
@@ -1586,9 +2028,10 @@ class DiscountCustomerSavedSearchesInput(sgqlc.types.Input):
 
 class DiscountCustomerSelectionInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('all', 'customers')
+    __field_names__ = ('all', 'customers', 'customer_segments')
     all = sgqlc.types.Field(Boolean, graphql_name='all')
     customers = sgqlc.types.Field('DiscountCustomersInput', graphql_name='customers')
+    customer_segments = sgqlc.types.Field(DiscountCustomerSegmentsInput, graphql_name='customerSegments')
 
 
 class DiscountCustomersInput(sgqlc.types.Input):
@@ -1678,10 +2121,9 @@ class DraftOrderDeleteInput(sgqlc.types.Input):
 
 class DraftOrderInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('applied_discount', 'billing_address', 'customer_id', 'custom_attributes', 'email', 'line_items', 'metafields', 'private_metafields', 'localization_extensions', 'note', 'shipping_address', 'shipping_line', 'tags', 'tax_exempt', 'use_customer_default_address', 'payment_terms')
+    __field_names__ = ('applied_discount', 'billing_address', 'custom_attributes', 'email', 'line_items', 'metafields', 'private_metafields', 'localization_extensions', 'note', 'shipping_address', 'shipping_line', 'tags', 'tax_exempt', 'use_customer_default_address', 'visible_to_customer', 'reserve_inventory_until', 'presentment_currency_code', 'market_region_country_code', 'phone', 'payment_terms', 'purchasing_entity', 'source_name')
     applied_discount = sgqlc.types.Field(DraftOrderAppliedDiscountInput, graphql_name='appliedDiscount')
     billing_address = sgqlc.types.Field('MailingAddressInput', graphql_name='billingAddress')
-    customer_id = sgqlc.types.Field(ID, graphql_name='customerId')
     custom_attributes = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(AttributeInput)), graphql_name='customAttributes')
     email = sgqlc.types.Field(String, graphql_name='email')
     line_items = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('DraftOrderLineItemInput')), graphql_name='lineItems')
@@ -1694,15 +2136,21 @@ class DraftOrderInput(sgqlc.types.Input):
     tags = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='tags')
     tax_exempt = sgqlc.types.Field(Boolean, graphql_name='taxExempt')
     use_customer_default_address = sgqlc.types.Field(Boolean, graphql_name='useCustomerDefaultAddress')
+    visible_to_customer = sgqlc.types.Field(Boolean, graphql_name='visibleToCustomer')
+    reserve_inventory_until = sgqlc.types.Field(DateTime, graphql_name='reserveInventoryUntil')
+    presentment_currency_code = sgqlc.types.Field(CurrencyCode, graphql_name='presentmentCurrencyCode')
+    market_region_country_code = sgqlc.types.Field(CountryCode, graphql_name='marketRegionCountryCode')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
     payment_terms = sgqlc.types.Field('PaymentTermsInput', graphql_name='paymentTerms')
+    purchasing_entity = sgqlc.types.Field('PurchasingEntityInput', graphql_name='purchasingEntity')
+    source_name = sgqlc.types.Field(String, graphql_name='sourceName')
 
 
 class DraftOrderLineItemInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('applied_discount', 'custom_attributes', 'grams', 'original_unit_price', 'quantity', 'requires_shipping', 'sku', 'taxable', 'title', 'variant_id', 'weight')
+    __field_names__ = ('applied_discount', 'custom_attributes', 'original_unit_price', 'quantity', 'requires_shipping', 'sku', 'taxable', 'title', 'variant_id', 'weight')
     applied_discount = sgqlc.types.Field(DraftOrderAppliedDiscountInput, graphql_name='appliedDiscount')
     custom_attributes = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(AttributeInput)), graphql_name='customAttributes')
-    grams = sgqlc.types.Field(Int, graphql_name='grams')
     original_unit_price = sgqlc.types.Field(Money, graphql_name='originalUnitPrice')
     quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='quantity')
     requires_shipping = sgqlc.types.Field(Boolean, graphql_name='requiresShipping')
@@ -1743,30 +2191,10 @@ class FileCreateInput(sgqlc.types.Input):
 
 class FileUpdateInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('id', 'alt')
+    __field_names__ = ('id', 'alt', 'preview_image_source')
     id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
     alt = sgqlc.types.Field(String, graphql_name='alt')
-
-
-class FulfillmentInput(sgqlc.types.Input):
-    __schema__ = shopify
-    __field_names__ = ('order_id', 'line_items', 'tracking_numbers', 'tracking_urls', 'tracking_company', 'notify_customer', 'shipping_method', 'location_id', 'origin_address')
-    order_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='orderId')
-    line_items = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentLineItemInput')), graphql_name='lineItems')
-    tracking_numbers = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='trackingNumbers')
-    tracking_urls = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='trackingUrls')
-    tracking_company = sgqlc.types.Field(String, graphql_name='trackingCompany')
-    notify_customer = sgqlc.types.Field(Boolean, graphql_name='notifyCustomer')
-    shipping_method = sgqlc.types.Field(String, graphql_name='shippingMethod')
-    location_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='locationId')
-    origin_address = sgqlc.types.Field('FulfillmentOriginAddressInput', graphql_name='originAddress')
-
-
-class FulfillmentLineItemInput(sgqlc.types.Input):
-    __schema__ = shopify
-    __field_names__ = ('id', 'quantity')
-    id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
-    quantity = sgqlc.types.Field(Int, graphql_name='quantity')
+    preview_image_source = sgqlc.types.Field(String, graphql_name='previewImageSource')
 
 
 class FulfillmentOrderHoldInput(sgqlc.types.Input):
@@ -1804,10 +2232,12 @@ class FulfillmentOriginAddressInput(sgqlc.types.Input):
 
 class FulfillmentTrackingInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('number', 'url', 'company')
+    __field_names__ = ('number', 'url', 'company', 'numbers', 'urls')
     number = sgqlc.types.Field(String, graphql_name='number')
     url = sgqlc.types.Field(URL, graphql_name='url')
     company = sgqlc.types.Field(String, graphql_name='company')
+    numbers = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='numbers')
+    urls = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(URL)), graphql_name='urls')
 
 
 class FulfillmentV2Input(sgqlc.types.Input):
@@ -1857,6 +2287,13 @@ class ImageTransformInput(sgqlc.types.Input):
     preferred_content_type = sgqlc.types.Field(ImageContentType, graphql_name='preferredContentType')
 
 
+class IncomingRequestLineItemInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('fulfillment_order_line_item_id', 'message')
+    fulfillment_order_line_item_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='fulfillmentOrderLineItemId')
+    message = sgqlc.types.Field(String, graphql_name='message')
+
+
 class InventoryAdjustItemInput(sgqlc.types.Input):
     __schema__ = shopify
     __field_names__ = ('inventory_item_id', 'available_delta')
@@ -1869,6 +2306,13 @@ class InventoryAdjustQuantityInput(sgqlc.types.Input):
     __field_names__ = ('inventory_level_id', 'available_delta')
     inventory_level_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='inventoryLevelId')
     available_delta = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='availableDelta')
+
+
+class InventoryBulkToggleActivationInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('location_id', 'activate')
+    location_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='locationId')
+    activate = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='activate')
 
 
 class InventoryItemInput(sgqlc.types.Input):
@@ -1903,22 +2347,114 @@ class LocalizationExtensionInput(sgqlc.types.Input):
     value = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='value')
 
 
+class LocationAddAddressInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('address1', 'address2', 'city', 'phone', 'zip', 'country_code', 'province_code')
+    address1 = sgqlc.types.Field(String, graphql_name='address1')
+    address2 = sgqlc.types.Field(String, graphql_name='address2')
+    city = sgqlc.types.Field(String, graphql_name='city')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    zip = sgqlc.types.Field(String, graphql_name='zip')
+    country_code = sgqlc.types.Field(sgqlc.types.non_null(CountryCode), graphql_name='countryCode')
+    province_code = sgqlc.types.Field(String, graphql_name='provinceCode')
+
+
+class LocationAddInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('name', 'address', 'fulfills_online_orders')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    address = sgqlc.types.Field(sgqlc.types.non_null(LocationAddAddressInput), graphql_name='address')
+    fulfills_online_orders = sgqlc.types.Field(Boolean, graphql_name='fulfillsOnlineOrders')
+
+
+class LocationEditAddressInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('address1', 'address2', 'city', 'phone', 'zip', 'country_code', 'province_code')
+    address1 = sgqlc.types.Field(String, graphql_name='address1')
+    address2 = sgqlc.types.Field(String, graphql_name='address2')
+    city = sgqlc.types.Field(String, graphql_name='city')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    zip = sgqlc.types.Field(String, graphql_name='zip')
+    country_code = sgqlc.types.Field(CountryCode, graphql_name='countryCode')
+    province_code = sgqlc.types.Field(String, graphql_name='provinceCode')
+
+
+class LocationEditInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('name', 'address', 'fulfills_online_orders')
+    name = sgqlc.types.Field(String, graphql_name='name')
+    address = sgqlc.types.Field(LocationEditAddressInput, graphql_name='address')
+    fulfills_online_orders = sgqlc.types.Field(Boolean, graphql_name='fulfillsOnlineOrders')
+
+
 class MailingAddressInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('address1', 'address2', 'city', 'company', 'country', 'country_code', 'first_name', 'id', 'last_name', 'phone', 'province', 'province_code', 'zip')
+    __field_names__ = ('address1', 'address2', 'city', 'company', 'country_code', 'first_name', 'last_name', 'phone', 'province_code', 'zip')
     address1 = sgqlc.types.Field(String, graphql_name='address1')
     address2 = sgqlc.types.Field(String, graphql_name='address2')
     city = sgqlc.types.Field(String, graphql_name='city')
     company = sgqlc.types.Field(String, graphql_name='company')
-    country = sgqlc.types.Field(String, graphql_name='country')
     country_code = sgqlc.types.Field(CountryCode, graphql_name='countryCode')
     first_name = sgqlc.types.Field(String, graphql_name='firstName')
-    id = sgqlc.types.Field(ID, graphql_name='id')
     last_name = sgqlc.types.Field(String, graphql_name='lastName')
     phone = sgqlc.types.Field(String, graphql_name='phone')
-    province = sgqlc.types.Field(String, graphql_name='province')
     province_code = sgqlc.types.Field(String, graphql_name='provinceCode')
     zip = sgqlc.types.Field(String, graphql_name='zip')
+
+
+class MarketCreateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('name', 'enabled', 'regions')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    enabled = sgqlc.types.Field(Boolean, graphql_name='enabled')
+    regions = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketRegionCreateInput'))), graphql_name='regions')
+
+
+class MarketCurrencySettingsUpdateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('base_currency', 'local_currencies')
+    base_currency = sgqlc.types.Field(CurrencyCode, graphql_name='baseCurrency')
+    local_currencies = sgqlc.types.Field(Boolean, graphql_name='localCurrencies')
+
+
+class MarketLocalizationRegisterInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('market_id', 'key', 'value', 'market_localizable_content_digest')
+    market_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='marketId')
+    key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
+    value = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='value')
+    market_localizable_content_digest = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='marketLocalizableContentDigest')
+
+
+class MarketRegionCreateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('country_code',)
+    country_code = sgqlc.types.Field(sgqlc.types.non_null(CountryCode), graphql_name='countryCode')
+
+
+class MarketUpdateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('name', 'enabled')
+    name = sgqlc.types.Field(String, graphql_name='name')
+    enabled = sgqlc.types.Field(Boolean, graphql_name='enabled')
+
+
+class MarketWebPresenceCreateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('domain_id', 'default_locale', 'alternate_locales', 'subfolder_suffix')
+    domain_id = sgqlc.types.Field(ID, graphql_name='domainId')
+    default_locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='defaultLocale')
+    alternate_locales = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='alternateLocales')
+    subfolder_suffix = sgqlc.types.Field(String, graphql_name='subfolderSuffix')
+
+
+class MarketWebPresenceUpdateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('domain_id', 'default_locale', 'alternate_locales', 'subfolder_suffix')
+    domain_id = sgqlc.types.Field(ID, graphql_name='domainId')
+    default_locale = sgqlc.types.Field(String, graphql_name='defaultLocale')
+    alternate_locales = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='alternateLocales')
+    subfolder_suffix = sgqlc.types.Field(String, graphql_name='subfolderSuffix')
 
 
 class MarketingActivityBudgetInput(sgqlc.types.Input):
@@ -1926,6 +2462,25 @@ class MarketingActivityBudgetInput(sgqlc.types.Input):
     __field_names__ = ('budget_type', 'total')
     budget_type = sgqlc.types.Field(MarketingBudgetBudgetType, graphql_name='budgetType')
     total = sgqlc.types.Field('MoneyInput', graphql_name='total')
+
+
+class MarketingActivityCreateExternalInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('title', 'utm', 'budget', 'ad_spend', 'remote_id', 'remote_url', 'remote_preview_image_url', 'tactic', 'channel', 'referring_domain', 'scheduled_start', 'scheduled_end', 'start', 'end')
+    title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
+    utm = sgqlc.types.Field(sgqlc.types.non_null('UTMInput'), graphql_name='utm')
+    budget = sgqlc.types.Field(MarketingActivityBudgetInput, graphql_name='budget')
+    ad_spend = sgqlc.types.Field('MoneyInput', graphql_name='adSpend')
+    remote_id = sgqlc.types.Field(String, graphql_name='remoteId')
+    remote_url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='remoteUrl')
+    remote_preview_image_url = sgqlc.types.Field(URL, graphql_name='remotePreviewImageUrl')
+    tactic = sgqlc.types.Field(sgqlc.types.non_null(MarketingTactic), graphql_name='tactic')
+    channel = sgqlc.types.Field(sgqlc.types.non_null(MarketingChannel), graphql_name='channel')
+    referring_domain = sgqlc.types.Field(String, graphql_name='referringDomain')
+    scheduled_start = sgqlc.types.Field(DateTime, graphql_name='scheduledStart')
+    scheduled_end = sgqlc.types.Field(DateTime, graphql_name='scheduledEnd')
+    start = sgqlc.types.Field(DateTime, graphql_name='start')
+    end = sgqlc.types.Field(DateTime, graphql_name='end')
 
 
 class MarketingActivityCreateInput(sgqlc.types.Input):
@@ -1940,20 +2495,36 @@ class MarketingActivityCreateInput(sgqlc.types.Input):
     budget = sgqlc.types.Field(MarketingActivityBudgetInput, graphql_name='budget')
 
 
+class MarketingActivityUpdateExternalInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('title', 'utm', 'budget', 'ad_spend', 'remote_url', 'remote_preview_image_url', 'tactic', 'channel', 'referring_domain', 'scheduled_start', 'scheduled_end', 'start', 'end')
+    title = sgqlc.types.Field(String, graphql_name='title')
+    utm = sgqlc.types.Field('UTMInput', graphql_name='utm')
+    budget = sgqlc.types.Field(MarketingActivityBudgetInput, graphql_name='budget')
+    ad_spend = sgqlc.types.Field('MoneyInput', graphql_name='adSpend')
+    remote_url = sgqlc.types.Field(URL, graphql_name='remoteUrl')
+    remote_preview_image_url = sgqlc.types.Field(URL, graphql_name='remotePreviewImageUrl')
+    tactic = sgqlc.types.Field(MarketingTactic, graphql_name='tactic')
+    channel = sgqlc.types.Field(MarketingChannel, graphql_name='channel')
+    referring_domain = sgqlc.types.Field(String, graphql_name='referringDomain')
+    scheduled_start = sgqlc.types.Field(DateTime, graphql_name='scheduledStart')
+    scheduled_end = sgqlc.types.Field(DateTime, graphql_name='scheduledEnd')
+    start = sgqlc.types.Field(DateTime, graphql_name='start')
+    end = sgqlc.types.Field(DateTime, graphql_name='end')
+
+
 class MarketingActivityUpdateInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('id', 'marketing_recommendation_id', 'title', 'budget', 'ad_spend', 'status', 'target_status', 'form_data', 'utm', 'marketed_resources', 'context', 'errors')
+    __field_names__ = ('id', 'marketing_recommendation_id', 'title', 'budget', 'status', 'target_status', 'form_data', 'utm', 'marketed_resources', 'errors')
     id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
     marketing_recommendation_id = sgqlc.types.Field(ID, graphql_name='marketingRecommendationId')
     title = sgqlc.types.Field(String, graphql_name='title')
     budget = sgqlc.types.Field(MarketingActivityBudgetInput, graphql_name='budget')
-    ad_spend = sgqlc.types.Field('MoneyInput', graphql_name='adSpend')
     status = sgqlc.types.Field(MarketingActivityStatus, graphql_name='status')
     target_status = sgqlc.types.Field(MarketingActivityStatus, graphql_name='targetStatus')
     form_data = sgqlc.types.Field(String, graphql_name='formData')
     utm = sgqlc.types.Field('UTMInput', graphql_name='utm')
     marketed_resources = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='marketedResources')
-    context = sgqlc.types.Field(String, graphql_name='context')
     errors = sgqlc.types.Field(JSON, graphql_name='errors')
 
 
@@ -1981,7 +2552,7 @@ class MarketingEngagementInput(sgqlc.types.Input):
 
 class MetafieldDefinitionInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('namespace', 'key', 'name', 'description', 'owner_type', 'type', 'validations', 'pin')
+    __field_names__ = ('namespace', 'key', 'name', 'description', 'owner_type', 'type', 'validations', 'visible_to_storefront_api', 'pin')
     namespace = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='namespace')
     key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
@@ -1989,18 +2560,20 @@ class MetafieldDefinitionInput(sgqlc.types.Input):
     owner_type = sgqlc.types.Field(sgqlc.types.non_null(MetafieldOwnerType), graphql_name='ownerType')
     type = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='type')
     validations = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldDefinitionValidationInput')), graphql_name='validations')
+    visible_to_storefront_api = sgqlc.types.Field(Boolean, graphql_name='visibleToStorefrontApi')
     pin = sgqlc.types.Field(Boolean, graphql_name='pin')
 
 
 class MetafieldDefinitionUpdateInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('namespace', 'key', 'name', 'description', 'owner_type', 'pin')
+    __field_names__ = ('namespace', 'key', 'name', 'description', 'owner_type', 'pin', 'visible_to_storefront_api')
     namespace = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='namespace')
     key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
     name = sgqlc.types.Field(String, graphql_name='name')
     description = sgqlc.types.Field(String, graphql_name='description')
     owner_type = sgqlc.types.Field(sgqlc.types.non_null(MetafieldOwnerType), graphql_name='ownerType')
     pin = sgqlc.types.Field(Boolean, graphql_name='pin')
+    visible_to_storefront_api = sgqlc.types.Field(Boolean, graphql_name='visibleToStorefrontApi')
 
 
 class MetafieldDefinitionValidationInput(sgqlc.types.Input):
@@ -2166,8 +2739,8 @@ class PriceListContext(sgqlc.types.Input):
 
 class PriceListContextRuleInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('countries',)
-    countries = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(CountryCode)), graphql_name='countries')
+    __field_names__ = ('market_id',)
+    market_id = sgqlc.types.Field(ID, graphql_name='marketId')
 
 
 class PriceListCreateInput(sgqlc.types.Input):
@@ -2210,8 +2783,9 @@ class PriceListUpdateInput(sgqlc.types.Input):
 
 class PriceRuleCustomerSelectionInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('for_all_customers', 'customer_ids_to_add', 'customer_ids_to_remove')
+    __field_names__ = ('for_all_customers', 'segment_ids', 'customer_ids_to_add', 'customer_ids_to_remove')
     for_all_customers = sgqlc.types.Field(Boolean, graphql_name='forAllCustomers')
+    segment_ids = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='segmentIds')
     customer_ids_to_add = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='customerIdsToAdd')
     customer_ids_to_remove = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='customerIdsToRemove')
 
@@ -2231,7 +2805,8 @@ class PriceRuleEntitlementToPrerequisiteQuantityRatioInput(sgqlc.types.Input):
 
 class PriceRuleInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('validity_period', 'once_per_customer', 'customer_selection', 'usage_limit', 'title', 'allocation_limit', 'allocation_method', 'value', 'target', 'prerequisite_subtotal_range', 'prerequisite_quantity_range', 'prerequisite_shipping_price_range', 'item_entitlements', 'item_prerequisites', 'shipping_entitlements', 'entitlement_to_prerequisite_quantity_ratio', 'prerequisite_to_entitlement_quantity_ratio')
+    __field_names__ = ('combines_with', 'validity_period', 'once_per_customer', 'customer_selection', 'usage_limit', 'title', 'allocation_limit', 'allocation_method', 'value', 'target', 'prerequisite_subtotal_range', 'prerequisite_quantity_range', 'prerequisite_shipping_price_range', 'item_entitlements', 'item_prerequisites', 'shipping_entitlements', 'prerequisite_to_entitlement_quantity_ratio')
+    combines_with = sgqlc.types.Field(DiscountCombinesWithInput, graphql_name='combinesWith')
     validity_period = sgqlc.types.Field('PriceRuleValidityPeriodInput', graphql_name='validityPeriod')
     once_per_customer = sgqlc.types.Field(Boolean, graphql_name='oncePerCustomer')
     customer_selection = sgqlc.types.Field(PriceRuleCustomerSelectionInput, graphql_name='customerSelection')
@@ -2247,7 +2822,6 @@ class PriceRuleInput(sgqlc.types.Input):
     item_entitlements = sgqlc.types.Field('PriceRuleItemEntitlementsInput', graphql_name='itemEntitlements')
     item_prerequisites = sgqlc.types.Field('PriceRuleItemPrerequisitesInput', graphql_name='itemPrerequisites')
     shipping_entitlements = sgqlc.types.Field('PriceRuleShippingEntitlementsInput', graphql_name='shippingEntitlements')
-    entitlement_to_prerequisite_quantity_ratio = sgqlc.types.Field(PriceRuleEntitlementToPrerequisiteQuantityRatioInput, graphql_name='entitlementToPrerequisiteQuantityRatio')
     prerequisite_to_entitlement_quantity_ratio = sgqlc.types.Field('PriceRulePrerequisiteToEntitlementQuantityRatioInput', graphql_name='prerequisiteToEntitlementQuantityRatio')
 
 
@@ -2346,6 +2920,12 @@ class ProductAppendImagesInput(sgqlc.types.Input):
     images = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ImageInput))), graphql_name='images')
 
 
+class ProductCategoryInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('product_taxonomy_node_id',)
+    product_taxonomy_node_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='productTaxonomyNodeId')
+
+
 class ProductDeleteInput(sgqlc.types.Input):
     __schema__ = shopify
     __field_names__ = ('id',)
@@ -2354,13 +2934,14 @@ class ProductDeleteInput(sgqlc.types.Input):
 
 class ProductInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('description_html', 'handle', 'redirect_new_handle', 'seo', 'product_type', 'standardized_product_type', 'custom_product_type', 'tags', 'template_suffix', 'gift_card', 'gift_card_template_suffix', 'title', 'vendor', 'body_html', 'collections_to_join', 'collections_to_leave', 'id', 'images', 'metafields', 'private_metafields', 'options', 'product_publications', 'publications', 'publish_date', 'publish_on', 'published', 'published_at', 'variants', 'status', 'requires_selling_plan')
+    __field_names__ = ('description_html', 'handle', 'redirect_new_handle', 'seo', 'product_type', 'standardized_product_type', 'product_category', 'custom_product_type', 'tags', 'template_suffix', 'gift_card', 'gift_card_template_suffix', 'title', 'vendor', 'collections_to_join', 'collections_to_leave', 'id', 'images', 'metafields', 'private_metafields', 'options', 'variants', 'status', 'requires_selling_plan')
     description_html = sgqlc.types.Field(String, graphql_name='descriptionHtml')
     handle = sgqlc.types.Field(String, graphql_name='handle')
     redirect_new_handle = sgqlc.types.Field(Boolean, graphql_name='redirectNewHandle')
     seo = sgqlc.types.Field('SEOInput', graphql_name='seo')
     product_type = sgqlc.types.Field(String, graphql_name='productType')
     standardized_product_type = sgqlc.types.Field('StandardizedProductTypeInput', graphql_name='standardizedProductType')
+    product_category = sgqlc.types.Field(ProductCategoryInput, graphql_name='productCategory')
     custom_product_type = sgqlc.types.Field(String, graphql_name='customProductType')
     tags = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='tags')
     template_suffix = sgqlc.types.Field(String, graphql_name='templateSuffix')
@@ -2368,7 +2949,6 @@ class ProductInput(sgqlc.types.Input):
     gift_card_template_suffix = sgqlc.types.Field(String, graphql_name='giftCardTemplateSuffix')
     title = sgqlc.types.Field(String, graphql_name='title')
     vendor = sgqlc.types.Field(String, graphql_name='vendor')
-    body_html = sgqlc.types.Field(String, graphql_name='bodyHtml')
     collections_to_join = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='collectionsToJoin')
     collections_to_leave = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='collectionsToLeave')
     id = sgqlc.types.Field(ID, graphql_name='id')
@@ -2376,12 +2956,6 @@ class ProductInput(sgqlc.types.Input):
     metafields = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(MetafieldInput)), graphql_name='metafields')
     private_metafields = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(PrivateMetafieldInput)), graphql_name='privateMetafields')
     options = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='options')
-    product_publications = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('ProductPublicationInput')), graphql_name='productPublications')
-    publications = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('ProductPublicationInput')), graphql_name='publications')
-    publish_date = sgqlc.types.Field(DateTime, graphql_name='publishDate')
-    publish_on = sgqlc.types.Field(DateTime, graphql_name='publishOn')
-    published = sgqlc.types.Field(Boolean, graphql_name='published')
-    published_at = sgqlc.types.Field(DateTime, graphql_name='publishedAt')
     variants = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('ProductVariantInput')), graphql_name='variants')
     status = sgqlc.types.Field(ProductStatus, graphql_name='status')
     requires_selling_plan = sgqlc.types.Field(Boolean, graphql_name='requiresSellingPlan')
@@ -2389,10 +2963,8 @@ class ProductInput(sgqlc.types.Input):
 
 class ProductPublicationInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('publication_id', 'channel_id', 'channel_handle', 'publish_date')
+    __field_names__ = ('publication_id', 'publish_date')
     publication_id = sgqlc.types.Field(ID, graphql_name='publicationId')
-    channel_id = sgqlc.types.Field(ID, graphql_name='channelId')
-    channel_handle = sgqlc.types.Field(String, graphql_name='channelHandle')
     publish_date = sgqlc.types.Field(DateTime, graphql_name='publishDate')
 
 
@@ -2436,16 +3008,14 @@ class ProductVariantDetachMediaInput(sgqlc.types.Input):
 
 class ProductVariantInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('barcode', 'compare_at_price', 'fulfillment_service_id', 'harmonized_system_code', 'id', 'image_id', 'image_src', 'media_src', 'inventory_management', 'inventory_policy', 'inventory_quantities', 'inventory_item', 'metafields', 'private_metafields', 'options', 'position', 'price', 'product_id', 'requires_shipping', 'sku', 'taxable', 'title', 'tax_code', 'weight', 'weight_unit')
+    __field_names__ = ('barcode', 'compare_at_price', 'harmonized_system_code', 'id', 'image_id', 'image_src', 'media_src', 'inventory_policy', 'inventory_quantities', 'inventory_item', 'metafields', 'private_metafields', 'options', 'position', 'price', 'product_id', 'requires_shipping', 'sku', 'taxable', 'tax_code', 'weight', 'weight_unit')
     barcode = sgqlc.types.Field(String, graphql_name='barcode')
     compare_at_price = sgqlc.types.Field(Money, graphql_name='compareAtPrice')
-    fulfillment_service_id = sgqlc.types.Field(ID, graphql_name='fulfillmentServiceId')
     harmonized_system_code = sgqlc.types.Field(String, graphql_name='harmonizedSystemCode')
     id = sgqlc.types.Field(ID, graphql_name='id')
     image_id = sgqlc.types.Field(ID, graphql_name='imageId')
     image_src = sgqlc.types.Field(String, graphql_name='imageSrc')
     media_src = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='mediaSrc')
-    inventory_management = sgqlc.types.Field(ProductVariantInventoryManagement, graphql_name='inventoryManagement')
     inventory_policy = sgqlc.types.Field(ProductVariantInventoryPolicy, graphql_name='inventoryPolicy')
     inventory_quantities = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(InventoryLevelInput)), graphql_name='inventoryQuantities')
     inventory_item = sgqlc.types.Field(InventoryItemInput, graphql_name='inventoryItem')
@@ -2458,7 +3028,6 @@ class ProductVariantInput(sgqlc.types.Input):
     requires_shipping = sgqlc.types.Field(Boolean, graphql_name='requiresShipping')
     sku = sgqlc.types.Field(String, graphql_name='sku')
     taxable = sgqlc.types.Field(Boolean, graphql_name='taxable')
-    title = sgqlc.types.Field(String, graphql_name='title')
     tax_code = sgqlc.types.Field(String, graphql_name='taxCode')
     weight = sgqlc.types.Field(Float, graphql_name='weight')
     weight_unit = sgqlc.types.Field(WeightUnit, graphql_name='weightUnit')
@@ -2473,10 +3042,9 @@ class ProductVariantPositionInput(sgqlc.types.Input):
 
 class ProductVariantsBulkInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('barcode', 'compare_at_price', 'fulfillment_service_id', 'harmonized_system_code', 'id', 'image_id', 'image_src', 'media_src', 'inventory_policy', 'inventory_quantities', 'inventory_item', 'metafields', 'private_metafields', 'options', 'price', 'requires_shipping', 'sku', 'taxable', 'tax_code', 'weight', 'weight_unit')
+    __field_names__ = ('barcode', 'compare_at_price', 'harmonized_system_code', 'id', 'image_id', 'image_src', 'media_src', 'inventory_policy', 'inventory_quantities', 'inventory_item', 'metafields', 'private_metafields', 'options', 'price', 'requires_shipping', 'sku', 'taxable', 'tax_code', 'weight', 'weight_unit')
     barcode = sgqlc.types.Field(String, graphql_name='barcode')
     compare_at_price = sgqlc.types.Field(Money, graphql_name='compareAtPrice')
-    fulfillment_service_id = sgqlc.types.Field(ID, graphql_name='fulfillmentServiceId')
     harmonized_system_code = sgqlc.types.Field(String, graphql_name='harmonizedSystemCode')
     id = sgqlc.types.Field(ID, graphql_name='id')
     image_id = sgqlc.types.Field(ID, graphql_name='imageId')
@@ -2509,10 +3077,24 @@ class PubSubWebhookSubscriptionInput(sgqlc.types.Input):
 
 class PublicationInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('channel_id', 'publication_id', 'publish_date')
-    channel_id = sgqlc.types.Field(ID, graphql_name='channelId')
+    __field_names__ = ('publication_id', 'publish_date')
     publication_id = sgqlc.types.Field(ID, graphql_name='publicationId')
     publish_date = sgqlc.types.Field(DateTime, graphql_name='publishDate')
+
+
+class PurchasingCompanyInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('company_id', 'company_contact_id', 'company_location_id')
+    company_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='companyId')
+    company_contact_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='companyContactId')
+    company_location_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='companyLocationId')
+
+
+class PurchasingEntityInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('customer_id', 'purchasing_company')
+    customer_id = sgqlc.types.Field(ID, graphql_name='customerId')
+    purchasing_company = sgqlc.types.Field(PurchasingCompanyInput, graphql_name='purchasingCompany')
 
 
 class RefundDutyInput(sgqlc.types.Input):
@@ -2549,6 +3131,13 @@ class RemoteAuthorizeNetCustomerPaymentProfileInput(sgqlc.types.Input):
     __field_names__ = ('customer_profile_id', 'customer_payment_profile_id')
     customer_profile_id = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='customerProfileId')
     customer_payment_profile_id = sgqlc.types.Field(String, graphql_name='customerPaymentProfileId')
+
+
+class RemoteBraintreePaymentMethodInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('customer_id', 'payment_method_token')
+    customer_id = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='customerId')
+    payment_method_token = sgqlc.types.Field(String, graphql_name='paymentMethodToken')
 
 
 class RemoteStripePaymentMethodInput(sgqlc.types.Input):
@@ -2597,22 +3186,59 @@ class ScriptTagInput(sgqlc.types.Input):
 
 class SellingPlanAnchorInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('type', 'day', 'month')
+    __field_names__ = ('type', 'day', 'month', 'cutoff_day')
     type = sgqlc.types.Field(SellingPlanAnchorType, graphql_name='type')
     day = sgqlc.types.Field(Int, graphql_name='day')
     month = sgqlc.types.Field(Int, graphql_name='month')
+    cutoff_day = sgqlc.types.Field(Int, graphql_name='cutoffDay')
 
 
 class SellingPlanBillingPolicyInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('recurring',)
+    __field_names__ = ('fixed', 'recurring')
+    fixed = sgqlc.types.Field('SellingPlanFixedBillingPolicyInput', graphql_name='fixed')
     recurring = sgqlc.types.Field('SellingPlanRecurringBillingPolicyInput', graphql_name='recurring')
+
+
+class SellingPlanCheckoutChargeInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('type', 'value')
+    type = sgqlc.types.Field(SellingPlanCheckoutChargeType, graphql_name='type')
+    value = sgqlc.types.Field('SellingPlanCheckoutChargeValueInput', graphql_name='value')
+
+
+class SellingPlanCheckoutChargeValueInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('percentage', 'fixed_value')
+    percentage = sgqlc.types.Field(Float, graphql_name='percentage')
+    fixed_value = sgqlc.types.Field(Decimal, graphql_name='fixedValue')
 
 
 class SellingPlanDeliveryPolicyInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('recurring',)
+    __field_names__ = ('fixed', 'recurring')
+    fixed = sgqlc.types.Field('SellingPlanFixedDeliveryPolicyInput', graphql_name='fixed')
     recurring = sgqlc.types.Field('SellingPlanRecurringDeliveryPolicyInput', graphql_name='recurring')
+
+
+class SellingPlanFixedBillingPolicyInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('remaining_balance_charge_trigger', 'remaining_balance_charge_exact_time', 'remaining_balance_charge_time_after_checkout', 'checkout_charge')
+    remaining_balance_charge_trigger = sgqlc.types.Field(SellingPlanRemainingBalanceChargeTrigger, graphql_name='remainingBalanceChargeTrigger')
+    remaining_balance_charge_exact_time = sgqlc.types.Field(DateTime, graphql_name='remainingBalanceChargeExactTime')
+    remaining_balance_charge_time_after_checkout = sgqlc.types.Field(String, graphql_name='remainingBalanceChargeTimeAfterCheckout')
+    checkout_charge = sgqlc.types.Field(SellingPlanCheckoutChargeInput, graphql_name='checkoutCharge')
+
+
+class SellingPlanFixedDeliveryPolicyInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('anchors', 'fulfillment_trigger', 'fulfillment_exact_time', 'cutoff', 'intent', 'pre_anchor_behavior')
+    anchors = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(SellingPlanAnchorInput)), graphql_name='anchors')
+    fulfillment_trigger = sgqlc.types.Field(SellingPlanFulfillmentTrigger, graphql_name='fulfillmentTrigger')
+    fulfillment_exact_time = sgqlc.types.Field(DateTime, graphql_name='fulfillmentExactTime')
+    cutoff = sgqlc.types.Field(Int, graphql_name='cutoff')
+    intent = sgqlc.types.Field(SellingPlanFixedDeliveryPolicyIntent, graphql_name='intent')
+    pre_anchor_behavior = sgqlc.types.Field(SellingPlanFixedDeliveryPolicyPreAnchorBehavior, graphql_name='preAnchorBehavior')
 
 
 class SellingPlanFixedPricingPolicyInput(sgqlc.types.Input):
@@ -2646,15 +3272,23 @@ class SellingPlanGroupResourceInput(sgqlc.types.Input):
 
 class SellingPlanInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('id', 'name', 'description', 'billing_policy', 'delivery_policy', 'pricing_policies', 'options', 'position')
+    __field_names__ = ('id', 'name', 'description', 'billing_policy', 'delivery_policy', 'inventory_policy', 'pricing_policies', 'options', 'position', 'category')
     id = sgqlc.types.Field(ID, graphql_name='id')
     name = sgqlc.types.Field(String, graphql_name='name')
     description = sgqlc.types.Field(String, graphql_name='description')
     billing_policy = sgqlc.types.Field(SellingPlanBillingPolicyInput, graphql_name='billingPolicy')
     delivery_policy = sgqlc.types.Field(SellingPlanDeliveryPolicyInput, graphql_name='deliveryPolicy')
+    inventory_policy = sgqlc.types.Field('SellingPlanInventoryPolicyInput', graphql_name='inventoryPolicy')
     pricing_policies = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('SellingPlanPricingPolicyInput')), graphql_name='pricingPolicies')
     options = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='options')
     position = sgqlc.types.Field(Int, graphql_name='position')
+    category = sgqlc.types.Field(SellingPlanCategory, graphql_name='category')
+
+
+class SellingPlanInventoryPolicyInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('reserve',)
+    reserve = sgqlc.types.Field(SellingPlanReserve, graphql_name='reserve')
 
 
 class SellingPlanPricingPolicyInput(sgqlc.types.Input):
@@ -2718,8 +3352,9 @@ class ShippingRefundInput(sgqlc.types.Input):
 
 class ShopLocaleInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('published',)
+    __field_names__ = ('published', 'market_web_presence_ids')
     published = sgqlc.types.Field(Boolean, graphql_name='published')
+    market_web_presence_ids = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='marketWebPresenceIds')
 
 
 class ShopPolicyInput(sgqlc.types.Input):
@@ -2727,6 +3362,35 @@ class ShopPolicyInput(sgqlc.types.Input):
     __field_names__ = ('type', 'body')
     type = sgqlc.types.Field(sgqlc.types.non_null(ShopPolicyType), graphql_name='type')
     body = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='body')
+
+
+class ShopifyPaymentsDisputeEvidenceUpdateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('customer_email_address', 'customer_last_name', 'customer_first_name', 'shipping_address', 'uncategorized_text', 'access_activity_log', 'cancellation_policy_disclosure', 'cancellation_rebuttal', 'refund_policy_disclosure', 'refund_refusal_explanation', 'cancellation_policy_file', 'customer_communication_file', 'refund_policy_file', 'shipping_documentation_file', 'uncategorized_file', 'service_documentation_file', 'submit_evidence')
+    customer_email_address = sgqlc.types.Field(String, graphql_name='customerEmailAddress')
+    customer_last_name = sgqlc.types.Field(String, graphql_name='customerLastName')
+    customer_first_name = sgqlc.types.Field(String, graphql_name='customerFirstName')
+    shipping_address = sgqlc.types.Field(MailingAddressInput, graphql_name='shippingAddress')
+    uncategorized_text = sgqlc.types.Field(String, graphql_name='uncategorizedText')
+    access_activity_log = sgqlc.types.Field(String, graphql_name='accessActivityLog')
+    cancellation_policy_disclosure = sgqlc.types.Field(String, graphql_name='cancellationPolicyDisclosure')
+    cancellation_rebuttal = sgqlc.types.Field(String, graphql_name='cancellationRebuttal')
+    refund_policy_disclosure = sgqlc.types.Field(String, graphql_name='refundPolicyDisclosure')
+    refund_refusal_explanation = sgqlc.types.Field(String, graphql_name='refundRefusalExplanation')
+    cancellation_policy_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUploadUpdateInput', graphql_name='cancellationPolicyFile')
+    customer_communication_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUploadUpdateInput', graphql_name='customerCommunicationFile')
+    refund_policy_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUploadUpdateInput', graphql_name='refundPolicyFile')
+    shipping_documentation_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUploadUpdateInput', graphql_name='shippingDocumentationFile')
+    uncategorized_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUploadUpdateInput', graphql_name='uncategorizedFile')
+    service_documentation_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUploadUpdateInput', graphql_name='serviceDocumentationFile')
+    submit_evidence = sgqlc.types.Field(Boolean, graphql_name='submitEvidence')
+
+
+class ShopifyPaymentsDisputeFileUploadUpdateInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('id', 'destroy')
+    id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
+    destroy = sgqlc.types.Field(Boolean, graphql_name='destroy')
 
 
 class StageImageInput(sgqlc.types.Input):
@@ -2778,8 +3442,46 @@ class StorefrontAccessTokenInput(sgqlc.types.Input):
 
 class SubscriptionBillingAttemptInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('idempotency_key',)
+    __field_names__ = ('idempotency_key', 'origin_time', 'billing_cycle_selector')
     idempotency_key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='idempotencyKey')
+    origin_time = sgqlc.types.Field(DateTime, graphql_name='originTime')
+    billing_cycle_selector = sgqlc.types.Field('SubscriptionBillingCycleSelector', graphql_name='billingCycleSelector')
+
+
+class SubscriptionBillingCycleInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('contract_id', 'selector')
+    contract_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='contractId')
+    selector = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionBillingCycleSelector'), graphql_name='selector')
+
+
+class SubscriptionBillingCycleScheduleEditInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('skip', 'billing_date', 'reason')
+    skip = sgqlc.types.Field(Boolean, graphql_name='skip')
+    billing_date = sgqlc.types.Field(DateTime, graphql_name='billingDate')
+    reason = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingCycleScheduleEditInputScheduleEditReason), graphql_name='reason')
+
+
+class SubscriptionBillingCycleSelector(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('index', 'date')
+    index = sgqlc.types.Field(Int, graphql_name='index')
+    date = sgqlc.types.Field(DateTime, graphql_name='date')
+
+
+class SubscriptionBillingCyclesDateRangeSelector(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('start_date', 'end_date')
+    start_date = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='startDate')
+    end_date = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='endDate')
+
+
+class SubscriptionBillingCyclesIndexRangeSelector(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('start_index', 'end_index')
+    start_index = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='startIndex')
+    end_index = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='endIndex')
 
 
 class SubscriptionBillingPolicyInput(sgqlc.types.Input):
@@ -2803,8 +3505,44 @@ class SubscriptionContractCreateInput(sgqlc.types.Input):
 
 class SubscriptionDeliveryMethodInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('shipping',)
+    __field_names__ = ('shipping', 'local_delivery', 'pickup')
     shipping = sgqlc.types.Field('SubscriptionDeliveryMethodShippingInput', graphql_name='shipping')
+    local_delivery = sgqlc.types.Field('SubscriptionDeliveryMethodLocalDeliveryInput', graphql_name='localDelivery')
+    pickup = sgqlc.types.Field('SubscriptionDeliveryMethodPickupInput', graphql_name='pickup')
+
+
+class SubscriptionDeliveryMethodLocalDeliveryInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('address', 'local_delivery_option')
+    address = sgqlc.types.Field(MailingAddressInput, graphql_name='address')
+    local_delivery_option = sgqlc.types.Field('SubscriptionDeliveryMethodLocalDeliveryOptionInput', graphql_name='localDeliveryOption')
+
+
+class SubscriptionDeliveryMethodLocalDeliveryOptionInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('title', 'presentment_title', 'description', 'code', 'phone', 'instructions')
+    title = sgqlc.types.Field(String, graphql_name='title')
+    presentment_title = sgqlc.types.Field(String, graphql_name='presentmentTitle')
+    description = sgqlc.types.Field(String, graphql_name='description')
+    code = sgqlc.types.Field(String, graphql_name='code')
+    phone = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='phone')
+    instructions = sgqlc.types.Field(String, graphql_name='instructions')
+
+
+class SubscriptionDeliveryMethodPickupInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('pickup_option',)
+    pickup_option = sgqlc.types.Field('SubscriptionDeliveryMethodPickupOptionInput', graphql_name='pickupOption')
+
+
+class SubscriptionDeliveryMethodPickupOptionInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('title', 'presentment_title', 'description', 'code', 'location_id')
+    title = sgqlc.types.Field(String, graphql_name='title')
+    presentment_title = sgqlc.types.Field(String, graphql_name='presentmentTitle')
+    description = sgqlc.types.Field(String, graphql_name='description')
+    code = sgqlc.types.Field(String, graphql_name='code')
+    location_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='locationId')
 
 
 class SubscriptionDeliveryMethodShippingInput(sgqlc.types.Input):
@@ -2834,7 +3572,7 @@ class SubscriptionDeliveryPolicyInput(sgqlc.types.Input):
 
 class SubscriptionDraftInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('status', 'payment_method_id', 'next_billing_date', 'billing_policy', 'delivery_policy', 'delivery_price', 'delivery_method', 'note')
+    __field_names__ = ('status', 'payment_method_id', 'next_billing_date', 'billing_policy', 'delivery_policy', 'delivery_price', 'delivery_method', 'note', 'custom_attributes')
     status = sgqlc.types.Field(SubscriptionContractSubscriptionStatus, graphql_name='status')
     payment_method_id = sgqlc.types.Field(ID, graphql_name='paymentMethodId')
     next_billing_date = sgqlc.types.Field(DateTime, graphql_name='nextBillingDate')
@@ -2843,6 +3581,7 @@ class SubscriptionDraftInput(sgqlc.types.Input):
     delivery_price = sgqlc.types.Field(Decimal, graphql_name='deliveryPrice')
     delivery_method = sgqlc.types.Field(SubscriptionDeliveryMethodInput, graphql_name='deliveryMethod')
     note = sgqlc.types.Field(String, graphql_name='note')
+    custom_attributes = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(AttributeInput)), graphql_name='customAttributes')
 
 
 class SubscriptionFreeShippingDiscountInput(sgqlc.types.Input):
@@ -2929,28 +3668,14 @@ class SubscriptionPricingPolicyInput(sgqlc.types.Input):
     cycle_discounts = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SubscriptionPricingPolicyCycleDiscountsInput))), graphql_name='cycleDiscounts')
 
 
-class TrackingInfoInput(sgqlc.types.Input):
-    __schema__ = shopify
-    __field_names__ = ('number', 'url')
-    number = sgqlc.types.Field(String, graphql_name='number')
-    url = sgqlc.types.Field(String, graphql_name='url')
-
-
-class TrackingInfoUpdateInput(sgqlc.types.Input):
-    __schema__ = shopify
-    __field_names__ = ('tracking_details', 'tracking_company', 'notify_customer')
-    tracking_details = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(TrackingInfoInput)), graphql_name='trackingDetails')
-    tracking_company = sgqlc.types.Field(String, graphql_name='trackingCompany')
-    notify_customer = sgqlc.types.Field(Boolean, graphql_name='notifyCustomer')
-
-
 class TranslationInput(sgqlc.types.Input):
     __schema__ = shopify
-    __field_names__ = ('locale', 'key', 'value', 'translatable_content_digest')
+    __field_names__ = ('locale', 'key', 'value', 'translatable_content_digest', 'market_id')
     locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='locale')
     key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
     value = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='value')
     translatable_content_digest = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='translatableContentDigest')
+    market_id = sgqlc.types.Field(ID, graphql_name='marketId')
 
 
 class UTMInput(sgqlc.types.Input):
@@ -2974,6 +3699,12 @@ class UrlRedirectInput(sgqlc.types.Input):
     __field_names__ = ('path', 'target')
     path = sgqlc.types.Field(String, graphql_name='path')
     target = sgqlc.types.Field(String, graphql_name='target')
+
+
+class WebPixelInput(sgqlc.types.Input):
+    __schema__ = shopify
+    __field_names__ = ('settings',)
+    settings = sgqlc.types.Field(sgqlc.types.non_null(JSON), graphql_name='settings')
 
 
 class WebhookSubscriptionInput(sgqlc.types.Input):
@@ -3020,15 +3751,17 @@ class ApiVersion(sgqlc.types.Type):
 
 class AppConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('App'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
 class AppCreditConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppCreditEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppCredit'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3044,6 +3777,19 @@ class AppCreditEdge(sgqlc.types.Type):
     __field_names__ = ('cursor', 'node')
     cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
     node = sgqlc.types.Field(sgqlc.types.non_null('AppCredit'), graphql_name='node')
+
+
+class AppDiscountType(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('app', 'app_bridge', 'app_key', 'description', 'discount_class', 'function_id', 'target_type', 'title')
+    app = sgqlc.types.Field(sgqlc.types.non_null('App'), graphql_name='app')
+    app_bridge = sgqlc.types.Field(sgqlc.types.non_null('FunctionsAppBridge'), graphql_name='appBridge')
+    app_key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='appKey')
+    description = sgqlc.types.Field(String, graphql_name='description')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(DiscountClass), graphql_name='discountClass')
+    function_id = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='functionId')
+    target_type = sgqlc.types.Field(sgqlc.types.non_null(DiscountApplicationTargetType), graphql_name='targetType')
+    title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
 
 
 class AppEdge(sgqlc.types.Type):
@@ -3063,8 +3809,9 @@ class AppFeedback(sgqlc.types.Type):
 
 class AppInstallationConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppInstallationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppInstallation'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3093,8 +3840,9 @@ class AppPurchase(sgqlc.types.Interface):
 
 class AppPurchaseOneTimeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppPurchaseOneTimeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppPurchaseOneTime'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3115,15 +3863,17 @@ class AppPurchaseOneTimeEdge(sgqlc.types.Type):
 
 class AppRecurringPricing(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('interval', 'price')
+    __field_names__ = ('discount', 'interval', 'price')
+    discount = sgqlc.types.Field('AppSubscriptionDiscount', graphql_name='discount')
     interval = sgqlc.types.Field(sgqlc.types.non_null(AppPricingInterval), graphql_name='interval')
     price = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='price')
 
 
 class AppRevenueAttributionRecordConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppRevenueAttributionRecordEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppRevenueAttributionRecord'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3157,8 +3907,9 @@ class AppSubscriptionCancelPayload(sgqlc.types.Type):
 
 class AppSubscriptionConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppSubscriptionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppSubscription'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3168,6 +3919,27 @@ class AppSubscriptionCreatePayload(sgqlc.types.Type):
     app_subscription = sgqlc.types.Field('AppSubscription', graphql_name='appSubscription')
     confirmation_url = sgqlc.types.Field(URL, graphql_name='confirmationUrl')
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class AppSubscriptionDiscount(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('duration_limit_in_intervals', 'price_after_discount', 'remaining_duration_in_intervals', 'value')
+    duration_limit_in_intervals = sgqlc.types.Field(Int, graphql_name='durationLimitInIntervals')
+    price_after_discount = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='priceAfterDiscount')
+    remaining_duration_in_intervals = sgqlc.types.Field(Int, graphql_name='remainingDurationInIntervals')
+    value = sgqlc.types.Field(sgqlc.types.non_null('AppSubscriptionDiscountValue'), graphql_name='value')
+
+
+class AppSubscriptionDiscountAmount(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('amount',)
+    amount = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='amount')
+
+
+class AppSubscriptionDiscountPercentage(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('percentage',)
+    percentage = sgqlc.types.Field(sgqlc.types.non_null(Float), graphql_name='percentage')
 
 
 class AppSubscriptionEdge(sgqlc.types.Type):
@@ -3201,6 +3973,13 @@ class AppSubscriptionLineItemUpdatePayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
+class AppSubscriptionTrialExtendPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('app_subscription', 'user_errors')
+    app_subscription = sgqlc.types.Field('AppSubscription', graphql_name='appSubscription')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppSubscriptionTrialExtendUserError'))), graphql_name='userErrors')
+
+
 class AppUsagePricing(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('balance_used', 'capped_amount', 'interval', 'terms')
@@ -3212,8 +3991,9 @@ class AppUsagePricing(sgqlc.types.Type):
 
 class AppUsageRecordConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppUsageRecordEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('AppUsageRecord'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3236,6 +4016,13 @@ class Attribute(sgqlc.types.Type):
     __field_names__ = ('key', 'value')
     key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
     value = sgqlc.types.Field(String, graphql_name='value')
+
+
+class AvailableChannelDefinitionsByChannel(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('channel_definitions', 'channel_name')
+    channel_definitions = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ChannelDefinition'))), graphql_name='channelDefinitions')
+    channel_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='channelName')
 
 
 class BulkOperationCancelPayload(sgqlc.types.Type):
@@ -3266,6 +4053,14 @@ class BulkProductResourceFeedbackCreatePayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BulkProductResourceFeedbackCreateUserError'))), graphql_name='userErrors')
 
 
+class BuyerExperienceConfiguration(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('checkout_to_draft', 'pay_now_only', 'payment_terms_template')
+    checkout_to_draft = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='checkoutToDraft')
+    pay_now_only = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='payNowOnly')
+    payment_terms_template = sgqlc.types.Field('PaymentTermsTemplate', graphql_name='paymentTermsTemplate')
+
+
 class CalculatedDiscountAllocation(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('allocated_amount_set', 'discount_application')
@@ -3287,8 +4082,9 @@ class CalculatedDiscountApplication(sgqlc.types.Interface):
 
 class CalculatedDiscountApplicationConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CalculatedDiscountApplicationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CalculatedDiscountApplication))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3301,33 +4097,52 @@ class CalculatedDiscountApplicationEdge(sgqlc.types.Type):
 
 class CalculatedDraftOrder(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('applied_discount', 'available_shipping_rates', 'customer', 'line_items', 'shipping_line', 'subtotal_price', 'tax_lines', 'total_price', 'total_shipping_price', 'total_tax')
+    __field_names__ = ('applied_discount', 'available_shipping_rates', 'billing_address_matches_shipping_address', 'currency_code', 'customer', 'line_items', 'line_items_subtotal_price', 'market_name', 'market_region_country_code', 'phone', 'presentment_currency_code', 'purchasing_entity', 'shipping_line', 'subtotal_price', 'subtotal_price_set', 'tax_lines', 'total_discounts_set', 'total_line_items_price_set', 'total_price', 'total_price_set', 'total_shipping_price', 'total_shipping_price_set', 'total_tax', 'total_tax_set')
     applied_discount = sgqlc.types.Field('DraftOrderAppliedDiscount', graphql_name='appliedDiscount')
     available_shipping_rates = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShippingRate'))), graphql_name='availableShippingRates')
+    billing_address_matches_shipping_address = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='billingAddressMatchesShippingAddress')
+    currency_code = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='currencyCode')
     customer = sgqlc.types.Field('Customer', graphql_name='customer')
     line_items = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CalculatedDraftOrderLineItem'))), graphql_name='lineItems')
+    line_items_subtotal_price = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='lineItemsSubtotalPrice')
+    market_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='marketName')
+    market_region_country_code = sgqlc.types.Field(sgqlc.types.non_null(CountryCode), graphql_name='marketRegionCountryCode')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    presentment_currency_code = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='presentmentCurrencyCode')
+    purchasing_entity = sgqlc.types.Field('PurchasingEntity', graphql_name='purchasingEntity')
     shipping_line = sgqlc.types.Field('ShippingLine', graphql_name='shippingLine')
     subtotal_price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='subtotalPrice')
+    subtotal_price_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='subtotalPriceSet')
     tax_lines = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('TaxLine'))), graphql_name='taxLines')
+    total_discounts_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='totalDiscountsSet')
+    total_line_items_price_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='totalLineItemsPriceSet')
     total_price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='totalPrice')
+    total_price_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='totalPriceSet')
     total_shipping_price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='totalShippingPrice')
+    total_shipping_price_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='totalShippingPriceSet')
     total_tax = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='totalTax')
+    total_tax_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='totalTaxSet')
 
 
 class CalculatedDraftOrderLineItem(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('applied_discount', 'custom', 'custom_attributes', 'discounted_total', 'discounted_unit_price', 'fulfillment_service', 'image', 'is_gift_card', 'name', 'original_total', 'original_unit_price', 'product', 'quantity', 'requires_shipping', 'sku', 'taxable', 'title', 'total_discount', 'variant', 'variant_title', 'vendor', 'weight')
+    __field_names__ = ('applied_discount', 'custom', 'custom_attributes', 'custom_attributes_v2', 'discounted_total', 'discounted_total_set', 'discounted_unit_price', 'discounted_unit_price_set', 'fulfillment_service', 'image', 'is_gift_card', 'name', 'original_total', 'original_total_set', 'original_unit_price', 'original_unit_price_set', 'product', 'quantity', 'requires_shipping', 'sku', 'taxable', 'title', 'total_discount', 'total_discount_set', 'variant', 'variant_title', 'vendor', 'weight')
     applied_discount = sgqlc.types.Field('DraftOrderAppliedDiscount', graphql_name='appliedDiscount')
     custom = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='custom')
     custom_attributes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Attribute))), graphql_name='customAttributes')
+    custom_attributes_v2 = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('TypedAttribute'))), graphql_name='customAttributesV2')
     discounted_total = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='discountedTotal')
+    discounted_total_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='discountedTotalSet')
     discounted_unit_price = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='discountedUnitPrice')
+    discounted_unit_price_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='discountedUnitPriceSet')
     fulfillment_service = sgqlc.types.Field('FulfillmentService', graphql_name='fulfillmentService')
     image = sgqlc.types.Field('Image', graphql_name='image')
     is_gift_card = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='isGiftCard')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     original_total = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='originalTotal')
+    original_total_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='originalTotalSet')
     original_unit_price = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='originalUnitPrice')
+    original_unit_price_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='originalUnitPriceSet')
     product = sgqlc.types.Field('Product', graphql_name='product')
     quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='quantity')
     requires_shipping = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='requiresShipping')
@@ -3335,6 +4150,7 @@ class CalculatedDraftOrderLineItem(sgqlc.types.Type):
     taxable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='taxable')
     title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
     total_discount = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='totalDiscount')
+    total_discount_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='totalDiscountSet')
     variant = sgqlc.types.Field('ProductVariant', graphql_name='variant')
     variant_title = sgqlc.types.Field(String, graphql_name='variantTitle')
     vendor = sgqlc.types.Field(String, graphql_name='vendor')
@@ -3367,8 +4183,9 @@ class CalculatedLineItem(sgqlc.types.Type):
 
 class CalculatedLineItemConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CalculatedLineItemEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CalculatedLineItem))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3381,8 +4198,9 @@ class CalculatedLineItemEdge(sgqlc.types.Type):
 
 class ChannelConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ChannelEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Channel'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3393,6 +4211,21 @@ class ChannelEdge(sgqlc.types.Type):
     node = sgqlc.types.Field(sgqlc.types.non_null('Channel'), graphql_name='node')
 
 
+class CheckoutProfileConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CheckoutProfileEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CheckoutProfile'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class CheckoutProfileEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('CheckoutProfile'), graphql_name='node')
+
+
 class CollectionAddProductsPayload(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('collection', 'user_errors')
@@ -3400,10 +4233,18 @@ class CollectionAddProductsPayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
+class CollectionAddProductsV2Payload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('job', 'user_errors')
+    job = sgqlc.types.Field('Job', graphql_name='job')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CollectionAddProductsV2UserError'))), graphql_name='userErrors')
+
+
 class CollectionConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CollectionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Collection'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3440,8 +4281,9 @@ class CollectionPublication(sgqlc.types.Type):
 
 class CollectionPublicationConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CollectionPublicationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CollectionPublication))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3477,9 +4319,10 @@ class CollectionReorderProductsPayload(sgqlc.types.Type):
 
 class CollectionRule(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('column', 'condition', 'relation')
+    __field_names__ = ('column', 'condition', 'condition_object', 'relation')
     column = sgqlc.types.Field(sgqlc.types.non_null(CollectionRuleColumn), graphql_name='column')
     condition = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='condition')
+    condition_object = sgqlc.types.Field('CollectionRuleConditionObject', graphql_name='conditionObject')
     relation = sgqlc.types.Field(sgqlc.types.non_null(CollectionRuleRelation), graphql_name='relation')
 
 
@@ -3491,11 +4334,23 @@ class CollectionRuleConditions(sgqlc.types.Type):
     rule_type = sgqlc.types.Field(sgqlc.types.non_null(CollectionRuleColumn), graphql_name='ruleType')
 
 
+class CollectionRuleProductCategoryCondition(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('value',)
+    value = sgqlc.types.Field(sgqlc.types.non_null('ProductTaxonomyNode'), graphql_name='value')
+
+
 class CollectionRuleSet(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('applied_disjunctively', 'rules')
     applied_disjunctively = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='appliedDisjunctively')
     rules = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CollectionRule))), graphql_name='rules')
+
+
+class CollectionRuleTextCondition(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('value',)
+    value = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='value')
 
 
 class CollectionUnpublishPayload(sgqlc.types.Type):
@@ -3519,13 +4374,7 @@ class CommentEventAttachment(sgqlc.types.Type):
     __field_names__ = ('file_extension', 'id', 'image', 'name', 'size', 'url')
     file_extension = sgqlc.types.Field(String, graphql_name='fileExtension')
     id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
-    image = sgqlc.types.Field('Image', graphql_name='image', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    image = sgqlc.types.Field('Image', graphql_name='image')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     size = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='size')
     url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='url')
@@ -3536,6 +4385,270 @@ class CommentEventSubject(sgqlc.types.Interface):
     __field_names__ = ('has_timeline_comment', 'id')
     has_timeline_comment = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasTimelineComment')
     id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
+
+
+class CompaniesDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_company_ids', 'user_errors')
+    deleted_company_ids = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='deletedCompanyIds')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyAddressDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_address_id', 'user_errors')
+    deleted_address_id = sgqlc.types.Field(ID, graphql_name='deletedAddressId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyAssignCustomerAsContactPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_contact', 'user_errors')
+    company_contact = sgqlc.types.Field('CompanyContact', graphql_name='companyContact')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyAssignMainContactPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company', 'user_errors')
+    company = sgqlc.types.Field('Company', graphql_name='company')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Company'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class CompanyContactAssignRolePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_contact_role_assignment', 'user_errors')
+    company_contact_role_assignment = sgqlc.types.Field('CompanyContactRoleAssignment', graphql_name='companyContactRoleAssignment')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyContactAssignRolesPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('role_assignments', 'user_errors')
+    role_assignments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('CompanyContactRoleAssignment')), graphql_name='roleAssignments')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyContactConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyContactEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyContact'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class CompanyContactCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_contact', 'user_errors')
+    company_contact = sgqlc.types.Field('CompanyContact', graphql_name='companyContact')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyContactDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_company_contact_id', 'user_errors')
+    deleted_company_contact_id = sgqlc.types.Field(ID, graphql_name='deletedCompanyContactId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyContactEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('CompanyContact'), graphql_name='node')
+
+
+class CompanyContactRevokeRolePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('revoked_company_contact_role_assignment_id', 'user_errors')
+    revoked_company_contact_role_assignment_id = sgqlc.types.Field(ID, graphql_name='revokedCompanyContactRoleAssignmentId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyContactRevokeRolesPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('revoked_role_assignment_ids', 'user_errors')
+    revoked_role_assignment_ids = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='revokedRoleAssignmentIds')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyContactRoleAssignmentConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyContactRoleAssignmentEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyContactRoleAssignment'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class CompanyContactRoleAssignmentEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('CompanyContactRoleAssignment'), graphql_name='node')
+
+
+class CompanyContactRoleConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyContactRoleEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyContactRole'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class CompanyContactRoleEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('CompanyContactRole'), graphql_name='node')
+
+
+class CompanyContactUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_contact', 'user_errors')
+    company_contact = sgqlc.types.Field('CompanyContact', graphql_name='companyContact')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyContactsDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_company_contact_ids', 'user_errors')
+    deleted_company_contact_ids = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='deletedCompanyContactIds')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company', 'user_errors')
+    company = sgqlc.types.Field('Company', graphql_name='company')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_company_id', 'user_errors')
+    deleted_company_id = sgqlc.types.Field(ID, graphql_name='deletedCompanyId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('Company'), graphql_name='node')
+
+
+class CompanyLocationAssignAddressPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('addresses', 'user_errors')
+    addresses = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('CompanyAddress')), graphql_name='addresses')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationAssignRolesPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('role_assignments', 'user_errors')
+    role_assignments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('CompanyContactRoleAssignment')), graphql_name='roleAssignments')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationAssignTaxExemptionsPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_location', 'user_errors')
+    company_location = sgqlc.types.Field('CompanyLocation', graphql_name='companyLocation')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyLocationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CompanyLocation'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class CompanyLocationCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_location', 'user_errors')
+    company_location = sgqlc.types.Field('CompanyLocation', graphql_name='companyLocation')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationCreateTaxRegistrationPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_location', 'user_errors')
+    company_location = sgqlc.types.Field('CompanyLocation', graphql_name='companyLocation')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_company_location_id', 'user_errors')
+    deleted_company_location_id = sgqlc.types.Field(ID, graphql_name='deletedCompanyLocationId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('CompanyLocation'), graphql_name='node')
+
+
+class CompanyLocationRevokeRolesPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('revoked_role_assignment_ids', 'user_errors')
+    revoked_role_assignment_ids = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='revokedRoleAssignmentIds')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationRevokeTaxExemptionsPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_location', 'user_errors')
+    company_location = sgqlc.types.Field('CompanyLocation', graphql_name='companyLocation')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationRevokeTaxRegistrationPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_location', 'user_errors')
+    company_location = sgqlc.types.Field('CompanyLocation', graphql_name='companyLocation')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company_location', 'user_errors')
+    company_location = sgqlc.types.Field('CompanyLocation', graphql_name='companyLocation')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyLocationsDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_company_location_ids', 'user_errors')
+    deleted_company_location_ids = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='deletedCompanyLocationIds')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyRevokeMainContactPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company', 'user_errors')
+    company = sgqlc.types.Field('Company', graphql_name='company')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
+
+
+class CompanyUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company', 'user_errors')
+    company = sgqlc.types.Field('Company', graphql_name='company')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('BusinessCustomerUserError'))), graphql_name='userErrors')
 
 
 class CountriesInShippingZones(sgqlc.types.Type):
@@ -3554,8 +4667,9 @@ class CountryHarmonizedSystemCode(sgqlc.types.Type):
 
 class CountryHarmonizedSystemCodeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CountryHarmonizedSystemCodeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CountryHarmonizedSystemCode))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3586,8 +4700,9 @@ class CurrencySetting(sgqlc.types.Type):
 
 class CurrencySettingConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CurrencySettingEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CurrencySetting))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3607,8 +4722,9 @@ class CustomerAddTaxExemptionsPayload(sgqlc.types.Type):
 
 class CustomerConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CustomerEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Customer'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3663,6 +4779,31 @@ class CustomerEdge(sgqlc.types.Type):
     node = sgqlc.types.Field(sgqlc.types.non_null('Customer'), graphql_name='node')
 
 
+class CustomerEmailAddress(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('email_address', 'marketing_state', 'marketing_unsubscribe_url', 'open_tracking_level', 'open_tracking_url')
+    email_address = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='emailAddress')
+    marketing_state = sgqlc.types.Field(sgqlc.types.non_null(CustomerEmailAddressMarketingState), graphql_name='marketingState')
+    marketing_unsubscribe_url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='marketingUnsubscribeUrl')
+    open_tracking_level = sgqlc.types.Field(sgqlc.types.non_null(CustomerEmailAddressOpenTrackingLevel), graphql_name='openTrackingLevel')
+    open_tracking_url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='openTrackingUrl')
+
+
+class CustomerEmailMarketingConsentState(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('consent_updated_at', 'marketing_opt_in_level', 'marketing_state')
+    consent_updated_at = sgqlc.types.Field(DateTime, graphql_name='consentUpdatedAt')
+    marketing_opt_in_level = sgqlc.types.Field(CustomerMarketingOptInLevel, graphql_name='marketingOptInLevel')
+    marketing_state = sgqlc.types.Field(sgqlc.types.non_null(CustomerEmailMarketingState), graphql_name='marketingState')
+
+
+class CustomerEmailMarketingConsentUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('customer', 'user_errors')
+    customer = sgqlc.types.Field('Customer', graphql_name='customer')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CustomerEmailMarketingConsentUpdateUserError'))), graphql_name='userErrors')
+
+
 class CustomerGenerateAccountActivationUrlPayload(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('account_activation_url', 'user_errors')
@@ -3707,8 +4848,9 @@ class CustomerMoment(sgqlc.types.Interface):
 
 class CustomerMomentConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CustomerMomentEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CustomerMoment))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3734,8 +4876,9 @@ class CustomerPaymentInstrumentBillingAddress(sgqlc.types.Type):
 
 class CustomerPaymentMethodConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CustomerPaymentMethodEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CustomerPaymentMethod'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3818,6 +4961,13 @@ class CustomerPaypalBillingAgreement(sgqlc.types.Type):
     paypal_account_email = sgqlc.types.Field(String, graphql_name='paypalAccountEmail')
 
 
+class CustomerPhoneNumber(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('marketing_state', 'phone_number')
+    marketing_state = sgqlc.types.Field(sgqlc.types.non_null(CustomerSmsMarketingState), graphql_name='marketingState')
+    phone_number = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='phoneNumber')
+
+
 class CustomerRemoveTaxExemptionsPayload(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('customer', 'user_errors')
@@ -3830,6 +4980,37 @@ class CustomerReplaceTaxExemptionsPayload(sgqlc.types.Type):
     __field_names__ = ('customer', 'user_errors')
     customer = sgqlc.types.Field('Customer', graphql_name='customer')
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class CustomerSegmentMember(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('amount_spent', 'default_address', 'default_email_address', 'default_phone_number', 'display_name', 'first_name', 'id', 'last_name', 'last_order_id', 'note', 'number_of_orders')
+    amount_spent = sgqlc.types.Field('MoneyV2', graphql_name='amountSpent')
+    default_address = sgqlc.types.Field('MailingAddress', graphql_name='defaultAddress')
+    default_email_address = sgqlc.types.Field(CustomerEmailAddress, graphql_name='defaultEmailAddress')
+    default_phone_number = sgqlc.types.Field(CustomerPhoneNumber, graphql_name='defaultPhoneNumber')
+    display_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='displayName')
+    first_name = sgqlc.types.Field(String, graphql_name='firstName')
+    id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
+    last_name = sgqlc.types.Field(String, graphql_name='lastName')
+    last_order_id = sgqlc.types.Field(ID, graphql_name='lastOrderId')
+    note = sgqlc.types.Field(String, graphql_name='note')
+    number_of_orders = sgqlc.types.Field(UnsignedInt64, graphql_name='numberOfOrders')
+
+
+class CustomerSegmentMemberConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'page_info', 'statistics')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CustomerSegmentMemberEdge'))), graphql_name='edges')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+    statistics = sgqlc.types.Field(sgqlc.types.non_null('SegmentStatistics'), graphql_name='statistics')
+
+
+class CustomerSegmentMemberEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(CustomerSegmentMember), graphql_name='node')
 
 
 class CustomerShopPayAgreement(sgqlc.types.Type):
@@ -3861,6 +5042,12 @@ class CustomerSmsMarketingConsentUpdatePayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('CustomerSmsMarketingConsentError'))), graphql_name='userErrors')
 
 
+class CustomerStatistics(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('predicted_spend_tier',)
+    predicted_spend_tier = sgqlc.types.Field(CustomerPredictedSpendTier, graphql_name='predictedSpendTier')
+
+
 class CustomerUpdateDefaultAddressPayload(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('customer', 'user_errors')
@@ -3875,6 +5062,22 @@ class CustomerUpdatePayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
+class DelegateAccessToken(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('access_scopes', 'access_token', 'created_at')
+    access_scopes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='accessScopes')
+    access_token = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='accessToken')
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+
+
+class DelegateAccessTokenCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('delegate_access_token', 'shop', 'user_errors')
+    delegate_access_token = sgqlc.types.Field(DelegateAccessToken, graphql_name='delegateAccessToken')
+    shop = sgqlc.types.Field(sgqlc.types.non_null('Shop'), graphql_name='shop')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DelegateAccessTokenCreateUserError'))), graphql_name='userErrors')
+
+
 class DeletionEvent(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('occurred_at', 'subject_id', 'subject_type')
@@ -3885,8 +5088,9 @@ class DeletionEvent(sgqlc.types.Type):
 
 class DeletionEventConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DeletionEventEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(DeletionEvent))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3959,8 +5163,9 @@ class DeliveryLocationGroupZone(sgqlc.types.Type):
 
 class DeliveryLocationGroupZoneConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DeliveryLocationGroupZoneEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(DeliveryLocationGroupZone))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -3973,8 +5178,9 @@ class DeliveryLocationGroupZoneEdge(sgqlc.types.Type):
 
 class DeliveryMethodDefinitionConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DeliveryMethodDefinitionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DeliveryMethodDefinition'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4008,8 +5214,9 @@ class DeliveryProductVariantsCount(sgqlc.types.Type):
 
 class DeliveryProfileConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DeliveryProfileEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DeliveryProfile'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4022,8 +5229,9 @@ class DeliveryProfileEdge(sgqlc.types.Type):
 
 class DeliveryProfileItemConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DeliveryProfileItemEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DeliveryProfileItem'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4095,8 +5303,9 @@ class DiscountApplication(sgqlc.types.Interface):
 
 class DiscountApplicationConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountApplicationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(DiscountApplication))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4114,12 +5323,42 @@ class DiscountAutomaticActivatePayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountUserError'))), graphql_name='userErrors')
 
 
+class DiscountAutomaticApp(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('app_discount_type', 'combines_with', 'discount_class', 'discount_id', 'ends_at', 'error_history', 'starts_at', 'status', 'title')
+    app_discount_type = sgqlc.types.Field(sgqlc.types.non_null(AppDiscountType), graphql_name='appDiscountType')
+    combines_with = sgqlc.types.Field(sgqlc.types.non_null('DiscountCombinesWith'), graphql_name='combinesWith')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(DiscountClass), graphql_name='discountClass')
+    discount_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='discountId')
+    ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
+    error_history = sgqlc.types.Field('FunctionsErrorHistory', graphql_name='errorHistory')
+    starts_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='startsAt')
+    status = sgqlc.types.Field(sgqlc.types.non_null(DiscountStatus), graphql_name='status')
+    title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
+
+
+class DiscountAutomaticAppCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('automatic_app_discount', 'user_errors')
+    automatic_app_discount = sgqlc.types.Field(DiscountAutomaticApp, graphql_name='automaticAppDiscount')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountUserError'))), graphql_name='userErrors')
+
+
+class DiscountAutomaticAppUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('automatic_app_discount', 'user_errors')
+    automatic_app_discount = sgqlc.types.Field(DiscountAutomaticApp, graphql_name='automaticAppDiscount')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountUserError'))), graphql_name='userErrors')
+
+
 class DiscountAutomaticBasic(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('async_usage_count', 'created_at', 'customer_gets', 'ends_at', 'minimum_requirement', 'short_summary', 'starts_at', 'status', 'summary', 'title')
+    __field_names__ = ('async_usage_count', 'combines_with', 'created_at', 'customer_gets', 'discount_class', 'ends_at', 'minimum_requirement', 'short_summary', 'starts_at', 'status', 'summary', 'title')
     async_usage_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='asyncUsageCount')
+    combines_with = sgqlc.types.Field(sgqlc.types.non_null('DiscountCombinesWith'), graphql_name='combinesWith')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     customer_gets = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerGets'), graphql_name='customerGets')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(MerchandiseDiscountClass), graphql_name='discountClass')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
     minimum_requirement = sgqlc.types.Field(sgqlc.types.non_null('DiscountMinimumRequirement'), graphql_name='minimumRequirement')
     short_summary = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='shortSummary')
@@ -4166,8 +5405,9 @@ class DiscountAutomaticBxgyUpdatePayload(sgqlc.types.Type):
 
 class DiscountAutomaticConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountAutomaticEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountAutomatic'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4194,8 +5434,9 @@ class DiscountAutomaticEdge(sgqlc.types.Type):
 
 class DiscountAutomaticNodeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountAutomaticNodeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountAutomaticNode'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4213,9 +5454,10 @@ class DiscountCodeActivatePayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountUserError'))), graphql_name='userErrors')
 
 
-class DiscountCodeBasic(sgqlc.types.Type):
+class DiscountCodeApp(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('applies_once_per_customer', 'async_usage_count', 'code_count', 'codes', 'created_at', 'customer_gets', 'customer_selection', 'ends_at', 'has_timeline_comment', 'minimum_requirement', 'recurring_cycle_limit', 'shareable_urls', 'short_summary', 'starts_at', 'status', 'summary', 'title', 'total_sales', 'usage_limit')
+    __field_names__ = ('app_discount_type', 'applies_once_per_customer', 'async_usage_count', 'code_count', 'codes', 'combines_with', 'created_at', 'customer_selection', 'discount_class', 'discount_id', 'ends_at', 'error_history', 'has_timeline_comment', 'recurring_cycle_limit', 'shareable_urls', 'starts_at', 'status', 'title', 'total_sales', 'usage_limit')
+    app_discount_type = sgqlc.types.Field(sgqlc.types.non_null(AppDiscountType), graphql_name='appDiscountType')
     applies_once_per_customer = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='appliesOncePerCustomer')
     async_usage_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='asyncUsageCount')
     code_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='codeCount')
@@ -4230,9 +5472,59 @@ class DiscountCodeBasic(sgqlc.types.Type):
         ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
 ))
     )
+    combines_with = sgqlc.types.Field(sgqlc.types.non_null('DiscountCombinesWith'), graphql_name='combinesWith')
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+    customer_selection = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerSelection'), graphql_name='customerSelection')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(DiscountClass), graphql_name='discountClass')
+    discount_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='discountId')
+    ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
+    error_history = sgqlc.types.Field('FunctionsErrorHistory', graphql_name='errorHistory')
+    has_timeline_comment = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasTimelineComment')
+    recurring_cycle_limit = sgqlc.types.Field(Int, graphql_name='recurringCycleLimit')
+    shareable_urls = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountShareableUrl'))), graphql_name='shareableUrls')
+    starts_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='startsAt')
+    status = sgqlc.types.Field(sgqlc.types.non_null(DiscountStatus), graphql_name='status')
+    title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
+    total_sales = sgqlc.types.Field('MoneyV2', graphql_name='totalSales')
+    usage_limit = sgqlc.types.Field(Int, graphql_name='usageLimit')
+
+
+class DiscountCodeAppCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('code_app_discount', 'user_errors')
+    code_app_discount = sgqlc.types.Field(DiscountCodeApp, graphql_name='codeAppDiscount')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountUserError'))), graphql_name='userErrors')
+
+
+class DiscountCodeAppUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('code_app_discount', 'user_errors')
+    code_app_discount = sgqlc.types.Field(DiscountCodeApp, graphql_name='codeAppDiscount')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountUserError'))), graphql_name='userErrors')
+
+
+class DiscountCodeBasic(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('applies_once_per_customer', 'async_usage_count', 'code_count', 'codes', 'combines_with', 'created_at', 'customer_gets', 'customer_selection', 'discount_class', 'ends_at', 'has_timeline_comment', 'minimum_requirement', 'recurring_cycle_limit', 'shareable_urls', 'short_summary', 'starts_at', 'status', 'summary', 'title', 'total_sales', 'usage_limit')
+    applies_once_per_customer = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='appliesOncePerCustomer')
+    async_usage_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='asyncUsageCount')
+    code_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='codeCount')
+    codes = sgqlc.types.Field(sgqlc.types.non_null('DiscountRedeemCodeConnection'), graphql_name='codes', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(DiscountCodeSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+        ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
+))
+    )
+    combines_with = sgqlc.types.Field(sgqlc.types.non_null('DiscountCombinesWith'), graphql_name='combinesWith')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     customer_gets = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerGets'), graphql_name='customerGets')
     customer_selection = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerSelection'), graphql_name='customerSelection')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(MerchandiseDiscountClass), graphql_name='discountClass')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
     has_timeline_comment = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasTimelineComment')
     minimum_requirement = sgqlc.types.Field('DiscountMinimumRequirement', graphql_name='minimumRequirement')
@@ -4284,7 +5576,7 @@ class DiscountCodeBulkDeletePayload(sgqlc.types.Type):
 
 class DiscountCodeBxgy(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('applies_once_per_customer', 'async_usage_count', 'code_count', 'codes', 'created_at', 'customer_buys', 'customer_gets', 'customer_selection', 'ends_at', 'has_timeline_comment', 'shareable_urls', 'starts_at', 'status', 'summary', 'title', 'total_sales', 'usage_limit', 'uses_per_order_limit')
+    __field_names__ = ('applies_once_per_customer', 'async_usage_count', 'code_count', 'codes', 'combines_with', 'created_at', 'customer_buys', 'customer_gets', 'customer_selection', 'discount_class', 'ends_at', 'has_timeline_comment', 'shareable_urls', 'starts_at', 'status', 'summary', 'title', 'total_sales', 'usage_limit', 'uses_per_order_limit')
     applies_once_per_customer = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='appliesOncePerCustomer')
     async_usage_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='asyncUsageCount')
     code_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='codeCount')
@@ -4299,10 +5591,12 @@ class DiscountCodeBxgy(sgqlc.types.Type):
         ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
 ))
     )
+    combines_with = sgqlc.types.Field(sgqlc.types.non_null('DiscountCombinesWith'), graphql_name='combinesWith')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     customer_buys = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerBuys'), graphql_name='customerBuys')
     customer_gets = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerGets'), graphql_name='customerGets')
     customer_selection = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerSelection'), graphql_name='customerSelection')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(MerchandiseDiscountClass), graphql_name='discountClass')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
     has_timeline_comment = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasTimelineComment')
     shareable_urls = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountShareableUrl'))), graphql_name='shareableUrls')
@@ -4345,7 +5639,7 @@ class DiscountCodeDeletePayload(sgqlc.types.Type):
 
 class DiscountCodeFreeShipping(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('applies_on_one_time_purchase', 'applies_on_subscription', 'applies_once_per_customer', 'async_usage_count', 'code_count', 'codes', 'created_at', 'customer_selection', 'destination_selection', 'ends_at', 'has_timeline_comment', 'maximum_shipping_price', 'minimum_requirement', 'recurring_cycle_limit', 'shareable_urls', 'short_summary', 'starts_at', 'status', 'summary', 'title', 'total_sales', 'usage_limit')
+    __field_names__ = ('applies_on_one_time_purchase', 'applies_on_subscription', 'applies_once_per_customer', 'async_usage_count', 'code_count', 'codes', 'combines_with', 'created_at', 'customer_selection', 'destination_selection', 'discount_class', 'ends_at', 'has_timeline_comment', 'maximum_shipping_price', 'minimum_requirement', 'recurring_cycle_limit', 'shareable_urls', 'short_summary', 'starts_at', 'status', 'summary', 'title', 'total_sales', 'usage_limit')
     applies_on_one_time_purchase = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='appliesOnOneTimePurchase')
     applies_on_subscription = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='appliesOnSubscription')
     applies_once_per_customer = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='appliesOncePerCustomer')
@@ -4362,9 +5656,11 @@ class DiscountCodeFreeShipping(sgqlc.types.Type):
         ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
 ))
     )
+    combines_with = sgqlc.types.Field(sgqlc.types.non_null('DiscountCombinesWith'), graphql_name='combinesWith')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     customer_selection = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerSelection'), graphql_name='customerSelection')
     destination_selection = sgqlc.types.Field(sgqlc.types.non_null('DiscountShippingDestinationSelection'), graphql_name='destinationSelection')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(ShippingDiscountClass), graphql_name='discountClass')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
     has_timeline_comment = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasTimelineComment')
     maximum_shipping_price = sgqlc.types.Field('MoneyV2', graphql_name='maximumShippingPrice')
@@ -4396,8 +5692,9 @@ class DiscountCodeFreeShippingUpdatePayload(sgqlc.types.Type):
 
 class DiscountCodeNodeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountCodeNodeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountCodeNode'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4426,6 +5723,14 @@ class DiscountCollections(sgqlc.types.Type):
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
 ))
     )
+
+
+class DiscountCombinesWith(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('order_discounts', 'product_discounts', 'shipping_discounts')
+    order_discounts = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='orderDiscounts')
+    product_discounts = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='productDiscounts')
+    shipping_discounts = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='shippingDiscounts')
 
 
 class DiscountCountries(sgqlc.types.Type):
@@ -4463,9 +5768,10 @@ class DiscountCustomerGets(sgqlc.types.Type):
     value = sgqlc.types.Field(sgqlc.types.non_null('DiscountCustomerGetsValue'), graphql_name='value')
 
 
-class DiscountCustomerSavedSearches(sgqlc.types.Type):
+class DiscountCustomerSegments(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ()
+    __field_names__ = ('segments',)
+    segments = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Segment'))), graphql_name='segments')
 
 
 class DiscountCustomers(sgqlc.types.Type):
@@ -4484,6 +5790,21 @@ class DiscountMinimumSubtotal(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('greater_than_or_equal_to_subtotal',)
     greater_than_or_equal_to_subtotal = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='greaterThanOrEqualToSubtotal')
+
+
+class DiscountNodeConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountNodeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountNode'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class DiscountNodeEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('DiscountNode'), graphql_name='node')
 
 
 class DiscountOnQuantity(sgqlc.types.Type):
@@ -4558,8 +5879,9 @@ class DiscountRedeemCodeBulkCreationCode(sgqlc.types.Type):
 
 class DiscountRedeemCodeBulkCreationCodeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountRedeemCodeBulkCreationCodeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(DiscountRedeemCodeBulkCreationCode))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4572,8 +5894,9 @@ class DiscountRedeemCodeBulkCreationCodeEdge(sgqlc.types.Type):
 
 class DiscountRedeemCodeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DiscountRedeemCodeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(DiscountRedeemCode))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4600,6 +5923,13 @@ class DisplayableError(sgqlc.types.Interface):
     message = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='message')
 
 
+class DisputeEvidenceUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('dispute_evidence', 'user_errors')
+    dispute_evidence = sgqlc.types.Field('ShopifyPaymentsDisputeEvidence', graphql_name='disputeEvidence')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DisputeEvidenceUpdateUserError'))), graphql_name='userErrors')
+
+
 class DomainLocalization(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('alternate_locales', 'country', 'default_locale')
@@ -4608,23 +5938,36 @@ class DomainLocalization(sgqlc.types.Type):
     default_locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='defaultLocale')
 
 
-class DraftFulfillment(sgqlc.types.Type):
-    __schema__ = shopify
-    __field_names__ = ('allow_label_purchase', 'line_items', 'requires_shipping', 'service')
-    allow_label_purchase = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='allowLabelPurchase')
-    line_items = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LineItem'))), graphql_name='lineItems')
-    requires_shipping = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='requiresShipping')
-    service = sgqlc.types.Field(sgqlc.types.non_null('FulfillmentService'), graphql_name='service')
-
-
 class DraftOrderAppliedDiscount(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('amount_v2', 'description', 'title', 'value', 'value_type')
+    __field_names__ = ('amount_set', 'amount_v2', 'description', 'title', 'value', 'value_type')
+    amount_set = sgqlc.types.Field(sgqlc.types.non_null('MoneyBag'), graphql_name='amountSet')
     amount_v2 = sgqlc.types.Field(sgqlc.types.non_null('MoneyV2'), graphql_name='amountV2')
     description = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='description')
     title = sgqlc.types.Field(String, graphql_name='title')
     value = sgqlc.types.Field(sgqlc.types.non_null(Float), graphql_name='value')
     value_type = sgqlc.types.Field(sgqlc.types.non_null(DraftOrderAppliedDiscountType), graphql_name='valueType')
+
+
+class DraftOrderBulkAddTagsPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('job', 'user_errors')
+    job = sgqlc.types.Field('Job', graphql_name='job')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class DraftOrderBulkDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('job', 'user_errors')
+    job = sgqlc.types.Field('Job', graphql_name='job')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class DraftOrderBulkRemoveTagsPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('job', 'user_errors')
+    job = sgqlc.types.Field('Job', graphql_name='job')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
 class DraftOrderCalculatePayload(sgqlc.types.Type):
@@ -4643,9 +5986,23 @@ class DraftOrderCompletePayload(sgqlc.types.Type):
 
 class DraftOrderConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DraftOrderEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DraftOrder'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class DraftOrderCreateFromOrderPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('draft_order', 'user_errors')
+    draft_order = sgqlc.types.Field('DraftOrder', graphql_name='draftOrder')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class DraftOrderCreateMerchantCheckoutPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('user_errors',)
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
 class DraftOrderCreatePayload(sgqlc.types.Type):
@@ -4662,6 +6019,13 @@ class DraftOrderDeletePayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
+class DraftOrderDuplicatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('draft_order', 'user_errors')
+    draft_order = sgqlc.types.Field('DraftOrder', graphql_name='draftOrder')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
 class DraftOrderEdge(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('cursor', 'node')
@@ -4671,8 +6035,9 @@ class DraftOrderEdge(sgqlc.types.Type):
 
 class DraftOrderInvoicePreviewPayload(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('preview_html', 'user_errors')
+    __field_names__ = ('preview_html', 'preview_subject', 'user_errors')
     preview_html = sgqlc.types.Field(HTML, graphql_name='previewHtml')
+    preview_subject = sgqlc.types.Field(HTML, graphql_name='previewSubject')
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
@@ -4685,8 +6050,9 @@ class DraftOrderInvoiceSendPayload(sgqlc.types.Type):
 
 class DraftOrderLineItemConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DraftOrderLineItemEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('DraftOrderLineItem'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4739,8 +6105,9 @@ class EventBridgeWebhookSubscriptionUpdatePayload(sgqlc.types.Type):
 
 class EventConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('EventEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Event))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4770,8 +6137,9 @@ class File(sgqlc.types.Interface):
 
 class FileConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FileEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(File))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4833,17 +6201,10 @@ class FulfillmentCancelPayload(sgqlc.types.Type):
 
 class FulfillmentConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Fulfillment'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
-
-
-class FulfillmentCreatePayload(sgqlc.types.Type):
-    __schema__ = shopify
-    __field_names__ = ('fulfillment', 'order', 'user_errors')
-    fulfillment = sgqlc.types.Field('Fulfillment', graphql_name='fulfillment')
-    order = sgqlc.types.Field('Order', graphql_name='order')
-    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
 class FulfillmentCreateV2Payload(sgqlc.types.Type):
@@ -4862,8 +6223,9 @@ class FulfillmentEdge(sgqlc.types.Type):
 
 class FulfillmentEventConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentEventEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentEvent'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4883,8 +6245,9 @@ class FulfillmentHold(sgqlc.types.Type):
 
 class FulfillmentLineItemConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentLineItemEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentLineItem'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4940,8 +6303,9 @@ class FulfillmentOrderClosePayload(sgqlc.types.Type):
 
 class FulfillmentOrderConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentOrderEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentOrder'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4967,8 +6331,9 @@ class FulfillmentOrderInternationalDuties(sgqlc.types.Type):
 
 class FulfillmentOrderLineItemConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentOrderLineItemEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentOrderLineItem'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -4977,6 +6342,13 @@ class FulfillmentOrderLineItemEdge(sgqlc.types.Type):
     __field_names__ = ('cursor', 'node')
     cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
     node = sgqlc.types.Field(sgqlc.types.non_null('FulfillmentOrderLineItem'), graphql_name='node')
+
+
+class FulfillmentOrderLineItemWarning(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('description', 'title')
+    description = sgqlc.types.Field(String, graphql_name='description')
+    title = sgqlc.types.Field(String, graphql_name='title')
 
 
 class FulfillmentOrderLocationForMove(sgqlc.types.Type):
@@ -4989,8 +6361,9 @@ class FulfillmentOrderLocationForMove(sgqlc.types.Type):
 
 class FulfillmentOrderLocationForMoveConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentOrderLocationForMoveEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(FulfillmentOrderLocationForMove))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5003,8 +6376,9 @@ class FulfillmentOrderLocationForMoveEdge(sgqlc.types.Type):
 
 class FulfillmentOrderMerchantRequestConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentOrderMerchantRequestEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentOrderMerchantRequest'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5082,6 +6456,13 @@ class FulfillmentOrderSupportedAction(sgqlc.types.Type):
     external_url = sgqlc.types.Field(URL, graphql_name='externalUrl')
 
 
+class FulfillmentOrdersSetFulfillmentDeadlinePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('success', 'user_errors')
+    success = sgqlc.types.Field(Boolean, graphql_name='success')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('FulfillmentOrdersSetFulfillmentDeadlineUserError'))), graphql_name='userErrors')
+
+
 class FulfillmentOriginAddress(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('address1', 'address2', 'city', 'country_code', 'province_code', 'zip')
@@ -5095,16 +6476,16 @@ class FulfillmentOriginAddress(sgqlc.types.Type):
 
 class FulfillmentService(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('callback_url', 'fulfillment_orders_opt_in', 'handle', 'id', 'inventory_management', 'location', 'product_based', 'service_name', 'shipping_methods', 'type')
+    __field_names__ = ('callback_url', 'fulfillment_orders_opt_in', 'handle', 'id', 'inventory_management', 'location', 'permits_sku_sharing', 'product_based', 'service_name', 'type')
     callback_url = sgqlc.types.Field(URL, graphql_name='callbackUrl')
     fulfillment_orders_opt_in = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='fulfillmentOrdersOptIn')
     handle = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='handle')
     id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
     inventory_management = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='inventoryManagement')
     location = sgqlc.types.Field('Location', graphql_name='location')
+    permits_sku_sharing = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='permitsSkuSharing')
     product_based = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='productBased')
     service_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='serviceName')
-    shipping_methods = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShippingMethod'))), graphql_name='shippingMethods')
     type = sgqlc.types.Field(sgqlc.types.non_null(FulfillmentServiceType), graphql_name='type')
 
 
@@ -5137,13 +6518,6 @@ class FulfillmentTrackingInfo(sgqlc.types.Type):
     url = sgqlc.types.Field(URL, graphql_name='url')
 
 
-class FulfillmentTrackingInfoUpdatePayload(sgqlc.types.Type):
-    __schema__ = shopify
-    __field_names__ = ('fulfillment', 'user_errors')
-    fulfillment = sgqlc.types.Field('Fulfillment', graphql_name='fulfillment')
-    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
-
-
 class FulfillmentTrackingInfoUpdateV2Payload(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('fulfillment', 'user_errors')
@@ -5151,10 +6525,27 @@ class FulfillmentTrackingInfoUpdateV2Payload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
+class FunctionsAppBridge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('create_path', 'details_path')
+    create_path = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='createPath')
+    details_path = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='detailsPath')
+
+
+class FunctionsErrorHistory(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('errors_first_occurred_at', 'first_occurred_at', 'has_been_shared_since_last_error', 'has_shared_recent_errors')
+    errors_first_occurred_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='errorsFirstOccurredAt')
+    first_occurred_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='firstOccurredAt')
+    has_been_shared_since_last_error = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasBeenSharedSinceLastError')
+    has_shared_recent_errors = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasSharedRecentErrors')
+
+
 class GiftCardConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('GiftCardEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('GiftCard'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5272,14 +6663,16 @@ class HasPublishedTranslations(sgqlc.types.Interface):
     __field_names__ = ('translations',)
     translations = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PublishedTranslation'))), graphql_name='translations', args=sgqlc.types.ArgDict((
         ('locale', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='locale', default=None)),
+        ('market_id', sgqlc.types.Arg(ID, graphql_name='marketId', default=None)),
 ))
     )
 
 
 class ImageConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ImageEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Image'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5318,6 +6711,14 @@ class InventoryBulkAdjustQuantityAtLocationPayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
+class InventoryBulkToggleActivationPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('inventory_item', 'inventory_levels', 'user_errors')
+    inventory_item = sgqlc.types.Field('InventoryItem', graphql_name='inventoryItem')
+    inventory_levels = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('InventoryLevel')), graphql_name='inventoryLevels')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('InventoryBulkToggleActivationUserError'))), graphql_name='userErrors')
+
+
 class InventoryDeactivatePayload(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('user_errors',)
@@ -5326,8 +6727,9 @@ class InventoryDeactivatePayload(sgqlc.types.Type):
 
 class InventoryItemConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('InventoryItemEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('InventoryItem'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5347,8 +6749,9 @@ class InventoryItemUpdatePayload(sgqlc.types.Type):
 
 class InventoryLevelConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('InventoryLevelEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('InventoryLevel'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5382,8 +6785,9 @@ class LimitedPendingOrderCount(sgqlc.types.Type):
 
 class LineItemConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LineItemEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LineItem'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5396,8 +6800,9 @@ class LineItemEdge(sgqlc.types.Type):
 
 class LineItemMutableConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LineItemMutableEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LineItemMutable'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5410,8 +6815,9 @@ class LineItemMutableEdge(sgqlc.types.Type):
 
 class LineItemSellingPlan(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('name',)
+    __field_names__ = ('name', 'selling_plan_id')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    selling_plan_id = sgqlc.types.Field(ID, graphql_name='sellingPlanId')
 
 
 class Locale(sgqlc.types.Type):
@@ -5433,8 +6839,9 @@ class LocalizationExtension(sgqlc.types.Type):
 
 class LocalizationExtensionConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LocalizationExtensionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(LocalizationExtension))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5443,6 +6850,20 @@ class LocalizationExtensionEdge(sgqlc.types.Type):
     __field_names__ = ('cursor', 'node')
     cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
     node = sgqlc.types.Field(sgqlc.types.non_null(LocalizationExtension), graphql_name='node')
+
+
+class LocationActivatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('location', 'location_activate_user_errors')
+    location = sgqlc.types.Field('Location', graphql_name='location')
+    location_activate_user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LocationActivateUserError'))), graphql_name='locationActivateUserErrors')
+
+
+class LocationAddPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('location', 'user_errors')
+    location = sgqlc.types.Field('Location', graphql_name='location')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LocationAddUserError'))), graphql_name='userErrors')
 
 
 class LocationAddress(sgqlc.types.Type):
@@ -5464,9 +6885,24 @@ class LocationAddress(sgqlc.types.Type):
 
 class LocationConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LocationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Location'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class LocationDeactivatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('location', 'location_deactivate_user_errors')
+    location = sgqlc.types.Field('Location', graphql_name='location')
+    location_deactivate_user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LocationDeactivateUserError'))), graphql_name='locationDeactivateUserErrors')
+
+
+class LocationDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_location_id', 'location_delete_user_errors')
+    deleted_location_id = sgqlc.types.Field(ID, graphql_name='deletedLocationId')
+    location_delete_user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LocationDeleteUserError'))), graphql_name='locationDeleteUserErrors')
 
 
 class LocationEdge(sgqlc.types.Type):
@@ -5474,6 +6910,13 @@ class LocationEdge(sgqlc.types.Type):
     __field_names__ = ('cursor', 'node')
     cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
     node = sgqlc.types.Field(sgqlc.types.non_null('Location'), graphql_name='node')
+
+
+class LocationEditPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('location', 'user_errors')
+    location = sgqlc.types.Field('Location', graphql_name='location')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('LocationEditUserError'))), graphql_name='userErrors')
 
 
 class LocationSuggestedAddress(sgqlc.types.Type):
@@ -5490,11 +6933,192 @@ class LocationSuggestedAddress(sgqlc.types.Type):
     zip = sgqlc.types.Field(String, graphql_name='zip')
 
 
+class MarketConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Market'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class MarketCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market', 'user_errors')
+    market = sgqlc.types.Field('Market', graphql_name='market')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketUserError'))), graphql_name='userErrors')
+
+
+class MarketCurrencySettings(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('base_currency', 'local_currencies')
+    base_currency = sgqlc.types.Field(sgqlc.types.non_null(CurrencySetting), graphql_name='baseCurrency')
+    local_currencies = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='localCurrencies')
+
+
+class MarketCurrencySettingsUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market', 'user_errors')
+    market = sgqlc.types.Field('Market', graphql_name='market')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketCurrencySettingsUserError'))), graphql_name='userErrors')
+
+
+class MarketDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_id', 'user_errors')
+    deleted_id = sgqlc.types.Field(ID, graphql_name='deletedId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketUserError'))), graphql_name='userErrors')
+
+
+class MarketEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('Market'), graphql_name='node')
+
+
+class MarketLocalizableContent(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('digest', 'key', 'value')
+    digest = sgqlc.types.Field(String, graphql_name='digest')
+    key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
+    value = sgqlc.types.Field(String, graphql_name='value')
+
+
+class MarketLocalizableResource(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market_localizable_content', 'market_localizations', 'resource_id')
+    market_localizable_content = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MarketLocalizableContent))), graphql_name='marketLocalizableContent')
+    market_localizations = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketLocalization'))), graphql_name='marketLocalizations', args=sgqlc.types.ArgDict((
+        ('market_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='marketId', default=None)),
+))
+    )
+    resource_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='resourceId')
+
+
+class MarketLocalizableResourceConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketLocalizableResourceEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MarketLocalizableResource))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class MarketLocalizableResourceEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(MarketLocalizableResource), graphql_name='node')
+
+
+class MarketLocalization(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('key', 'market', 'outdated', 'value')
+    key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
+    market = sgqlc.types.Field(sgqlc.types.non_null('Market'), graphql_name='market')
+    outdated = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='outdated')
+    value = sgqlc.types.Field(String, graphql_name='value')
+
+
+class MarketLocalizationsRegisterPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market_localizations', 'user_errors')
+    market_localizations = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(MarketLocalization)), graphql_name='marketLocalizations')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('TranslationUserError'))), graphql_name='userErrors')
+
+
+class MarketLocalizationsRemovePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market_localizations', 'user_errors')
+    market_localizations = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(MarketLocalization)), graphql_name='marketLocalizations')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('TranslationUserError'))), graphql_name='userErrors')
+
+
+class MarketRegion(sgqlc.types.Interface):
+    __schema__ = shopify
+    __field_names__ = ('id', 'name')
+    id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+
+
+class MarketRegionConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketRegionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MarketRegion))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class MarketRegionDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_id', 'market', 'user_errors')
+    deleted_id = sgqlc.types.Field(ID, graphql_name='deletedId')
+    market = sgqlc.types.Field('Market', graphql_name='market')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketUserError'))), graphql_name='userErrors')
+
+
+class MarketRegionEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(MarketRegion), graphql_name='node')
+
+
+class MarketRegionsCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market', 'user_errors')
+    market = sgqlc.types.Field('Market', graphql_name='market')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketUserError'))), graphql_name='userErrors')
+
+
+class MarketUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market', 'user_errors')
+    market = sgqlc.types.Field('Market', graphql_name='market')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketUserError'))), graphql_name='userErrors')
+
+
+class MarketWebPresenceCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market', 'user_errors')
+    market = sgqlc.types.Field('Market', graphql_name='market')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketUserError'))), graphql_name='userErrors')
+
+
+class MarketWebPresenceDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_id', 'market', 'user_errors')
+    deleted_id = sgqlc.types.Field(ID, graphql_name='deletedId')
+    market = sgqlc.types.Field('Market', graphql_name='market')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketUserError'))), graphql_name='userErrors')
+
+
+class MarketWebPresenceRootUrl(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('locale', 'url')
+    locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='locale')
+    url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='url')
+
+
+class MarketWebPresenceUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('market', 'user_errors')
+    market = sgqlc.types.Field('Market', graphql_name='market')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketUserError'))), graphql_name='userErrors')
+
+
 class MarketingActivityConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketingActivityEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketingActivity'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class MarketingActivityCreateExternalPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('marketing_activity', 'user_errors')
+    marketing_activity = sgqlc.types.Field('MarketingActivity', graphql_name='marketingActivity')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketingActivityUserError'))), graphql_name='userErrors')
 
 
 class MarketingActivityCreatePayload(sgqlc.types.Type):
@@ -5517,6 +7141,13 @@ class MarketingActivityExtensionAppErrors(sgqlc.types.Type):
     __field_names__ = ('code', 'user_errors')
     code = sgqlc.types.Field(sgqlc.types.non_null(MarketingActivityExtensionAppErrorCode), graphql_name='code')
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class MarketingActivityUpdateExternalPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('marketing_activity', 'user_errors')
+    marketing_activity = sgqlc.types.Field('MarketingActivity', graphql_name='marketingActivity')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketingActivityUserError'))), graphql_name='userErrors')
 
 
 class MarketingActivityUpdatePayload(sgqlc.types.Type):
@@ -5566,8 +7197,9 @@ class MarketingEngagementCreatePayload(sgqlc.types.Type):
 
 class MarketingEventConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketingEventEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketingEvent'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5591,8 +7223,9 @@ class Media(sgqlc.types.Interface):
 
 class MediaConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MediaEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Media))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5609,6 +7242,12 @@ class MediaError(sgqlc.types.Type):
     code = sgqlc.types.Field(sgqlc.types.non_null(MediaErrorCode), graphql_name='code')
     details = sgqlc.types.Field(String, graphql_name='details')
     message = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='message')
+
+
+class MediaImageOriginalSource(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('file_size',)
+    file_size = sgqlc.types.Field(Int, graphql_name='fileSize')
 
 
 class MediaPreviewImage(sgqlc.types.Type):
@@ -5634,15 +7273,17 @@ class MerchantApprovalSignals(sgqlc.types.Type):
 
 class MetafieldConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Metafield'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
 class MetafieldDefinitionConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldDefinitionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldDefinition'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5683,12 +7324,11 @@ class MetafieldDefinitionSupportedValidation(sgqlc.types.Type):
 
 class MetafieldDefinitionType(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('category', 'name', 'supported_validations', 'supports_definition_migrations', 'value_type')
+    __field_names__ = ('category', 'name', 'supported_validations', 'supports_definition_migrations')
     category = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='category')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     supported_validations = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MetafieldDefinitionSupportedValidation))), graphql_name='supportedValidations')
     supports_definition_migrations = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='supportsDefinitionMigrations')
-    value_type = sgqlc.types.Field(sgqlc.types.non_null(MetafieldValueType), graphql_name='valueType')
 
 
 class MetafieldDefinitionUnpinPayload(sgqlc.types.Type):
@@ -5727,10 +7367,26 @@ class MetafieldEdge(sgqlc.types.Type):
     node = sgqlc.types.Field(sgqlc.types.non_null('Metafield'), graphql_name='node')
 
 
+class MetafieldReferenceConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldReferenceEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of('MetafieldReference')), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class MetafieldReferenceEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field('MetafieldReference', graphql_name='node')
+
+
 class MetafieldStorefrontVisibilityConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldStorefrontVisibilityEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MetafieldStorefrontVisibility'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -5793,7 +7449,7 @@ class MoneyV2(sgqlc.types.Type):
 
 class Mutation(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('app_credit_create', 'app_purchase_one_time_create', 'app_revenue_attribution_record_create', 'app_revenue_attribution_record_delete', 'app_subscription_cancel', 'app_subscription_create', 'app_subscription_line_item_update', 'app_usage_record_create', 'bulk_operation_cancel', 'bulk_operation_run_mutation', 'bulk_operation_run_query', 'bulk_product_resource_feedback_create', 'collection_add_products', 'collection_create', 'collection_delete', 'collection_remove_products', 'collection_reorder_products', 'collection_update', 'customer_add_tax_exemptions', 'customer_create', 'customer_delete', 'customer_generate_account_activation_url', 'customer_payment_method_credit_card_create', 'customer_payment_method_credit_card_update', 'customer_payment_method_get_update_url', 'customer_payment_method_paypal_billing_agreement_create', 'customer_payment_method_paypal_billing_agreement_update', 'customer_payment_method_remote_create', 'customer_payment_method_revoke', 'customer_payment_method_send_update_email', 'customer_remove_tax_exemptions', 'customer_replace_tax_exemptions', 'customer_sms_marketing_consent_update', 'customer_update', 'customer_update_default_address', 'delivery_profile_create', 'delivery_profile_remove', 'delivery_profile_update', 'delivery_setting_update', 'delivery_shipping_origin_assign', 'discount_automatic_activate', 'discount_automatic_basic_create', 'discount_automatic_basic_update', 'discount_automatic_bulk_delete', 'discount_automatic_bxgy_create', 'discount_automatic_bxgy_update', 'discount_automatic_deactivate', 'discount_automatic_delete', 'discount_code_activate', 'discount_code_basic_create', 'discount_code_basic_update', 'discount_code_bulk_activate', 'discount_code_bulk_deactivate', 'discount_code_bulk_delete', 'discount_code_bxgy_create', 'discount_code_bxgy_update', 'discount_code_deactivate', 'discount_code_delete', 'discount_code_free_shipping_create', 'discount_code_free_shipping_update', 'discount_code_redeem_code_bulk_delete', 'discount_redeem_code_bulk_add', 'draft_order_calculate', 'draft_order_complete', 'draft_order_create', 'draft_order_delete', 'draft_order_invoice_preview', 'draft_order_invoice_send', 'draft_order_update', 'event_bridge_webhook_subscription_create', 'event_bridge_webhook_subscription_update', 'file_create', 'file_delete', 'file_update', 'flow_trigger_receive', 'fulfillment_cancel', 'fulfillment_create_v2', 'fulfillment_order_accept_cancellation_request', 'fulfillment_order_accept_fulfillment_request', 'fulfillment_order_cancel', 'fulfillment_order_close', 'fulfillment_order_hold', 'fulfillment_order_move', 'fulfillment_order_open', 'fulfillment_order_reject_cancellation_request', 'fulfillment_order_reject_fulfillment_request', 'fulfillment_order_release_hold', 'fulfillment_order_reschedule', 'fulfillment_order_submit_cancellation_request', 'fulfillment_order_submit_fulfillment_request', 'fulfillment_service_create', 'fulfillment_service_delete', 'fulfillment_service_update', 'fulfillment_tracking_info_update_v2', 'gift_card_create', 'gift_card_disable', 'gift_card_update', 'inventory_activate', 'inventory_adjust_quantity', 'inventory_bulk_adjust_quantity_at_location', 'inventory_deactivate', 'inventory_item_update', 'marketing_activity_create', 'marketing_activity_update', 'marketing_engagement_create', 'metafield_definition_create', 'metafield_definition_delete', 'metafield_definition_pin', 'metafield_definition_unpin', 'metafield_definition_update', 'metafield_delete', 'metafield_storefront_visibility_create', 'metafield_storefront_visibility_delete', 'metafields_set', 'order_capture', 'order_close', 'order_edit_add_custom_item', 'order_edit_add_line_item_discount', 'order_edit_add_variant', 'order_edit_begin', 'order_edit_commit', 'order_edit_remove_line_item_discount', 'order_edit_set_quantity', 'order_invoice_send', 'order_mark_as_paid', 'order_open', 'order_update', 'payment_terms_create', 'payment_terms_delete', 'payment_terms_update', 'price_list_create', 'price_list_delete', 'price_list_fixed_prices_add', 'price_list_fixed_prices_delete', 'price_list_update', 'price_rule_activate', 'price_rule_create', 'price_rule_deactivate', 'price_rule_delete', 'price_rule_discount_code_create', 'price_rule_discount_code_update', 'price_rule_update', 'private_metafield_delete', 'private_metafield_upsert', 'product_append_images', 'product_change_status', 'product_create', 'product_create_media', 'product_delete', 'product_delete_images', 'product_delete_media', 'product_duplicate', 'product_image_update', 'product_join_selling_plan_groups', 'product_leave_selling_plan_groups', 'product_reorder_images', 'product_reorder_media', 'product_update', 'product_update_media', 'product_variant_append_media', 'product_variant_create', 'product_variant_delete', 'product_variant_detach_media', 'product_variant_join_selling_plan_groups', 'product_variant_leave_selling_plan_groups', 'product_variant_update', 'product_variants_bulk_create', 'product_variants_bulk_delete', 'product_variants_bulk_reorder', 'product_variants_bulk_update', 'pub_sub_webhook_subscription_create', 'pub_sub_webhook_subscription_update', 'publishable_publish', 'publishable_publish_to_current_channel', 'publishable_unpublish', 'publishable_unpublish_to_current_channel', 'refund_create', 'saved_search_create', 'saved_search_delete', 'saved_search_update', 'script_tag_create', 'script_tag_delete', 'script_tag_update', 'selling_plan_group_add_product_variants', 'selling_plan_group_add_products', 'selling_plan_group_create', 'selling_plan_group_delete', 'selling_plan_group_remove_product_variants', 'selling_plan_group_remove_products', 'selling_plan_group_update', 'shipping_package_delete', 'shipping_package_make_default', 'shipping_package_update', 'shop_locale_disable', 'shop_locale_enable', 'shop_locale_update', 'shop_policy_update', 'staged_uploads_create', 'standard_metafield_definition_enable', 'storefront_access_token_create', 'storefront_access_token_delete', 'subscription_billing_attempt_create', 'subscription_contract_create', 'subscription_contract_set_next_billing_date', 'subscription_contract_update', 'subscription_draft_commit', 'subscription_draft_discount_add', 'subscription_draft_discount_code_apply', 'subscription_draft_discount_remove', 'subscription_draft_discount_update', 'subscription_draft_free_shipping_discount_add', 'subscription_draft_free_shipping_discount_update', 'subscription_draft_line_add', 'subscription_draft_line_remove', 'subscription_draft_line_update', 'subscription_draft_update', 'tags_add', 'tags_remove', 'translations_register', 'translations_remove', 'url_redirect_bulk_delete_all', 'url_redirect_bulk_delete_by_ids', 'url_redirect_bulk_delete_by_saved_search', 'url_redirect_bulk_delete_by_search', 'url_redirect_create', 'url_redirect_delete', 'url_redirect_import_create', 'url_redirect_import_submit', 'url_redirect_update', 'webhook_subscription_create', 'webhook_subscription_delete', 'webhook_subscription_update')
+    __field_names__ = ('app_credit_create', 'app_purchase_one_time_create', 'app_revenue_attribution_record_create', 'app_revenue_attribution_record_delete', 'app_subscription_cancel', 'app_subscription_create', 'app_subscription_line_item_update', 'app_subscription_trial_extend', 'app_usage_record_create', 'bulk_operation_cancel', 'bulk_operation_run_mutation', 'bulk_operation_run_query', 'bulk_product_resource_feedback_create', 'collection_add_products', 'collection_add_products_v2', 'collection_create', 'collection_delete', 'collection_remove_products', 'collection_reorder_products', 'collection_update', 'companies_delete', 'company_address_delete', 'company_assign_customer_as_contact', 'company_assign_main_contact', 'company_contact_assign_role', 'company_contact_assign_roles', 'company_contact_create', 'company_contact_delete', 'company_contact_revoke_role', 'company_contact_revoke_roles', 'company_contact_update', 'company_contacts_delete', 'company_create', 'company_delete', 'company_location_assign_address', 'company_location_assign_roles', 'company_location_assign_tax_exemptions', 'company_location_create', 'company_location_create_tax_registration', 'company_location_delete', 'company_location_revoke_roles', 'company_location_revoke_tax_exemptions', 'company_location_revoke_tax_registration', 'company_location_update', 'company_locations_delete', 'company_revoke_main_contact', 'company_update', 'customer_add_tax_exemptions', 'customer_create', 'customer_delete', 'customer_email_marketing_consent_update', 'customer_generate_account_activation_url', 'customer_payment_method_credit_card_create', 'customer_payment_method_credit_card_update', 'customer_payment_method_get_update_url', 'customer_payment_method_paypal_billing_agreement_create', 'customer_payment_method_paypal_billing_agreement_update', 'customer_payment_method_remote_create', 'customer_payment_method_revoke', 'customer_payment_method_send_update_email', 'customer_remove_tax_exemptions', 'customer_replace_tax_exemptions', 'customer_sms_marketing_consent_update', 'customer_update', 'customer_update_default_address', 'delegate_access_token_create', 'delivery_profile_create', 'delivery_profile_remove', 'delivery_profile_update', 'delivery_setting_update', 'delivery_shipping_origin_assign', 'discount_automatic_activate', 'discount_automatic_app_create', 'discount_automatic_app_update', 'discount_automatic_basic_create', 'discount_automatic_basic_update', 'discount_automatic_bulk_delete', 'discount_automatic_bxgy_create', 'discount_automatic_bxgy_update', 'discount_automatic_deactivate', 'discount_automatic_delete', 'discount_code_activate', 'discount_code_app_create', 'discount_code_app_update', 'discount_code_basic_create', 'discount_code_basic_update', 'discount_code_bulk_activate', 'discount_code_bulk_deactivate', 'discount_code_bulk_delete', 'discount_code_bxgy_create', 'discount_code_bxgy_update', 'discount_code_deactivate', 'discount_code_delete', 'discount_code_free_shipping_create', 'discount_code_free_shipping_update', 'discount_code_redeem_code_bulk_delete', 'discount_redeem_code_bulk_add', 'dispute_evidence_update', 'draft_order_bulk_add_tags', 'draft_order_bulk_delete', 'draft_order_bulk_remove_tags', 'draft_order_calculate', 'draft_order_complete', 'draft_order_create', 'draft_order_create_from_order', 'draft_order_create_merchant_checkout', 'draft_order_delete', 'draft_order_duplicate', 'draft_order_invoice_preview', 'draft_order_invoice_send', 'draft_order_update', 'event_bridge_webhook_subscription_create', 'event_bridge_webhook_subscription_update', 'file_create', 'file_delete', 'file_update', 'flow_trigger_receive', 'fulfillment_cancel', 'fulfillment_create_v2', 'fulfillment_order_accept_cancellation_request', 'fulfillment_order_accept_fulfillment_request', 'fulfillment_order_cancel', 'fulfillment_order_close', 'fulfillment_order_hold', 'fulfillment_order_move', 'fulfillment_order_open', 'fulfillment_order_reject_cancellation_request', 'fulfillment_order_reject_fulfillment_request', 'fulfillment_order_release_hold', 'fulfillment_order_reschedule', 'fulfillment_order_submit_cancellation_request', 'fulfillment_order_submit_fulfillment_request', 'fulfillment_orders_set_fulfillment_deadline', 'fulfillment_service_create', 'fulfillment_service_delete', 'fulfillment_service_update', 'fulfillment_tracking_info_update_v2', 'gift_card_create', 'gift_card_disable', 'gift_card_update', 'inventory_activate', 'inventory_adjust_quantity', 'inventory_bulk_adjust_quantity_at_location', 'inventory_bulk_toggle_activation', 'inventory_deactivate', 'inventory_item_update', 'location_activate', 'location_add', 'location_deactivate', 'location_delete', 'location_edit', 'market_create', 'market_currency_settings_update', 'market_delete', 'market_localizations_register', 'market_localizations_remove', 'market_region_delete', 'market_regions_create', 'market_update', 'market_web_presence_create', 'market_web_presence_delete', 'market_web_presence_update', 'marketing_activity_create', 'marketing_activity_create_external', 'marketing_activity_update', 'marketing_activity_update_external', 'marketing_engagement_create', 'metafield_definition_create', 'metafield_definition_delete', 'metafield_definition_pin', 'metafield_definition_unpin', 'metafield_definition_update', 'metafield_delete', 'metafield_storefront_visibility_create', 'metafield_storefront_visibility_delete', 'metafields_set', 'order_capture', 'order_close', 'order_create_mandate_payment', 'order_edit_add_custom_item', 'order_edit_add_line_item_discount', 'order_edit_add_variant', 'order_edit_begin', 'order_edit_commit', 'order_edit_remove_line_item_discount', 'order_edit_set_quantity', 'order_invoice_send', 'order_mark_as_paid', 'order_open', 'order_update', 'payment_terms_create', 'payment_terms_delete', 'payment_terms_update', 'price_list_create', 'price_list_delete', 'price_list_fixed_prices_add', 'price_list_fixed_prices_delete', 'price_list_update', 'price_rule_activate', 'price_rule_create', 'price_rule_deactivate', 'price_rule_delete', 'price_rule_discount_code_create', 'price_rule_discount_code_update', 'price_rule_update', 'private_metafield_delete', 'private_metafield_upsert', 'product_append_images', 'product_change_status', 'product_create', 'product_create_media', 'product_delete', 'product_delete_images', 'product_delete_media', 'product_duplicate', 'product_image_update', 'product_join_selling_plan_groups', 'product_leave_selling_plan_groups', 'product_reorder_images', 'product_reorder_media', 'product_update', 'product_update_media', 'product_variant_append_media', 'product_variant_create', 'product_variant_delete', 'product_variant_detach_media', 'product_variant_join_selling_plan_groups', 'product_variant_leave_selling_plan_groups', 'product_variant_update', 'product_variants_bulk_create', 'product_variants_bulk_delete', 'product_variants_bulk_reorder', 'product_variants_bulk_update', 'pub_sub_webhook_subscription_create', 'pub_sub_webhook_subscription_update', 'publishable_publish', 'publishable_publish_to_current_channel', 'publishable_unpublish', 'publishable_unpublish_to_current_channel', 'refund_create', 'saved_search_create', 'saved_search_delete', 'saved_search_update', 'script_tag_create', 'script_tag_delete', 'script_tag_update', 'segment_create', 'segment_delete', 'segment_update', 'selling_plan_group_add_product_variants', 'selling_plan_group_add_products', 'selling_plan_group_create', 'selling_plan_group_delete', 'selling_plan_group_remove_product_variants', 'selling_plan_group_remove_products', 'selling_plan_group_update', 'shipping_package_delete', 'shipping_package_make_default', 'shipping_package_update', 'shop_locale_disable', 'shop_locale_enable', 'shop_locale_update', 'shop_policy_update', 'staged_uploads_create', 'standard_metafield_definition_enable', 'storefront_access_token_create', 'storefront_access_token_delete', 'subscription_billing_attempt_create', 'subscription_billing_cycle_contract_draft_commit', 'subscription_billing_cycle_contract_draft_concatenate', 'subscription_billing_cycle_contract_edit', 'subscription_billing_cycle_edit_delete', 'subscription_billing_cycle_edits_delete', 'subscription_billing_cycle_schedule_edit', 'subscription_contract_create', 'subscription_contract_set_next_billing_date', 'subscription_contract_update', 'subscription_draft_commit', 'subscription_draft_discount_add', 'subscription_draft_discount_code_apply', 'subscription_draft_discount_remove', 'subscription_draft_discount_update', 'subscription_draft_free_shipping_discount_add', 'subscription_draft_free_shipping_discount_update', 'subscription_draft_line_add', 'subscription_draft_line_remove', 'subscription_draft_line_update', 'subscription_draft_update', 'tags_add', 'tags_remove', 'translations_register', 'translations_remove', 'url_redirect_bulk_delete_all', 'url_redirect_bulk_delete_by_ids', 'url_redirect_bulk_delete_by_saved_search', 'url_redirect_bulk_delete_by_search', 'url_redirect_create', 'url_redirect_delete', 'url_redirect_import_create', 'url_redirect_import_submit', 'url_redirect_update', 'web_pixel_create', 'web_pixel_delete', 'web_pixel_update', 'webhook_subscription_create', 'webhook_subscription_delete', 'webhook_subscription_update')
     app_credit_create = sgqlc.types.Field(AppCreditCreatePayload, graphql_name='appCreditCreate', args=sgqlc.types.ArgDict((
         ('description', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='description', default=None)),
         ('amount', sgqlc.types.Arg(sgqlc.types.non_null(MoneyInput), graphql_name='amount', default=None)),
@@ -5817,6 +7473,7 @@ class Mutation(sgqlc.types.Type):
     )
     app_subscription_cancel = sgqlc.types.Field(AppSubscriptionCancelPayload, graphql_name='appSubscriptionCancel', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('prorate', sgqlc.types.Arg(Boolean, graphql_name='prorate', default=False)),
 ))
     )
     app_subscription_create = sgqlc.types.Field(AppSubscriptionCreatePayload, graphql_name='appSubscriptionCreate', args=sgqlc.types.ArgDict((
@@ -5825,11 +7482,17 @@ class Mutation(sgqlc.types.Type):
         ('test', sgqlc.types.Arg(Boolean, graphql_name='test', default=None)),
         ('trial_days', sgqlc.types.Arg(Int, graphql_name='trialDays', default=None)),
         ('return_url', sgqlc.types.Arg(sgqlc.types.non_null(URL), graphql_name='returnUrl', default=None)),
+        ('replacement_behavior', sgqlc.types.Arg(AppSubscriptionReplacementBehavior, graphql_name='replacementBehavior', default='STANDARD')),
 ))
     )
     app_subscription_line_item_update = sgqlc.types.Field(AppSubscriptionLineItemUpdatePayload, graphql_name='appSubscriptionLineItemUpdate', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
         ('capped_amount', sgqlc.types.Arg(sgqlc.types.non_null(MoneyInput), graphql_name='cappedAmount', default=None)),
+))
+    )
+    app_subscription_trial_extend = sgqlc.types.Field(AppSubscriptionTrialExtendPayload, graphql_name='appSubscriptionTrialExtend', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('days', sgqlc.types.Arg(sgqlc.types.non_null(Int), graphql_name='days', default=None)),
 ))
     )
     app_usage_record_create = sgqlc.types.Field(AppUsageRecordCreatePayload, graphql_name='appUsageRecordCreate', args=sgqlc.types.ArgDict((
@@ -5861,6 +7524,11 @@ class Mutation(sgqlc.types.Type):
         ('product_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='productIds', default=None)),
 ))
     )
+    collection_add_products_v2 = sgqlc.types.Field(CollectionAddProductsV2Payload, graphql_name='collectionAddProductsV2', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('product_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='productIds', default=None)),
+))
+    )
     collection_create = sgqlc.types.Field(CollectionCreatePayload, graphql_name='collectionCreate', args=sgqlc.types.ArgDict((
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(CollectionInput), graphql_name='input', default=None)),
 ))
@@ -5883,6 +7551,134 @@ class Mutation(sgqlc.types.Type):
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(CollectionInput), graphql_name='input', default=None)),
 ))
     )
+    companies_delete = sgqlc.types.Field(CompaniesDeletePayload, graphql_name='companiesDelete', args=sgqlc.types.ArgDict((
+        ('company_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='companyIds', default=None)),
+))
+    )
+    company_address_delete = sgqlc.types.Field(CompanyAddressDeletePayload, graphql_name='companyAddressDelete', args=sgqlc.types.ArgDict((
+        ('address_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='addressId', default=None)),
+))
+    )
+    company_assign_customer_as_contact = sgqlc.types.Field(CompanyAssignCustomerAsContactPayload, graphql_name='companyAssignCustomerAsContact', args=sgqlc.types.ArgDict((
+        ('company_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyId', default=None)),
+        ('customer_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='customerId', default=None)),
+))
+    )
+    company_assign_main_contact = sgqlc.types.Field(CompanyAssignMainContactPayload, graphql_name='companyAssignMainContact', args=sgqlc.types.ArgDict((
+        ('company_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyId', default=None)),
+        ('company_contact_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactId', default=None)),
+))
+    )
+    company_contact_assign_role = sgqlc.types.Field(CompanyContactAssignRolePayload, graphql_name='companyContactAssignRole', args=sgqlc.types.ArgDict((
+        ('company_contact_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactId', default=None)),
+        ('company_contact_role_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactRoleId', default=None)),
+        ('company_location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyLocationId', default=None)),
+))
+    )
+    company_contact_assign_roles = sgqlc.types.Field(CompanyContactAssignRolesPayload, graphql_name='companyContactAssignRoles', args=sgqlc.types.ArgDict((
+        ('company_contact_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactId', default=None)),
+        ('roles_to_assign', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CompanyContactRoleAssign))), graphql_name='rolesToAssign', default=None)),
+))
+    )
+    company_contact_create = sgqlc.types.Field(CompanyContactCreatePayload, graphql_name='companyContactCreate', args=sgqlc.types.ArgDict((
+        ('company_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyId', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(CompanyContactInput), graphql_name='input', default=None)),
+))
+    )
+    company_contact_delete = sgqlc.types.Field(CompanyContactDeletePayload, graphql_name='companyContactDelete', args=sgqlc.types.ArgDict((
+        ('company_contact_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactId', default=None)),
+))
+    )
+    company_contact_revoke_role = sgqlc.types.Field(CompanyContactRevokeRolePayload, graphql_name='companyContactRevokeRole', args=sgqlc.types.ArgDict((
+        ('company_contact_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactId', default=None)),
+        ('company_contact_role_assignment_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactRoleAssignmentId', default=None)),
+))
+    )
+    company_contact_revoke_roles = sgqlc.types.Field(CompanyContactRevokeRolesPayload, graphql_name='companyContactRevokeRoles', args=sgqlc.types.ArgDict((
+        ('company_contact_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactId', default=None)),
+        ('role_assignment_ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='roleAssignmentIds', default=None)),
+        ('revoke_all', sgqlc.types.Arg(Boolean, graphql_name='revokeAll', default=False)),
+))
+    )
+    company_contact_update = sgqlc.types.Field(CompanyContactUpdatePayload, graphql_name='companyContactUpdate', args=sgqlc.types.ArgDict((
+        ('company_contact_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyContactId', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(CompanyContactInput), graphql_name='input', default=None)),
+))
+    )
+    company_contacts_delete = sgqlc.types.Field(CompanyContactsDeletePayload, graphql_name='companyContactsDelete', args=sgqlc.types.ArgDict((
+        ('company_contact_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='companyContactIds', default=None)),
+))
+    )
+    company_create = sgqlc.types.Field(CompanyCreatePayload, graphql_name='companyCreate', args=sgqlc.types.ArgDict((
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(CompanyCreateInput), graphql_name='input', default=None)),
+))
+    )
+    company_delete = sgqlc.types.Field(CompanyDeletePayload, graphql_name='companyDelete', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    company_location_assign_address = sgqlc.types.Field(CompanyLocationAssignAddressPayload, graphql_name='companyLocationAssignAddress', args=sgqlc.types.ArgDict((
+        ('location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='locationId', default=None)),
+        ('address', sgqlc.types.Arg(sgqlc.types.non_null(CompanyAddressInput), graphql_name='address', default=None)),
+        ('address_types', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CompanyAddressType))), graphql_name='addressTypes', default=None)),
+))
+    )
+    company_location_assign_roles = sgqlc.types.Field(CompanyLocationAssignRolesPayload, graphql_name='companyLocationAssignRoles', args=sgqlc.types.ArgDict((
+        ('company_location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyLocationId', default=None)),
+        ('roles_to_assign', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CompanyLocationRoleAssign))), graphql_name='rolesToAssign', default=None)),
+))
+    )
+    company_location_assign_tax_exemptions = sgqlc.types.Field(CompanyLocationAssignTaxExemptionsPayload, graphql_name='companyLocationAssignTaxExemptions', args=sgqlc.types.ArgDict((
+        ('company_location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyLocationId', default=None)),
+        ('tax_exemptions', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TaxExemption))), graphql_name='taxExemptions', default=None)),
+))
+    )
+    company_location_create = sgqlc.types.Field(CompanyLocationCreatePayload, graphql_name='companyLocationCreate', args=sgqlc.types.ArgDict((
+        ('company_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyId', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(CompanyLocationInput), graphql_name='input', default=None)),
+))
+    )
+    company_location_create_tax_registration = sgqlc.types.Field(CompanyLocationCreateTaxRegistrationPayload, graphql_name='companyLocationCreateTaxRegistration', args=sgqlc.types.ArgDict((
+        ('location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='locationId', default=None)),
+        ('tax_id', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='taxId', default=None)),
+))
+    )
+    company_location_delete = sgqlc.types.Field(CompanyLocationDeletePayload, graphql_name='companyLocationDelete', args=sgqlc.types.ArgDict((
+        ('company_location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyLocationId', default=None)),
+))
+    )
+    company_location_revoke_roles = sgqlc.types.Field(CompanyLocationRevokeRolesPayload, graphql_name='companyLocationRevokeRoles', args=sgqlc.types.ArgDict((
+        ('company_location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyLocationId', default=None)),
+        ('roles_to_revoke', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='rolesToRevoke', default=None)),
+))
+    )
+    company_location_revoke_tax_exemptions = sgqlc.types.Field(CompanyLocationRevokeTaxExemptionsPayload, graphql_name='companyLocationRevokeTaxExemptions', args=sgqlc.types.ArgDict((
+        ('company_location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyLocationId', default=None)),
+        ('tax_exemptions', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TaxExemption))), graphql_name='taxExemptions', default=None)),
+))
+    )
+    company_location_revoke_tax_registration = sgqlc.types.Field(CompanyLocationRevokeTaxRegistrationPayload, graphql_name='companyLocationRevokeTaxRegistration', args=sgqlc.types.ArgDict((
+        ('company_location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyLocationId', default=None)),
+))
+    )
+    company_location_update = sgqlc.types.Field(CompanyLocationUpdatePayload, graphql_name='companyLocationUpdate', args=sgqlc.types.ArgDict((
+        ('company_location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyLocationId', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(CompanyLocationUpdateInput), graphql_name='input', default=None)),
+))
+    )
+    company_locations_delete = sgqlc.types.Field(CompanyLocationsDeletePayload, graphql_name='companyLocationsDelete', args=sgqlc.types.ArgDict((
+        ('company_location_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='companyLocationIds', default=None)),
+))
+    )
+    company_revoke_main_contact = sgqlc.types.Field(CompanyRevokeMainContactPayload, graphql_name='companyRevokeMainContact', args=sgqlc.types.ArgDict((
+        ('company_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyId', default=None)),
+))
+    )
+    company_update = sgqlc.types.Field(CompanyUpdatePayload, graphql_name='companyUpdate', args=sgqlc.types.ArgDict((
+        ('company_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='companyId', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(CompanyInput), graphql_name='input', default=None)),
+))
+    )
     customer_add_tax_exemptions = sgqlc.types.Field(CustomerAddTaxExemptionsPayload, graphql_name='customerAddTaxExemptions', args=sgqlc.types.ArgDict((
         ('customer_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='customerId', default=None)),
         ('tax_exemptions', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TaxExemption))), graphql_name='taxExemptions', default=None)),
@@ -5894,6 +7690,10 @@ class Mutation(sgqlc.types.Type):
     )
     customer_delete = sgqlc.types.Field(CustomerDeletePayload, graphql_name='customerDelete', args=sgqlc.types.ArgDict((
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(CustomerDeleteInput), graphql_name='input', default=None)),
+))
+    )
+    customer_email_marketing_consent_update = sgqlc.types.Field(CustomerEmailMarketingConsentUpdatePayload, graphql_name='customerEmailMarketingConsentUpdate', args=sgqlc.types.ArgDict((
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(CustomerEmailMarketingConsentUpdateInput), graphql_name='input', default=None)),
 ))
     )
     customer_generate_account_activation_url = sgqlc.types.Field(CustomerGenerateAccountActivationUrlPayload, graphql_name='customerGenerateAccountActivationUrl', args=sgqlc.types.ArgDict((
@@ -5965,6 +7765,10 @@ class Mutation(sgqlc.types.Type):
         ('address_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='addressId', default=None)),
 ))
     )
+    delegate_access_token_create = sgqlc.types.Field(DelegateAccessTokenCreatePayload, graphql_name='delegateAccessTokenCreate', args=sgqlc.types.ArgDict((
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(DelegateAccessTokenInput), graphql_name='input', default=None)),
+))
+    )
     delivery_profile_create = sgqlc.types.Field('deliveryProfileCreatePayload', graphql_name='deliveryProfileCreate', args=sgqlc.types.ArgDict((
         ('profile', sgqlc.types.Arg(sgqlc.types.non_null(DeliveryProfileInput), graphql_name='profile', default=None)),
 ))
@@ -5989,6 +7793,15 @@ class Mutation(sgqlc.types.Type):
     )
     discount_automatic_activate = sgqlc.types.Field(DiscountAutomaticActivatePayload, graphql_name='discountAutomaticActivate', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    discount_automatic_app_create = sgqlc.types.Field(DiscountAutomaticAppCreatePayload, graphql_name='discountAutomaticAppCreate', args=sgqlc.types.ArgDict((
+        ('automatic_app_discount', sgqlc.types.Arg(sgqlc.types.non_null(DiscountAutomaticAppInput), graphql_name='automaticAppDiscount', default=None)),
+))
+    )
+    discount_automatic_app_update = sgqlc.types.Field(DiscountAutomaticAppUpdatePayload, graphql_name='discountAutomaticAppUpdate', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('automatic_app_discount', sgqlc.types.Arg(sgqlc.types.non_null(DiscountAutomaticAppInput), graphql_name='automaticAppDiscount', default=None)),
 ))
     )
     discount_automatic_basic_create = sgqlc.types.Field(DiscountAutomaticBasicCreatePayload, graphql_name='discountAutomaticBasicCreate', args=sgqlc.types.ArgDict((
@@ -6025,6 +7838,15 @@ class Mutation(sgqlc.types.Type):
     )
     discount_code_activate = sgqlc.types.Field(DiscountCodeActivatePayload, graphql_name='discountCodeActivate', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    discount_code_app_create = sgqlc.types.Field(DiscountCodeAppCreatePayload, graphql_name='discountCodeAppCreate', args=sgqlc.types.ArgDict((
+        ('code_app_discount', sgqlc.types.Arg(sgqlc.types.non_null(DiscountCodeAppInput), graphql_name='codeAppDiscount', default=None)),
+))
+    )
+    discount_code_app_update = sgqlc.types.Field(DiscountCodeAppUpdatePayload, graphql_name='discountCodeAppUpdate', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('code_app_discount', sgqlc.types.Arg(sgqlc.types.non_null(DiscountCodeAppInput), graphql_name='codeAppDiscount', default=None)),
 ))
     )
     discount_code_basic_create = sgqlc.types.Field(DiscountCodeBasicCreatePayload, graphql_name='discountCodeBasicCreate', args=sgqlc.types.ArgDict((
@@ -6092,6 +7914,31 @@ class Mutation(sgqlc.types.Type):
         ('codes', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(DiscountRedeemCodeInput))), graphql_name='codes', default=None)),
 ))
     )
+    dispute_evidence_update = sgqlc.types.Field(DisputeEvidenceUpdatePayload, graphql_name='disputeEvidenceUpdate', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(ShopifyPaymentsDisputeEvidenceUpdateInput), graphql_name='input', default=None)),
+))
+    )
+    draft_order_bulk_add_tags = sgqlc.types.Field(DraftOrderBulkAddTagsPayload, graphql_name='draftOrderBulkAddTags', args=sgqlc.types.ArgDict((
+        ('search', sgqlc.types.Arg(String, graphql_name='search', default=None)),
+        ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
+        ('ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='ids', default=None)),
+        ('tags', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='tags', default=None)),
+))
+    )
+    draft_order_bulk_delete = sgqlc.types.Field(DraftOrderBulkDeletePayload, graphql_name='draftOrderBulkDelete', args=sgqlc.types.ArgDict((
+        ('search', sgqlc.types.Arg(String, graphql_name='search', default=None)),
+        ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
+        ('ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='ids', default=None)),
+))
+    )
+    draft_order_bulk_remove_tags = sgqlc.types.Field(DraftOrderBulkRemoveTagsPayload, graphql_name='draftOrderBulkRemoveTags', args=sgqlc.types.ArgDict((
+        ('search', sgqlc.types.Arg(String, graphql_name='search', default=None)),
+        ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
+        ('ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='ids', default=None)),
+        ('tags', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='tags', default=None)),
+))
+    )
     draft_order_calculate = sgqlc.types.Field(DraftOrderCalculatePayload, graphql_name='draftOrderCalculate', args=sgqlc.types.ArgDict((
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(DraftOrderInput), graphql_name='input', default=None)),
 ))
@@ -6099,14 +7946,28 @@ class Mutation(sgqlc.types.Type):
     draft_order_complete = sgqlc.types.Field(DraftOrderCompletePayload, graphql_name='draftOrderComplete', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
         ('payment_pending', sgqlc.types.Arg(Boolean, graphql_name='paymentPending', default=False)),
+        ('payment_gateway_id', sgqlc.types.Arg(ID, graphql_name='paymentGatewayId', default=None)),
+        ('source_name', sgqlc.types.Arg(String, graphql_name='sourceName', default=None)),
 ))
     )
     draft_order_create = sgqlc.types.Field(DraftOrderCreatePayload, graphql_name='draftOrderCreate', args=sgqlc.types.ArgDict((
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(DraftOrderInput), graphql_name='input', default=None)),
 ))
     )
+    draft_order_create_from_order = sgqlc.types.Field(DraftOrderCreateFromOrderPayload, graphql_name='draftOrderCreateFromOrder', args=sgqlc.types.ArgDict((
+        ('order_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='orderId', default=None)),
+))
+    )
+    draft_order_create_merchant_checkout = sgqlc.types.Field(DraftOrderCreateMerchantCheckoutPayload, graphql_name='draftOrderCreateMerchantCheckout', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
     draft_order_delete = sgqlc.types.Field(DraftOrderDeletePayload, graphql_name='draftOrderDelete', args=sgqlc.types.ArgDict((
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(DraftOrderDeleteInput), graphql_name='input', default=None)),
+))
+    )
+    draft_order_duplicate = sgqlc.types.Field(DraftOrderDuplicatePayload, graphql_name='draftOrderDuplicate', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(ID, graphql_name='id', default=None)),
 ))
     )
     draft_order_invoice_preview = sgqlc.types.Field(DraftOrderInvoicePreviewPayload, graphql_name='draftOrderInvoicePreview', args=sgqlc.types.ArgDict((
@@ -6199,7 +8060,9 @@ class Mutation(sgqlc.types.Type):
     )
     fulfillment_order_reject_fulfillment_request = sgqlc.types.Field(FulfillmentOrderRejectFulfillmentRequestPayload, graphql_name='fulfillmentOrderRejectFulfillmentRequest', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('reason', sgqlc.types.Arg(FulfillmentOrderRejectionReason, graphql_name='reason', default=None)),
         ('message', sgqlc.types.Arg(String, graphql_name='message', default=None)),
+        ('line_items', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(IncomingRequestLineItemInput)), graphql_name='lineItems', default=None)),
 ))
     )
     fulfillment_order_release_hold = sgqlc.types.Field(FulfillmentOrderReleaseHoldPayload, graphql_name='fulfillmentOrderReleaseHold', args=sgqlc.types.ArgDict((
@@ -6224,11 +8087,17 @@ class Mutation(sgqlc.types.Type):
         ('shipping_method', sgqlc.types.Arg(String, graphql_name='shippingMethod', default=None)),
 ))
     )
+    fulfillment_orders_set_fulfillment_deadline = sgqlc.types.Field(FulfillmentOrdersSetFulfillmentDeadlinePayload, graphql_name='fulfillmentOrdersSetFulfillmentDeadline', args=sgqlc.types.ArgDict((
+        ('fulfillment_order_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='fulfillmentOrderIds', default=None)),
+        ('fulfillment_deadline', sgqlc.types.Arg(sgqlc.types.non_null(DateTime), graphql_name='fulfillmentDeadline', default=None)),
+))
+    )
     fulfillment_service_create = sgqlc.types.Field(FulfillmentServiceCreatePayload, graphql_name='fulfillmentServiceCreate', args=sgqlc.types.ArgDict((
         ('name', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='name', default=None)),
         ('callback_url', sgqlc.types.Arg(URL, graphql_name='callbackUrl', default=None)),
         ('tracking_support', sgqlc.types.Arg(Boolean, graphql_name='trackingSupport', default=False)),
         ('fulfillment_orders_opt_in', sgqlc.types.Arg(Boolean, graphql_name='fulfillmentOrdersOptIn', default=False)),
+        ('permits_sku_sharing', sgqlc.types.Arg(Boolean, graphql_name='permitsSkuSharing', default=False)),
         ('inventory_management', sgqlc.types.Arg(Boolean, graphql_name='inventoryManagement', default=False)),
 ))
     )
@@ -6243,6 +8112,7 @@ class Mutation(sgqlc.types.Type):
         ('callback_url', sgqlc.types.Arg(URL, graphql_name='callbackUrl', default=None)),
         ('tracking_support', sgqlc.types.Arg(Boolean, graphql_name='trackingSupport', default=None)),
         ('fulfillment_orders_opt_in', sgqlc.types.Arg(Boolean, graphql_name='fulfillmentOrdersOptIn', default=None)),
+        ('permits_sku_sharing', sgqlc.types.Arg(Boolean, graphql_name='permitsSkuSharing', default=None)),
 ))
     )
     fulfillment_tracking_info_update_v2 = sgqlc.types.Field(FulfillmentTrackingInfoUpdateV2Payload, graphql_name='fulfillmentTrackingInfoUpdateV2', args=sgqlc.types.ArgDict((
@@ -6279,6 +8149,11 @@ class Mutation(sgqlc.types.Type):
         ('location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='locationId', default=None)),
 ))
     )
+    inventory_bulk_toggle_activation = sgqlc.types.Field(InventoryBulkToggleActivationPayload, graphql_name='inventoryBulkToggleActivation', args=sgqlc.types.ArgDict((
+        ('inventory_item_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='inventoryItemId', default=None)),
+        ('inventory_item_updates', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(InventoryBulkToggleActivationInput))), graphql_name='inventoryItemUpdates', default=None)),
+))
+    )
     inventory_deactivate = sgqlc.types.Field(InventoryDeactivatePayload, graphql_name='inventoryDeactivate', args=sgqlc.types.ArgDict((
         ('inventory_level_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='inventoryLevelId', default=None)),
 ))
@@ -6288,12 +8163,97 @@ class Mutation(sgqlc.types.Type):
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(InventoryItemUpdateInput), graphql_name='input', default=None)),
 ))
     )
+    location_activate = sgqlc.types.Field(LocationActivatePayload, graphql_name='locationActivate', args=sgqlc.types.ArgDict((
+        ('location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='locationId', default=None)),
+))
+    )
+    location_add = sgqlc.types.Field(LocationAddPayload, graphql_name='locationAdd', args=sgqlc.types.ArgDict((
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(LocationAddInput), graphql_name='input', default=None)),
+))
+    )
+    location_deactivate = sgqlc.types.Field(LocationDeactivatePayload, graphql_name='locationDeactivate', args=sgqlc.types.ArgDict((
+        ('location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='locationId', default=None)),
+        ('destination_location_id', sgqlc.types.Arg(ID, graphql_name='destinationLocationId', default=None)),
+))
+    )
+    location_delete = sgqlc.types.Field(LocationDeletePayload, graphql_name='locationDelete', args=sgqlc.types.ArgDict((
+        ('location_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='locationId', default=None)),
+))
+    )
+    location_edit = sgqlc.types.Field(LocationEditPayload, graphql_name='locationEdit', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(LocationEditInput), graphql_name='input', default=None)),
+))
+    )
+    market_create = sgqlc.types.Field(MarketCreatePayload, graphql_name='marketCreate', args=sgqlc.types.ArgDict((
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(MarketCreateInput), graphql_name='input', default=None)),
+))
+    )
+    market_currency_settings_update = sgqlc.types.Field(MarketCurrencySettingsUpdatePayload, graphql_name='marketCurrencySettingsUpdate', args=sgqlc.types.ArgDict((
+        ('market_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='marketId', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(MarketCurrencySettingsUpdateInput), graphql_name='input', default=None)),
+))
+    )
+    market_delete = sgqlc.types.Field(MarketDeletePayload, graphql_name='marketDelete', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    market_localizations_register = sgqlc.types.Field(MarketLocalizationsRegisterPayload, graphql_name='marketLocalizationsRegister', args=sgqlc.types.ArgDict((
+        ('resource_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='resourceId', default=None)),
+        ('market_localizations', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MarketLocalizationRegisterInput))), graphql_name='marketLocalizations', default=None)),
+))
+    )
+    market_localizations_remove = sgqlc.types.Field(MarketLocalizationsRemovePayload, graphql_name='marketLocalizationsRemove', args=sgqlc.types.ArgDict((
+        ('resource_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='resourceId', default=None)),
+        ('market_localization_keys', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='marketLocalizationKeys', default=None)),
+        ('market_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='marketIds', default=None)),
+))
+    )
+    market_region_delete = sgqlc.types.Field(MarketRegionDeletePayload, graphql_name='marketRegionDelete', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    market_regions_create = sgqlc.types.Field(MarketRegionsCreatePayload, graphql_name='marketRegionsCreate', args=sgqlc.types.ArgDict((
+        ('market_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='marketId', default=None)),
+        ('regions', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MarketRegionCreateInput))), graphql_name='regions', default=None)),
+))
+    )
+    market_update = sgqlc.types.Field(MarketUpdatePayload, graphql_name='marketUpdate', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(MarketUpdateInput), graphql_name='input', default=None)),
+))
+    )
+    market_web_presence_create = sgqlc.types.Field(MarketWebPresenceCreatePayload, graphql_name='marketWebPresenceCreate', args=sgqlc.types.ArgDict((
+        ('market_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='marketId', default=None)),
+        ('web_presence', sgqlc.types.Arg(sgqlc.types.non_null(MarketWebPresenceCreateInput), graphql_name='webPresence', default=None)),
+))
+    )
+    market_web_presence_delete = sgqlc.types.Field(MarketWebPresenceDeletePayload, graphql_name='marketWebPresenceDelete', args=sgqlc.types.ArgDict((
+        ('market_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='marketId', default=None)),
+))
+    )
+    market_web_presence_update = sgqlc.types.Field(MarketWebPresenceUpdatePayload, graphql_name='marketWebPresenceUpdate', args=sgqlc.types.ArgDict((
+        ('market_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='marketId', default=None)),
+        ('web_presence', sgqlc.types.Arg(sgqlc.types.non_null(MarketWebPresenceUpdateInput), graphql_name='webPresence', default=None)),
+))
+    )
     marketing_activity_create = sgqlc.types.Field(MarketingActivityCreatePayload, graphql_name='marketingActivityCreate', args=sgqlc.types.ArgDict((
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(MarketingActivityCreateInput), graphql_name='input', default=None)),
 ))
     )
+    marketing_activity_create_external = sgqlc.types.Field(MarketingActivityCreateExternalPayload, graphql_name='marketingActivityCreateExternal', args=sgqlc.types.ArgDict((
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(MarketingActivityCreateExternalInput), graphql_name='input', default=None)),
+))
+    )
     marketing_activity_update = sgqlc.types.Field(MarketingActivityUpdatePayload, graphql_name='marketingActivityUpdate', args=sgqlc.types.ArgDict((
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(MarketingActivityUpdateInput), graphql_name='input', default=None)),
+))
+    )
+    marketing_activity_update_external = sgqlc.types.Field(MarketingActivityUpdateExternalPayload, graphql_name='marketingActivityUpdateExternal', args=sgqlc.types.ArgDict((
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(MarketingActivityUpdateExternalInput), graphql_name='input', default=None)),
+        ('marketing_activity_id', sgqlc.types.Arg(ID, graphql_name='marketingActivityId', default=None)),
+        ('remote_id', sgqlc.types.Arg(String, graphql_name='remoteId', default=None)),
+        ('utm', sgqlc.types.Arg(UTMInput, graphql_name='utm', default=None)),
 ))
     )
     marketing_engagement_create = sgqlc.types.Field(MarketingEngagementCreatePayload, graphql_name='marketingEngagementCreate', args=sgqlc.types.ArgDict((
@@ -6344,6 +8304,14 @@ class Mutation(sgqlc.types.Type):
     )
     order_close = sgqlc.types.Field('OrderClosePayload', graphql_name='orderClose', args=sgqlc.types.ArgDict((
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(OrderCloseInput), graphql_name='input', default=None)),
+))
+    )
+    order_create_mandate_payment = sgqlc.types.Field('OrderCreateMandatePaymentPayload', graphql_name='orderCreateMandatePayment', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('payment_schedule_id', sgqlc.types.Arg(ID, graphql_name='paymentScheduleId', default=None)),
+        ('idempotency_key', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='idempotencyKey', default=None)),
+        ('mandate_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='mandateId', default=None)),
+        ('auto_capture', sgqlc.types.Arg(Boolean, graphql_name='autoCapture', default=True)),
 ))
     )
     order_edit_add_custom_item = sgqlc.types.Field('OrderEditAddCustomItemPayload', graphql_name='orderEditAddCustomItem', args=sgqlc.types.ArgDict((
@@ -6669,6 +8637,21 @@ class Mutation(sgqlc.types.Type):
         ('input', sgqlc.types.Arg(sgqlc.types.non_null(ScriptTagInput), graphql_name='input', default=None)),
 ))
     )
+    segment_create = sgqlc.types.Field('SegmentCreatePayload', graphql_name='segmentCreate', args=sgqlc.types.ArgDict((
+        ('name', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='name', default=None)),
+        ('query', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='query', default=None)),
+))
+    )
+    segment_delete = sgqlc.types.Field('SegmentDeletePayload', graphql_name='segmentDelete', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    segment_update = sgqlc.types.Field('SegmentUpdatePayload', graphql_name='segmentUpdate', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('name', sgqlc.types.Arg(String, graphql_name='name', default=None)),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
     selling_plan_group_add_product_variants = sgqlc.types.Field('SellingPlanGroupAddProductVariantsPayload', graphql_name='sellingPlanGroupAddProductVariants', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
         ('product_variant_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='productVariantIds', default=None)),
@@ -6721,6 +8704,7 @@ class Mutation(sgqlc.types.Type):
     )
     shop_locale_enable = sgqlc.types.Field('ShopLocaleEnablePayload', graphql_name='shopLocaleEnable', args=sgqlc.types.ArgDict((
         ('locale', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='locale', default=None)),
+        ('market_web_presence_ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='marketWebPresenceIds', default=None)),
 ))
     )
     shop_locale_update = sgqlc.types.Field('ShopLocaleUpdatePayload', graphql_name='shopLocaleUpdate', args=sgqlc.types.ArgDict((
@@ -6737,9 +8721,12 @@ class Mutation(sgqlc.types.Type):
 ))
     )
     standard_metafield_definition_enable = sgqlc.types.Field('StandardMetafieldDefinitionEnablePayload', graphql_name='standardMetafieldDefinitionEnable', args=sgqlc.types.ArgDict((
-        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
         ('owner_type', sgqlc.types.Arg(sgqlc.types.non_null(MetafieldOwnerType), graphql_name='ownerType', default=None)),
+        ('id', sgqlc.types.Arg(ID, graphql_name='id', default=None)),
+        ('namespace', sgqlc.types.Arg(String, graphql_name='namespace', default=None)),
+        ('key', sgqlc.types.Arg(String, graphql_name='key', default=None)),
         ('pin', sgqlc.types.Arg(sgqlc.types.non_null(Boolean), graphql_name='pin', default=False)),
+        ('visible_to_storefront_api', sgqlc.types.Arg(Boolean, graphql_name='visibleToStorefrontApi', default=None)),
 ))
     )
     storefront_access_token_create = sgqlc.types.Field('StorefrontAccessTokenCreatePayload', graphql_name='storefrontAccessTokenCreate', args=sgqlc.types.ArgDict((
@@ -6753,6 +8740,33 @@ class Mutation(sgqlc.types.Type):
     subscription_billing_attempt_create = sgqlc.types.Field('SubscriptionBillingAttemptCreatePayload', graphql_name='subscriptionBillingAttemptCreate', args=sgqlc.types.ArgDict((
         ('subscription_contract_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='subscriptionContractId', default=None)),
         ('subscription_billing_attempt_input', sgqlc.types.Arg(sgqlc.types.non_null(SubscriptionBillingAttemptInput), graphql_name='subscriptionBillingAttemptInput', default=None)),
+))
+    )
+    subscription_billing_cycle_contract_draft_commit = sgqlc.types.Field('SubscriptionBillingCycleContractDraftCommitPayload', graphql_name='subscriptionBillingCycleContractDraftCommit', args=sgqlc.types.ArgDict((
+        ('draft_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='draftId', default=None)),
+))
+    )
+    subscription_billing_cycle_contract_draft_concatenate = sgqlc.types.Field('SubscriptionBillingCycleContractDraftConcatenatePayload', graphql_name='subscriptionBillingCycleContractDraftConcatenate', args=sgqlc.types.ArgDict((
+        ('draft_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='draftId', default=None)),
+        ('concatenated_billing_cycle_contracts', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SubscriptionBillingCycleInput))), graphql_name='concatenatedBillingCycleContracts', default=None)),
+))
+    )
+    subscription_billing_cycle_contract_edit = sgqlc.types.Field('SubscriptionBillingCycleContractEditPayload', graphql_name='subscriptionBillingCycleContractEdit', args=sgqlc.types.ArgDict((
+        ('billing_cycle_input', sgqlc.types.Arg(sgqlc.types.non_null(SubscriptionBillingCycleInput), graphql_name='billingCycleInput', default=None)),
+))
+    )
+    subscription_billing_cycle_edit_delete = sgqlc.types.Field('SubscriptionBillingCycleEditDeletePayload', graphql_name='subscriptionBillingCycleEditDelete', args=sgqlc.types.ArgDict((
+        ('billing_cycle_input', sgqlc.types.Arg(sgqlc.types.non_null(SubscriptionBillingCycleInput), graphql_name='billingCycleInput', default=None)),
+))
+    )
+    subscription_billing_cycle_edits_delete = sgqlc.types.Field('SubscriptionBillingCycleEditsDeletePayload', graphql_name='subscriptionBillingCycleEditsDelete', args=sgqlc.types.ArgDict((
+        ('contract_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='contractId', default=None)),
+        ('target_selection', sgqlc.types.Arg(sgqlc.types.non_null(SubscriptionBillingCyclesTargetSelection), graphql_name='targetSelection', default=None)),
+))
+    )
+    subscription_billing_cycle_schedule_edit = sgqlc.types.Field('SubscriptionBillingCycleScheduleEditPayload', graphql_name='subscriptionBillingCycleScheduleEdit', args=sgqlc.types.ArgDict((
+        ('billing_cycle_input', sgqlc.types.Arg(sgqlc.types.non_null(SubscriptionBillingCycleInput), graphql_name='billingCycleInput', default=None)),
+        ('input', sgqlc.types.Arg(sgqlc.types.non_null(SubscriptionBillingCycleScheduleEditInput), graphql_name='input', default=None)),
 ))
     )
     subscription_contract_create = sgqlc.types.Field('SubscriptionContractCreatePayload', graphql_name='subscriptionContractCreate', args=sgqlc.types.ArgDict((
@@ -6844,6 +8858,7 @@ class Mutation(sgqlc.types.Type):
         ('resource_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='resourceId', default=None)),
         ('translation_keys', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='translationKeys', default=None)),
         ('locales', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='locales', default=None)),
+        ('market_ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='marketIds', default=None)),
 ))
     )
     url_redirect_bulk_delete_all = sgqlc.types.Field('UrlRedirectBulkDeleteAllPayload', graphql_name='urlRedirectBulkDeleteAll')
@@ -6878,6 +8893,19 @@ class Mutation(sgqlc.types.Type):
     url_redirect_update = sgqlc.types.Field('UrlRedirectUpdatePayload', graphql_name='urlRedirectUpdate', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
         ('url_redirect', sgqlc.types.Arg(sgqlc.types.non_null(UrlRedirectInput), graphql_name='urlRedirect', default=None)),
+))
+    )
+    web_pixel_create = sgqlc.types.Field('WebPixelCreatePayload', graphql_name='webPixelCreate', args=sgqlc.types.ArgDict((
+        ('web_pixel', sgqlc.types.Arg(sgqlc.types.non_null(WebPixelInput), graphql_name='webPixel', default=None)),
+))
+    )
+    web_pixel_delete = sgqlc.types.Field('WebPixelDeletePayload', graphql_name='webPixelDelete', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    web_pixel_update = sgqlc.types.Field('WebPixelUpdatePayload', graphql_name='webPixelUpdate', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+        ('web_pixel', sgqlc.types.Arg(sgqlc.types.non_null(WebPixelInput), graphql_name='webPixel', default=None)),
 ))
     )
     webhook_subscription_create = sgqlc.types.Field('WebhookSubscriptionCreatePayload', graphql_name='webhookSubscriptionCreate', args=sgqlc.types.ArgDict((
@@ -6931,8 +8959,9 @@ class OnlineStorePreviewable(sgqlc.types.Interface):
 
 class OrderApp(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('icon', 'name')
+    __field_names__ = ('icon', 'id', 'name')
     icon = sgqlc.types.Field(sgqlc.types.non_null('Image'), graphql_name='icon')
+    id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
 
 
@@ -6952,9 +8981,18 @@ class OrderClosePayload(sgqlc.types.Type):
 
 class OrderConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('OrderEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Order'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
+
+
+class OrderCreateMandatePaymentPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('job', 'payment_reference_id', 'user_errors')
+    job = sgqlc.types.Field(Job, graphql_name='job')
+    payment_reference_id = sgqlc.types.Field(String, graphql_name='paymentReferenceId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('OrderCreateMandatePaymentUserError'))), graphql_name='userErrors')
 
 
 class OrderEdge(sgqlc.types.Type):
@@ -7042,8 +9080,18 @@ class OrderOpenPayload(sgqlc.types.Type):
 
 class OrderPaymentCollectionDetails(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('additional_payment_collection_url',)
+    __field_names__ = ('additional_payment_collection_url', 'vaulted_payment_methods')
     additional_payment_collection_url = sgqlc.types.Field(URL, graphql_name='additionalPaymentCollectionUrl')
+    vaulted_payment_methods = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('PaymentMandate')), graphql_name='vaultedPaymentMethods')
+
+
+class OrderPaymentStatus(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('error_message', 'payment_reference_id', 'status', 'translated_error_message')
+    error_message = sgqlc.types.Field(String, graphql_name='errorMessage')
+    payment_reference_id = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='paymentReferenceId')
+    status = sgqlc.types.Field(sgqlc.types.non_null(OrderPaymentStatusResult), graphql_name='status')
+    translated_error_message = sgqlc.types.Field(String, graphql_name='translatedErrorMessage')
 
 
 class OrderRisk(sgqlc.types.Type):
@@ -7088,8 +9136,9 @@ class OrderStagedChangeAddVariant(sgqlc.types.Type):
 
 class OrderStagedChangeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('OrderStagedChangeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('OrderStagedChange'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -7117,8 +9166,9 @@ class OrderStagedChangeIncrementItem(sgqlc.types.Type):
 
 class OrderTransactionConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('OrderTransactionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('OrderTransaction'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null('PageInfo'), graphql_name='pageInfo')
 
 
@@ -7138,15 +9188,18 @@ class OrderUpdatePayload(sgqlc.types.Type):
 
 class PageInfo(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('has_next_page', 'has_previous_page')
+    __field_names__ = ('end_cursor', 'has_next_page', 'has_previous_page', 'start_cursor')
+    end_cursor = sgqlc.types.Field(String, graphql_name='endCursor')
     has_next_page = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasNextPage')
     has_previous_page = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasPreviousPage')
+    start_cursor = sgqlc.types.Field(String, graphql_name='startCursor')
 
 
 class PaymentScheduleConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PaymentScheduleEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PaymentSchedule'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7193,15 +9246,17 @@ class PriceListAdjustment(sgqlc.types.Type):
 
 class PriceListConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PriceListEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PriceList'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
 class PriceListContextRule(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('countries',)
+    __field_names__ = ('countries', 'market')
     countries = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CountryCode))), graphql_name='countries')
+    market = sgqlc.types.Field('Market', graphql_name='market')
 
 
 class PriceListCreatePayload(sgqlc.types.Type):
@@ -7256,8 +9311,9 @@ class PriceListPrice(sgqlc.types.Type):
 
 class PriceListPriceConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PriceListPriceEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(PriceListPrice))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7284,8 +9340,9 @@ class PriceRuleActivatePayload(sgqlc.types.Type):
 
 class PriceRuleConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PriceRuleEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PriceRule'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7299,7 +9356,7 @@ class PriceRuleCreatePayload(sgqlc.types.Type):
 
 class PriceRuleCustomerSelection(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('customers', 'for_all_customers')
+    __field_names__ = ('customers', 'for_all_customers', 'segments')
     customers = sgqlc.types.Field(sgqlc.types.non_null(CustomerConnection), graphql_name='customers', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -7312,6 +9369,7 @@ class PriceRuleCustomerSelection(sgqlc.types.Type):
 ))
     )
     for_all_customers = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='forAllCustomers')
+    segments = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Segment'))), graphql_name='segments')
 
 
 class PriceRuleDeactivatePayload(sgqlc.types.Type):
@@ -7331,8 +9389,9 @@ class PriceRuleDeletePayload(sgqlc.types.Type):
 
 class PriceRuleDiscountCodeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PriceRuleDiscountCodeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PriceRuleDiscountCode'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7509,8 +9568,9 @@ class PricingPercentageValue(sgqlc.types.Type):
 
 class PrivateMetafieldConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PrivateMetafieldEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PrivateMetafield'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7538,15 +9598,15 @@ class PrivateMetafieldUpsertPayload(sgqlc.types.Type):
 class ProductAppendImagesPayload(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('new_images', 'product', 'user_errors')
-    new_images = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('Image')), graphql_name='newImages', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    new_images = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('Image')), graphql_name='newImages')
     product = sgqlc.types.Field('Product', graphql_name='product')
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class ProductCategory(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('product_taxonomy_node',)
+    product_taxonomy_node = sgqlc.types.Field('ProductTaxonomyNode', graphql_name='productTaxonomyNode')
 
 
 class ProductChangeStatusPayload(sgqlc.types.Type):
@@ -7558,8 +9618,9 @@ class ProductChangeStatusPayload(sgqlc.types.Type):
 
 class ProductConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ProductEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Product'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7631,13 +9692,7 @@ class ProductEdge(sgqlc.types.Type):
 class ProductImageUpdatePayload(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('image', 'user_errors')
-    image = sgqlc.types.Field('Image', graphql_name='image', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    image = sgqlc.types.Field('Image', graphql_name='image')
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
 
 
@@ -7680,8 +9735,9 @@ class ProductPublication(sgqlc.types.Type):
 
 class ProductPublicationConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ProductPublicationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ProductPublication))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7757,8 +9813,9 @@ class ProductVariantAppendMediaPayload(sgqlc.types.Type):
 
 class ProductVariantConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ProductVariantEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ProductVariant'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7823,8 +9880,9 @@ class ProductVariantPricePair(sgqlc.types.Type):
 
 class ProductVariantPricePairConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ProductVariantPricePairEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ProductVariantPricePair))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7889,8 +9947,9 @@ class PubSubWebhookSubscriptionUpdatePayload(sgqlc.types.Type):
 
 class PublicationConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('PublicationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Publication'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -7976,15 +10035,24 @@ class PublishableUnpublishToCurrentChannelPayload(sgqlc.types.Type):
 
 class PublishedTranslation(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('key', 'locale', 'value')
+    __field_names__ = ('key', 'locale', 'market_id', 'value')
     key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
     locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='locale')
+    market_id = sgqlc.types.Field(ID, graphql_name='marketId')
     value = sgqlc.types.Field(String, graphql_name='value')
+
+
+class PurchasingCompany(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('company', 'contact', 'location')
+    company = sgqlc.types.Field(sgqlc.types.non_null('Company'), graphql_name='company')
+    contact = sgqlc.types.Field('CompanyContact', graphql_name='contact')
+    location = sgqlc.types.Field(sgqlc.types.non_null('CompanyLocation'), graphql_name='location')
 
 
 class QueryRoot(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('app', 'app_by_handle', 'app_by_key', 'app_installation', 'app_installations', 'automatic_discount_node', 'automatic_discount_nodes', 'automatic_discount_saved_searches', 'available_carrier_services', 'available_locales', 'carrier_service', 'code_discount_node', 'code_discount_node_by_code', 'code_discount_nodes', 'code_discount_saved_searches', 'collection', 'collection_by_handle', 'collection_rules_conditions', 'collection_saved_searches', 'collections', 'current_app_installation', 'current_bulk_operation', 'customer', 'customer_payment_method', 'customer_saved_searches', 'customers', 'deletion_events', 'delivery_profile', 'delivery_profiles', 'delivery_settings', 'discount_code_count', 'discount_redeem_code_bulk_creation', 'discount_redeem_code_saved_searches', 'domain', 'draft_order', 'draft_order_saved_searches', 'draft_orders', 'file_saved_searches', 'files', 'fulfillment', 'fulfillment_order', 'fulfillment_service', 'gift_card', 'gift_cards', 'gift_cards_count', 'inventory_item', 'inventory_items', 'inventory_level', 'job', 'location', 'locations', 'locations_available_for_delivery_profiles_connection', 'marketing_activities', 'marketing_activity', 'marketing_event', 'marketing_events', 'metafield', 'metafield_definition', 'metafield_definition_types', 'metafield_definitions', 'metafield_storefront_visibilities', 'metafield_storefront_visibility', 'node', 'nodes', 'order', 'order_saved_searches', 'orders', 'payment_terms_templates', 'price_list', 'price_lists', 'price_rule', 'price_rule_saved_searches', 'price_rules', 'private_metafield', 'private_metafields', 'product', 'product_by_handle', 'product_resource_feedback', 'product_saved_searches', 'product_variant', 'product_variants', 'products', 'public_api_versions', 'publication', 'publications', 'refund', 'script_tag', 'script_tags', 'selling_plan_group', 'selling_plan_groups', 'shop', 'shop_locales', 'shopify_payments_account', 'standard_metafield_definition_templates', 'subscription_billing_attempt', 'subscription_contract', 'subscription_contracts', 'subscription_draft', 'tender_transactions', 'translatable_resource', 'translatable_resources', 'translatable_resources_by_ids', 'url_redirect', 'url_redirect_import', 'url_redirect_saved_searches', 'url_redirects', 'webhook_subscription', 'webhook_subscriptions')
+    __field_names__ = ('app', 'app_by_handle', 'app_by_key', 'app_discount_type', 'app_discount_types', 'app_installation', 'app_installations', 'automatic_discount_node', 'automatic_discount_nodes', 'automatic_discount_saved_searches', 'available_carrier_services', 'available_locales', 'carrier_service', 'checkout_profile', 'checkout_profiles', 'code_discount_node', 'code_discount_node_by_code', 'code_discount_nodes', 'code_discount_saved_searches', 'collection', 'collection_by_handle', 'collection_rules_conditions', 'collection_saved_searches', 'collections', 'companies', 'company', 'company_contact', 'company_contact_role', 'company_count', 'company_location', 'company_locations', 'current_app_installation', 'current_bulk_operation', 'customer', 'customer_payment_method', 'customer_segment_members', 'customer_segment_membership', 'customers', 'deletion_events', 'delivery_profile', 'delivery_profiles', 'delivery_settings', 'discount_code_count', 'discount_node', 'discount_nodes', 'discount_redeem_code_bulk_creation', 'discount_redeem_code_saved_searches', 'dispute', 'dispute_evidence', 'domain', 'draft_order', 'draft_order_saved_searches', 'draft_order_tag', 'draft_orders', 'file_saved_searches', 'files', 'fulfillment', 'fulfillment_order', 'fulfillment_service', 'gift_card', 'gift_cards', 'gift_cards_count', 'inventory_item', 'inventory_items', 'inventory_level', 'job', 'location', 'locations', 'locations_available_for_delivery_profiles_connection', 'manual_holds_fulfillment_orders', 'market', 'market_by_geography', 'market_localizable_resource', 'market_localizable_resources', 'market_localizable_resources_by_ids', 'marketing_activities', 'marketing_activity', 'marketing_event', 'marketing_events', 'markets', 'metafield', 'metafield_definition', 'metafield_definition_types', 'metafield_definitions', 'metafield_storefront_visibilities', 'metafield_storefront_visibility', 'node', 'nodes', 'order', 'order_payment_status', 'order_saved_searches', 'orders', 'payment_terms_templates', 'price_list', 'price_lists', 'price_rule', 'price_rule_saved_searches', 'price_rules', 'primary_market', 'private_metafield', 'private_metafields', 'product', 'product_by_handle', 'product_resource_feedback', 'product_saved_searches', 'product_variant', 'product_variants', 'products', 'public_api_versions', 'publication', 'publications', 'refund', 'script_tag', 'script_tags', 'segment', 'segment_count', 'segment_filter_suggestions', 'segment_filters', 'segment_migrations', 'segment_value_suggestions', 'segments', 'selling_plan_group', 'selling_plan_groups', 'shop', 'shop_locales', 'shopify_payments_account', 'staff_member', 'standard_metafield_definition_templates', 'subscription_billing_attempt', 'subscription_billing_cycle', 'subscription_billing_cycles', 'subscription_contract', 'subscription_contracts', 'subscription_draft', 'tender_transactions', 'translatable_resource', 'translatable_resources', 'translatable_resources_by_ids', 'url_redirect', 'url_redirect_import', 'url_redirect_saved_searches', 'url_redirects', 'web_pixel', 'webhook_subscription', 'webhook_subscriptions')
     app = sgqlc.types.Field('App', graphql_name='app', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(ID, graphql_name='id', default=None)),
 ))
@@ -7997,6 +10065,11 @@ class QueryRoot(sgqlc.types.Type):
         ('api_key', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='apiKey', default=None)),
 ))
     )
+    app_discount_type = sgqlc.types.Field(AppDiscountType, graphql_name='appDiscountType', args=sgqlc.types.ArgDict((
+        ('function_id', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='functionId', default=None)),
+))
+    )
+    app_discount_types = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(AppDiscountType))), graphql_name='appDiscountTypes')
     app_installation = sgqlc.types.Field('AppInstallation', graphql_name='appInstallation', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(ID, graphql_name='id', default=None)),
 ))
@@ -8039,6 +10112,20 @@ class QueryRoot(sgqlc.types.Type):
     available_locales = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Locale))), graphql_name='availableLocales')
     carrier_service = sgqlc.types.Field('DeliveryCarrierService', graphql_name='carrierService', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    checkout_profile = sgqlc.types.Field('CheckoutProfile', graphql_name='checkoutProfile', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    checkout_profiles = sgqlc.types.Field(sgqlc.types.non_null(CheckoutProfileConnection), graphql_name='checkoutProfiles', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(CheckoutProfileSortKeys, graphql_name='sortKey', default='UPDATED_AT')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
 ))
     )
     code_discount_node = sgqlc.types.Field('DiscountCodeNode', graphql_name='codeDiscountNode', args=sgqlc.types.ArgDict((
@@ -8096,6 +10183,43 @@ class QueryRoot(sgqlc.types.Type):
         ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
 ))
     )
+    companies = sgqlc.types.Field(sgqlc.types.non_null(CompanyConnection), graphql_name='companies', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(CompanySortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    company = sgqlc.types.Field('Company', graphql_name='company', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    company_contact = sgqlc.types.Field('CompanyContact', graphql_name='companyContact', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    company_contact_role = sgqlc.types.Field('CompanyContactRole', graphql_name='companyContactRole', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    company_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='companyCount')
+    company_location = sgqlc.types.Field('CompanyLocation', graphql_name='companyLocation', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    company_locations = sgqlc.types.Field(sgqlc.types.non_null(CompanyLocationConnection), graphql_name='companyLocations', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(CompanyLocationSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
     current_app_installation = sgqlc.types.Field(sgqlc.types.non_null('AppInstallation'), graphql_name='currentAppInstallation')
     current_bulk_operation = sgqlc.types.Field('BulkOperation', graphql_name='currentBulkOperation', args=sgqlc.types.ArgDict((
         ('type', sgqlc.types.Arg(BulkOperationType, graphql_name='type', default='QUERY')),
@@ -8110,14 +10234,21 @@ class QueryRoot(sgqlc.types.Type):
         ('show_revoked', sgqlc.types.Arg(Boolean, graphql_name='showRevoked', default=False)),
 ))
     )
-    customer_saved_searches = sgqlc.types.Field(sgqlc.types.non_null('SavedSearchConnection'), graphql_name='customerSavedSearches', args=sgqlc.types.ArgDict((
+    customer_segment_members = sgqlc.types.Field(sgqlc.types.non_null(CustomerSegmentMemberConnection), graphql_name='customerSegmentMembers', args=sgqlc.types.ArgDict((
+        ('segment_id', sgqlc.types.Arg(ID, graphql_name='segmentId', default=None)),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+        ('timezone', sgqlc.types.Arg(String, graphql_name='timezone', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(String, graphql_name='sortKey', default=None)),
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
         ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
         ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
-        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
-        ('sort_key', sgqlc.types.Arg(CustomerSavedSearchSortKeys, graphql_name='sortKey', default='ID')),
-        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    customer_segment_membership = sgqlc.types.Field(sgqlc.types.non_null('SegmentMembershipResponse'), graphql_name='customerSegmentMembership', args=sgqlc.types.ArgDict((
+        ('segment_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='segmentIds', default=None)),
+        ('customer_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='customerId', default=None)),
 ))
     )
     customers = sgqlc.types.Field(sgqlc.types.non_null(CustomerConnection), graphql_name='customers', args=sgqlc.types.ArgDict((
@@ -8159,6 +10290,21 @@ class QueryRoot(sgqlc.types.Type):
         ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
 ))
     )
+    discount_node = sgqlc.types.Field('DiscountNode', graphql_name='discountNode', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    discount_nodes = sgqlc.types.Field(sgqlc.types.non_null(DiscountNodeConnection), graphql_name='discountNodes', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(DiscountSortKeys, graphql_name='sortKey', default='CREATED_AT')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+        ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
+))
+    )
     discount_redeem_code_bulk_creation = sgqlc.types.Field('DiscountRedeemCodeBulkCreation', graphql_name='discountRedeemCodeBulkCreation', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
 ))
@@ -8171,6 +10317,14 @@ class QueryRoot(sgqlc.types.Type):
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
         ('sort_key', sgqlc.types.Arg(DiscountCodeSortKeys, graphql_name='sortKey', default='ID')),
         ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    dispute = sgqlc.types.Field('ShopifyPaymentsDispute', graphql_name='dispute', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    dispute_evidence = sgqlc.types.Field('ShopifyPaymentsDisputeEvidence', graphql_name='disputeEvidence', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
 ))
     )
     domain = sgqlc.types.Field('Domain', graphql_name='domain', args=sgqlc.types.ArgDict((
@@ -8189,6 +10343,10 @@ class QueryRoot(sgqlc.types.Type):
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
 ))
     )
+    draft_order_tag = sgqlc.types.Field('DraftOrderTag', graphql_name='draftOrderTag', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
     draft_orders = sgqlc.types.Field(sgqlc.types.non_null(DraftOrderConnection), graphql_name='draftOrders', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -8197,6 +10355,7 @@ class QueryRoot(sgqlc.types.Type):
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
         ('sort_key', sgqlc.types.Arg(DraftOrderSortKeys, graphql_name='sortKey', default='ID')),
         ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+        ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
 ))
     )
     file_saved_searches = sgqlc.types.Field(sgqlc.types.non_null('SavedSearchConnection'), graphql_name='fileSavedSearches', args=sgqlc.types.ArgDict((
@@ -8294,7 +10453,49 @@ class QueryRoot(sgqlc.types.Type):
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
 ))
     )
+    manual_holds_fulfillment_orders = sgqlc.types.Field(sgqlc.types.non_null(FulfillmentOrderConnection), graphql_name='manualHoldsFulfillmentOrders', args=sgqlc.types.ArgDict((
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
+    market = sgqlc.types.Field('Market', graphql_name='market', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    market_by_geography = sgqlc.types.Field('Market', graphql_name='marketByGeography', args=sgqlc.types.ArgDict((
+        ('country_code', sgqlc.types.Arg(sgqlc.types.non_null(CountryCode), graphql_name='countryCode', default=None)),
+))
+    )
+    market_localizable_resource = sgqlc.types.Field(MarketLocalizableResource, graphql_name='marketLocalizableResource', args=sgqlc.types.ArgDict((
+        ('resource_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='resourceId', default=None)),
+))
+    )
+    market_localizable_resources = sgqlc.types.Field(sgqlc.types.non_null(MarketLocalizableResourceConnection), graphql_name='marketLocalizableResources', args=sgqlc.types.ArgDict((
+        ('resource_type', sgqlc.types.Arg(sgqlc.types.non_null(MarketLocalizableResourceType), graphql_name='resourceType', default=None)),
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
+    market_localizable_resources_by_ids = sgqlc.types.Field(sgqlc.types.non_null(MarketLocalizableResourceConnection), graphql_name='marketLocalizableResourcesByIds', args=sgqlc.types.ArgDict((
+        ('resource_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='resourceIds', default=None)),
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
     marketing_activities = sgqlc.types.Field(sgqlc.types.non_null(MarketingActivityConnection), graphql_name='marketingActivities', args=sgqlc.types.ArgDict((
+        ('marketing_activity_ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='marketingActivityIds', default=())),
+        ('remote_ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='remoteIds', default=())),
+        ('utm', sgqlc.types.Arg(UTMInput, graphql_name='utm', default=None)),
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
         ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
@@ -8321,6 +10522,14 @@ class QueryRoot(sgqlc.types.Type):
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
         ('sort_key', sgqlc.types.Arg(MarketingEventSortKeys, graphql_name='sortKey', default='ID')),
         ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    markets = sgqlc.types.Field(sgqlc.types.non_null(MarketConnection), graphql_name='markets', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
 ))
     )
     metafield = sgqlc.types.Field('Metafield', graphql_name='metafield', args=sgqlc.types.ArgDict((
@@ -8369,6 +10578,11 @@ class QueryRoot(sgqlc.types.Type):
     )
     order = sgqlc.types.Field('Order', graphql_name='order', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    order_payment_status = sgqlc.types.Field(OrderPaymentStatus, graphql_name='orderPaymentStatus', args=sgqlc.types.ArgDict((
+        ('payment_reference_id', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='paymentReferenceId', default=None)),
+        ('order_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='orderId', default=None)),
 ))
     )
     order_saved_searches = sgqlc.types.Field(sgqlc.types.non_null('SavedSearchConnection'), graphql_name='orderSavedSearches', args=sgqlc.types.ArgDict((
@@ -8431,6 +10645,7 @@ class QueryRoot(sgqlc.types.Type):
         ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
 ))
     )
+    primary_market = sgqlc.types.Field(sgqlc.types.non_null('Market'), graphql_name='primaryMarket')
     private_metafield = sgqlc.types.Field('PrivateMetafield', graphql_name='privateMetafield', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
 ))
@@ -8521,6 +10736,51 @@ class QueryRoot(sgqlc.types.Type):
         ('src', sgqlc.types.Arg(URL, graphql_name='src', default=None)),
 ))
     )
+    segment = sgqlc.types.Field('Segment', graphql_name='segment', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    segment_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='segmentCount')
+    segment_filter_suggestions = sgqlc.types.Field(sgqlc.types.non_null('SegmentFilterConnection'), graphql_name='segmentFilterSuggestions', args=sgqlc.types.ArgDict((
+        ('search', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='search', default=None)),
+        ('first', sgqlc.types.Arg(sgqlc.types.non_null(Int), graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+))
+    )
+    segment_filters = sgqlc.types.Field(sgqlc.types.non_null('SegmentFilterConnection'), graphql_name='segmentFilters', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+))
+    )
+    segment_migrations = sgqlc.types.Field(sgqlc.types.non_null('SegmentMigrationConnection'), graphql_name='segmentMigrations', args=sgqlc.types.ArgDict((
+        ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+))
+    )
+    segment_value_suggestions = sgqlc.types.Field(sgqlc.types.non_null('SegmentValueConnection'), graphql_name='segmentValueSuggestions', args=sgqlc.types.ArgDict((
+        ('search', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='search', default=None)),
+        ('filter_query_name', sgqlc.types.Arg(String, graphql_name='filterQueryName', default=None)),
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+))
+    )
+    segments = sgqlc.types.Field(sgqlc.types.non_null('SegmentConnection'), graphql_name='segments', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(SegmentSortKeys, graphql_name='sortKey', default='CREATION_DATE')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
     selling_plan_group = sgqlc.types.Field('SellingPlanGroup', graphql_name='sellingPlanGroup', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
 ))
@@ -8541,6 +10801,10 @@ class QueryRoot(sgqlc.types.Type):
 ))
     )
     shopify_payments_account = sgqlc.types.Field('ShopifyPaymentsAccount', graphql_name='shopifyPaymentsAccount')
+    staff_member = sgqlc.types.Field('StaffMember', graphql_name='staffMember', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(ID, graphql_name='id', default=None)),
+))
+    )
     standard_metafield_definition_templates = sgqlc.types.Field(sgqlc.types.non_null('StandardMetafieldDefinitionTemplateConnection'), graphql_name='standardMetafieldDefinitionTemplates', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -8551,6 +10815,22 @@ class QueryRoot(sgqlc.types.Type):
     )
     subscription_billing_attempt = sgqlc.types.Field('SubscriptionBillingAttempt', graphql_name='subscriptionBillingAttempt', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
+    subscription_billing_cycle = sgqlc.types.Field('SubscriptionBillingCycle', graphql_name='subscriptionBillingCycle', args=sgqlc.types.ArgDict((
+        ('billing_cycle_input', sgqlc.types.Arg(sgqlc.types.non_null(SubscriptionBillingCycleInput), graphql_name='billingCycleInput', default=None)),
+))
+    )
+    subscription_billing_cycles = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionBillingCycleConnection'), graphql_name='subscriptionBillingCycles', args=sgqlc.types.ArgDict((
+        ('contract_id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='contractId', default=None)),
+        ('billing_cycles_date_range_selector', sgqlc.types.Arg(SubscriptionBillingCyclesDateRangeSelector, graphql_name='billingCyclesDateRangeSelector', default=None)),
+        ('billing_cycles_index_range_selector', sgqlc.types.Arg(SubscriptionBillingCyclesIndexRangeSelector, graphql_name='billingCyclesIndexRangeSelector', default=None)),
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(SubscriptionBillingCyclesSortKeys, graphql_name='sortKey', default='CYCLE_INDEX')),
 ))
     )
     subscription_contract = sgqlc.types.Field('SubscriptionContract', graphql_name='subscriptionContract', args=sgqlc.types.ArgDict((
@@ -8627,6 +10907,10 @@ class QueryRoot(sgqlc.types.Type):
         ('saved_search_id', sgqlc.types.Arg(ID, graphql_name='savedSearchId', default=None)),
 ))
     )
+    web_pixel = sgqlc.types.Field('WebPixel', graphql_name='webPixel', args=sgqlc.types.ArgDict((
+        ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
+))
+    )
     webhook_subscription = sgqlc.types.Field('WebhookSubscription', graphql_name='webhookSubscription', args=sgqlc.types.ArgDict((
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
 ))
@@ -8676,8 +10960,9 @@ class RefundLineItem(sgqlc.types.Type):
 
 class RefundLineItemConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('RefundLineItemEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(RefundLineItem))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -8735,8 +11020,9 @@ class ResourcePublication(sgqlc.types.Type):
 
 class ResourcePublicationConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ResourcePublicationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ResourcePublication))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -8758,8 +11044,9 @@ class ResourcePublicationV2(sgqlc.types.Type):
 
 class ResourcePublicationV2Connection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ResourcePublicationV2Edge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ResourcePublicationV2))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -8793,8 +11080,9 @@ class Sale(sgqlc.types.Interface):
 
 class SaleConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SaleEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Sale))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -8815,7 +11103,7 @@ class SaleTax(sgqlc.types.Type):
 
 class SalesAgreement(sgqlc.types.Interface):
     __schema__ = shopify
-    __field_names__ = ('app', 'happened_at', 'id', 'reason', 'sales')
+    __field_names__ = ('app', 'happened_at', 'id', 'reason', 'sales', 'user')
     app = sgqlc.types.Field('App', graphql_name='app')
     happened_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='happenedAt')
     id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
@@ -8828,12 +11116,14 @@ class SalesAgreement(sgqlc.types.Interface):
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
 ))
     )
+    user = sgqlc.types.Field('StaffMember', graphql_name='user')
 
 
 class SalesAgreementConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SalesAgreementEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SalesAgreement))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -8846,8 +11136,9 @@ class SalesAgreementEdge(sgqlc.types.Type):
 
 class SavedSearchConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SavedSearchEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SavedSearch'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -8882,8 +11173,9 @@ class SavedSearchUpdatePayload(sgqlc.types.Type):
 
 class ScriptTagConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ScriptTagEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ScriptTag'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -8952,6 +11244,238 @@ class SearchResultEdge(sgqlc.types.Type):
     node = sgqlc.types.Field(sgqlc.types.non_null(SearchResult), graphql_name='node')
 
 
+class SegmentAssociationFilterValue(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('localized_name', 'query_name')
+    localized_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='localizedName')
+    query_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='queryName')
+
+
+class SegmentAssociationFilterValueConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SegmentAssociationFilterValueEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentAssociationFilterValue))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SegmentAssociationFilterValueEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(SegmentAssociationFilterValue), graphql_name='node')
+
+
+class SegmentAttributeStatistics(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('average', 'sum')
+    average = sgqlc.types.Field(sgqlc.types.non_null(Float), graphql_name='average')
+    sum = sgqlc.types.Field(sgqlc.types.non_null(Float), graphql_name='sum')
+
+
+class SegmentConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SegmentEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Segment'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SegmentCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('segment', 'user_errors')
+    segment = sgqlc.types.Field('Segment', graphql_name='segment')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class SegmentDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_segment_id', 'user_errors')
+    deleted_segment_id = sgqlc.types.Field(ID, graphql_name='deletedSegmentId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class SegmentEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('Segment'), graphql_name='node')
+
+
+class SegmentEnumFilterValue(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('localized_name', 'query_name')
+    localized_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='localizedName')
+    query_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='queryName')
+
+
+class SegmentEnumFilterValueConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SegmentEnumFilterValueEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentEnumFilterValue))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SegmentEnumFilterValueEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(SegmentEnumFilterValue), graphql_name='node')
+
+
+class SegmentEventFilterParameter(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('localized_description', 'localized_name', 'optional', 'parameter_type', 'query_name')
+    localized_description = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='localizedDescription')
+    localized_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='localizedName')
+    optional = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='optional')
+    parameter_type = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='parameterType')
+    query_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='queryName')
+
+
+class SegmentEventFilterValue(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('localized_name', 'query_name')
+    localized_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='localizedName')
+    query_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='queryName')
+
+
+class SegmentEventFilterValueConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SegmentEventFilterValueEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentEventFilterValue))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SegmentEventFilterValueEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(SegmentEventFilterValue), graphql_name='node')
+
+
+class SegmentFilter(sgqlc.types.Interface):
+    __schema__ = shopify
+    __field_names__ = ('localized_name', 'multi_value', 'query_name')
+    localized_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='localizedName')
+    multi_value = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='multiValue')
+    query_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='queryName')
+
+
+class SegmentFilterConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SegmentFilterEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentFilter))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SegmentFilterEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(SegmentFilter), graphql_name='node')
+
+
+class SegmentMembership(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('is_member', 'segment_id')
+    is_member = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='isMember')
+    segment_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='segmentId')
+
+
+class SegmentMembershipResponse(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('memberships',)
+    memberships = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentMembership))), graphql_name='memberships')
+
+
+class SegmentMigration(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('id', 'saved_search_id', 'segment_id')
+    id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='id')
+    saved_search_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='savedSearchId')
+    segment_id = sgqlc.types.Field(ID, graphql_name='segmentId')
+
+
+class SegmentMigrationConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SegmentMigrationEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentMigration))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SegmentMigrationEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(SegmentMigration), graphql_name='node')
+
+
+class SegmentStatistics(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('attribute_statistics', 'total_count')
+    attribute_statistics = sgqlc.types.Field(sgqlc.types.non_null(SegmentAttributeStatistics), graphql_name='attributeStatistics', args=sgqlc.types.ArgDict((
+        ('attribute_name', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='attributeName', default=None)),
+))
+    )
+    total_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='totalCount')
+
+
+class SegmentStringFilterValue(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('localized_name', 'query_name')
+    localized_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='localizedName')
+    query_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='queryName')
+
+
+class SegmentStringFilterValueConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SegmentStringFilterValueEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentStringFilterValue))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SegmentStringFilterValueEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(SegmentStringFilterValue), graphql_name='node')
+
+
+class SegmentUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('segment', 'user_errors')
+    segment = sgqlc.types.Field('Segment', graphql_name='segment')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UserError'))), graphql_name='userErrors')
+
+
+class SegmentValue(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('localized_value', 'query_name')
+    localized_value = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='localizedValue')
+    query_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='queryName')
+
+
+class SegmentValueConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SegmentValueEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentValue))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SegmentValueEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(SegmentValue), graphql_name='node')
+
+
 class SelectedOption(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('name', 'value')
@@ -8961,16 +11485,31 @@ class SelectedOption(sgqlc.types.Type):
 
 class SellingPlanAnchor(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('day', 'month', 'type')
+    __field_names__ = ('cutoff_day', 'day', 'month', 'type')
+    cutoff_day = sgqlc.types.Field(Int, graphql_name='cutoffDay')
     day = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='day')
     month = sgqlc.types.Field(Int, graphql_name='month')
     type = sgqlc.types.Field(sgqlc.types.non_null(SellingPlanAnchorType), graphql_name='type')
 
 
+class SellingPlanCheckoutCharge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('type', 'value')
+    type = sgqlc.types.Field(sgqlc.types.non_null(SellingPlanCheckoutChargeType), graphql_name='type')
+    value = sgqlc.types.Field(sgqlc.types.non_null('SellingPlanCheckoutChargeValue'), graphql_name='value')
+
+
+class SellingPlanCheckoutChargePercentageValue(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('percentage',)
+    percentage = sgqlc.types.Field(sgqlc.types.non_null(Float), graphql_name='percentage')
+
+
 class SellingPlanConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SellingPlanEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SellingPlan'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -8979,6 +11518,26 @@ class SellingPlanEdge(sgqlc.types.Type):
     __field_names__ = ('cursor', 'node')
     cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
     node = sgqlc.types.Field(sgqlc.types.non_null('SellingPlan'), graphql_name='node')
+
+
+class SellingPlanFixedBillingPolicy(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('checkout_charge', 'remaining_balance_charge_exact_time', 'remaining_balance_charge_time_after_checkout', 'remaining_balance_charge_trigger')
+    checkout_charge = sgqlc.types.Field(sgqlc.types.non_null(SellingPlanCheckoutCharge), graphql_name='checkoutCharge')
+    remaining_balance_charge_exact_time = sgqlc.types.Field(DateTime, graphql_name='remainingBalanceChargeExactTime')
+    remaining_balance_charge_time_after_checkout = sgqlc.types.Field(String, graphql_name='remainingBalanceChargeTimeAfterCheckout')
+    remaining_balance_charge_trigger = sgqlc.types.Field(sgqlc.types.non_null(SellingPlanRemainingBalanceChargeTrigger), graphql_name='remainingBalanceChargeTrigger')
+
+
+class SellingPlanFixedDeliveryPolicy(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('anchors', 'cutoff', 'fulfillment_exact_time', 'fulfillment_trigger', 'intent', 'pre_anchor_behavior')
+    anchors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SellingPlanAnchor))), graphql_name='anchors')
+    cutoff = sgqlc.types.Field(Int, graphql_name='cutoff')
+    fulfillment_exact_time = sgqlc.types.Field(DateTime, graphql_name='fulfillmentExactTime')
+    fulfillment_trigger = sgqlc.types.Field(sgqlc.types.non_null(SellingPlanFulfillmentTrigger), graphql_name='fulfillmentTrigger')
+    intent = sgqlc.types.Field(sgqlc.types.non_null(SellingPlanFixedDeliveryPolicyIntent), graphql_name='intent')
+    pre_anchor_behavior = sgqlc.types.Field(sgqlc.types.non_null(SellingPlanFixedDeliveryPolicyPreAnchorBehavior), graphql_name='preAnchorBehavior')
 
 
 class SellingPlanGroupAddProductVariantsPayload(sgqlc.types.Type):
@@ -8997,8 +11556,9 @@ class SellingPlanGroupAddProductsPayload(sgqlc.types.Type):
 
 class SellingPlanGroupConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SellingPlanGroupEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SellingPlanGroup'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9043,6 +11603,12 @@ class SellingPlanGroupUpdatePayload(sgqlc.types.Type):
     deleted_selling_plan_ids = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='deletedSellingPlanIds')
     selling_plan_group = sgqlc.types.Field('SellingPlanGroup', graphql_name='sellingPlanGroup')
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SellingPlanGroupUserError'))), graphql_name='userErrors')
+
+
+class SellingPlanInventoryPolicy(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('reserve',)
+    reserve = sgqlc.types.Field(sgqlc.types.non_null(SellingPlanReserve), graphql_name='reserve')
 
 
 class SellingPlanPricingPolicyBase(sgqlc.types.Interface):
@@ -9102,8 +11668,9 @@ class ShippingLine(sgqlc.types.Type):
 
 class ShippingLineConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShippingLineEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ShippingLine))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9198,8 +11765,9 @@ class ShopFeatures(sgqlc.types.Type):
 
 class ShopLocale(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('locale', 'name', 'primary', 'published')
+    __field_names__ = ('locale', 'market_web_presences', 'name', 'primary', 'published')
     locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='locale')
+    market_web_presences = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MarketWebPresence'))), graphql_name='marketWebPresences')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     primary = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='primary')
     published = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='published')
@@ -9253,8 +11821,9 @@ class ShopResourceLimits(sgqlc.types.Type):
 
 class ShopifyPaymentsBankAccountConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopifyPaymentsBankAccountEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopifyPaymentsBankAccount'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9274,8 +11843,9 @@ class ShopifyPaymentsChargeStatementDescriptor(sgqlc.types.Interface):
 
 class ShopifyPaymentsDisputeConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopifyPaymentsDisputeEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopifyPaymentsDispute'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9315,8 +11885,9 @@ class ShopifyPaymentsNotificationSettings(sgqlc.types.Type):
 
 class ShopifyPaymentsPayoutConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopifyPaymentsPayoutEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopifyPaymentsPayout'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9378,6 +11949,28 @@ class ShopifyPaymentsVerificationSubject(sgqlc.types.Type):
     given_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='givenName')
 
 
+class StaffMemberConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('StaffMemberEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('StaffMember'))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class StaffMemberEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null('StaffMember'), graphql_name='node')
+
+
+class StaffMemberPrivateData(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('account_settings_url', 'created_at')
+    account_settings_url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='accountSettingsUrl')
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+
+
 class StagedMediaUploadTarget(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('parameters', 'resource_url', 'url')
@@ -9431,8 +12024,9 @@ class StandardMetafieldDefinitionEnablePayload(sgqlc.types.Type):
 
 class StandardMetafieldDefinitionTemplateConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('StandardMetafieldDefinitionTemplateEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('StandardMetafieldDefinitionTemplate'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9451,8 +12045,9 @@ class StandardizedProductType(sgqlc.types.Type):
 
 class StorefrontAccessTokenConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('StorefrontAccessTokenEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('StorefrontAccessToken'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9502,8 +12097,9 @@ class SubscriptionAppliedCodeDiscount(sgqlc.types.Type):
 
 class SubscriptionBillingAttemptConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionBillingAttemptEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionBillingAttempt'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9521,6 +12117,85 @@ class SubscriptionBillingAttemptEdge(sgqlc.types.Type):
     node = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionBillingAttempt'), graphql_name='node')
 
 
+class SubscriptionBillingCycle(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('billing_attempt_expected_date', 'billing_attempts', 'cycle_end_at', 'cycle_index', 'cycle_start_at', 'edited', 'edited_contract', 'skipped', 'source_contract', 'status')
+    billing_attempt_expected_date = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='billingAttemptExpectedDate')
+    billing_attempts = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingAttemptConnection), graphql_name='billingAttempts', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
+    cycle_end_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='cycleEndAt')
+    cycle_index = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='cycleIndex')
+    cycle_start_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='cycleStartAt')
+    edited = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='edited')
+    edited_contract = sgqlc.types.Field('SubscriptionBillingCycleEditedContract', graphql_name='editedContract')
+    skipped = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='skipped')
+    source_contract = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionContract'), graphql_name='sourceContract')
+    status = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingCycleBillingCycleStatus), graphql_name='status')
+
+
+class SubscriptionBillingCycleConnection(sgqlc.types.relay.Connection):
+    __schema__ = shopify
+    __field_names__ = ('edges', 'nodes', 'page_info')
+    edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionBillingCycleEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SubscriptionBillingCycle))), graphql_name='nodes')
+    page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
+
+
+class SubscriptionBillingCycleContractDraftCommitPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('contract', 'user_errors')
+    contract = sgqlc.types.Field('SubscriptionBillingCycleEditedContract', graphql_name='contract')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionDraftUserError'))), graphql_name='userErrors')
+
+
+class SubscriptionBillingCycleContractDraftConcatenatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('draft', 'user_errors')
+    draft = sgqlc.types.Field('SubscriptionDraft', graphql_name='draft')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionDraftUserError'))), graphql_name='userErrors')
+
+
+class SubscriptionBillingCycleContractEditPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('draft', 'user_errors')
+    draft = sgqlc.types.Field('SubscriptionDraft', graphql_name='draft')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionDraftUserError'))), graphql_name='userErrors')
+
+
+class SubscriptionBillingCycleEdge(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('cursor', 'node')
+    cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
+    node = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingCycle), graphql_name='node')
+
+
+class SubscriptionBillingCycleEditDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('billing_cycles', 'user_errors')
+    billing_cycles = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(SubscriptionBillingCycle)), graphql_name='billingCycles')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionBillingCycleUserError'))), graphql_name='userErrors')
+
+
+class SubscriptionBillingCycleEditsDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('billing_cycles', 'user_errors')
+    billing_cycles = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(SubscriptionBillingCycle)), graphql_name='billingCycles')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionBillingCycleUserError'))), graphql_name='userErrors')
+
+
+class SubscriptionBillingCycleScheduleEditPayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('billing_cycle', 'user_errors')
+    billing_cycle = sgqlc.types.Field(SubscriptionBillingCycle, graphql_name='billingCycle')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionBillingCycleUserError'))), graphql_name='userErrors')
+
+
 class SubscriptionBillingPolicy(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('anchors', 'interval', 'interval_count', 'max_cycles', 'min_cycles')
@@ -9531,10 +12206,54 @@ class SubscriptionBillingPolicy(sgqlc.types.Type):
     min_cycles = sgqlc.types.Field(Int, graphql_name='minCycles')
 
 
+class SubscriptionContractBase(sgqlc.types.Interface):
+    __schema__ = shopify
+    __field_names__ = ('app', 'app_admin_url', 'currency_code', 'custom_attributes', 'customer', 'customer_payment_method', 'delivery_method', 'delivery_price', 'discounts', 'line_count', 'lines', 'note', 'orders', 'updated_at')
+    app = sgqlc.types.Field('App', graphql_name='app')
+    app_admin_url = sgqlc.types.Field(URL, graphql_name='appAdminUrl')
+    currency_code = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='currencyCode')
+    custom_attributes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Attribute))), graphql_name='customAttributes')
+    customer = sgqlc.types.Field('Customer', graphql_name='customer')
+    customer_payment_method = sgqlc.types.Field('CustomerPaymentMethod', graphql_name='customerPaymentMethod', args=sgqlc.types.ArgDict((
+        ('show_revoked', sgqlc.types.Arg(Boolean, graphql_name='showRevoked', default=False)),
+))
+    )
+    delivery_method = sgqlc.types.Field('SubscriptionDeliveryMethod', graphql_name='deliveryMethod')
+    delivery_price = sgqlc.types.Field(sgqlc.types.non_null(MoneyV2), graphql_name='deliveryPrice')
+    discounts = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionManualDiscountConnection'), graphql_name='discounts', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
+    line_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='lineCount')
+    lines = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionLineConnection'), graphql_name='lines', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
+    note = sgqlc.types.Field(String, graphql_name='note')
+    orders = sgqlc.types.Field(sgqlc.types.non_null(OrderConnection), graphql_name='orders', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
+    updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
+
+
 class SubscriptionContractConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionContractEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionContract'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9575,6 +12294,40 @@ class SubscriptionCyclePriceAdjustment(sgqlc.types.Type):
     computed_price = sgqlc.types.Field(sgqlc.types.non_null(MoneyV2), graphql_name='computedPrice')
 
 
+class SubscriptionDeliveryMethodLocalDelivery(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('address', 'local_delivery_option')
+    address = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionMailingAddress'), graphql_name='address')
+    local_delivery_option = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionDeliveryMethodLocalDeliveryOption'), graphql_name='localDeliveryOption')
+
+
+class SubscriptionDeliveryMethodLocalDeliveryOption(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('code', 'description', 'instructions', 'phone', 'presentment_title', 'title')
+    code = sgqlc.types.Field(String, graphql_name='code')
+    description = sgqlc.types.Field(String, graphql_name='description')
+    instructions = sgqlc.types.Field(String, graphql_name='instructions')
+    phone = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='phone')
+    presentment_title = sgqlc.types.Field(String, graphql_name='presentmentTitle')
+    title = sgqlc.types.Field(String, graphql_name='title')
+
+
+class SubscriptionDeliveryMethodPickup(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('pickup_option',)
+    pickup_option = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionDeliveryMethodPickupOption'), graphql_name='pickupOption')
+
+
+class SubscriptionDeliveryMethodPickupOption(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('code', 'description', 'location', 'presentment_title', 'title')
+    code = sgqlc.types.Field(String, graphql_name='code')
+    description = sgqlc.types.Field(String, graphql_name='description')
+    location = sgqlc.types.Field(sgqlc.types.non_null('Location'), graphql_name='location')
+    presentment_title = sgqlc.types.Field(String, graphql_name='presentmentTitle')
+    title = sgqlc.types.Field(String, graphql_name='title')
+
+
 class SubscriptionDeliveryMethodShipping(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('address', 'shipping_option')
@@ -9590,6 +12343,18 @@ class SubscriptionDeliveryMethodShippingOption(sgqlc.types.Type):
     description = sgqlc.types.Field(String, graphql_name='description')
     presentment_title = sgqlc.types.Field(String, graphql_name='presentmentTitle')
     title = sgqlc.types.Field(String, graphql_name='title')
+
+
+class SubscriptionDeliveryOptionResultFailure(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('message',)
+    message = sgqlc.types.Field(String, graphql_name='message')
+
+
+class SubscriptionDeliveryOptionResultSuccess(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('delivery_options',)
+    delivery_options = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionDeliveryOption'))), graphql_name='deliveryOptions')
 
 
 class SubscriptionDeliveryPolicy(sgqlc.types.Type):
@@ -9609,8 +12374,9 @@ class SubscriptionDiscountAllocation(sgqlc.types.Type):
 
 class SubscriptionDiscountConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionDiscountEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionDiscount'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9759,8 +12525,9 @@ class SubscriptionLine(sgqlc.types.Type):
 
 class SubscriptionLineConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionLineEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SubscriptionLine))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9769,6 +12536,17 @@ class SubscriptionLineEdge(sgqlc.types.Type):
     __field_names__ = ('cursor', 'node')
     cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
     node = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionLine), graphql_name='node')
+
+
+class SubscriptionLocalDeliveryOption(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('code', 'description', 'phone_required', 'presentment_title', 'price', 'title')
+    code = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='code')
+    description = sgqlc.types.Field(String, graphql_name='description')
+    phone_required = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='phoneRequired')
+    presentment_title = sgqlc.types.Field(String, graphql_name='presentmentTitle')
+    price = sgqlc.types.Field(MoneyV2, graphql_name='price')
+    title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
 
 
 class SubscriptionMailingAddress(sgqlc.types.Type):
@@ -9805,8 +12583,9 @@ class SubscriptionManualDiscount(sgqlc.types.Type):
 
 class SubscriptionManualDiscountConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('SubscriptionManualDiscountEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SubscriptionManualDiscount))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9815,6 +12594,19 @@ class SubscriptionManualDiscountEdge(sgqlc.types.Type):
     __field_names__ = ('cursor', 'node')
     cursor = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='cursor')
     node = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionManualDiscount), graphql_name='node')
+
+
+class SubscriptionPickupOption(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('code', 'description', 'location', 'phone_required', 'pickup_time', 'presentment_title', 'price', 'title')
+    code = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='code')
+    description = sgqlc.types.Field(String, graphql_name='description')
+    location = sgqlc.types.Field(sgqlc.types.non_null('Location'), graphql_name='location')
+    phone_required = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='phoneRequired')
+    pickup_time = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='pickupTime')
+    presentment_title = sgqlc.types.Field(String, graphql_name='presentmentTitle')
+    price = sgqlc.types.Field(MoneyV2, graphql_name='price')
+    title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
 
 
 class SubscriptionPricingPolicy(sgqlc.types.Type):
@@ -9902,8 +12694,9 @@ class TaxLine(sgqlc.types.Type):
 
 class TenderTransactionConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('TenderTransactionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('TenderTransaction'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9938,14 +12731,16 @@ class TranslatableResource(sgqlc.types.Type):
     translations = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Translation'))), graphql_name='translations', args=sgqlc.types.ArgDict((
         ('locale', sgqlc.types.Arg(sgqlc.types.non_null(String), graphql_name='locale', default=None)),
         ('outdated', sgqlc.types.Arg(Boolean, graphql_name='outdated', default=None)),
+        ('market_id', sgqlc.types.Arg(ID, graphql_name='marketId', default=None)),
 ))
     )
 
 
 class TranslatableResourceConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('TranslatableResourceEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TranslatableResource))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -9958,9 +12753,10 @@ class TranslatableResourceEdge(sgqlc.types.Type):
 
 class Translation(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('key', 'locale', 'outdated', 'value')
+    __field_names__ = ('key', 'locale', 'market', 'outdated', 'value')
     key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
     locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='locale')
+    market = sgqlc.types.Field('Market', graphql_name='market')
     outdated = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='outdated')
     value = sgqlc.types.Field(String, graphql_name='value')
 
@@ -9977,6 +12773,13 @@ class TranslationsRemovePayload(sgqlc.types.Type):
     __field_names__ = ('translations', 'user_errors')
     translations = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(Translation)), graphql_name='translations')
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('TranslationUserError'))), graphql_name='userErrors')
+
+
+class TypedAttribute(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('key', 'value')
+    key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
+    value = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='value')
 
 
 class UTMParameters(sgqlc.types.Type):
@@ -10019,8 +12822,9 @@ class UrlRedirectBulkDeleteBySearchPayload(sgqlc.types.Type):
 
 class UrlRedirectConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UrlRedirectEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UrlRedirect'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -10073,6 +12877,26 @@ class UrlRedirectUpdatePayload(sgqlc.types.Type):
     user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('UrlRedirectUserError'))), graphql_name='userErrors')
 
 
+class VaultCreditCard(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('billing_address', 'brand', 'expired', 'expiry_month', 'expiry_year', 'last_digits', 'name')
+    billing_address = sgqlc.types.Field(CustomerCreditCardBillingAddress, graphql_name='billingAddress')
+    brand = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='brand')
+    expired = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='expired')
+    expiry_month = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='expiryMonth')
+    expiry_year = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='expiryYear')
+    last_digits = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='lastDigits')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+
+
+class VaultPaypalBillingAgreement(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('inactive', 'name', 'paypal_account_email')
+    inactive = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='inactive')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    paypal_account_email = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='paypalAccountEmail')
+
+
 class Vector3(sgqlc.types.Type):
     __schema__ = shopify
     __field_names__ = ('x', 'y', 'z')
@@ -10083,12 +12907,34 @@ class Vector3(sgqlc.types.Type):
 
 class VideoSource(sgqlc.types.Type):
     __schema__ = shopify
-    __field_names__ = ('format', 'height', 'mime_type', 'url', 'width')
+    __field_names__ = ('file_size', 'format', 'height', 'mime_type', 'url', 'width')
+    file_size = sgqlc.types.Field(Int, graphql_name='fileSize')
     format = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='format')
     height = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='height')
     mime_type = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='mimeType')
     url = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='url')
     width = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='width')
+
+
+class WebPixelCreatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('user_errors', 'web_pixel')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ErrorsWebPixelUserError'))), graphql_name='userErrors')
+    web_pixel = sgqlc.types.Field('WebPixel', graphql_name='webPixel')
+
+
+class WebPixelDeletePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('deleted_web_pixel_id', 'user_errors')
+    deleted_web_pixel_id = sgqlc.types.Field(ID, graphql_name='deletedWebPixelId')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ErrorsWebPixelUserError'))), graphql_name='userErrors')
+
+
+class WebPixelUpdatePayload(sgqlc.types.Type):
+    __schema__ = shopify
+    __field_names__ = ('user_errors', 'web_pixel')
+    user_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ErrorsWebPixelUserError'))), graphql_name='userErrors')
+    web_pixel = sgqlc.types.Field('WebPixel', graphql_name='webPixel')
 
 
 class WebhookEventBridgeEndpoint(sgqlc.types.Type):
@@ -10112,8 +12958,9 @@ class WebhookPubSubEndpoint(sgqlc.types.Type):
 
 class WebhookSubscriptionConnection(sgqlc.types.relay.Connection):
     __schema__ = shopify
-    __field_names__ = ('edges', 'page_info')
+    __field_names__ = ('edges', 'nodes', 'page_info')
     edges = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('WebhookSubscriptionEdge'))), graphql_name='edges')
+    nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('WebhookSubscription'))), graphql_name='nodes')
     page_info = sgqlc.types.Field(sgqlc.types.non_null(PageInfo), graphql_name='pageInfo')
 
 
@@ -10180,13 +13027,15 @@ class AdjustmentSale(sgqlc.types.Type, Sale):
 
 class App(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('api_key', 'app_store_app_url', 'app_store_developer_url', 'banner', 'description', 'developer_name', 'embedded', 'failed_requirements', 'features', 'feedback', 'handle', 'icon', 'install_url', 'installation', 'is_post_purchase_app_in_use', 'pricing_details', 'pricing_details_summary', 'privacy_policy_url', 'published', 'screenshots', 'shopify_developed', 'title', 'uninstall_message')
+    __field_names__ = ('api_key', 'app_store_app_url', 'app_store_developer_url', 'available_access_scopes', 'banner', 'description', 'developer_name', 'developer_type', 'embedded', 'failed_requirements', 'features', 'feedback', 'handle', 'icon', 'install_url', 'installation', 'is_post_purchase_app_in_use', 'previously_installed', 'pricing_details', 'pricing_details_summary', 'privacy_policy_url', 'public_category', 'published', 'requested_access_scopes', 'screenshots', 'shopify_developed', 'title', 'uninstall_message', 'webhook_api_version')
     api_key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='apiKey')
     app_store_app_url = sgqlc.types.Field(URL, graphql_name='appStoreAppUrl')
     app_store_developer_url = sgqlc.types.Field(URL, graphql_name='appStoreDeveloperUrl')
+    available_access_scopes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(AccessScope))), graphql_name='availableAccessScopes')
     banner = sgqlc.types.Field(sgqlc.types.non_null('Image'), graphql_name='banner')
     description = sgqlc.types.Field(String, graphql_name='description')
     developer_name = sgqlc.types.Field(String, graphql_name='developerName')
+    developer_type = sgqlc.types.Field(sgqlc.types.non_null(AppDeveloperType), graphql_name='developerType')
     embedded = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='embedded')
     failed_requirements = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(FailedRequirement))), graphql_name='failedRequirements')
     features = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='features')
@@ -10196,14 +13045,18 @@ class App(sgqlc.types.Type, Node):
     install_url = sgqlc.types.Field(URL, graphql_name='installUrl')
     installation = sgqlc.types.Field('AppInstallation', graphql_name='installation')
     is_post_purchase_app_in_use = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='isPostPurchaseAppInUse')
+    previously_installed = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='previouslyInstalled')
     pricing_details = sgqlc.types.Field(String, graphql_name='pricingDetails')
     pricing_details_summary = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='pricingDetailsSummary')
     privacy_policy_url = sgqlc.types.Field(URL, graphql_name='privacyPolicyUrl')
+    public_category = sgqlc.types.Field(sgqlc.types.non_null(AppPublicCategory), graphql_name='publicCategory')
     published = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='published')
+    requested_access_scopes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(AccessScope))), graphql_name='requestedAccessScopes')
     screenshots = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Image'))), graphql_name='screenshots')
     shopify_developed = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='shopifyDeveloped')
     title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
     uninstall_message = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='uninstallMessage')
+    webhook_api_version = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='webhookApiVersion')
 
 
 class AppCredit(sgqlc.types.Type, Node):
@@ -10215,7 +13068,7 @@ class AppCredit(sgqlc.types.Type, Node):
     test = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='test')
 
 
-class AppInstallation(sgqlc.types.Type, Node):
+class AppInstallation(sgqlc.types.Type, HasMetafields, Node):
     __schema__ = shopify
     __field_names__ = ('access_scopes', 'active_subscriptions', 'all_subscriptions', 'app', 'credits', 'launch_url', 'one_time_purchases', 'publication', 'revenue_attribution_records', 'uninstall_url')
     access_scopes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(AccessScope))), graphql_name='accessScopes')
@@ -10303,6 +13156,12 @@ class AppSubscription(sgqlc.types.Type, Node):
     trial_days = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='trialDays')
 
 
+class AppSubscriptionTrialExtendUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(AppSubscriptionTrialExtendUserErrorCode, graphql_name='code')
+
+
 class AppUsageRecord(sgqlc.types.Type, Node):
     __schema__ = shopify
     __field_names__ = ('created_at', 'description', 'price', 'subscription_line_item')
@@ -10355,6 +13214,12 @@ class BulkProductResourceFeedbackCreateUserError(sgqlc.types.Type, DisplayableEr
     __schema__ = shopify
     __field_names__ = ('code',)
     code = sgqlc.types.Field(BulkProductResourceFeedbackCreateUserErrorCode, graphql_name='code')
+
+
+class BusinessCustomerUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(BusinessCustomerErrorCode, graphql_name='code')
 
 
 class CalculatedAutomaticDiscountApplication(sgqlc.types.Type, CalculatedDiscountApplication):
@@ -10470,6 +13335,32 @@ class Channel(sgqlc.types.Type, Node):
     supports_future_publishing = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='supportsFuturePublishing')
 
 
+class ChannelDefinition(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('channel_name', 'handle', 'sub_channel_name', 'svg_icon')
+    channel_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='channelName')
+    handle = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='handle')
+    sub_channel_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='subChannelName')
+    svg_icon = sgqlc.types.Field(String, graphql_name='svgIcon')
+
+
+class ChannelInformation(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('app', 'channel_definition', 'channel_id')
+    app = sgqlc.types.Field(sgqlc.types.non_null(App), graphql_name='app')
+    channel_definition = sgqlc.types.Field(ChannelDefinition, graphql_name='channelDefinition')
+    channel_id = sgqlc.types.Field(sgqlc.types.non_null(ID), graphql_name='channelId')
+
+
+class CheckoutProfile(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('created_at', 'is_published', 'name', 'updated_at')
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+    is_published = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='isPublished')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
+
+
 class Collection(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPublishedTranslations, Node, Publishable):
     __schema__ = shopify
     __field_names__ = ('description', 'description_html', 'feedback', 'handle', 'has_product', 'image', 'legacy_resource_id', 'products', 'products_count', 'rule_set', 'seo', 'sort_order', 'template_suffix', 'title', 'updated_at')
@@ -10484,13 +13375,7 @@ class Collection(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPu
         ('id', sgqlc.types.Arg(sgqlc.types.non_null(ID), graphql_name='id', default=None)),
 ))
     )
-    image = sgqlc.types.Field('Image', graphql_name='image', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    image = sgqlc.types.Field('Image', graphql_name='image')
     legacy_resource_id = sgqlc.types.Field(sgqlc.types.non_null(UnsignedInt64), graphql_name='legacyResourceId')
     products = sgqlc.types.Field(sgqlc.types.non_null(ProductConnection), graphql_name='products', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
@@ -10510,10 +13395,17 @@ class Collection(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPu
     updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
 
 
+class CollectionAddProductsV2UserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(CollectionAddProductsV2UserErrorCode, graphql_name='code')
+
+
 class CommentEvent(sgqlc.types.Type, Event, Node):
     __schema__ = shopify
-    __field_names__ = ('attachments', 'can_delete', 'can_edit', 'edited', 'embed', 'raw_message', 'subject')
+    __field_names__ = ('attachments', 'author', 'can_delete', 'can_edit', 'edited', 'embed', 'raw_message', 'subject')
     attachments = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CommentEventAttachment))), graphql_name='attachments')
+    author = sgqlc.types.Field(sgqlc.types.non_null('StaffMember'), graphql_name='author')
     can_delete = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='canDelete')
     can_edit = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='canEdit')
     edited = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='edited')
@@ -10522,34 +13414,233 @@ class CommentEvent(sgqlc.types.Type, Event, Node):
     subject = sgqlc.types.Field(sgqlc.types.non_null(CommentEventSubject), graphql_name='subject')
 
 
+class Company(sgqlc.types.Type, CommentEventSubject, HasEvents, Navigable, Node):
+    __schema__ = shopify
+    __field_names__ = ('contact_count', 'contact_roles', 'contacts', 'created_at', 'customer_since', 'default_role', 'draft_orders', 'external_id', 'lifetime_duration', 'location_count', 'locations', 'main_contact', 'name', 'note', 'order_count', 'orders', 'total_spent', 'updated_at')
+    contact_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='contactCount')
+    contact_roles = sgqlc.types.Field(sgqlc.types.non_null(CompanyContactRoleConnection), graphql_name='contactRoles', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(CompanyContactRoleSortKeys, graphql_name='sortKey', default='ID')),
+))
+    )
+    contacts = sgqlc.types.Field(sgqlc.types.non_null(CompanyContactConnection), graphql_name='contacts', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(CompanyContactSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+    customer_since = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='customerSince')
+    default_role = sgqlc.types.Field('CompanyContactRole', graphql_name='defaultRole')
+    draft_orders = sgqlc.types.Field(sgqlc.types.non_null(DraftOrderConnection), graphql_name='draftOrders', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(DraftOrderSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    external_id = sgqlc.types.Field(String, graphql_name='externalId')
+    lifetime_duration = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='lifetimeDuration')
+    location_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='locationCount')
+    locations = sgqlc.types.Field(sgqlc.types.non_null(CompanyLocationConnection), graphql_name='locations', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(CompanyLocationSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    main_contact = sgqlc.types.Field('CompanyContact', graphql_name='mainContact')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    note = sgqlc.types.Field(String, graphql_name='note')
+    order_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='orderCount')
+    orders = sgqlc.types.Field(sgqlc.types.non_null(OrderConnection), graphql_name='orders', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(OrderSortKeys, graphql_name='sortKey', default='ID')),
+))
+    )
+    total_spent = sgqlc.types.Field(sgqlc.types.non_null(MoneyV2), graphql_name='totalSpent')
+    updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
+
+
+class CompanyAddress(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('address1', 'address2', 'city', 'company_name', 'country', 'country_code', 'created_at', 'formatted_address', 'formatted_area', 'phone', 'province', 'recipient', 'updated_at', 'zip', 'zone_code')
+    address1 = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='address1')
+    address2 = sgqlc.types.Field(String, graphql_name='address2')
+    city = sgqlc.types.Field(String, graphql_name='city')
+    company_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='companyName')
+    country = sgqlc.types.Field(String, graphql_name='country')
+    country_code = sgqlc.types.Field(sgqlc.types.non_null(CountryCode), graphql_name='countryCode')
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+    formatted_address = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='formattedAddress', args=sgqlc.types.ArgDict((
+        ('with_name', sgqlc.types.Arg(Boolean, graphql_name='withName', default=False)),
+        ('with_company_name', sgqlc.types.Arg(Boolean, graphql_name='withCompanyName', default=True)),
+))
+    )
+    formatted_area = sgqlc.types.Field(String, graphql_name='formattedArea')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    province = sgqlc.types.Field(String, graphql_name='province')
+    recipient = sgqlc.types.Field(String, graphql_name='recipient')
+    updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
+    zip = sgqlc.types.Field(String, graphql_name='zip')
+    zone_code = sgqlc.types.Field(String, graphql_name='zoneCode')
+
+
+class CompanyContact(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('company', 'created_at', 'customer', 'draft_orders', 'is_main_contact', 'lifetime_duration', 'locale', 'orders', 'role_assignments', 'title', 'updated_at')
+    company = sgqlc.types.Field(sgqlc.types.non_null(Company), graphql_name='company')
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+    customer = sgqlc.types.Field(sgqlc.types.non_null('Customer'), graphql_name='customer')
+    draft_orders = sgqlc.types.Field(sgqlc.types.non_null(DraftOrderConnection), graphql_name='draftOrders', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(DraftOrderSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    is_main_contact = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='isMainContact')
+    lifetime_duration = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='lifetimeDuration')
+    locale = sgqlc.types.Field(String, graphql_name='locale')
+    orders = sgqlc.types.Field(sgqlc.types.non_null(OrderConnection), graphql_name='orders', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(OrderSortKeys, graphql_name='sortKey', default='ID')),
+))
+    )
+    role_assignments = sgqlc.types.Field(sgqlc.types.non_null(CompanyContactRoleAssignmentConnection), graphql_name='roleAssignments', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(CompanyContactRoleAssignmentSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    title = sgqlc.types.Field(String, graphql_name='title')
+    updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
+
+
+class CompanyContactRole(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('name', 'note')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    note = sgqlc.types.Field(String, graphql_name='note')
+
+
+class CompanyContactRoleAssignment(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('company', 'company_contact', 'company_location', 'created_at', 'role', 'updated_at')
+    company = sgqlc.types.Field(sgqlc.types.non_null(Company), graphql_name='company')
+    company_contact = sgqlc.types.Field(sgqlc.types.non_null(CompanyContact), graphql_name='companyContact')
+    company_location = sgqlc.types.Field(sgqlc.types.non_null('CompanyLocation'), graphql_name='companyLocation')
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+    role = sgqlc.types.Field(sgqlc.types.non_null(CompanyContactRole), graphql_name='role')
+    updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
+
+
+class CompanyLocation(sgqlc.types.Type, CommentEventSubject, HasEvents, Navigable, Node):
+    __schema__ = shopify
+    __field_names__ = ('billing_address', 'buyer_experience_configuration', 'company', 'created_at', 'currency', 'draft_orders', 'external_id', 'locale', 'market', 'name', 'note', 'order_count', 'orders', 'phone', 'role_assignments', 'shipping_address', 'tax_exemptions', 'tax_registration_id', 'total_spent', 'updated_at')
+    billing_address = sgqlc.types.Field(CompanyAddress, graphql_name='billingAddress')
+    buyer_experience_configuration = sgqlc.types.Field(BuyerExperienceConfiguration, graphql_name='buyerExperienceConfiguration')
+    company = sgqlc.types.Field(sgqlc.types.non_null(Company), graphql_name='company')
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+    currency = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='currency')
+    draft_orders = sgqlc.types.Field(sgqlc.types.non_null(DraftOrderConnection), graphql_name='draftOrders', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(DraftOrderSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    external_id = sgqlc.types.Field(String, graphql_name='externalId')
+    locale = sgqlc.types.Field(String, graphql_name='locale')
+    market = sgqlc.types.Field(sgqlc.types.non_null('Market'), graphql_name='market')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    note = sgqlc.types.Field(String, graphql_name='note')
+    order_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='orderCount')
+    orders = sgqlc.types.Field(sgqlc.types.non_null(OrderConnection), graphql_name='orders', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(OrderSortKeys, graphql_name='sortKey', default='ID')),
+))
+    )
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    role_assignments = sgqlc.types.Field(sgqlc.types.non_null(CompanyContactRoleAssignmentConnection), graphql_name='roleAssignments', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(CompanyContactRoleAssignmentSortKeys, graphql_name='sortKey', default='ID')),
+        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
+))
+    )
+    shipping_address = sgqlc.types.Field(CompanyAddress, graphql_name='shippingAddress')
+    tax_exemptions = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TaxExemption))), graphql_name='taxExemptions')
+    tax_registration_id = sgqlc.types.Field(String, graphql_name='taxRegistrationId')
+    total_spent = sgqlc.types.Field(sgqlc.types.non_null(MoneyV2), graphql_name='totalSpent')
+    updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
+
+
 class Customer(sgqlc.types.Type, CommentEventSubject, HasEvents, HasMetafieldDefinitions, HasMetafields, LegacyInteroperability, Node):
     __schema__ = shopify
-    __field_names__ = ('accepts_marketing', 'accepts_marketing_updated_at', 'addresses', 'average_order_amount_v2', 'can_delete', 'created_at', 'default_address', 'display_name', 'email', 'first_name', 'has_note', 'image', 'last_name', 'last_order', 'lifetime_duration', 'locale', 'marketing_opt_in_level', 'multipass_identifier', 'note', 'orders', 'orders_count', 'payment_methods', 'phone', 'product_subscriber_status', 'sms_marketing_consent', 'state', 'subscription_contracts', 'tags', 'tax_exempt', 'tax_exemptions', 'total_spent', 'total_spent_v2', 'updated_at', 'valid_email_address', 'verified_email')
-    accepts_marketing = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='acceptsMarketing')
-    accepts_marketing_updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='acceptsMarketingUpdatedAt')
+    __field_names__ = ('addresses', 'amount_spent', 'average_order_amount_v2', 'can_delete', 'company_contact_profiles', 'created_at', 'default_address', 'display_name', 'email', 'email_marketing_consent', 'first_name', 'image', 'last_name', 'last_order', 'lifetime_duration', 'locale', 'market', 'multipass_identifier', 'note', 'number_of_orders', 'orders', 'payment_methods', 'phone', 'product_subscriber_status', 'sms_marketing_consent', 'state', 'statistics', 'subscription_contracts', 'tags', 'tax_exempt', 'tax_exemptions', 'unsubscribe_url', 'updated_at', 'valid_email_address', 'verified_email')
     addresses = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('MailingAddress'))), graphql_name='addresses', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
 ))
     )
+    amount_spent = sgqlc.types.Field(sgqlc.types.non_null(MoneyV2), graphql_name='amountSpent')
     average_order_amount_v2 = sgqlc.types.Field(MoneyV2, graphql_name='averageOrderAmountV2')
     can_delete = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='canDelete')
+    company_contact_profiles = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CompanyContact))), graphql_name='companyContactProfiles')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     default_address = sgqlc.types.Field('MailingAddress', graphql_name='defaultAddress')
     display_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='displayName')
     email = sgqlc.types.Field(String, graphql_name='email')
+    email_marketing_consent = sgqlc.types.Field(CustomerEmailMarketingConsentState, graphql_name='emailMarketingConsent')
     first_name = sgqlc.types.Field(String, graphql_name='firstName')
-    has_note = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasNote')
-    image = sgqlc.types.Field(sgqlc.types.non_null('Image'), graphql_name='image', args=sgqlc.types.ArgDict((
-        ('size', sgqlc.types.Arg(Int, graphql_name='size', default=None)),
-))
-    )
+    image = sgqlc.types.Field(sgqlc.types.non_null('Image'), graphql_name='image')
     last_name = sgqlc.types.Field(String, graphql_name='lastName')
     last_order = sgqlc.types.Field('Order', graphql_name='lastOrder')
     lifetime_duration = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='lifetimeDuration')
     locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='locale')
-    marketing_opt_in_level = sgqlc.types.Field(CustomerMarketingOptInLevel, graphql_name='marketingOptInLevel')
+    market = sgqlc.types.Field('Market', graphql_name='market')
     multipass_identifier = sgqlc.types.Field(String, graphql_name='multipassIdentifier')
     note = sgqlc.types.Field(String, graphql_name='note')
+    number_of_orders = sgqlc.types.Field(sgqlc.types.non_null(UnsignedInt64), graphql_name='numberOfOrders')
     orders = sgqlc.types.Field(sgqlc.types.non_null(OrderConnection), graphql_name='orders', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -10560,7 +13651,6 @@ class Customer(sgqlc.types.Type, CommentEventSubject, HasEvents, HasMetafieldDef
         ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
 ))
     )
-    orders_count = sgqlc.types.Field(sgqlc.types.non_null(UnsignedInt64), graphql_name='ordersCount')
     payment_methods = sgqlc.types.Field(sgqlc.types.non_null(CustomerPaymentMethodConnection), graphql_name='paymentMethods', args=sgqlc.types.ArgDict((
         ('show_revoked', sgqlc.types.Arg(Boolean, graphql_name='showRevoked', default=False)),
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
@@ -10574,6 +13664,7 @@ class Customer(sgqlc.types.Type, CommentEventSubject, HasEvents, HasMetafieldDef
     product_subscriber_status = sgqlc.types.Field(sgqlc.types.non_null(CustomerProductSubscriberStatus), graphql_name='productSubscriberStatus')
     sms_marketing_consent = sgqlc.types.Field(CustomerSmsMarketingConsentState, graphql_name='smsMarketingConsent')
     state = sgqlc.types.Field(sgqlc.types.non_null(CustomerState), graphql_name='state')
+    statistics = sgqlc.types.Field(sgqlc.types.non_null(CustomerStatistics), graphql_name='statistics')
     subscription_contracts = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionContractConnection), graphql_name='subscriptionContracts', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -10585,11 +13676,16 @@ class Customer(sgqlc.types.Type, CommentEventSubject, HasEvents, HasMetafieldDef
     tags = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='tags')
     tax_exempt = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='taxExempt')
     tax_exemptions = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TaxExemption))), graphql_name='taxExemptions')
-    total_spent = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='totalSpent')
-    total_spent_v2 = sgqlc.types.Field(sgqlc.types.non_null(MoneyV2), graphql_name='totalSpentV2')
+    unsubscribe_url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='unsubscribeUrl')
     updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
     valid_email_address = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='validEmailAddress')
     verified_email = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='verifiedEmail')
+
+
+class CustomerEmailMarketingConsentUpdateUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(CustomerEmailMarketingConsentUpdateUserErrorCode, graphql_name='code')
 
 
 class CustomerPaymentMethod(sgqlc.types.Type, Node):
@@ -10648,6 +13744,12 @@ class CustomerVisit(sgqlc.types.Type, CustomerMoment, Node):
     utm_parameters = sgqlc.types.Field(UTMParameters, graphql_name='utmParameters')
 
 
+class DelegateAccessTokenCreateUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(DelegateAccessTokenCreateUserErrorCode, graphql_name='code')
+
+
 class DeliveryCarrierService(sgqlc.types.Type, Node):
     __schema__ = shopify
     __field_names__ = ('available_services_for_countries', 'formatted_name', 'icon', 'name')
@@ -10698,8 +13800,10 @@ class DeliveryLocationGroup(sgqlc.types.Type, Node):
 
 class DeliveryMethod(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('method_type',)
+    __field_names__ = ('max_delivery_date_time', 'method_type', 'min_delivery_date_time')
+    max_delivery_date_time = sgqlc.types.Field(DateTime, graphql_name='maxDeliveryDateTime')
     method_type = sgqlc.types.Field(sgqlc.types.non_null(DeliveryMethodType), graphql_name='methodType')
+    min_delivery_date_time = sgqlc.types.Field(DateTime, graphql_name='minDeliveryDateTime')
 
 
 class DeliveryMethodDefinition(sgqlc.types.Type, Node):
@@ -10738,7 +13842,6 @@ class DeliveryProfile(sgqlc.types.Type, Node):
         ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
         ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
-        ('sort_key', sgqlc.types.Arg(ProfileItemSortKeys, graphql_name='sortKey', default='ID')),
 ))
     )
     profile_location_groups = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(DeliveryProfileLocationGroup))), graphql_name='profileLocationGroups')
@@ -10764,7 +13867,6 @@ class DeliveryProfileItem(sgqlc.types.Type, Node):
         ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
         ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
-        ('sort_key', sgqlc.types.Arg(ProductVariantSortKeys, graphql_name='sortKey', default='ID')),
 ))
     )
 
@@ -10792,11 +13894,13 @@ class DeliveryZone(sgqlc.types.Type, Node):
 
 class DiscountAutomaticBxgy(sgqlc.types.Type, HasEvents, Node):
     __schema__ = shopify
-    __field_names__ = ('async_usage_count', 'created_at', 'customer_buys', 'customer_gets', 'ends_at', 'starts_at', 'status', 'summary', 'title', 'uses_per_order_limit')
+    __field_names__ = ('async_usage_count', 'combines_with', 'created_at', 'customer_buys', 'customer_gets', 'discount_class', 'ends_at', 'starts_at', 'status', 'summary', 'title', 'uses_per_order_limit')
     async_usage_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='asyncUsageCount')
+    combines_with = sgqlc.types.Field(sgqlc.types.non_null(DiscountCombinesWith), graphql_name='combinesWith')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     customer_buys = sgqlc.types.Field(sgqlc.types.non_null(DiscountCustomerBuys), graphql_name='customerBuys')
     customer_gets = sgqlc.types.Field(sgqlc.types.non_null(DiscountCustomerGets), graphql_name='customerGets')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(MerchandiseDiscountClass), graphql_name='discountClass')
     ends_at = sgqlc.types.Field(DateTime, graphql_name='endsAt')
     starts_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='startsAt')
     status = sgqlc.types.Field(sgqlc.types.non_null(DiscountStatus), graphql_name='status')
@@ -10805,7 +13909,7 @@ class DiscountAutomaticBxgy(sgqlc.types.Type, HasEvents, Node):
     uses_per_order_limit = sgqlc.types.Field(Int, graphql_name='usesPerOrderLimit')
 
 
-class DiscountAutomaticNode(sgqlc.types.Type, HasEvents, Node):
+class DiscountAutomaticNode(sgqlc.types.Type, HasEvents, HasMetafieldDefinitions, HasMetafields, Node):
     __schema__ = shopify
     __field_names__ = ('automatic_discount',)
     automatic_discount = sgqlc.types.Field(sgqlc.types.non_null('DiscountAutomatic'), graphql_name='automaticDiscount')
@@ -10817,10 +13921,16 @@ class DiscountCodeApplication(sgqlc.types.Type, DiscountApplication):
     code = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='code')
 
 
-class DiscountCodeNode(sgqlc.types.Type, HasEvents, Node):
+class DiscountCodeNode(sgqlc.types.Type, HasEvents, HasMetafieldDefinitions, HasMetafields, Node):
     __schema__ = shopify
     __field_names__ = ('code_discount',)
     code_discount = sgqlc.types.Field(sgqlc.types.non_null('DiscountCode'), graphql_name='codeDiscount')
+
+
+class DiscountNode(sgqlc.types.Type, HasEvents, HasMetafieldDefinitions, HasMetafields, Node):
+    __schema__ = shopify
+    __field_names__ = ('discount',)
+    discount = sgqlc.types.Field(sgqlc.types.non_null('Discount'), graphql_name='discount')
 
 
 class DiscountRedeemCodeBulkCreation(sgqlc.types.Type, Node):
@@ -10849,26 +13959,35 @@ class DiscountUserError(sgqlc.types.Type, DisplayableError):
     extra_info = sgqlc.types.Field(String, graphql_name='extraInfo')
 
 
+class DisputeEvidenceUpdateUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(DisputeEvidenceUpdateUserErrorCode, graphql_name='code')
+
+
 class Domain(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('host', 'localization', 'ssl_enabled', 'url')
+    __field_names__ = ('host', 'localization', 'market_web_presence', 'ssl_enabled', 'url')
     host = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='host')
     localization = sgqlc.types.Field(DomainLocalization, graphql_name='localization')
+    market_web_presence = sgqlc.types.Field('MarketWebPresence', graphql_name='marketWebPresence')
     ssl_enabled = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='sslEnabled')
     url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='url')
 
 
-class DraftOrder(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizationExtensions, HasMetafields, LegacyInteroperability, Node):
+class DraftOrder(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizationExtensions, HasMetafields, LegacyInteroperability, Navigable, Node):
     __schema__ = shopify
-    __field_names__ = ('applied_discount', 'billing_address', 'completed_at', 'created_at', 'currency_code', 'custom_attributes', 'customer', 'email', 'invoice_sent_at', 'invoice_url', 'line_items', 'name', 'note2', 'order', 'payment_terms', 'ready', 'shipping_address', 'shipping_line', 'status', 'subtotal_price', 'tags', 'tax_exempt', 'tax_lines', 'taxes_included', 'total_price', 'total_shipping_price', 'total_tax', 'total_weight', 'updated_at')
+    __field_names__ = ('applied_discount', 'billing_address', 'billing_address_matches_shipping_address', 'completed_at', 'created_at', 'currency_code', 'custom_attributes', 'customer', 'email', 'invoice_email_template_subject', 'invoice_sent_at', 'invoice_url', 'line_items', 'line_items_subtotal_price', 'market_name', 'market_region_country_code', 'name', 'note2', 'order', 'payment_terms', 'phone', 'presentment_currency_code', 'purchasing_entity', 'ready', 'reserve_inventory_until', 'shipping_address', 'shipping_line', 'status', 'subtotal_price', 'subtotal_price_set', 'tags', 'tax_exempt', 'tax_lines', 'taxes_included', 'total_discounts_set', 'total_line_items_price_set', 'total_price', 'total_price_set', 'total_shipping_price', 'total_shipping_price_set', 'total_tax', 'total_tax_set', 'total_weight', 'updated_at', 'visible_to_customer')
     applied_discount = sgqlc.types.Field(DraftOrderAppliedDiscount, graphql_name='appliedDiscount')
     billing_address = sgqlc.types.Field('MailingAddress', graphql_name='billingAddress')
+    billing_address_matches_shipping_address = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='billingAddressMatchesShippingAddress')
     completed_at = sgqlc.types.Field(DateTime, graphql_name='completedAt')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     currency_code = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='currencyCode')
     custom_attributes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Attribute))), graphql_name='customAttributes')
     customer = sgqlc.types.Field(Customer, graphql_name='customer')
     email = sgqlc.types.Field(String, graphql_name='email')
+    invoice_email_template_subject = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='invoiceEmailTemplateSubject')
     invoice_sent_at = sgqlc.types.Field(DateTime, graphql_name='invoiceSentAt')
     invoice_url = sgqlc.types.Field(URL, graphql_name='invoiceUrl')
     line_items = sgqlc.types.Field(sgqlc.types.non_null(DraftOrderLineItemConnection), graphql_name='lineItems', args=sgqlc.types.ArgDict((
@@ -10879,46 +13998,59 @@ class DraftOrder(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizati
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
 ))
     )
+    line_items_subtotal_price = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='lineItemsSubtotalPrice')
+    market_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='marketName')
+    market_region_country_code = sgqlc.types.Field(sgqlc.types.non_null(CountryCode), graphql_name='marketRegionCountryCode')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     note2 = sgqlc.types.Field(String, graphql_name='note2')
     order = sgqlc.types.Field('Order', graphql_name='order')
     payment_terms = sgqlc.types.Field('PaymentTerms', graphql_name='paymentTerms')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    presentment_currency_code = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='presentmentCurrencyCode')
+    purchasing_entity = sgqlc.types.Field('PurchasingEntity', graphql_name='purchasingEntity')
     ready = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='ready')
+    reserve_inventory_until = sgqlc.types.Field(DateTime, graphql_name='reserveInventoryUntil')
     shipping_address = sgqlc.types.Field('MailingAddress', graphql_name='shippingAddress')
     shipping_line = sgqlc.types.Field(ShippingLine, graphql_name='shippingLine')
     status = sgqlc.types.Field(sgqlc.types.non_null(DraftOrderStatus), graphql_name='status')
     subtotal_price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='subtotalPrice')
+    subtotal_price_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='subtotalPriceSet')
     tags = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='tags')
     tax_exempt = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='taxExempt')
     tax_lines = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TaxLine))), graphql_name='taxLines')
     taxes_included = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='taxesIncluded')
+    total_discounts_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='totalDiscountsSet')
+    total_line_items_price_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='totalLineItemsPriceSet')
     total_price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='totalPrice')
+    total_price_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='totalPriceSet')
     total_shipping_price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='totalShippingPrice')
+    total_shipping_price_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='totalShippingPriceSet')
     total_tax = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='totalTax')
+    total_tax_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='totalTaxSet')
     total_weight = sgqlc.types.Field(sgqlc.types.non_null(UnsignedInt64), graphql_name='totalWeight')
     updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
+    visible_to_customer = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='visibleToCustomer')
 
 
 class DraftOrderLineItem(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('applied_discount', 'custom', 'custom_attributes', 'discounted_total', 'discounted_unit_price', 'fulfillment_service', 'image', 'is_gift_card', 'name', 'original_total', 'original_unit_price', 'product', 'quantity', 'requires_shipping', 'sku', 'tax_lines', 'taxable', 'title', 'total_discount', 'variant', 'variant_title', 'vendor', 'weight')
+    __field_names__ = ('applied_discount', 'custom', 'custom_attributes', 'custom_attributes_v2', 'discounted_total', 'discounted_total_set', 'discounted_unit_price', 'discounted_unit_price_set', 'fulfillment_service', 'image', 'is_gift_card', 'name', 'original_total', 'original_total_set', 'original_unit_price', 'original_unit_price_set', 'product', 'quantity', 'requires_shipping', 'sku', 'tax_lines', 'taxable', 'title', 'total_discount', 'total_discount_set', 'variant', 'variant_title', 'vendor', 'weight')
     applied_discount = sgqlc.types.Field(DraftOrderAppliedDiscount, graphql_name='appliedDiscount')
     custom = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='custom')
     custom_attributes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Attribute))), graphql_name='customAttributes')
+    custom_attributes_v2 = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TypedAttribute))), graphql_name='customAttributesV2')
     discounted_total = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='discountedTotal')
+    discounted_total_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='discountedTotalSet')
     discounted_unit_price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='discountedUnitPrice')
+    discounted_unit_price_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='discountedUnitPriceSet')
     fulfillment_service = sgqlc.types.Field(FulfillmentService, graphql_name='fulfillmentService')
-    image = sgqlc.types.Field('Image', graphql_name='image', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    image = sgqlc.types.Field('Image', graphql_name='image')
     is_gift_card = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='isGiftCard')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     original_total = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='originalTotal')
+    original_total_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='originalTotalSet')
     original_unit_price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='originalUnitPrice')
+    original_unit_price_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='originalUnitPriceSet')
     product = sgqlc.types.Field('Product', graphql_name='product')
     quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='quantity')
     requires_shipping = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='requiresShipping')
@@ -10927,10 +14059,18 @@ class DraftOrderLineItem(sgqlc.types.Type, Node):
     taxable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='taxable')
     title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
     total_discount = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='totalDiscount')
+    total_discount_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='totalDiscountSet')
     variant = sgqlc.types.Field('ProductVariant', graphql_name='variant')
     variant_title = sgqlc.types.Field(String, graphql_name='variantTitle')
     vendor = sgqlc.types.Field(String, graphql_name='vendor')
     weight = sgqlc.types.Field(Weight, graphql_name='weight')
+
+
+class DraftOrderTag(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('handle', 'title')
+    handle = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='handle')
+    title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
 
 
 class Duty(sgqlc.types.Type, Node):
@@ -10948,10 +14088,18 @@ class DutySale(sgqlc.types.Type, Sale):
     duty = sgqlc.types.Field(sgqlc.types.non_null(Duty), graphql_name='duty')
 
 
+class ErrorsWebPixelUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(ErrorsWebPixelUserErrorCode, graphql_name='code')
+
+
 class ExternalVideo(sgqlc.types.Type, Media, Node):
     __schema__ = shopify
-    __field_names__ = ('host',)
+    __field_names__ = ('embed_url', 'host', 'origin_url')
+    embed_url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='embedUrl')
     host = sgqlc.types.Field(sgqlc.types.non_null(MediaHost), graphql_name='host')
+    origin_url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='originUrl')
 
 
 class FilesUserError(sgqlc.types.Type, DisplayableError):
@@ -11026,11 +14174,12 @@ class FulfillmentLineItem(sgqlc.types.Type, Node):
 
 class FulfillmentOrder(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('assigned_location', 'delivery_method', 'destination', 'fulfill_at', 'fulfillment_holds', 'fulfillments', 'international_duties', 'line_items', 'locations_for_move', 'merchant_requests', 'order', 'request_status', 'status', 'supported_actions')
+    __field_names__ = ('assigned_location', 'delivery_method', 'destination', 'fulfill_at', 'fulfill_by', 'fulfillment_holds', 'fulfillments', 'international_duties', 'line_items', 'locations_for_move', 'merchant_requests', 'order', 'request_status', 'status', 'supported_actions')
     assigned_location = sgqlc.types.Field(sgqlc.types.non_null(FulfillmentOrderAssignedLocation), graphql_name='assignedLocation')
     delivery_method = sgqlc.types.Field(DeliveryMethod, graphql_name='deliveryMethod')
     destination = sgqlc.types.Field('FulfillmentOrderDestination', graphql_name='destination')
     fulfill_at = sgqlc.types.Field(DateTime, graphql_name='fulfillAt')
+    fulfill_by = sgqlc.types.Field(DateTime, graphql_name='fulfillBy')
     fulfillment_holds = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(FulfillmentHold))), graphql_name='fulfillmentHolds')
     fulfillments = sgqlc.types.Field(sgqlc.types.non_null(FulfillmentConnection), graphql_name='fulfillments', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
@@ -11096,10 +14245,10 @@ class FulfillmentOrderHoldUserError(sgqlc.types.Type, DisplayableError):
 
 class FulfillmentOrderLineItem(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('line_item', 'remaining_quantity', 'total_quantity')
-    line_item = sgqlc.types.Field(sgqlc.types.non_null('LineItem'), graphql_name='lineItem')
+    __field_names__ = ('remaining_quantity', 'total_quantity', 'warnings')
     remaining_quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='remainingQuantity')
     total_quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='totalQuantity')
+    warnings = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(FulfillmentOrderLineItemWarning))), graphql_name='warnings')
 
 
 class FulfillmentOrderMerchantRequest(sgqlc.types.Type, Node):
@@ -11124,9 +14273,17 @@ class FulfillmentOrderRescheduleUserError(sgqlc.types.Type, DisplayableError):
     code = sgqlc.types.Field(FulfillmentOrderRescheduleUserErrorCode, graphql_name='code')
 
 
+class FulfillmentOrdersSetFulfillmentDeadlineUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(FulfillmentOrdersSetFulfillmentDeadlineUserErrorCode, graphql_name='code')
+
+
 class GenericFile(sgqlc.types.Type, File, Node):
     __schema__ = shopify
-    __field_names__ = ('url',)
+    __field_names__ = ('mime_type', 'original_file_size', 'url')
+    mime_type = sgqlc.types.Field(String, graphql_name='mimeType')
+    original_file_size = sgqlc.types.Field(Int, graphql_name='originalFileSize')
     url = sgqlc.types.Field(URL, graphql_name='url')
 
 
@@ -11169,6 +14326,12 @@ class Image(sgqlc.types.Type, HasMetafields):
 ))
     )
     width = sgqlc.types.Field(Int, graphql_name='width')
+
+
+class InventoryBulkToggleActivationUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(InventoryBulkToggleActivationUserErrorCode, graphql_name='code')
 
 
 class InventoryItem(sgqlc.types.Type, LegacyInteroperability, Node):
@@ -11227,7 +14390,7 @@ class InventoryLevel(sgqlc.types.Type, Node):
 
 class LineItem(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('contract', 'current_quantity', 'custom_attributes', 'discount_allocations', 'discounted_total_set', 'discounted_unit_price_set', 'duties', 'fulfillable_quantity', 'fulfillment_service', 'fulfillment_status', 'image', 'merchant_editable', 'name', 'non_fulfillable_quantity', 'original_total_set', 'original_unit_price_set', 'product', 'quantity', 'refundable_quantity', 'requires_shipping', 'restockable', 'selling_plan', 'sku', 'tax_lines', 'taxable', 'title', 'total_discount_set', 'unfulfilled_discounted_total_set', 'unfulfilled_original_total_set', 'unfulfilled_quantity', 'variant', 'variant_title', 'vendor')
+    __field_names__ = ('contract', 'current_quantity', 'custom_attributes', 'discount_allocations', 'discounted_total_set', 'discounted_unit_price_set', 'duties', 'image', 'merchant_editable', 'name', 'non_fulfillable_quantity', 'original_total_set', 'original_unit_price_set', 'product', 'quantity', 'refundable_quantity', 'requires_shipping', 'restockable', 'selling_plan', 'sku', 'staff_member', 'tax_lines', 'taxable', 'title', 'total_discount_set', 'unfulfilled_discounted_total_set', 'unfulfilled_original_total_set', 'unfulfilled_quantity', 'variant', 'variant_title', 'vendor')
     contract = sgqlc.types.Field('SubscriptionContract', graphql_name='contract')
     current_quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='currentQuantity')
     custom_attributes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Attribute))), graphql_name='customAttributes')
@@ -11235,16 +14398,7 @@ class LineItem(sgqlc.types.Type, Node):
     discounted_total_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='discountedTotalSet')
     discounted_unit_price_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='discountedUnitPriceSet')
     duties = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Duty))), graphql_name='duties')
-    fulfillable_quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='fulfillableQuantity')
-    fulfillment_service = sgqlc.types.Field(FulfillmentService, graphql_name='fulfillmentService')
-    fulfillment_status = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='fulfillmentStatus')
-    image = sgqlc.types.Field(Image, graphql_name='image', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    image = sgqlc.types.Field(Image, graphql_name='image')
     merchant_editable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='merchantEditable')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     non_fulfillable_quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='nonFulfillableQuantity')
@@ -11257,6 +14411,7 @@ class LineItem(sgqlc.types.Type, Node):
     restockable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='restockable')
     selling_plan = sgqlc.types.Field(LineItemSellingPlan, graphql_name='sellingPlan')
     sku = sgqlc.types.Field(String, graphql_name='sku')
+    staff_member = sgqlc.types.Field('StaffMember', graphql_name='staffMember')
     tax_lines = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TaxLine))), graphql_name='taxLines', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
 ))
@@ -11274,7 +14429,7 @@ class LineItem(sgqlc.types.Type, Node):
 
 class LineItemMutable(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('custom_attributes', 'discount_allocations', 'discounted_total_set', 'discounted_unit_price_set', 'fulfillable_quantity', 'fulfillment_service', 'fulfillment_status', 'image', 'merchant_editable', 'name', 'non_fulfillable_quantity', 'original_total_set', 'original_unit_price_set', 'product', 'quantity', 'refundable_quantity', 'requires_shipping', 'restockable', 'sku', 'tax_lines', 'taxable', 'title', 'total_discount_set', 'unfulfilled_discounted_total_set', 'unfulfilled_original_total_set', 'unfulfilled_quantity', 'variant', 'variant_title', 'vendor')
+    __field_names__ = ('custom_attributes', 'discount_allocations', 'discounted_total_set', 'discounted_unit_price_set', 'fulfillable_quantity', 'fulfillment_service', 'fulfillment_status', 'image', 'merchant_editable', 'name', 'non_fulfillable_quantity', 'original_total_set', 'original_unit_price_set', 'product', 'quantity', 'refundable_quantity', 'requires_shipping', 'restockable', 'sku', 'staff_member', 'tax_lines', 'taxable', 'title', 'total_discount_set', 'unfulfilled_discounted_total_set', 'unfulfilled_original_total_set', 'unfulfilled_quantity', 'variant', 'variant_title', 'vendor')
     custom_attributes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Attribute))), graphql_name='customAttributes')
     discount_allocations = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(DiscountAllocation))), graphql_name='discountAllocations')
     discounted_total_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='discountedTotalSet')
@@ -11282,13 +14437,7 @@ class LineItemMutable(sgqlc.types.Type, Node):
     fulfillable_quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='fulfillableQuantity')
     fulfillment_service = sgqlc.types.Field(FulfillmentService, graphql_name='fulfillmentService')
     fulfillment_status = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='fulfillmentStatus')
-    image = sgqlc.types.Field(Image, graphql_name='image', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    image = sgqlc.types.Field(Image, graphql_name='image')
     merchant_editable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='merchantEditable')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     non_fulfillable_quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='nonFulfillableQuantity')
@@ -11300,6 +14449,7 @@ class LineItemMutable(sgqlc.types.Type, Node):
     requires_shipping = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='requiresShipping')
     restockable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='restockable')
     sku = sgqlc.types.Field(String, graphql_name='sku')
+    staff_member = sgqlc.types.Field('StaffMember', graphql_name='staffMember')
     tax_lines = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(TaxLine))), graphql_name='taxLines', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
 ))
@@ -11322,7 +14472,7 @@ class Link(sgqlc.types.Type, HasPublishedTranslations):
     url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='url')
 
 
-class Location(sgqlc.types.Type, HasMetafieldDefinitions, LegacyInteroperability, Node):
+class Location(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, LegacyInteroperability, Node):
     __schema__ = shopify
     __field_names__ = ('activatable', 'address', 'address_verified', 'deactivatable', 'deactivated_at', 'deletable', 'fulfillment_service', 'fulfills_online_orders', 'has_active_inventory', 'has_unfulfilled_orders', 'inventory_level', 'inventory_levels', 'is_active', 'name', 'ships_inventory', 'suggested_addresses')
     activatable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='activatable')
@@ -11354,13 +14504,44 @@ class Location(sgqlc.types.Type, HasMetafieldDefinitions, LegacyInteroperability
     suggested_addresses = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(LocationSuggestedAddress))), graphql_name='suggestedAddresses')
 
 
+class LocationActivateUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(LocationActivateUserErrorCode, graphql_name='code')
+
+
+class LocationAddUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(LocationAddUserErrorCode, graphql_name='code')
+
+
+class LocationDeactivateUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(LocationDeactivateUserErrorCode, graphql_name='code')
+
+
+class LocationDeleteUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(LocationDeleteUserErrorCode, graphql_name='code')
+
+
+class LocationEditUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(LocationEditUserErrorCode, graphql_name='code')
+
+
 class MailingAddress(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('address1', 'address2', 'city', 'company', 'country', 'country_code_v2', 'first_name', 'formatted', 'formatted_area', 'last_name', 'latitude', 'longitude', 'name', 'phone', 'province', 'province_code', 'zip')
+    __field_names__ = ('address1', 'address2', 'city', 'company', 'coordinates_validated', 'country', 'country_code_v2', 'first_name', 'formatted', 'formatted_area', 'last_name', 'latitude', 'longitude', 'name', 'phone', 'province', 'province_code', 'zip')
     address1 = sgqlc.types.Field(String, graphql_name='address1')
     address2 = sgqlc.types.Field(String, graphql_name='address2')
     city = sgqlc.types.Field(String, graphql_name='city')
     company = sgqlc.types.Field(String, graphql_name='company')
+    coordinates_validated = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='coordinatesValidated')
     country = sgqlc.types.Field(String, graphql_name='country')
     country_code_v2 = sgqlc.types.Field(CountryCode, graphql_name='countryCodeV2')
     first_name = sgqlc.types.Field(String, graphql_name='firstName')
@@ -11387,9 +14568,57 @@ class ManualDiscountApplication(sgqlc.types.Type, DiscountApplication):
     title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
 
 
+class Market(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('currency_settings', 'enabled', 'name', 'price_list', 'primary', 'regions', 'web_presence')
+    currency_settings = sgqlc.types.Field(sgqlc.types.non_null(MarketCurrencySettings), graphql_name='currencySettings')
+    enabled = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='enabled')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    price_list = sgqlc.types.Field('PriceList', graphql_name='priceList')
+    primary = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='primary')
+    regions = sgqlc.types.Field(sgqlc.types.non_null(MarketRegionConnection), graphql_name='regions', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
+    web_presence = sgqlc.types.Field('MarketWebPresence', graphql_name='webPresence')
+
+
+class MarketCurrencySettingsUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(MarketCurrencySettingsUserErrorCode, graphql_name='code')
+
+
+class MarketRegionCountry(sgqlc.types.Type, MarketRegion, Node):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(sgqlc.types.non_null(CountryCode), graphql_name='code')
+
+
+class MarketUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(MarketUserErrorCode, graphql_name='code')
+
+
+class MarketWebPresence(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('alternate_locales', 'default_locale', 'domain', 'market', 'root_urls', 'subfolder_suffix')
+    alternate_locales = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='alternateLocales')
+    default_locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='defaultLocale')
+    domain = sgqlc.types.Field(Domain, graphql_name='domain')
+    market = sgqlc.types.Field(sgqlc.types.non_null(Market), graphql_name='market')
+    root_urls = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MarketWebPresenceRootUrl))), graphql_name='rootUrls')
+    subfolder_suffix = sgqlc.types.Field(String, graphql_name='subfolderSuffix')
+
+
 class MarketingActivity(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('activity_list_url', 'ad_spend', 'app', 'app_errors', 'budget', 'created_at', 'form_data', 'in_main_workflow_version', 'marketing_channel', 'marketing_event', 'source_and_medium', 'status', 'status_label', 'status_transitioned_at', 'tactic', 'target_status', 'title', 'updated_at', 'utm_parameters')
+    __field_names__ = ('activity_list_url', 'ad_spend', 'app', 'app_errors', 'budget', 'created_at', 'form_data', 'in_main_workflow_version', 'marketing_channel', 'marketing_event', 'source_and_medium', 'status', 'status_badge_type_v2', 'status_label', 'status_transitioned_at', 'tactic', 'target_status', 'title', 'updated_at', 'utm_parameters')
     activity_list_url = sgqlc.types.Field(URL, graphql_name='activityListUrl')
     ad_spend = sgqlc.types.Field(MoneyV2, graphql_name='adSpend')
     app = sgqlc.types.Field(sgqlc.types.non_null(App), graphql_name='app')
@@ -11402,6 +14631,7 @@ class MarketingActivity(sgqlc.types.Type, Node):
     marketing_event = sgqlc.types.Field('MarketingEvent', graphql_name='marketingEvent')
     source_and_medium = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='sourceAndMedium')
     status = sgqlc.types.Field(sgqlc.types.non_null(MarketingActivityStatus), graphql_name='status')
+    status_badge_type_v2 = sgqlc.types.Field(BadgeType, graphql_name='statusBadgeTypeV2')
     status_label = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='statusLabel')
     status_transitioned_at = sgqlc.types.Field(DateTime, graphql_name='statusTransitionedAt')
     tactic = sgqlc.types.Field(sgqlc.types.non_null(MarketingTactic), graphql_name='tactic')
@@ -11409,6 +14639,12 @@ class MarketingActivity(sgqlc.types.Type, Node):
     title = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='title')
     updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
     utm_parameters = sgqlc.types.Field(UTMParameters, graphql_name='utmParameters')
+
+
+class MarketingActivityUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(MarketingActivityUserErrorCode, graphql_name='code')
 
 
 class MarketingEvent(sgqlc.types.Type, LegacyInteroperability, Node):
@@ -11432,9 +14668,10 @@ class MarketingEvent(sgqlc.types.Type, LegacyInteroperability, Node):
 
 class MediaImage(sgqlc.types.Type, File, Media, Node):
     __schema__ = shopify
-    __field_names__ = ('image', 'mime_type')
+    __field_names__ = ('image', 'mime_type', 'original_source')
     image = sgqlc.types.Field(Image, graphql_name='image')
     mime_type = sgqlc.types.Field(String, graphql_name='mimeType')
+    original_source = sgqlc.types.Field(MediaImageOriginalSource, graphql_name='originalSource')
 
 
 class MediaUserError(sgqlc.types.Type, DisplayableError):
@@ -11445,7 +14682,7 @@ class MediaUserError(sgqlc.types.Type, DisplayableError):
 
 class Metafield(sgqlc.types.Type, LegacyInteroperability, Node):
     __schema__ = shopify
-    __field_names__ = ('created_at', 'definition', 'description', 'key', 'namespace', 'owner', 'owner_type', 'reference', 'type', 'updated_at', 'value')
+    __field_names__ = ('created_at', 'definition', 'description', 'key', 'namespace', 'owner', 'owner_type', 'reference', 'references', 'type', 'updated_at', 'value')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     definition = sgqlc.types.Field('MetafieldDefinition', graphql_name='definition')
     description = sgqlc.types.Field(String, graphql_name='description')
@@ -11454,6 +14691,13 @@ class Metafield(sgqlc.types.Type, LegacyInteroperability, Node):
     owner = sgqlc.types.Field(sgqlc.types.non_null(HasMetafields), graphql_name='owner')
     owner_type = sgqlc.types.Field(sgqlc.types.non_null(MetafieldOwnerType), graphql_name='ownerType')
     reference = sgqlc.types.Field('MetafieldReference', graphql_name='reference')
+    references = sgqlc.types.Field(MetafieldReferenceConnection, graphql_name='references', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+))
+    )
     type = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='type')
     updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
     value = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='value')
@@ -11461,7 +14705,7 @@ class Metafield(sgqlc.types.Type, LegacyInteroperability, Node):
 
 class MetafieldDefinition(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('description', 'key', 'metafields', 'metafields_count', 'name', 'namespace', 'owner_type', 'pinned_position', 'standard_template', 'type', 'validation_status', 'validations')
+    __field_names__ = ('description', 'key', 'metafields', 'metafields_count', 'name', 'namespace', 'owner_type', 'pinned_position', 'standard_template', 'type', 'validation_status', 'validations', 'visible_to_storefront_api')
     description = sgqlc.types.Field(String, graphql_name='description')
     key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
     metafields = sgqlc.types.Field(sgqlc.types.non_null(MetafieldConnection), graphql_name='metafields', args=sgqlc.types.ArgDict((
@@ -11485,6 +14729,7 @@ class MetafieldDefinition(sgqlc.types.Type, Node):
     type = sgqlc.types.Field(sgqlc.types.non_null(MetafieldDefinitionType), graphql_name='type')
     validation_status = sgqlc.types.Field(sgqlc.types.non_null(MetafieldDefinitionValidationStatus), graphql_name='validationStatus')
     validations = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MetafieldDefinitionValidation))), graphql_name='validations')
+    visible_to_storefront_api = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='visibleToStorefrontApi')
 
 
 class MetafieldDefinitionCreateUserError(sgqlc.types.Type, DisplayableError):
@@ -11529,8 +14774,9 @@ class MetafieldStorefrontVisibility(sgqlc.types.Type, LegacyInteroperability, No
 
 class MetafieldsSetUserError(sgqlc.types.Type, DisplayableError):
     __schema__ = shopify
-    __field_names__ = ('code',)
+    __field_names__ = ('code', 'element_index')
     code = sgqlc.types.Field(MetafieldsSetUserErrorCode, graphql_name='code')
+    element_index = sgqlc.types.Field(Int, graphql_name='elementIndex')
 
 
 class Model3d(sgqlc.types.Type, Media, Node):
@@ -11559,7 +14805,7 @@ class OnlineStorePage(sgqlc.types.Type, HasPublishedTranslations, Navigable, Nod
 
 class Order(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizationExtensions, HasMetafieldDefinitions, HasMetafields, LegacyInteroperability, Node):
     __schema__ = shopify
-    __field_names__ = ('agreements', 'alerts', 'app', 'billing_address', 'billing_address_matches_shipping_address', 'can_mark_as_paid', 'can_notify_customer', 'cancel_reason', 'cancelled_at', 'capturable', 'cart_discount_amount_set', 'client_ip', 'closed', 'closed_at', 'confirmed', 'created_at', 'currency_code', 'current_cart_discount_amount_set', 'current_subtotal_line_items_quantity', 'current_subtotal_price_set', 'current_tax_lines', 'current_total_discounts_set', 'current_total_duties_set', 'current_total_price_set', 'current_total_tax_set', 'current_total_weight', 'custom_attributes', 'customer', 'customer_accepts_marketing', 'customer_journey_summary', 'customer_locale', 'discount_applications', 'discount_code', 'display_address', 'display_financial_status', 'display_fulfillment_status', 'disputes', 'edited', 'email', 'estimated_taxes', 'fulfillable', 'fulfillment_orders', 'fulfillments', 'fully_paid', 'line_items', 'merchant_editable', 'merchant_editable_errors', 'name', 'net_payment_set', 'non_fulfillable_line_items', 'note', 'original_total_duties_set', 'original_total_price_set', 'payment_collection_details', 'payment_gateway_names', 'payment_terms', 'phone', 'physical_location', 'presentment_currency_code', 'processed_at', 'publication', 'refund_discrepancy_set', 'refundable', 'refunds', 'requires_shipping', 'restockable', 'risk_level', 'risks', 'shipping_address', 'shipping_line', 'shipping_lines', 'subtotal_line_items_quantity', 'subtotal_price_set', 'suggested_refund', 'tags', 'tax_lines', 'taxes_included', 'test', 'total_capturable_set', 'total_discounts_set', 'total_outstanding_set', 'total_price_set', 'total_received_set', 'total_refunded_set', 'total_refunded_shipping_set', 'total_shipping_price_set', 'total_tax_set', 'total_tip_received_set', 'total_weight', 'transactions', 'unpaid', 'updated_at')
+    __field_names__ = ('agreements', 'alerts', 'app', 'billing_address', 'billing_address_matches_shipping_address', 'can_mark_as_paid', 'can_notify_customer', 'cancel_reason', 'cancelled_at', 'capturable', 'cart_discount_amount_set', 'channel_information', 'client_ip', 'closed', 'closed_at', 'confirmed', 'created_at', 'currency_code', 'current_cart_discount_amount_set', 'current_subtotal_line_items_quantity', 'current_subtotal_price_set', 'current_tax_lines', 'current_total_discounts_set', 'current_total_duties_set', 'current_total_price_set', 'current_total_tax_set', 'current_total_weight', 'custom_attributes', 'customer', 'customer_accepts_marketing', 'customer_journey_summary', 'customer_locale', 'discount_applications', 'discount_code', 'discount_codes', 'display_address', 'display_financial_status', 'display_fulfillment_status', 'disputes', 'edited', 'email', 'estimated_taxes', 'fulfillable', 'fulfillment_orders', 'fulfillments', 'fully_paid', 'line_items', 'merchant_editable', 'merchant_editable_errors', 'merchant_of_record_app', 'name', 'net_payment_set', 'non_fulfillable_line_items', 'note', 'original_total_duties_set', 'original_total_price_set', 'payment_collection_details', 'payment_gateway_names', 'payment_terms', 'phone', 'physical_location', 'presentment_currency_code', 'processed_at', 'publication', 'purchasing_entity', 'refund_discrepancy_set', 'refundable', 'refunds', 'registered_source_url', 'requires_shipping', 'restockable', 'risk_level', 'risks', 'shipping_address', 'shipping_line', 'shipping_lines', 'source_identifier', 'subtotal_line_items_quantity', 'subtotal_price_set', 'suggested_refund', 'tags', 'tax_lines', 'taxes_included', 'test', 'total_capturable_set', 'total_discounts_set', 'total_outstanding_set', 'total_price_set', 'total_received_set', 'total_refunded_set', 'total_refunded_shipping_set', 'total_shipping_price_set', 'total_tax_set', 'total_tip_received_set', 'total_weight', 'transactions', 'unpaid', 'updated_at')
     agreements = sgqlc.types.Field(sgqlc.types.non_null(SalesAgreementConnection), graphql_name='agreements', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -11579,6 +14825,7 @@ class Order(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizationExt
     cancelled_at = sgqlc.types.Field(DateTime, graphql_name='cancelledAt')
     capturable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='capturable')
     cart_discount_amount_set = sgqlc.types.Field(MoneyBag, graphql_name='cartDiscountAmountSet')
+    channel_information = sgqlc.types.Field(ChannelInformation, graphql_name='channelInformation')
     client_ip = sgqlc.types.Field(String, graphql_name='clientIp')
     closed = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='closed')
     closed_at = sgqlc.types.Field(DateTime, graphql_name='closedAt')
@@ -11608,6 +14855,7 @@ class Order(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizationExt
 ))
     )
     discount_code = sgqlc.types.Field(String, graphql_name='discountCode')
+    discount_codes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='discountCodes')
     display_address = sgqlc.types.Field(MailingAddress, graphql_name='displayAddress')
     display_financial_status = sgqlc.types.Field(OrderDisplayFinancialStatus, graphql_name='displayFinancialStatus')
     display_fulfillment_status = sgqlc.types.Field(sgqlc.types.non_null(OrderDisplayFulfillmentStatus), graphql_name='displayFulfillmentStatus')
@@ -11641,6 +14889,7 @@ class Order(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizationExt
     )
     merchant_editable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='merchantEditable')
     merchant_editable_errors = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='merchantEditableErrors')
+    merchant_of_record_app = sgqlc.types.Field(OrderApp, graphql_name='merchantOfRecordApp')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     net_payment_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='netPaymentSet')
     non_fulfillable_line_items = sgqlc.types.Field(sgqlc.types.non_null(LineItemConnection), graphql_name='nonFulfillableLineItems', args=sgqlc.types.ArgDict((
@@ -11662,12 +14911,14 @@ class Order(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizationExt
     presentment_currency_code = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='presentmentCurrencyCode')
     processed_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='processedAt')
     publication = sgqlc.types.Field('Publication', graphql_name='publication')
+    purchasing_entity = sgqlc.types.Field('PurchasingEntity', graphql_name='purchasingEntity')
     refund_discrepancy_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='refundDiscrepancySet')
     refundable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='refundable')
     refunds = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('Refund'))), graphql_name='refunds', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
 ))
     )
+    registered_source_url = sgqlc.types.Field(URL, graphql_name='registeredSourceUrl')
     requires_shipping = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='requiresShipping')
     restockable = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='restockable')
     risk_level = sgqlc.types.Field(sgqlc.types.non_null(OrderRiskLevel), graphql_name='riskLevel')
@@ -11685,6 +14936,7 @@ class Order(sgqlc.types.Type, CommentEventSubject, HasEvents, HasLocalizationExt
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
 ))
     )
+    source_identifier = sgqlc.types.Field(String, graphql_name='sourceIdentifier')
     subtotal_line_items_quantity = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='subtotalLineItemsQuantity')
     subtotal_price_set = sgqlc.types.Field(MoneyBag, graphql_name='subtotalPriceSet')
     suggested_refund = sgqlc.types.Field(SuggestedRefund, graphql_name='suggestedRefund', args=sgqlc.types.ArgDict((
@@ -11726,6 +14978,12 @@ class OrderAgreement(sgqlc.types.Type, SalesAgreement):
     order = sgqlc.types.Field(sgqlc.types.non_null(Order), graphql_name='order')
 
 
+class OrderCreateMandatePaymentUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(OrderCreateMandatePaymentUserErrorCode, graphql_name='code')
+
+
 class OrderDisputeSummary(sgqlc.types.Type, Node):
     __schema__ = shopify
     __field_names__ = ('initiated_as', 'status')
@@ -11746,7 +15004,7 @@ class OrderInvoiceSendUserError(sgqlc.types.Type, DisplayableError):
 
 class OrderTransaction(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('account_number', 'amount_set', 'authorization_code', 'authorization_expires_at', 'created_at', 'error_code', 'fees', 'formatted_gateway', 'gateway', 'kind', 'manually_capturable', 'maximum_refundable_v2', 'order', 'parent_transaction', 'payment_icon', 'processed_at', 'settlement_currency', 'settlement_currency_rate', 'shopify_payments_set', 'status', 'test', 'total_unsettled_set')
+    __field_names__ = ('account_number', 'amount_set', 'authorization_code', 'authorization_expires_at', 'created_at', 'error_code', 'fees', 'formatted_gateway', 'gateway', 'kind', 'manually_capturable', 'maximum_refundable_v2', 'order', 'parent_transaction', 'payment_icon', 'processed_at', 'receipt_json', 'settlement_currency', 'settlement_currency_rate', 'shopify_payments_set', 'status', 'test', 'total_unsettled_set', 'user')
     account_number = sgqlc.types.Field(String, graphql_name='accountNumber')
     amount_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='amountSet')
     authorization_code = sgqlc.types.Field(String, graphql_name='authorizationCode')
@@ -11761,20 +15019,22 @@ class OrderTransaction(sgqlc.types.Type, Node):
     maximum_refundable_v2 = sgqlc.types.Field(MoneyV2, graphql_name='maximumRefundableV2')
     order = sgqlc.types.Field(Order, graphql_name='order')
     parent_transaction = sgqlc.types.Field('OrderTransaction', graphql_name='parentTransaction')
-    payment_icon = sgqlc.types.Field(Image, graphql_name='paymentIcon', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    payment_icon = sgqlc.types.Field(Image, graphql_name='paymentIcon')
     processed_at = sgqlc.types.Field(DateTime, graphql_name='processedAt')
+    receipt_json = sgqlc.types.Field(JSON, graphql_name='receiptJson')
     settlement_currency = sgqlc.types.Field(CurrencyCode, graphql_name='settlementCurrency')
     settlement_currency_rate = sgqlc.types.Field(Decimal, graphql_name='settlementCurrencyRate')
     shopify_payments_set = sgqlc.types.Field(ShopifyPaymentsTransactionSet, graphql_name='shopifyPaymentsSet')
     status = sgqlc.types.Field(sgqlc.types.non_null(OrderTransactionStatus), graphql_name='status')
     test = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='test')
     total_unsettled_set = sgqlc.types.Field(MoneyBag, graphql_name='totalUnsettledSet')
+    user = sgqlc.types.Field('StaffMember', graphql_name='user')
+
+
+class PaymentMandate(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('payment_instrument',)
+    payment_instrument = sgqlc.types.Field(sgqlc.types.non_null('PaymentInstrument'), graphql_name='paymentInstrument')
 
 
 class PaymentSchedule(sgqlc.types.Type, Node):
@@ -11864,12 +15124,14 @@ class PriceListUserError(sgqlc.types.Type, DisplayableError):
 
 class PriceRule(sgqlc.types.Type, CommentEventSubject, HasEvents, LegacyInteroperability, Node):
     __schema__ = shopify
-    __field_names__ = ('allocation_limit', 'allocation_method', 'app', 'created_at', 'customer_selection', 'discount_codes', 'discount_codes_count', 'ends_at', 'features', 'item_entitlements', 'item_prerequisites', 'once_per_customer', 'prerequisite_quantity_range', 'prerequisite_shipping_price_range', 'prerequisite_subtotal_range', 'prerequisite_to_entitlement_quantity_ratio', 'shareable_urls', 'shipping_entitlements', 'starts_at', 'status', 'summary', 'target', 'title', 'total_sales', 'usage_count', 'usage_limit', 'validity_period', 'value_v2')
+    __field_names__ = ('allocation_limit', 'allocation_method', 'app', 'combines_with', 'created_at', 'customer_selection', 'discount_class', 'discount_codes', 'discount_codes_count', 'ends_at', 'features', 'item_entitlements', 'item_prerequisites', 'once_per_customer', 'prerequisite_quantity_range', 'prerequisite_shipping_price_range', 'prerequisite_subtotal_range', 'prerequisite_to_entitlement_quantity_ratio', 'shareable_urls', 'shipping_entitlements', 'starts_at', 'status', 'summary', 'target', 'title', 'total_sales', 'usage_count', 'usage_limit', 'validity_period', 'value_v2')
     allocation_limit = sgqlc.types.Field(Int, graphql_name='allocationLimit')
     allocation_method = sgqlc.types.Field(sgqlc.types.non_null(PriceRuleAllocationMethod), graphql_name='allocationMethod')
     app = sgqlc.types.Field(App, graphql_name='app')
+    combines_with = sgqlc.types.Field(sgqlc.types.non_null(DiscountCombinesWith), graphql_name='combinesWith')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     customer_selection = sgqlc.types.Field(sgqlc.types.non_null(PriceRuleCustomerSelection), graphql_name='customerSelection')
+    discount_class = sgqlc.types.Field(sgqlc.types.non_null(DiscountClass), graphql_name='discountClass')
     discount_codes = sgqlc.types.Field(sgqlc.types.non_null(PriceRuleDiscountCodeConnection), graphql_name='discountCodes', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -11932,7 +15194,7 @@ class PrivateMetafield(sgqlc.types.Type, Node):
 
 class Product(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPublishedTranslations, LegacyInteroperability, Navigable, Node, OnlineStorePreviewable, Publishable):
     __schema__ = shopify
-    __field_names__ = ('collections', 'contextual_pricing', 'created_at', 'custom_product_type', 'description', 'description_html', 'featured_image', 'featured_media', 'feedback', 'gift_card_template_suffix', 'handle', 'has_only_default_variant', 'has_out_of_stock_variants', 'images', 'in_collection', 'is_gift_card', 'media', 'media_count', 'online_store_url', 'options', 'price_range_v2', 'product_type', 'published_at', 'requires_selling_plan', 'resource_publication_on_current_publication', 'selling_plan_group_count', 'selling_plan_groups', 'seo', 'standardized_product_type', 'status', 'tags', 'template_suffix', 'title', 'total_inventory', 'total_variants', 'tracks_inventory', 'updated_at', 'variants', 'vendor')
+    __field_names__ = ('collections', 'contextual_pricing', 'created_at', 'description', 'description_html', 'featured_image', 'featured_media', 'feedback', 'gift_card_template_suffix', 'handle', 'has_only_default_variant', 'has_out_of_stock_variants', 'images', 'in_collection', 'is_gift_card', 'media', 'media_count', 'online_store_url', 'options', 'price_range_v2', 'product_category', 'product_type', 'published_at', 'requires_selling_plan', 'resource_publication_on_current_publication', 'selling_plan_group_count', 'selling_plan_groups', 'seo', 'status', 'tags', 'template_suffix', 'title', 'total_inventory', 'total_variants', 'tracks_inventory', 'updated_at', 'variants', 'vendor')
     collections = sgqlc.types.Field(sgqlc.types.non_null(CollectionConnection), graphql_name='collections', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -11948,7 +15210,6 @@ class Product(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPubli
 ))
     )
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
-    custom_product_type = sgqlc.types.Field(String, graphql_name='customProductType')
     description = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='description', args=sgqlc.types.ArgDict((
         ('truncate_at', sgqlc.types.Arg(Int, graphql_name='truncateAt', default=None)),
 ))
@@ -11962,10 +15223,6 @@ class Product(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPubli
     has_only_default_variant = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasOnlyDefaultVariant')
     has_out_of_stock_variants = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='hasOutOfStockVariants')
     images = sgqlc.types.Field(sgqlc.types.non_null(ImageConnection), graphql_name='images', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
         ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
@@ -11995,6 +15252,7 @@ class Product(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPubli
 ))
     )
     price_range_v2 = sgqlc.types.Field(sgqlc.types.non_null(ProductPriceRangeV2), graphql_name='priceRangeV2')
+    product_category = sgqlc.types.Field(ProductCategory, graphql_name='productCategory')
     product_type = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='productType')
     published_at = sgqlc.types.Field(DateTime, graphql_name='publishedAt')
     requires_selling_plan = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='requiresSellingPlan')
@@ -12009,7 +15267,6 @@ class Product(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPubli
 ))
     )
     seo = sgqlc.types.Field(sgqlc.types.non_null(SEO), graphql_name='seo')
-    standardized_product_type = sgqlc.types.Field(StandardizedProductType, graphql_name='standardizedProductType')
     status = sgqlc.types.Field(sgqlc.types.non_null(ProductStatus), graphql_name='status')
     tags = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='tags')
     template_suffix = sgqlc.types.Field(String, graphql_name='templateSuffix')
@@ -12061,7 +15318,7 @@ class ProductTaxonomyNode(sgqlc.types.Type, Node):
 
 class ProductVariant(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, HasPublishedTranslations, LegacyInteroperability, Navigable, Node):
     __schema__ = shopify
-    __field_names__ = ('available_for_sale', 'barcode', 'compare_at_price', 'contextual_pricing', 'created_at', 'delivery_profile', 'display_name', 'fulfillment_service', 'fulfillment_service_editable', 'image', 'inventory_item', 'inventory_policy', 'inventory_quantity', 'media', 'position', 'presentment_prices', 'price', 'product', 'selected_options', 'sellable_online_quantity', 'selling_plan_group_count', 'selling_plan_groups', 'sku', 'tax_code', 'taxable', 'title', 'updated_at', 'weight', 'weight_unit')
+    __field_names__ = ('available_for_sale', 'barcode', 'compare_at_price', 'contextual_pricing', 'created_at', 'delivery_profile', 'display_name', 'fulfillment_service_editable', 'image', 'inventory_item', 'inventory_policy', 'inventory_quantity', 'media', 'position', 'price', 'product', 'selected_options', 'sellable_online_quantity', 'selling_plan_group_count', 'selling_plan_groups', 'sku', 'tax_code', 'taxable', 'title', 'updated_at', 'weight', 'weight_unit')
     available_for_sale = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='availableForSale')
     barcode = sgqlc.types.Field(String, graphql_name='barcode')
     compare_at_price = sgqlc.types.Field(Money, graphql_name='compareAtPrice')
@@ -12072,15 +15329,8 @@ class ProductVariant(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, H
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     delivery_profile = sgqlc.types.Field(DeliveryProfile, graphql_name='deliveryProfile')
     display_name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='displayName')
-    fulfillment_service = sgqlc.types.Field(FulfillmentService, graphql_name='fulfillmentService')
     fulfillment_service_editable = sgqlc.types.Field(sgqlc.types.non_null(EditableProperty), graphql_name='fulfillmentServiceEditable')
-    image = sgqlc.types.Field(Image, graphql_name='image', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
-))
-    )
+    image = sgqlc.types.Field(Image, graphql_name='image')
     inventory_item = sgqlc.types.Field(sgqlc.types.non_null(InventoryItem), graphql_name='inventoryItem')
     inventory_policy = sgqlc.types.Field(sgqlc.types.non_null(ProductVariantInventoryPolicy), graphql_name='inventoryPolicy')
     inventory_quantity = sgqlc.types.Field(Int, graphql_name='inventoryQuantity')
@@ -12093,15 +15343,6 @@ class ProductVariant(sgqlc.types.Type, HasMetafieldDefinitions, HasMetafields, H
 ))
     )
     position = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='position')
-    presentment_prices = sgqlc.types.Field(sgqlc.types.non_null(ProductVariantPricePairConnection), graphql_name='presentmentPrices', args=sgqlc.types.ArgDict((
-        ('presentment_currencies', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(CurrencyCode)), graphql_name='presentmentCurrencies', default=None)),
-        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
-        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
-        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
-        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
-        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
-))
-    )
     price = sgqlc.types.Field(sgqlc.types.non_null(Money), graphql_name='price')
     product = sgqlc.types.Field(sgqlc.types.non_null(Product), graphql_name='product')
     selected_options = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SelectedOption))), graphql_name='selectedOptions')
@@ -12206,7 +15447,7 @@ class Publication(sgqlc.types.Type, Node):
 
 class Refund(sgqlc.types.Type, LegacyInteroperability, Node):
     __schema__ = shopify
-    __field_names__ = ('created_at', 'duties', 'note', 'order', 'refund_line_items', 'total_refunded_set', 'transactions', 'updated_at')
+    __field_names__ = ('created_at', 'duties', 'note', 'order', 'refund_line_items', 'staff_member', 'total_refunded_set', 'transactions', 'updated_at')
     created_at = sgqlc.types.Field(DateTime, graphql_name='createdAt')
     duties = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(RefundDuty)), graphql_name='duties')
     note = sgqlc.types.Field(String, graphql_name='note')
@@ -12219,6 +15460,7 @@ class Refund(sgqlc.types.Type, LegacyInteroperability, Node):
         ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
 ))
     )
+    staff_member = sgqlc.types.Field('StaffMember', graphql_name='staffMember')
     total_refunded_set = sgqlc.types.Field(sgqlc.types.non_null(MoneyBag), graphql_name='totalRefundedSet')
     transactions = sgqlc.types.Field(sgqlc.types.non_null(OrderTransactionConnection), graphql_name='transactions', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
@@ -12263,13 +15505,94 @@ class ScriptTag(sgqlc.types.Type, LegacyInteroperability, Node):
     updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
 
 
+class Segment(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('creation_date', 'last_edit_date', 'name', 'query')
+    creation_date = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='creationDate')
+    last_edit_date = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='lastEditDate')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    query = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='query')
+
+
+class SegmentAssociationFilter(sgqlc.types.Type, SegmentFilter):
+    __schema__ = shopify
+    __field_names__ = ('values',)
+    values = sgqlc.types.Field(sgqlc.types.non_null(SegmentAssociationFilterValueConnection), graphql_name='values', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+))
+    )
+
+
+class SegmentBooleanFilter(sgqlc.types.Type, SegmentFilter):
+    __schema__ = shopify
+    __field_names__ = ()
+
+
+class SegmentDateFilter(sgqlc.types.Type, SegmentFilter):
+    __schema__ = shopify
+    __field_names__ = ()
+
+
+class SegmentEnumFilter(sgqlc.types.Type, SegmentFilter):
+    __schema__ = shopify
+    __field_names__ = ('values',)
+    values = sgqlc.types.Field(sgqlc.types.non_null(SegmentEnumFilterValueConnection), graphql_name='values', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+))
+    )
+
+
+class SegmentEventFilter(sgqlc.types.Type, SegmentFilter):
+    __schema__ = shopify
+    __field_names__ = ('parameters', 'return_value_type', 'values')
+    parameters = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(SegmentEventFilterParameter))), graphql_name='parameters')
+    return_value_type = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='returnValueType')
+    values = sgqlc.types.Field(sgqlc.types.non_null(SegmentEventFilterValueConnection), graphql_name='values', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+))
+    )
+
+
+class SegmentFloatFilter(sgqlc.types.Type, SegmentFilter):
+    __schema__ = shopify
+    __field_names__ = ()
+
+
+class SegmentIntegerFilter(sgqlc.types.Type, SegmentFilter):
+    __schema__ = shopify
+    __field_names__ = ()
+
+
+class SegmentStringFilter(sgqlc.types.Type, SegmentFilter):
+    __schema__ = shopify
+    __field_names__ = ('values',)
+    values = sgqlc.types.Field(sgqlc.types.non_null(SegmentStringFilterValueConnection), graphql_name='values', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+))
+    )
+
+
 class SellingPlan(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('billing_policy', 'created_at', 'delivery_policy', 'description', 'name', 'options', 'position', 'pricing_policies')
+    __field_names__ = ('billing_policy', 'category', 'created_at', 'delivery_policy', 'description', 'inventory_policy', 'name', 'options', 'position', 'pricing_policies')
     billing_policy = sgqlc.types.Field(sgqlc.types.non_null('SellingPlanBillingPolicy'), graphql_name='billingPolicy')
+    category = sgqlc.types.Field(SellingPlanCategory, graphql_name='category')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     delivery_policy = sgqlc.types.Field(sgqlc.types.non_null('SellingPlanDeliveryPolicy'), graphql_name='deliveryPolicy')
     description = sgqlc.types.Field(String, graphql_name='description')
+    inventory_policy = sgqlc.types.Field(SellingPlanInventoryPolicy, graphql_name='inventoryPolicy')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
     options = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(String))), graphql_name='options')
     position = sgqlc.types.Field(Int, graphql_name='position')
@@ -12358,8 +15681,9 @@ class ShippingLineSale(sgqlc.types.Type, Sale):
 
 class Shop(sgqlc.types.Type, HasMetafields, HasPublishedTranslations, Node):
     __schema__ = shopify
-    __field_names__ = ('alerts', 'assigned_fulfillment_orders', 'available_channel_apps', 'billing_address', 'checkout_api_supported', 'contact_email', 'countries_in_shipping_zones', 'currency_code', 'currency_formats', 'currency_settings', 'customer_accounts', 'customer_tags', 'description', 'domains', 'draft_order_tags', 'email', 'enabled_presentment_currencies', 'features', 'fulfillment_orders', 'fulfillment_services', 'iana_timezone', 'limited_pending_order_count', 'merchant_approval_signals', 'myshopify_domain', 'name', 'navigation_settings', 'order_number_format_prefix', 'order_number_format_suffix', 'order_tags', 'payment_settings', 'plan', 'primary_domain', 'product_images', 'product_tags', 'product_types', 'product_vendors', 'publication_count', 'resource_limits', 'rich_text_editor_url', 'search', 'search_filters', 'setup_required', 'ships_to_countries', 'shop_policies', 'storefront_access_tokens', 'tax_shipping', 'taxes_included', 'timezone_abbreviation', 'timezone_offset', 'timezone_offset_minutes', 'unit_system', 'uploaded_images_by_ids', 'url', 'weight_unit')
+    __field_names__ = ('alerts', 'all_product_categories', 'assigned_fulfillment_orders', 'available_channel_apps', 'billing_address', 'channel_definitions_for_installed_channels', 'checkout_api_supported', 'contact_email', 'countries_in_shipping_zones', 'currency_code', 'currency_formats', 'currency_settings', 'customer_accounts', 'customer_tags', 'description', 'draft_order_tags', 'email', 'enabled_presentment_currencies', 'features', 'fulfillment_services', 'iana_timezone', 'limited_pending_order_count', 'merchant_approval_signals', 'myshopify_domain', 'name', 'navigation_settings', 'order_number_format_prefix', 'order_number_format_suffix', 'order_tags', 'payment_settings', 'plan', 'primary_domain', 'product_images', 'product_tags', 'product_types', 'product_vendors', 'publication_count', 'resource_limits', 'rich_text_editor_url', 'search', 'search_filters', 'setup_required', 'ships_to_countries', 'shop_policies', 'staff_members', 'storefront_access_tokens', 'tax_shipping', 'taxes_included', 'timezone_abbreviation', 'timezone_offset', 'timezone_offset_minutes', 'transactional_sms_disabled', 'unit_system', 'uploaded_images_by_ids', 'url', 'weight_unit')
     alerts = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ShopAlert))), graphql_name='alerts')
+    all_product_categories = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ProductCategory))), graphql_name='allProductCategories')
     assigned_fulfillment_orders = sgqlc.types.Field(sgqlc.types.non_null(FulfillmentOrderConnection), graphql_name='assignedFulfillmentOrders', args=sgqlc.types.ArgDict((
         ('assignment_status', sgqlc.types.Arg(FulfillmentOrderAssignmentStatus, graphql_name='assignmentStatus', default=None)),
         ('location_ids', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(ID)), graphql_name='locationIds', default=None)),
@@ -12380,6 +15704,7 @@ class Shop(sgqlc.types.Type, HasMetafields, HasPublishedTranslations, Node):
 ))
     )
     billing_address = sgqlc.types.Field(sgqlc.types.non_null(MailingAddress), graphql_name='billingAddress')
+    channel_definitions_for_installed_channels = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(AvailableChannelDefinitionsByChannel))), graphql_name='channelDefinitionsForInstalledChannels')
     checkout_api_supported = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='checkoutApiSupported')
     contact_email = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='contactEmail')
     countries_in_shipping_zones = sgqlc.types.Field(sgqlc.types.non_null(CountriesInShippingZones), graphql_name='countriesInShippingZones')
@@ -12399,7 +15724,6 @@ class Shop(sgqlc.types.Type, HasMetafields, HasPublishedTranslations, Node):
 ))
     )
     description = sgqlc.types.Field(String, graphql_name='description')
-    domains = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Domain))), graphql_name='domains')
     draft_order_tags = sgqlc.types.Field(sgqlc.types.non_null(StringConnection), graphql_name='draftOrderTags', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(sgqlc.types.non_null(Int), graphql_name='first', default=None)),
 ))
@@ -12407,17 +15731,6 @@ class Shop(sgqlc.types.Type, HasMetafields, HasPublishedTranslations, Node):
     email = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='email')
     enabled_presentment_currencies = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CurrencyCode))), graphql_name='enabledPresentmentCurrencies')
     features = sgqlc.types.Field(sgqlc.types.non_null(ShopFeatures), graphql_name='features')
-    fulfillment_orders = sgqlc.types.Field(sgqlc.types.non_null(FulfillmentOrderConnection), graphql_name='fulfillmentOrders', args=sgqlc.types.ArgDict((
-        ('include_closed', sgqlc.types.Arg(Boolean, graphql_name='includeClosed', default=False)),
-        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
-        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
-        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
-        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
-        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
-        ('sort_key', sgqlc.types.Arg(FulfillmentOrderSortKeys, graphql_name='sortKey', default='ID')),
-        ('query', sgqlc.types.Arg(String, graphql_name='query', default=None)),
-))
-    )
     fulfillment_services = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(FulfillmentService))), graphql_name='fulfillmentServices')
     iana_timezone = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='ianaTimezone')
     limited_pending_order_count = sgqlc.types.Field(sgqlc.types.non_null(LimitedPendingOrderCount), graphql_name='limitedPendingOrderCount')
@@ -12436,10 +15749,6 @@ class Shop(sgqlc.types.Type, HasMetafields, HasPublishedTranslations, Node):
     plan = sgqlc.types.Field(sgqlc.types.non_null(ShopPlan), graphql_name='plan')
     primary_domain = sgqlc.types.Field(sgqlc.types.non_null(Domain), graphql_name='primaryDomain')
     product_images = sgqlc.types.Field(sgqlc.types.non_null(ImageConnection), graphql_name='productImages', args=sgqlc.types.ArgDict((
-        ('max_width', sgqlc.types.Arg(Int, graphql_name='maxWidth', default=None)),
-        ('max_height', sgqlc.types.Arg(Int, graphql_name='maxHeight', default=None)),
-        ('crop', sgqlc.types.Arg(CropRegion, graphql_name='crop', default=None)),
-        ('scale', sgqlc.types.Arg(Int, graphql_name='scale', default=1)),
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
         ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
@@ -12474,6 +15783,14 @@ class Shop(sgqlc.types.Type, HasMetafields, HasPublishedTranslations, Node):
     setup_required = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='setupRequired')
     ships_to_countries = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(CountryCode))), graphql_name='shipsToCountries')
     shop_policies = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopPolicy'))), graphql_name='shopPolicies')
+    staff_members = sgqlc.types.Field(sgqlc.types.non_null(StaffMemberConnection), graphql_name='staffMembers', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+))
+    )
     storefront_access_tokens = sgqlc.types.Field(sgqlc.types.non_null(StorefrontAccessTokenConnection), graphql_name='storefrontAccessTokens', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -12487,6 +15804,7 @@ class Shop(sgqlc.types.Type, HasMetafields, HasPublishedTranslations, Node):
     timezone_abbreviation = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='timezoneAbbreviation')
     timezone_offset = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='timezoneOffset')
     timezone_offset_minutes = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='timezoneOffsetMinutes')
+    transactional_sms_disabled = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='transactionalSmsDisabled')
     unit_system = sgqlc.types.Field(sgqlc.types.non_null(UnitSystem), graphql_name='unitSystem')
     uploaded_images_by_ids = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Image))), graphql_name='uploadedImagesByIds', args=sgqlc.types.ArgDict((
         ('image_ids', sgqlc.types.Arg(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(ID))), graphql_name='imageIds', default=None)),
@@ -12594,6 +15912,52 @@ class ShopifyPaymentsDispute(sgqlc.types.Type, LegacyInteroperability, Node):
     type = sgqlc.types.Field(sgqlc.types.non_null(DisputeType), graphql_name='type')
 
 
+class ShopifyPaymentsDisputeEvidence(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('access_activity_log', 'billing_address', 'cancellation_policy_disclosure', 'cancellation_policy_file', 'cancellation_rebuttal', 'customer_communication_file', 'customer_email_address', 'customer_first_name', 'customer_last_name', 'customer_purchase_ip', 'dispute', 'dispute_file_uploads', 'fulfillments', 'product_description', 'refund_policy_disclosure', 'refund_policy_file', 'refund_refusal_explanation', 'service_documentation_file', 'shipping_address', 'shipping_documentation_file', 'submitted', 'uncategorized_file', 'uncategorized_text')
+    access_activity_log = sgqlc.types.Field(String, graphql_name='accessActivityLog')
+    billing_address = sgqlc.types.Field(MailingAddress, graphql_name='billingAddress')
+    cancellation_policy_disclosure = sgqlc.types.Field(String, graphql_name='cancellationPolicyDisclosure')
+    cancellation_policy_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUpload', graphql_name='cancellationPolicyFile')
+    cancellation_rebuttal = sgqlc.types.Field(String, graphql_name='cancellationRebuttal')
+    customer_communication_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUpload', graphql_name='customerCommunicationFile')
+    customer_email_address = sgqlc.types.Field(String, graphql_name='customerEmailAddress')
+    customer_first_name = sgqlc.types.Field(String, graphql_name='customerFirstName')
+    customer_last_name = sgqlc.types.Field(String, graphql_name='customerLastName')
+    customer_purchase_ip = sgqlc.types.Field(String, graphql_name='customerPurchaseIp')
+    dispute = sgqlc.types.Field(sgqlc.types.non_null(ShopifyPaymentsDispute), graphql_name='dispute')
+    dispute_file_uploads = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopifyPaymentsDisputeFileUpload'))), graphql_name='disputeFileUploads')
+    fulfillments = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('ShopifyPaymentsDisputeFulfillment'))), graphql_name='fulfillments')
+    product_description = sgqlc.types.Field(String, graphql_name='productDescription')
+    refund_policy_disclosure = sgqlc.types.Field(String, graphql_name='refundPolicyDisclosure')
+    refund_policy_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUpload', graphql_name='refundPolicyFile')
+    refund_refusal_explanation = sgqlc.types.Field(String, graphql_name='refundRefusalExplanation')
+    service_documentation_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUpload', graphql_name='serviceDocumentationFile')
+    shipping_address = sgqlc.types.Field(MailingAddress, graphql_name='shippingAddress')
+    shipping_documentation_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUpload', graphql_name='shippingDocumentationFile')
+    submitted = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='submitted')
+    uncategorized_file = sgqlc.types.Field('ShopifyPaymentsDisputeFileUpload', graphql_name='uncategorizedFile')
+    uncategorized_text = sgqlc.types.Field(String, graphql_name='uncategorizedText')
+
+
+class ShopifyPaymentsDisputeFileUpload(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('dispute_evidence_type', 'file_size', 'file_type', 'original_file_name', 'url')
+    dispute_evidence_type = sgqlc.types.Field(ShopifyPaymentsDisputeEvidenceFileType, graphql_name='disputeEvidenceType')
+    file_size = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='fileSize')
+    file_type = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='fileType')
+    original_file_name = sgqlc.types.Field(String, graphql_name='originalFileName')
+    url = sgqlc.types.Field(sgqlc.types.non_null(URL), graphql_name='url')
+
+
+class ShopifyPaymentsDisputeFulfillment(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('shipping_carrier', 'shipping_date', 'shipping_tracking_number')
+    shipping_carrier = sgqlc.types.Field(String, graphql_name='shippingCarrier')
+    shipping_date = sgqlc.types.Field(Date, graphql_name='shippingDate')
+    shipping_tracking_number = sgqlc.types.Field(String, graphql_name='shippingTrackingNumber')
+
+
 class ShopifyPaymentsJpChargeStatementDescriptor(sgqlc.types.Type, ShopifyPaymentsChargeStatementDescriptor):
     __schema__ = shopify
     __field_names__ = ('kana', 'kanji')
@@ -12619,6 +15983,26 @@ class ShopifyPaymentsVerification(sgqlc.types.Type, Node):
     subject = sgqlc.types.Field(sgqlc.types.non_null(ShopifyPaymentsVerificationSubject), graphql_name='subject')
 
 
+class StaffMember(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('active', 'avatar', 'email', 'exists', 'first_name', 'initials', 'is_shop_owner', 'last_name', 'locale', 'name', 'phone', 'private_data')
+    active = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='active')
+    avatar = sgqlc.types.Field(sgqlc.types.non_null(Image), graphql_name='avatar', args=sgqlc.types.ArgDict((
+        ('fallback', sgqlc.types.Arg(StaffMemberDefaultImage, graphql_name='fallback', default='DEFAULT')),
+))
+    )
+    email = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='email')
+    exists = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='exists')
+    first_name = sgqlc.types.Field(String, graphql_name='firstName')
+    initials = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='initials')
+    is_shop_owner = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='isShopOwner')
+    last_name = sgqlc.types.Field(String, graphql_name='lastName')
+    locale = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='locale')
+    name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
+    phone = sgqlc.types.Field(String, graphql_name='phone')
+    private_data = sgqlc.types.Field(sgqlc.types.non_null(StaffMemberPrivateData), graphql_name='privateData')
+
+
 class StandardMetafieldDefinitionEnableUserError(sgqlc.types.Type, DisplayableError):
     __schema__ = shopify
     __field_names__ = ('code',)
@@ -12627,7 +16011,7 @@ class StandardMetafieldDefinitionEnableUserError(sgqlc.types.Type, DisplayableEr
 
 class StandardMetafieldDefinitionTemplate(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('description', 'key', 'name', 'namespace', 'owner_types', 'type', 'validations')
+    __field_names__ = ('description', 'key', 'name', 'namespace', 'owner_types', 'type', 'validations', 'visible_to_storefront_api')
     description = sgqlc.types.Field(String, graphql_name='description')
     key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='key')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
@@ -12635,6 +16019,7 @@ class StandardMetafieldDefinitionTemplate(sgqlc.types.Type, Node):
     owner_types = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MetafieldOwnerType))), graphql_name='ownerTypes')
     type = sgqlc.types.Field(sgqlc.types.non_null(MetafieldDefinitionType), graphql_name='type')
     validations = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(MetafieldDefinitionValidation))), graphql_name='validations')
+    visible_to_storefront_api = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='visibleToStorefrontApi')
 
 
 class StorefrontAccessToken(sgqlc.types.Type, Node):
@@ -12649,7 +16034,7 @@ class StorefrontAccessToken(sgqlc.types.Type, Node):
 
 class SubscriptionBillingAttempt(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('completed_at', 'created_at', 'error_code', 'error_message', 'idempotency_key', 'next_action_url', 'order', 'ready', 'subscription_contract')
+    __field_names__ = ('completed_at', 'created_at', 'error_code', 'error_message', 'idempotency_key', 'next_action_url', 'order', 'origin_time', 'ready', 'subscription_contract')
     completed_at = sgqlc.types.Field(DateTime, graphql_name='completedAt')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
     error_code = sgqlc.types.Field(SubscriptionBillingAttemptErrorCode, graphql_name='errorCode')
@@ -12657,15 +16042,35 @@ class SubscriptionBillingAttempt(sgqlc.types.Type, Node):
     idempotency_key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='idempotencyKey')
     next_action_url = sgqlc.types.Field(URL, graphql_name='nextActionUrl')
     order = sgqlc.types.Field(Order, graphql_name='order')
+    origin_time = sgqlc.types.Field(DateTime, graphql_name='originTime')
     ready = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='ready')
     subscription_contract = sgqlc.types.Field(sgqlc.types.non_null('SubscriptionContract'), graphql_name='subscriptionContract')
 
 
-class SubscriptionContract(sgqlc.types.Type, Node):
+class SubscriptionBillingCycleEditedContract(sgqlc.types.Type, SubscriptionContractBase):
     __schema__ = shopify
-    __field_names__ = ('app', 'app_admin_url', 'billing_attempts', 'billing_policy', 'created_at', 'currency_code', 'customer', 'customer_payment_method', 'delivery_method', 'delivery_policy', 'delivery_price', 'discounts', 'last_payment_status', 'line_count', 'lines', 'next_billing_date', 'note', 'orders', 'origin_order', 'status', 'updated_at')
-    app = sgqlc.types.Field(App, graphql_name='app')
-    app_admin_url = sgqlc.types.Field(URL, graphql_name='appAdminUrl')
+    __field_names__ = ('billing_cycles', 'created_at')
+    billing_cycles = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingCycleConnection), graphql_name='billingCycles', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(SubscriptionBillingCyclesSortKeys, graphql_name='sortKey', default='CYCLE_INDEX')),
+))
+    )
+    created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
+
+
+class SubscriptionBillingCycleUserError(sgqlc.types.Type, DisplayableError):
+    __schema__ = shopify
+    __field_names__ = ('code',)
+    code = sgqlc.types.Field(SubscriptionBillingCycleErrorCode, graphql_name='code')
+
+
+class SubscriptionContract(sgqlc.types.Type, Node, SubscriptionContractBase):
+    __schema__ = shopify
+    __field_names__ = ('billing_attempts', 'billing_policy', 'created_at', 'delivery_policy', 'last_payment_status', 'next_billing_date', 'origin_order', 'status')
     billing_attempts = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingAttemptConnection), graphql_name='billingAttempts', args=sgqlc.types.ArgDict((
         ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
         ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
@@ -12676,46 +16081,11 @@ class SubscriptionContract(sgqlc.types.Type, Node):
     )
     billing_policy = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingPolicy), graphql_name='billingPolicy')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='createdAt')
-    currency_code = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='currencyCode')
-    customer = sgqlc.types.Field(Customer, graphql_name='customer')
-    customer_payment_method = sgqlc.types.Field(CustomerPaymentMethod, graphql_name='customerPaymentMethod', args=sgqlc.types.ArgDict((
-        ('show_revoked', sgqlc.types.Arg(Boolean, graphql_name='showRevoked', default=False)),
-))
-    )
-    delivery_method = sgqlc.types.Field('SubscriptionDeliveryMethod', graphql_name='deliveryMethod')
     delivery_policy = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionDeliveryPolicy), graphql_name='deliveryPolicy')
-    delivery_price = sgqlc.types.Field(sgqlc.types.non_null(MoneyV2), graphql_name='deliveryPrice')
-    discounts = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionManualDiscountConnection), graphql_name='discounts', args=sgqlc.types.ArgDict((
-        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
-        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
-        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
-        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
-        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
-))
-    )
     last_payment_status = sgqlc.types.Field(SubscriptionContractLastPaymentStatus, graphql_name='lastPaymentStatus')
-    line_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='lineCount')
-    lines = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionLineConnection), graphql_name='lines', args=sgqlc.types.ArgDict((
-        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
-        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
-        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
-        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
-        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
-))
-    )
     next_billing_date = sgqlc.types.Field(DateTime, graphql_name='nextBillingDate')
-    note = sgqlc.types.Field(String, graphql_name='note')
-    orders = sgqlc.types.Field(sgqlc.types.non_null(OrderConnection), graphql_name='orders', args=sgqlc.types.ArgDict((
-        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
-        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
-        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
-        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
-        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
-))
-    )
     origin_order = sgqlc.types.Field(Order, graphql_name='originOrder')
     status = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionContractSubscriptionStatus), graphql_name='status')
-    updated_at = sgqlc.types.Field(sgqlc.types.non_null(DateTime), graphql_name='updatedAt')
 
 
 class SubscriptionContractUserError(sgqlc.types.Type, DisplayableError):
@@ -12726,15 +16096,30 @@ class SubscriptionContractUserError(sgqlc.types.Type, DisplayableError):
 
 class SubscriptionDraft(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('billing_policy', 'currency_code', 'customer', 'customer_payment_method', 'delivery_method', 'delivery_policy', 'delivery_price', 'discounts', 'discounts_added', 'discounts_removed', 'discounts_updated', 'lines', 'lines_added', 'lines_removed', 'next_billing_date', 'note', 'original_contract', 'shipping_options', 'status')
+    __field_names__ = ('billing_cycle', 'billing_policy', 'concatenated_billing_cycles', 'currency_code', 'custom_attributes', 'customer', 'customer_payment_method', 'delivery_method', 'delivery_options', 'delivery_policy', 'delivery_price', 'discounts', 'discounts_added', 'discounts_removed', 'discounts_updated', 'lines', 'lines_added', 'lines_removed', 'next_billing_date', 'note', 'original_contract', 'status')
+    billing_cycle = sgqlc.types.Field(SubscriptionBillingCycle, graphql_name='billingCycle')
     billing_policy = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingPolicy), graphql_name='billingPolicy')
+    concatenated_billing_cycles = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionBillingCycleConnection), graphql_name='concatenatedBillingCycles', args=sgqlc.types.ArgDict((
+        ('first', sgqlc.types.Arg(Int, graphql_name='first', default=None)),
+        ('after', sgqlc.types.Arg(String, graphql_name='after', default=None)),
+        ('last', sgqlc.types.Arg(Int, graphql_name='last', default=None)),
+        ('before', sgqlc.types.Arg(String, graphql_name='before', default=None)),
+        ('reverse', sgqlc.types.Arg(Boolean, graphql_name='reverse', default=False)),
+        ('sort_key', sgqlc.types.Arg(SubscriptionBillingCyclesSortKeys, graphql_name='sortKey', default='CYCLE_INDEX')),
+))
+    )
     currency_code = sgqlc.types.Field(sgqlc.types.non_null(CurrencyCode), graphql_name='currencyCode')
+    custom_attributes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(Attribute))), graphql_name='customAttributes')
     customer = sgqlc.types.Field(sgqlc.types.non_null(Customer), graphql_name='customer')
     customer_payment_method = sgqlc.types.Field(CustomerPaymentMethod, graphql_name='customerPaymentMethod', args=sgqlc.types.ArgDict((
         ('show_revoked', sgqlc.types.Arg(Boolean, graphql_name='showRevoked', default=False)),
 ))
     )
     delivery_method = sgqlc.types.Field('SubscriptionDeliveryMethod', graphql_name='deliveryMethod')
+    delivery_options = sgqlc.types.Field('SubscriptionDeliveryOptionResult', graphql_name='deliveryOptions', args=sgqlc.types.ArgDict((
+        ('delivery_address', sgqlc.types.Arg(MailingAddressInput, graphql_name='deliveryAddress', default=None)),
+))
+    )
     delivery_policy = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionDeliveryPolicy), graphql_name='deliveryPolicy')
     delivery_price = sgqlc.types.Field(MoneyV2, graphql_name='deliveryPrice')
     discounts = sgqlc.types.Field(sgqlc.types.non_null(SubscriptionDiscountConnection), graphql_name='discounts', args=sgqlc.types.ArgDict((
@@ -12796,10 +16181,6 @@ class SubscriptionDraft(sgqlc.types.Type, Node):
     next_billing_date = sgqlc.types.Field(DateTime, graphql_name='nextBillingDate')
     note = sgqlc.types.Field(String, graphql_name='note')
     original_contract = sgqlc.types.Field(SubscriptionContract, graphql_name='originalContract')
-    shipping_options = sgqlc.types.Field('SubscriptionShippingOptionResult', graphql_name='shippingOptions', args=sgqlc.types.ArgDict((
-        ('delivery_address', sgqlc.types.Arg(MailingAddressInput, graphql_name='deliveryAddress', default=None)),
-))
-    )
     status = sgqlc.types.Field(SubscriptionContractSubscriptionStatus, graphql_name='status')
 
 
@@ -12811,13 +16192,14 @@ class SubscriptionDraftUserError(sgqlc.types.Type, DisplayableError):
 
 class TenderTransaction(sgqlc.types.Type, Node):
     __schema__ = shopify
-    __field_names__ = ('amount', 'payment_method', 'processed_at', 'remote_reference', 'test', 'transaction_details')
+    __field_names__ = ('amount', 'payment_method', 'processed_at', 'remote_reference', 'test', 'transaction_details', 'user')
     amount = sgqlc.types.Field(sgqlc.types.non_null(MoneyV2), graphql_name='amount')
     payment_method = sgqlc.types.Field(String, graphql_name='paymentMethod')
     processed_at = sgqlc.types.Field(DateTime, graphql_name='processedAt')
     remote_reference = sgqlc.types.Field(String, graphql_name='remoteReference')
     test = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='test')
     transaction_details = sgqlc.types.Field('TenderTransactionDetails', graphql_name='transactionDetails')
+    user = sgqlc.types.Field(StaffMember, graphql_name='user')
 
 
 class TipSale(sgqlc.types.Type, Sale):
@@ -12898,12 +16280,19 @@ class UserError(sgqlc.types.Type, DisplayableError):
     __field_names__ = ()
 
 
-class Video(sgqlc.types.Type, Media, Node):
+class Video(sgqlc.types.Type, File, Media, Node):
     __schema__ = shopify
-    __field_names__ = ('filename', 'original_source', 'sources')
+    __field_names__ = ('duration', 'filename', 'original_source', 'sources')
+    duration = sgqlc.types.Field(Int, graphql_name='duration')
     filename = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='filename')
     original_source = sgqlc.types.Field(VideoSource, graphql_name='originalSource')
     sources = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(VideoSource))), graphql_name='sources')
+
+
+class WebPixel(sgqlc.types.Type, Node):
+    __schema__ = shopify
+    __field_names__ = ('settings',)
+    settings = sgqlc.types.Field(sgqlc.types.non_null(JSON), graphql_name='settings')
 
 
 class WebhookSubscription(sgqlc.types.Type, LegacyInteroperability, Node):
@@ -12928,6 +16317,16 @@ class AppPricingDetails(sgqlc.types.Union):
     __types__ = (AppRecurringPricing, AppUsagePricing)
 
 
+class AppSubscriptionDiscountValue(sgqlc.types.Union):
+    __schema__ = shopify
+    __types__ = (AppSubscriptionDiscountAmount, AppSubscriptionDiscountPercentage)
+
+
+class CollectionRuleConditionObject(sgqlc.types.Union):
+    __schema__ = shopify
+    __types__ = (CollectionRuleProductCategoryCondition, CollectionRuleTextCondition)
+
+
 class CommentEventEmbed(sgqlc.types.Union):
     __schema__ = shopify
     __types__ = (Customer, DraftOrder, Order, Product, ProductVariant)
@@ -12948,14 +16347,19 @@ class DeliveryRateProvider(sgqlc.types.Union):
     __types__ = (DeliveryParticipant, DeliveryRateDefinition)
 
 
+class Discount(sgqlc.types.Union):
+    __schema__ = shopify
+    __types__ = (DiscountAutomaticApp, DiscountAutomaticBasic, DiscountAutomaticBxgy, DiscountCodeApp, DiscountCodeBasic, DiscountCodeBxgy, DiscountCodeFreeShipping)
+
+
 class DiscountAutomatic(sgqlc.types.Union):
     __schema__ = shopify
-    __types__ = (DiscountAutomaticBasic, DiscountAutomaticBxgy)
+    __types__ = (DiscountAutomaticApp, DiscountAutomaticBasic, DiscountAutomaticBxgy)
 
 
 class DiscountCode(sgqlc.types.Union):
     __schema__ = shopify
-    __types__ = (DiscountCodeBasic, DiscountCodeBxgy, DiscountCodeFreeShipping)
+    __types__ = (DiscountCodeApp, DiscountCodeBasic, DiscountCodeBxgy, DiscountCodeFreeShipping)
 
 
 class DiscountCustomerBuysValue(sgqlc.types.Union):
@@ -12970,7 +16374,7 @@ class DiscountCustomerGetsValue(sgqlc.types.Union):
 
 class DiscountCustomerSelection(sgqlc.types.Union):
     __schema__ = shopify
-    __types__ = (DiscountCustomerAll, DiscountCustomerSavedSearches, DiscountCustomers)
+    __types__ = (DiscountCustomerAll, DiscountCustomerSegments, DiscountCustomers)
 
 
 class DiscountEffect(sgqlc.types.Union):
@@ -12995,12 +16399,17 @@ class DiscountShippingDestinationSelection(sgqlc.types.Union):
 
 class MetafieldReference(sgqlc.types.Union):
     __schema__ = shopify
-    __types__ = (GenericFile, MediaImage, OnlineStorePage, Product, ProductVariant)
+    __types__ = (Collection, GenericFile, MediaImage, OnlineStorePage, Product, ProductVariant, Video)
 
 
 class OrderStagedChange(sgqlc.types.Union):
     __schema__ = shopify
     __types__ = (OrderStagedChangeAddCustomItem, OrderStagedChangeAddLineItemDiscount, OrderStagedChangeAddShippingLine, OrderStagedChangeAddVariant, OrderStagedChangeDecrementItem, OrderStagedChangeIncrementItem)
+
+
+class PaymentInstrument(sgqlc.types.Union):
+    __schema__ = shopify
+    __types__ = (VaultCreditCard, VaultPaypalBillingAgreement)
 
 
 class PriceRuleValue(sgqlc.types.Union):
@@ -13013,14 +16422,24 @@ class PricingValue(sgqlc.types.Union):
     __types__ = (MoneyV2, PricingPercentageValue)
 
 
+class PurchasingEntity(sgqlc.types.Union):
+    __schema__ = shopify
+    __types__ = (Customer, PurchasingCompany)
+
+
 class SellingPlanBillingPolicy(sgqlc.types.Union):
     __schema__ = shopify
-    __types__ = (SellingPlanRecurringBillingPolicy,)
+    __types__ = (SellingPlanFixedBillingPolicy, SellingPlanRecurringBillingPolicy)
+
+
+class SellingPlanCheckoutChargeValue(sgqlc.types.Union):
+    __schema__ = shopify
+    __types__ = (MoneyV2, SellingPlanCheckoutChargePercentageValue)
 
 
 class SellingPlanDeliveryPolicy(sgqlc.types.Union):
     __schema__ = shopify
-    __types__ = (SellingPlanRecurringDeliveryPolicy,)
+    __types__ = (SellingPlanFixedDeliveryPolicy, SellingPlanRecurringDeliveryPolicy)
 
 
 class SellingPlanPricingPolicy(sgqlc.types.Union):
@@ -13035,7 +16454,17 @@ class SellingPlanPricingPolicyAdjustmentValue(sgqlc.types.Union):
 
 class SubscriptionDeliveryMethod(sgqlc.types.Union):
     __schema__ = shopify
-    __types__ = (SubscriptionDeliveryMethodShipping,)
+    __types__ = (SubscriptionDeliveryMethodLocalDelivery, SubscriptionDeliveryMethodPickup, SubscriptionDeliveryMethodShipping)
+
+
+class SubscriptionDeliveryOption(sgqlc.types.Union):
+    __schema__ = shopify
+    __types__ = (SubscriptionLocalDeliveryOption, SubscriptionPickupOption, SubscriptionShippingOption)
+
+
+class SubscriptionDeliveryOptionResult(sgqlc.types.Union):
+    __schema__ = shopify
+    __types__ = (SubscriptionDeliveryOptionResultFailure, SubscriptionDeliveryOptionResultSuccess)
 
 
 class SubscriptionDiscount(sgqlc.types.Union):

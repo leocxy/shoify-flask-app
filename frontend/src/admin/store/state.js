@@ -6,5 +6,6 @@ export default Vue.observable({
     rest_api: [
         {name: 'check', url: '/admin/check'},
         {name: 'test_jwt', url: '/admin/test_jwt'},
+        {name: 'discount_code', url: '/admin/discount_code'},
     ]
 })

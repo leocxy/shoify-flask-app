@@ -30,13 +30,14 @@ pub mod input {
     #[derive(Clone, Debug, Serialize, Deserialize)]
     #[serde(rename_all = "camelCase")]
     pub struct Configuration {
-        pub quantity: i64,
-        pub percentage: f64,
+        pub method: String,
+        pub value: Float,
+        pub threshold: Int,
     }
 
     impl Configuration {
-        const DEFAULT_QUANTITY: i64 = 999;
-        const DEFAULT_PERCENTAGE: f64 = 0.0;
+        const DEFAULT_VALUE: Float = 0.0;
+        const DEFAULT_THRESHOLD: Int = 0;
 
         fn from_str(str: &str) -> Self {
             serde_json::from_str(str).unwrap_or_default()
@@ -46,8 +47,9 @@ pub mod input {
     impl Default for Configuration {
         fn default() -> Self {
             Configuration {
-                quantity: Self::DEFAULT_QUANTITY,
-                percentage: Self::DEFAULT_PERCENTAGE,
+                method: "none".to_string(),
+                value: Self::DEFAULT_VALUE,
+                threshold: Self::DEFAULT_THRESHOLD,
             }
         }
     }
@@ -64,19 +66,70 @@ pub mod input {
     }
 
     #[derive(Clone, Debug, Deserialize)]
+    #[serde(rename_all = "camelCase")]
     pub struct Cart {
         pub lines: Vec<CartLine>,
+        pub cost: Option<Cost>,
+        pub buyer_identity: Option<BuyerIdentity>,
+        pub attribute: Option<Vec<Attribute>>,
     }
 
     #[derive(Clone, Debug, Deserialize)]
     pub struct CartLine {
         pub quantity: Int,
         pub merchandise: Merchandise,
+        pub cost: CartLineCost
+    }
+
+    #[derive(Clone, Debug, Deserialize)]
+    #[serde(rename_all = "camelCase")]
+    pub struct CartLineCost {
+        pub amount_per_quantity: Option<MoneyV2>,
+        pub compare_at_amount_per_quantity: Option<MoneyV2>,
+        pub subtotal_amount: Option<MoneyV2>,
+        pub total_amount: Option<MoneyV2>,
     }
 
     #[derive(Clone, Debug, Deserialize)]
     pub struct Merchandise {
         pub id: Option<ID>,
+        pub sku: Option<String>,
+        pub metafield: Option<String>,
+    }
+
+    #[derive(Clone, Debug, Deserialize)]
+    #[serde(rename_all = "camelCase")]
+    pub struct MoneyV2 {
+        pub amount: Option<String>,
+        // pub currency_code: Option<String>,
+    }
+
+    #[derive(Clone, Debug, Deserialize)]
+    #[serde(rename_all = "camelCase")]
+    pub struct Customer {
+        pub amount_spend: Option<MoneyV2>,
+        pub email: Option<String>,
+        pub number_of_orders: Option<i32>,
+        pub metafield: Option<Metafield>,
+    }
+
+    #[derive(Clone, Debug, Deserialize)]
+    pub struct BuyerIdentity {
+        pub email: Option<String>,
+        pub customer: Option<Customer>,
+    }
+
+    #[derive(Clone, Debug, Deserialize)]
+    #[serde(rename_all = "camelCase")]
+    pub struct Cost {
+        pub subtotal_amount: Option<MoneyV2>,
+        pub total_amount: Option<MoneyV2>,
+    }
+
+    #[derive(Clone, Debug, Deserialize)]
+    pub struct Attribute {
+        pub key: String,
+        pub value: String,
     }
 }
 
