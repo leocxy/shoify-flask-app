@@ -12,6 +12,8 @@ class Config:
     TESTING = False
     CSRF_ENABLE = True
     DEVELOPMENT = False
+    # Sort by keys
+    JSON_SORT_KEYS = False
     SECRET_KEY = getenv('SECRET_KEY', 'this-is-flask-secret-key123123123123')
     SERVER_NAME = getenv('SERVER_NAME')
     # Flask-SQLAlchemy

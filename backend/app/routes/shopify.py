@@ -80,19 +80,9 @@ def callback():
     query.url()
     res = base.fetch_data(op)['shop']
     domain = res['url'].split('/')[-1]
-    # Store To Database
-    record = Store.query.filter_by(key=params['shop']).first()
-    if record is None:
-        record = Store(
-            key=params['shop'],
-            domain=domain,
-            token=data['access_token'],
-            extra=''
-        )
-        db.session.add(record)
-    else:
-        record.token = data['access_token']
-        record.domain = domain
+    cond = dict(key=params['shop'])
+    values = dict(domain=domain, token=data['access_token'])
+    record = Store.create_or_update(cond, **cond, **values)
     # Query accessScopes
     op = Operation(shopify_schema.query_type, 'QueryAccessScopes')
     query = op.app_installation.access_scopes()

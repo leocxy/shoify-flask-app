@@ -8,7 +8,7 @@ const redirectAdmin = function (payload) {
     const redirect = Redirect.create(state.bridge);
     redirect.dispatch(Redirect.Action.ADMIN_PATH, {
         path: payload?.path || payload,
-        newContext: payload?.newContext || true
+        newContext: payload?.newContext === undefined ? true : payload.newContext
     })
 }
 
@@ -17,7 +17,7 @@ const redirectRemote = function (payload) {
     const redirect = Redirect.create(state.bridge);
     redirect.dispatch(Redirect.Action.REMOTE, {
         url: payload?.url || payload,
-        newContext: payload?.newContext || true
+        newContext: payload?.newContext === undefined ? true : payload.newContext
     })
 }
 

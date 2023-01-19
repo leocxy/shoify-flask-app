@@ -6,11 +6,8 @@
     "serve": "cd frontend && vue-cli-service serve",
     "build": "cd frontend && vue-cli-service build",
     "lint": "cd frontend && vue-cli-service lint",
-    "discount:build": "cd frontend && cross-env NODE_APP=ext vue-cli-service build",
     "ext:build": "yarn shopify app build",
-    "ext:deploy": "yarn shopify app deploy",
-    "docs:serve": "vuepress dev src/front",
-    "docs:build": "vuepress build src/front"
+    "ext:deploy": "yarn shopify app deploy"
   },
   "dependencies": {
     "@hulkapps/polaris-vue": "^3.0.9",

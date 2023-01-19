@@ -7,20 +7,20 @@
                         Order discount
                     </div>
                     <PFormLayout>
-                        <PStack vertical alignment="leading" spacing="extraTight">
+                        <PStack vertical alignment="leading" spacing="extraTight" v-if="code_id === undefined">
                             <PStackItem>
-                                <PRadioButton id="discount_code" label="Discount code" name="method"
-                                              :checked="form.method === 'code'" value="code"
+                                <PRadioButton id="discount_code" label="Discount code" name="type"
+                                              :checked="form.type === 'code'" value="code"
                                               @change="changeMethod"/>
                             </PStackItem>
                             <PStackItem>
                                 <PRadioButton id="auto_discount" label="Automatic discount" name="method"
-                                              :checked="form.method !== 'code'" value="auto"
+                                              :checked="form.type !== 'code'" value="auto"
                                               @change="changeMethod"/>
                             </PStackItem>
                         </PStack>
                         <ValidationProvider
-                            v-if="form.method === 'code'"
+                            v-if="form.type === 'code'"
                             name="Discount code"
                             rules="required"
                             v-slot="{errors}">
@@ -46,17 +46,17 @@
                         <PFormLayoutGroup>
                             <PButtonGroup segmented>
                                 <PButton
-                                    :pressed="form.type === 'percentage'"
-                                    @click="changeValueType('percentage')" :disabled="isSaving">Percentage
+                                    :pressed="form.method === 'percentage'"
+                                    @click="changeDiscountMethod('percentage')" :disabled="isSaving">Percentage
                                 </PButton>
                                 <PButton
-                                    :pressed="form.type === 'fixed'"
-                                    @click="changeValueType('fixed')" :disabled="isSaving">Fixed amount
+                                    :pressed="form.method === 'fixed'"
+                                    @click="changeDiscountMethod('fixed')" :disabled="isSaving">Fixed amount
                                 </PButton>
                             </PButtonGroup>
                             <div>
                                 <ValidationProvider
-                                    v-show="form.type === 'percentage'"
+                                    v-show="form.method === 'percentage'"
                                     name="Value"
                                     rules="between:0,100"
                                     v-slot="{errors}">
@@ -66,7 +66,7 @@
                                     </PTextField>
                                 </ValidationProvider>
                                 <ValidationProvider
-                                    v-show="form.type === 'fixed'"
+                                    v-show="form.method === 'fixed'"
                                     name="Value"
                                     rules="min_value:0"
                                     v-slot="{errors}">
@@ -109,7 +109,8 @@
                 </PCard>
                 <PCard style="background: transparent; box-shadow: none;">
                     <PButtonGroup>
-                        <PButton :loading="isSaving">Discard</PButton>
+                        <PButton destructive :loading="isSaving" v-if="code_id" @click="showModal()">Delete discount
+                        </PButton>
                         <PButton primary :loading="isSaving" @click="saveData">Save</PButton>
                     </PButtonGroup>
                 </PCard>
@@ -120,6 +121,20 @@
                 <div>Summary TODO</div>
             </PCard>
         </PLayoutSection>
+        <PModal
+            :open="modal.open"
+            sectioned>
+            <PTextContainer slot="title">
+                <PTextStyle variation="strong">{{ modal.title }}</PTextStyle>
+            </PTextContainer>
+            <PTextContainer>
+                {{ modal.content }}
+            </PTextContainer>
+            <PButtonGroup slot="footer">
+                <PButton @click="modal.open = false">Cancel</PButton>
+                <PButton :loading="isSaving" @click="deleteCode" destructive>Delete discount</PButton>
+            </PButtonGroup>
+        </PModal>
     </PLayout>
 </template>
 
@@ -128,6 +143,7 @@ import {ValidationProvider, ValidationObserver, extend} from "vee-validate"
 import {required} from "vee-validate/dist/rules"
 import {getApi} from "../store/getters"
 import common from "../utils/common"
+import {redirectAdmin} from "../store/actions"
 
 extend('required', required)
 extend('between', {
@@ -158,21 +174,26 @@ export default {
     data: () => ({
         summary: [],
         form: {
-            method: 'code',
+            type: 'code',
             code: null,
             title: null,
-            type: 'percentage',
+            method: 'percentage',
             value: 0,
+        },
+        modal: {
+            open: false,
+            title: null,
+            content: null,
         },
         isSaving: false,
     }),
     methods: {
         changeMethod: function (e) {
-            this.form.method = e.value
-            this.form.method === 'code' ? this.form.title = null : this.form.code = null
+            this.form.type = e.value
+            this.form.type === 'code' ? this.form.title = null : this.form.code = null
         },
-        changeValueType: function (v) {
-            this.form.type = v
+        changeDiscountMethod: function (v) {
+            this.form.method = v
             this.form.value = 0
         },
         changeValue: function (v) {
@@ -190,28 +211,63 @@ export default {
         createCode: function (form) {
             this.isSaving = true
             this.$http.post(getApi('discount_code', 'create'), form).then(({data}) => {
-                console.log(data)
                 this.isSaving = false
                 this.$pToast.open({message: 'Discount code created!'})
+                // redirect to discount code detail page
+                this.$router.push({name: 'discount.edit', params: {code_id: data.data.code_id}})
             }).catch(this.errorHandle)
         },
         updateCode: function (form) {
             this.isSaving = true
-            this.$http.put(getApi('discount_code', `${this.record_id}`), form).then(({data}) => {
-                console.log(data)
-                this.isSaving = false
+            this.$http.put(getApi('discount_code', `${this.code_id}`), form).then(({data}) => {
+                this.formatData(data.data)
                 this.$pToast.open({message: 'Discount code updated!'})
+                this.isSaving = false
             }).catch(this.errorHandle)
+        },
+        deleteCode: function () {
+            this.isSaving = true
+            this.$http.delete(getApi('discount_code', `${this.code_id}`)).then(() => {
+                this.$pToast.open({message: 'Discount code has been deleted!'})
+                this.isSaving = false
+                redirectAdmin({path: '/discounts', newContext: false})
+            }).catch(this.errorHandle)
+        },
+        showModal: function () {
+            let name = this.form.code || this.form.title
+            this.modal.title = `Delete ${name}`
+            this.modal.content = `Are you sure you want to delete the discount ${name}? This can’t be undone.`
+            this.modal.open = true
         },
         saveData: async function () {
             let valid = await this.$refs.form.validate()
             if (!valid) return
             let form = Object.assign({}, this.form)
-            form.method === 'code' ? delete form['title'] : delete form['code']
+            form.type === 'code' ? delete form['title'] : delete form['code']
             return this.code_id === undefined ? this.createCode(form) : this.updateCode(form)
+        },
+        formatData: function (data) {
+            this.$emit('title', data?.code_name || 'Unknown code')
+            this.form.method = data.method === 1 ? 'percentage' : 'fixed'
+            this.form.value = data.value
+            if (data.code_type === 0) {
+                this.form.type = 'code'
+                this.form.code = data.code_name
+            } else {
+                this.form.type = 'auto'
+                this.form.title = data.code_name
+            }
+        },
+        loadData: function () {
+            this.isSaving = true
+            this.$http.get(getApi('discount_code', `${this.code_id}`)).then(({data}) => {
+                this.formatData(data.data)
+                this.isSaving = false
+            }).catch(this.errorHandle)
         }
     },
     mounted: function () {
+        if (this.code_id) return this.loadData()
         this.$emit('title', 'Create discount code')
     }
 }
