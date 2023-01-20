@@ -51,14 +51,24 @@ fn function(input: input::Input) -> Result<FunctionResult, Box<dyn std::error::E
         return default_result();
     }
 
+    let value = match config.method.as_str() {
+        "percentage" => {
+            Value::Percentage(Percentage {
+                value: config.value
+            })
+        },
+        _ => {
+            Value::FixedAmount(FixedAmount {
+                amount: config.value
+            })
+        }
+    };
+
     Ok(FunctionResult {
         discounts: vec![Discount {
             message: Some("Hello World".to_string()),
             targets,
-            value: Value::FixedAmount(FixedAmount {
-                applies_to_each_item: Some(true),
-                value: config.value,
-            })
+            value
         }],
         discount_application_strategy: DiscountApplicationStrategy::First,
     })
@@ -69,7 +79,7 @@ fn function(input: input::Input) -> Result<FunctionResult, Box<dyn std::error::E
 mod tests {
     use super::*;
 
-    fn input(configuration: Option<input::Configuration>) -> input::Input {
+    fn fixed_input(configuration: Option<input::Configuration>) -> input::Input {
         let input = r#"
         {
           "cart": {
@@ -130,8 +140,8 @@ mod tests {
     }
 
     #[test]
-    fn test_basic() {
-        let input = input(None);
+    fn fixed_default() {
+        let input = fixed_input(None);
         let result = serde_json::json!(function(input).unwrap());
         let expected_json = r#"
             {
@@ -146,8 +156,7 @@ mod tests {
                         }
                     ],
                     "value": {"fixedAmount": {
-                        "appliesToEachItem": true,
-                        "value": 20.0
+                        "amount": 20.0
                     }}
                 }],
                 "discountApplicationStrategy": "FIRST"
@@ -163,8 +172,8 @@ mod tests {
     }
 
     #[test]
-    fn test_discount_with_none_method() {
-        let input = input(Some(input::Configuration {
+    fn fixed_empty_meta() {
+        let input = fixed_input(Some(input::Configuration {
             method: "none".to_string(),
             value: 0.0,
             threshold: 0,
@@ -187,8 +196,8 @@ mod tests {
     }
 
     #[test]
-    fn test_discount_with_not_meet_the_threshold() {
-        let input = input(Some(input::Configuration {
+    fn fixed_not_meet_threshold() {
+        let input = fixed_input(Some(input::Configuration {
             method: "fixed".to_string(),
             value: 15.0,
             threshold: 10,
@@ -211,8 +220,8 @@ mod tests {
     }
 
     #[test]
-    fn test_discount_with_meet_the_threshold() {
-        let input = input(Some(input::Configuration {
+    fn fixed_meet_threshold() {
+        let input = fixed_input(Some(input::Configuration {
             method: "fixed".to_string(),
             value: 18.0,
             threshold: 5,
@@ -232,8 +241,7 @@ mod tests {
                         }
                     ],
                     "value": {"fixedAmount": {
-                        "appliesToEachItem": true,
-                        "value": 18.0
+                        "amount": 18.0
                     }}
                 }],
                 "discountApplicationStrategy": "FIRST"
@@ -246,5 +254,88 @@ mod tests {
             handle_result.to_string(),
             expected_handle_result.to_string()
         );
+    }
+
+    fn percentage_input(configuration: Option<input::Configuration>) -> input::Input {
+        let input = r#"
+        {
+          "cart": {
+            "attribute": [{"key": "test", "value": "test-value"}],
+            "cost": {
+              "subtotalAmount": {
+                "amount": "200.0"
+              },
+              "totalAmount": {
+                "amount": "200.0"
+              }
+            },
+            "buyerIdentity": null,
+            "lines": [
+              {
+                "quantity": 5,
+                "cost": {
+                  "amountPerQuantity": {
+                    "amount": "40.0"
+                  },
+                  "subtotalAmount": {
+                    "amount": "200.0"
+                  },
+                  "totalAmount": {
+                    "amount": "200.0"
+                  }
+                },
+                "merchandise": {
+                  "id": "gid://shopify/ProductVariant/31441228824630",
+                  "sku": "31347",
+                  "metafield": null
+                }
+              }
+            ]
+          },
+          "discountNode": {
+            "metafield": {
+              "value": "{\"method\":\"percentage\",\"value\":20,\"threshold\":3}"
+            }
+          }
+        }
+        "#;
+        let default_input: input::Input = serde_json::from_str(input).unwrap();
+        // read meta value from raw text
+        let value = match configuration.map(|x| serde_json::to_string(&x).unwrap()) {
+            Some(val) => Some(val),
+            None => default_input.discount_node.metafield.unwrap().value,
+        };
+
+        let discount_node = input::DiscountNode {
+            metafield: Some(input::Metafield { value }),
+        };
+
+        input::Input {
+            discount_node,
+            ..default_input
+        }
+    }
+
+    #[test]
+    fn percentage_default() {
+        let input = percentage_input(None);
+        let result = serde_json::json!(function(input).unwrap());
+        let expected_json = r#"
+            {
+                "discounts": [{
+                    "message": "Hello World",
+                    "targets": [{
+                        "productVariant": {
+                            "id": "gid://shopify/ProductVariant/31441228824630",
+                            "quantity": 4
+                        }
+                    }],
+                    "value": {"percentage": {"value": 20.0 }}
+                }],
+                "discountApplicationStrategy": "FIRST"
+            }
+        "#;
+        let expected: serde_json::Value = serde_json::from_str(expected_json).unwrap();
+        assert_eq!(result.to_string(), expected.to_string());
     }
 }
