@@ -1,5 +1,5 @@
 <template>
-    <PPage :title="title">
+    <PPage :title="title" full-width>
         <router-view @title="updateTitle"></router-view>
         <PFooterHelp v-if="change"><PLink @click="reinstall()">Update</PLink> App permissions to get full functionality.</PFooterHelp>
     </PPage>

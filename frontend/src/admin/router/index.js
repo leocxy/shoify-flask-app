@@ -4,6 +4,7 @@ import VueRouter from "vue-router"
 Vue.use(VueRouter);
 
 const routes = [
+    {path: '/gift-with-purchase', name: 'gift-with-purchase', component: () => import('@/views/GiftWithPurchase')},
     {path: '/ext/discount_code/create', name: 'discount', component: () => import('@/views/Discount')},
     {
         path: '/ext/discount_code/:code_id',

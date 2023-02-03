@@ -6,15 +6,19 @@
     "serve": "cd frontend && vue-cli-service serve",
     "build": "cd frontend && vue-cli-service build",
     "lint": "cd frontend && vue-cli-service lint",
+    "ext:serve": "yarn shopify app dev",
     "ext:build": "yarn shopify app build",
     "ext:deploy": "yarn shopify app deploy"
   },
   "dependencies": {
     "@hulkapps/polaris-vue": "^3.0.9",
-    "@shopify/app": "^3.28.0",
+    "@shopify/app": "^3.39.0",
     "@shopify/app-bridge": "^3.0.0",
-    "@shopify/cli": "^3.28.0",
+    "@shopify/checkout-ui-extensions-react": "^0.22.0",
+    "@shopify/cli": "^3.39.0",
     "core-js": "^3.6.5",
+    "dayjs": "^1.11.7",
+    "react": "^17.0.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
@@ -30,6 +34,8 @@
     "eslint-plugin-vue": "^7.13.0",
     "eslint-webpack-plugin": "^3.0.1",
     "lodash": "^4.17.20",
+    "marked": "^4.2.12",
+    "sass": "^1.58.0",
     "sass-loader": "^10.0.0",
     "vee-validate": "3",
     "vue-fragment": "^1.5.1",

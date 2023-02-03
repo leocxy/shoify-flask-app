@@ -14,6 +14,8 @@ def register_routes(app):
     from .discount_code import admin_bp as admin1_bp, ext_bp
     app.register_blueprint(admin1_bp)
     app.register_blueprint(ext_bp)
+    from .gift_with_purchase import gwp_bp
+    app.register_blueprint(gwp_bp)
     # from .webhook import webhook_bp
     # app.register_blueprint(webhook_bp)
 
