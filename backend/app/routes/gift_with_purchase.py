@@ -19,8 +19,6 @@ gwp_bp = Blueprint(
     template_folder=join(ROOT_PATH, 'app', 'templates')
 )
 
-script_path = 'ruby/gwp.rb'
-
 
 @gwp_bp.get('', endpoint='get_data')
 @check_jwt

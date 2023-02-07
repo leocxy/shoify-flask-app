@@ -1,8 +1,8 @@
-"""empty message
+"""GWP Tables
 
-Revision ID: 17c777a63101
+Revision ID: 3ea44c9924cb
 Revises: 9810f01535bb
-Create Date: 2023-02-03 13:59:47.349999
+Create Date: 2023-02-07 14:01:15.243844
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '17c777a63101'
+revision = '3ea44c9924cb'
 down_revision = '9810f01535bb'
 branch_labels = None
 depends_on = None
@@ -42,6 +42,7 @@ def upgrade():
     sa.Column('parent_id', sa.Integer(), nullable=True),
     sa.Column('target', sa.SmallInteger(), nullable=True, comment='1: Target, 2: Pre requirements'),
     sa.Column('pid', sa.BigInteger(), nullable=True),
+    sa.Column('vid', sa.BigInteger(), nullable=True),
     sa.Column('title', sa.String(length=255), nullable=True),
     sa.Column('handle', sa.String(length=255), nullable=True),
     sa.Column('image', sa.String(length=512), nullable=True),

@@ -267,6 +267,7 @@ export default {
                     let product = products[0]
                     this.form.target = {
                         pid: parseInt(product.id.split('/').pop()),
+                        vid: parseInt(product.variants[0].id.split('/').pop()),
                         title: product.title,
                         handle: product.handle,
                         image: product.images.length > 0 ? product.images[0].originalSrc : null
@@ -311,26 +312,6 @@ export default {
     },
     mounted: function () {
         this.loadData()
-        this.form.pre_requirements = [
-            {
-                "pid": 4389365907510,
-                "title": "Product A",
-                "handle": "product-a",
-                "image": "https://cdn.shopify.com/s/files/1/0251/0795/5766/products/12gg_Merino_Button_Front_Cardi_Iron_1_a21431bd-9178-432d-8adc-b892530bee9e.jpg?v=1576098068"
-            },
-            {
-                "pid": 4389367218230,
-                "title": "Product B",
-                "handle": "product-b",
-                "image": "https://cdn.shopify.com/s/files/1/0251/0795/5766/products/Alex_Cropped_Pant_Grey_1.jpg?v=1576098182"
-            }
-        ]
-        this.form.target = {
-            "pid": 4389367218230,
-            "title": "Product B",
-            "handle": "product-b",
-            "image": "https://cdn.shopify.com/s/files/1/0251/0795/5766/products/Alex_Cropped_Pant_Grey_1.jpg?v=1576098182"
-        }
         this.$emit('title', 'Gift with Purchase')
     }
 }

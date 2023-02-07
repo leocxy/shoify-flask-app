@@ -168,6 +168,7 @@ class GiftWithPurchaseItems(db.Model, BasicMethod):
     parent_id = db.Column(db.Integer, db.ForeignKey('gift_with_purchases.id'))
     target = db.Column(db.SmallInteger, comment='1: Target, 2: Pre requirements')
     pid = db.Column(db.BigInteger)
+    vid = db.Column(db.BigInteger)
     title = db.Column(db.String(255))
     handle = db.Column(db.String(255))
     image = db.Column(db.String(512))
@@ -175,9 +176,12 @@ class GiftWithPurchaseItems(db.Model, BasicMethod):
     updated_at = db.Column(db.DateTime, default=current_time, onupdate=current_time)
 
     def to_dict(self):
-        return dict(
+        data = dict(
             pid=self.pid,
             title=self.title,
             handle=self.handle,
             image=self.image
         )
+        if self.target == 1:
+            data['vid'] = self.vid
+        return data

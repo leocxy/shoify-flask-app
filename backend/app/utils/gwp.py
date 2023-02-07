@@ -24,6 +24,7 @@ class GWPHelper(BasicHelper):
         # make sure this match shopify.ui.extension.toml
         self._ns = 'gwp-test'
         self._key = 'gwp-test'
+        self._attr_key = '_gwp_hash_str'
 
     @classmethod
     def get_schema(cls):
@@ -31,13 +32,14 @@ class GWPHelper(BasicHelper):
             pid=dict(type='number', required=True),
             title=dict(type='string', required=True, maxlength=255),
             handle=dict(type='string', required=True, maxlength=255),
-            image=dict(type='string', required=True, maxlength=512),
+            image=dict(type='string', required=True, maxlength=512, nullable=True),
         )
+        target = dict(**item, vid=dict(type='number', required=True))
         return dict(
             enable=dict(type='boolean', required=True),
             method=dict(type='number', required=True, allowed=[1, 2]),
             value=dict(type='number', required=True, min=0),
-            target=dict(type='dict', required=True, schema=item),
+            target=dict(type='dict', required=True, schema=target),
             pre_requirements=dict(type='list', required=True, schema=dict(type='dict', schema=item)),
             message=dict(type='string', required=True, maxlength=255, regex=r'^(?!.*[\'\"]).*$'),
             force_remove=dict(type='boolean', required=True),
@@ -53,7 +55,7 @@ class GWPHelper(BasicHelper):
         return int(float(value) * 100)
 
     def generate_ruby_script(self, data: dict):
-        return render_template(self.template_path, **data)
+        return render_template(self.template_path, **data, attr_key=self._attr_key)
 
     def get_data(self):
         record = GiftWithPurchase.query.filter_by(store_id=self.store.id).first()
@@ -90,7 +92,7 @@ class GWPHelper(BasicHelper):
             ids.append(item_record.id)
         # remove old data
         cond = dict(store_id=self.store.id, parent_id=record.id, target=2)
-        record.items.filter_by(**cond).filter(~GiftWithPurchaseItems.pid.in_(ids)).delete()
+        record.items.filter_by(**cond).filter(~GiftWithPurchaseItems.id.in_(ids)).delete()
         # Query Shop ID
         op = Operation(shopify_schema.query_type, 'QueryShopID')
         query = op.shop()
@@ -108,7 +110,7 @@ class GWPHelper(BasicHelper):
             namespace=self._ns,
             key=self._key,
             type='json',
-            value=dumps(data),
+            value=dumps(dict(attr_key=self._attr_key, **data)),
         )])
         mutation.metafields.id()
         mutation.user_errors()
