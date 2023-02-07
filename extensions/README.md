@@ -33,7 +33,8 @@ When I said `current folder`, mean the current folder.
 7. Create the `src folder` in the `current folder`
 8. Create the `main.rs` and `api.rs` in the `src folder`
 9. On the `root folder` run `yarn shopify app env pull` and generate the env file on `root folder`
-10. Happy coding
+10. For Shopify Function ID, you should be able to find it via partner portal.
+11. Happy coding
 
 ### Reference
 
