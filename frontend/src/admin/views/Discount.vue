@@ -77,6 +77,9 @@
                                 </ValidationProvider>
                             </div>
                         </PFormLayoutGroup>
+                        <PFormLayoutGroup>
+                            <PTextField value="5" label="Quantity Threshold" disabled help-text="Just hardcode this for demo"/>
+                        </PFormLayoutGroup>
                     </PFormLayout>
                 </PCard>
                 <PCard sectioned title="Minimum purchase requirements">

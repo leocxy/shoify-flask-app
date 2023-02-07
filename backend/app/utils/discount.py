@@ -53,6 +53,7 @@ class DiscountHelper(BasicHelper):
         rs = dict(
             method='fixed' if record.method == 0 else 'percentage',
             value=DiscountCode.convert_value(record.value, True),
+            # hardcode for demo
             threshold=5,
         )
         return dumps(rs)
