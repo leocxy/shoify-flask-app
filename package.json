@@ -1,7 +1,8 @@
 {
-  "name": "admin",
-  "version": "0.1.0",
+  "name": "forntend",
+  "version": "0.2.0",
   "private": true,
+  "author": "Leo Chen<leo.cxy88@gmail.com>",
   "scripts": {
     "serve": "cd frontend && vue-cli-service serve",
     "build": "cd frontend && vue-cli-service build",
