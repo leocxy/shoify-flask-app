@@ -14,11 +14,11 @@ PS_GWP_CONFIGS = {
     "enable" => {% if enable %}true{% else %}false{% endif %},
     "force" => {% if force_remove %}true{% else %}false{% endif %},
     "method" => {{ method }},
-    "value" => {{ value }},
+    "value" => {{ value | int }},
     "pre_requirements" => [{% for item in pre_requirements %}{{ item.pid}}{% if loop.last %}{% else %},{% endif %}{% endfor %}],
     "target" => {{ target.pid }},
     "message" => "{{ message }}",
-    "secret_number" => {{ secret_number }},
+    "secret_number" => {{ secret_number | int }},
     "key" => "{{ attr_key }}",
 }
 
@@ -80,7 +80,7 @@ class PocketSquareGWP
             next unless props.key?(@configs['key'])
             # apply the discount
             if props[@configs['key']] == self.generate_hash_str(pid, vid)
-                if item.line_price.cents > 0
+                if item.line_price > Money.zero()
                     item.change_line_price(Money.zero(), {message: @configs['message']})
                 end
             else
@@ -112,7 +112,7 @@ class PocketSquareGWP
         amount = 0
         @items.each do | item |
             if @configs['pre_requirements'].include? item.variant.product.id
-                amount += item.line_price.cents
+                amount += item.line_price.cents.to_s.to_i
             end
         end
         @qualify = amount >= @configs['value']
@@ -125,7 +125,7 @@ class PocketSquareGWP
     def _smart_remove()
         @items.delete_if do | item |
             if @configs['target'] == item.variant.product.id
-                item.line_price.cents == 0
+                item.line_price == Money.zero()
             end
             false
         end

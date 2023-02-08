@@ -49,12 +49,13 @@ class GWPHelper(BasicHelper):
     @classmethod
     def format_value(cls, value, method: int, reverse: bool = False):
         if method == 1:
-            return value
+            return int(value)
         if reverse:
             return float('{:0.2f}'.format(float(value) * 0.01))
         return int(float(value) * 100)
 
     def generate_ruby_script(self, data: dict):
+        data['value'] = self.format_value(data['value'], data['method'])
         return render_template(self.template_path, **data, attr_key=self._attr_key)
 
     def get_data(self):
