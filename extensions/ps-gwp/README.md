@@ -1,3 +1,7 @@
+# Example Code
+
+https://shopify.dev/apps/checkout/product-offers/add-product-offer
+
 # Checkout UI Extension
 
 Checkout UI extensions let app developers build custom functionality that merchants can install at defined points in the checkout flow. You can learn more about checkout UI extensions in Shopify’s [developer documentation](https://shopify.dev/api/checkout-extensions/checkout).

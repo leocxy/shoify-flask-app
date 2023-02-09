@@ -80,22 +80,14 @@ class PocketSquareGWP
             next unless props.key?(@configs['key'])
             # apply the discount
             if props[@configs['key']] == self.generate_hash_str(pid, vid)
-                if item.line_price > Money.zero()
-                    item.change_line_price(Money.zero(), {message: @configs['message']})
-                end
+                # adjust gift product quantity
+                is_split = item.quantity > 1
+                # apply discount
+                self._adjust_price(item, is_split)
             else
                 self.debug(item, 'error', 'hash str not match!')
             end
         end
-    end
-
-    def run()
-        self.inject_test_data()
-        # qualify items
-        self.check_qualify()
-        # remove gift product
-        self.remove_gift_product()
-        self.apply_discount()
     end
 
     def _check_quantity()
@@ -129,6 +121,26 @@ class PocketSquareGWP
             end
             false
         end
+    end
+
+    def _adjust_price(origin_item, is_split)
+        item = is_split ? origin_item.split(take: 1) : origin_item
+        if item.line_price > Money.zero()
+            item.change_line_price(Money.zero(), {message: @configs['message']})
+        end
+        if is_split
+            @items.delete_if { | o | o === origin_item }
+            @items << item
+        end
+    end
+
+    def run()
+        self.inject_test_data()
+        # qualify items
+        self.check_qualify()
+        # remove gift product
+        self.remove_gift_product()
+        self.apply_discount()
     end
 end
 
