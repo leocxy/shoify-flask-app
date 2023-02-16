@@ -55,8 +55,12 @@ class GWPHelper(BasicHelper):
         return int(float(value) * 100)
 
     def generate_ruby_script(self, data: dict):
-        data['value'] = self.format_value(data['value'], data['method'])
-        return render_template(self.template_path, **data, attr_key=self._attr_key)
+        clone_data = {
+            **data,
+            'attr_key': self._attr_key,
+            'value': self.format_value(data['value'], data['method'])
+        }
+        return render_template(self.template_path, **clone_data)
 
     def get_data(self):
         record = GiftWithPurchase.query.filter_by(store_id=self.store.id).first()

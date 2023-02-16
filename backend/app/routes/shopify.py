@@ -108,7 +108,7 @@ def callback():
 @basic_bp.route('/admin', methods=['GET'], endpoint='admin')
 @check_hmac
 def admin():
-    """ Shopfiy Admin Embedded App - Vue SPA """
+    """ Shopify Admin Embedded App - Vue SPA """
     try:
         resp = make_response(render_template(
             'admin/index.html',
