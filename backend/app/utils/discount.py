@@ -19,7 +19,7 @@ from app.schemas.shopify import shopify as shopify_schema
 
 
 class DiscountHelper(BasicHelper):
-    def __init__(self, store_id: int, log_name: str = 'discount_helper', env_key: str = 'FUNCTION_ORDER_DISCOUNT_ID'):
+    def __init__(self, store_id: int, log_name: str = 'discount_helper', env_key: str = 'SHOPIFY_PS_BUNDLE_SALES_ID'):
         super(DiscountHelper, self).__init__(store_id, log_name)
         self._function_id = environ.get(env_key, None)
         if self._function_id is None:

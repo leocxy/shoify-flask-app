@@ -1,0 +1,26 @@
+query Input {
+    cart {
+        lines {
+            id
+            quantity
+            attribute { key, value }
+            cost {
+                totalAmount { amount }
+            }
+            merchandise {
+                __typename
+                ...on ProductVariant {
+                    id
+                    product {
+                        id
+                    }
+                }
+            }
+        }
+    }
+    discountNode {
+        metafield(namespace: "$app:gwp", key: "configs") {
+            value
+        }
+    }
+}

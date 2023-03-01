@@ -9,10 +9,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from os import path, environ
+from os import environ
+from os.path import dirname, abspath, join
 from pytz import timezone
 from logging.config import dictConfig
 from dotenv import load_dotenv
+
 __version__ = '0.0.1'
 __author__ = 'Leo Chen'
 __email__ = 'leo.cxy88@gmail.com'
@@ -21,9 +23,11 @@ __copyright__ = 'Copyright © Pocketsquare'
 app = None
 db = None
 logger = None
-ROOT_PATH = path.abspath(path.dirname(path.dirname(__file__)))
+# /backend
+ROOT_PATH = abspath(dirname(dirname(__file__)))
 TIMEZONE = timezone('Pacific/Auckland')
-load_dotenv(dotenv_path=path.join(ROOT_PATH, '.env'))
+# root/.env - shopify ClI
+load_dotenv(dotenv_path=join(dirname(ROOT_PATH), '.env'))
 
 
 def create_app(test_config: dict = None):

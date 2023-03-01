@@ -27,7 +27,7 @@ def static_html():
     """ Return the same Static file """
     return render_template(
         'admin/index.html',
-        apiKey=environ.get('APP_KEY'),
+        apiKey=environ.get('SHOPIFY_API_KEY'),
         # App bridge 2+
         host=request.args.get('host', None),
         # App bridge 1+

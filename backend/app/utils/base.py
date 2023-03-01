@@ -170,7 +170,7 @@ def check_hmac(fn):
 
                 return '&'.join(sorted(encode_pairs(params)))
 
-            return hmac.new(environ.get('APP_SECRET').encode(), calculate(params).encode(), sha256).hexdigest()
+            return hmac.new(environ.get('SHOPIFY_API_SECRET').encode(), calculate(params).encode(), sha256).hexdigest()
 
         params = request.args
         my_hmac = hmac_calculate(params).encode('utf-8')
@@ -228,7 +228,7 @@ def check_callback(fn):
 
                 return '&'.join(sorted(encode_pairs(params)))
 
-            return hmac.new(environ.get('APP_SECRET').encode(), calculate(params).encode(), sha256).hexdigest()
+            return hmac.new(environ.get('SHOPIFY_API_SECRET').encode(), calculate(params).encode(), sha256).hexdigest()
 
         my_hmac = hmac_calculate(params).encode('utf-8')
         get_hmac = params['hmac'].encode('utf-8')
@@ -265,7 +265,7 @@ def check_proxy(fn):
         query = ''
         for key in sorted(params):
             query += '{}={}'.format(key, params[key].join(',') if isinstance(params[key], list) else params[key])
-        if signature != hmac.new(environ.get('APP_SECRET').encode(), query.encode(), sha256).hexdigest():
+        if signature != hmac.new(environ.get('SHOPIFY_API_SECRET').encode(), query.encode(), sha256).hexdigest():
             resp = jsonify(status=401, message='proxy validation fail!',
                            headers=dict(request.headers) if getenv('FLASK_ENV', 'production') != 'production' else None,
                            params=request.args)
@@ -293,7 +293,7 @@ def check_webhook(fn):
         resp.status_code = 401
         if not hmac_string:
             return resp
-        digest = hmac.new(environ.get('APP_SECRET').encode('utf-8'), data, sha256).digest()
+        digest = hmac.new(environ.get('SHOPIFY_API_SECRET').encode('utf-8'), data, sha256).digest()
         computed_hmac = b64encode(digest)
         if not hmac.compare_digest(computed_hmac, hmac_string.encode('utf-8')):
             return resp
@@ -332,7 +332,7 @@ def create_jwt_token():
         store_id=g.store_id,
         expire_time=int(expire_time.timestamp()),
         exp=expire_time,
-    ), environ.get('APP_SECRET'), algorithm='HS256')
+    ), environ.get('SHOPIFY_API_SECRET'), algorithm='HS256')
 
 
 def check_jwt(fn):
@@ -352,7 +352,7 @@ def check_jwt(fn):
             return jsonify(dict(status=401, message='Invalid Session Token, Please refresh the page'))
         try:
             res = jwt.decode(token[7:], environ.get(
-                'APP_SECRET'), algorithms='HS256')
+                'SHOPIFY_API_SECRET'), algorithms='HS256')
             g.store_id = res['store_id']
             g.jwt_expire_time = res['expire_time']
             return fn(*args, **kwargs)
@@ -389,7 +389,7 @@ def generate_hash_for_internal_id(value, expire_time: str = None):
         expire_types = dict(year='%Y', month='%Y%m', day='%Y%m%d', hour='%Y%m%d%H')
         dynamic_variable = expire_types.get(expire_time, '%Y%m%d')
         value = '{}-{}'.format(datetime.now(TIMEZONE).strftime(dynamic_variable), value)
-    hash_string = hmac.new(environ.get('APP_KEY').encode('utf-8'), value.encode('utf-8'), sha256).hexdigest()
+    hash_string = hmac.new(environ.get('SHOPIFY_API_KEY').encode('utf-8'), value.encode('utf-8'), sha256).hexdigest()
     return hash_string
 
 
@@ -411,7 +411,7 @@ def check_hash_for_internal_id(func=None, key_name: str = 'account_id', expire_t
             dynamic_variable = expire_types.get(expire_time, '%Y%m%d')
             value = '{}-{}'.format(datetime.now(TIMEZONE).strftime(dynamic_variable), value)
         my_hash = hmac.new(
-            environ.get('APP_KEY').encode('utf-8'),
+            environ.get('SHOPIFY_API_KEY').encode('utf-8'),
             value.encode('utf-8'),
             sha256
         ).hexdigest()

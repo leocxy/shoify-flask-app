@@ -9,7 +9,8 @@
 import re
 import requests
 import uuid
-from os import environ, path
+from os import environ
+from os.path import dirname
 from urllib.parse import urlencode
 from flask import request, Blueprint, jsonify, url_for, redirect, render_template, make_response, g
 from jinja2 import TemplateNotFound
@@ -24,8 +25,8 @@ basic_bp = Blueprint(
     'shopify',
     'default_shopify',
     static_url_path='',
-    static_folder=path.dirname(ROOT_PATH) + '/frontend/dist',
-    template_folder=path.dirname(ROOT_PATH) + '/frontend/dist',
+    static_folder=dirname(ROOT_PATH) + '/dist',
+    template_folder=dirname(ROOT_PATH) + '/dist',
 )
 
 docs_bp = Blueprint(
@@ -33,8 +34,8 @@ docs_bp = Blueprint(
     __name__,
     url_prefix='/docs',
     static_url_path='',
-    static_folder=path.dirname(ROOT_PATH) + '/frontend/dist/front',
-    template_folder=path.dirname(ROOT_PATH) + '/frontend/dist/front',
+    static_folder=dirname(ROOT_PATH) + '/dist/front',
+    template_folder=dirname(ROOT_PATH) + '/dist/front',
 )
 
 
@@ -50,8 +51,12 @@ def install():
     # Create Auth Url
     redirect_uri = url_for('.callback', _scheme='https', _external=True)
     state = uuid.uuid4().hex
-    query_params = dict(client_id=environ.get('APP_KEY'), scope=environ.get('SCOPES'), redirect_uri=redirect_uri,
-                        state=state)
+    query_params = dict(
+        client_id=environ.get('SHOPIFY_API_KEY'),
+        scope=environ.get('APP_SCOPES'),
+        redirect_uri=redirect_uri,
+        state=state
+    )
     url = 'https://%s/admin/oauth/authorize?%s' % (target, urlencode(query_params))
     resp = redirect(url)
     resp.set_cookie('state', state)
@@ -64,7 +69,11 @@ def callback():
     params = request.args
     # Store Token IN Database
     code = params['code']
-    query = dict(client_id=environ.get('APP_KEY'), client_secret=environ.get('APP_SECRET'), code=code)
+    query = dict(
+        client_id=environ.get('SHOPIFY_API_KEY'),
+        client_secret=environ.get('SHOPIFY_API_SECRET'),
+        code=code
+    )
     url = 'https://{}/admin/oauth/access_token'.format(params['shop'])
     res = requests.post(url, json=query)
     data = res.json()
@@ -102,7 +111,7 @@ def callback():
     res = base.fetch_data(op)['webhookSubscriptionCreate']
     if len(res['userErrors']):
         logger.error('Store Redact Mutation Error: %s', res['userErrors'])
-    return redirect('https://{}/admin/apps/{}'.format(params['shop'], environ.get('APP_KEY')))
+    return redirect('https://{}/admin/apps/{}'.format(params['shop'], environ.get('SHOPIFY_API_KEY')))
 
 
 @basic_bp.route('/admin', methods=['GET'], endpoint='admin')
@@ -112,7 +121,7 @@ def admin():
     try:
         resp = make_response(render_template(
             'admin/index.html',
-            apiKey=environ.get('APP_KEY'),
+            apiKey=environ.get('SHOPIFY_API_KEY'),
             # App bridge 2+
             host=request.args.get('host', None),
             # App bridge 1+
