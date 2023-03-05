@@ -21,6 +21,8 @@ def upgrade():
     op.create_table('gift_with_purchases',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('store_id', sa.Integer(), nullable=True),
+    sa.Column('code_id', sa.BigInteger(), nullable=True),
+    sa.Column('code', sa.String(length=255), nullable=True),
     sa.Column('mid', sa.BigInteger(), nullable=True),
     sa.Column('method', sa.SmallInteger(), nullable=True),
     sa.Column('value', sa.Integer(), nullable=True),

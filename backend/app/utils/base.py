@@ -6,6 +6,7 @@
 @Author: Leo Chen <leo.cxy88@gmail.com>
 @Date: 2020-10-20 09:35
 '''
+from sgqlc.operation import Operation
 from sgqlc.endpoint.http import HTTPEndpoint
 from urllib.error import HTTPError, URLError
 from os import getenv, environ, path, getpid, remove
@@ -30,6 +31,7 @@ from shopify.base import ShopifyConnection
 # Custom
 from app import ROOT_PATH, TIMEZONE, logger
 from app.models.shopify import Store
+from app.schemas.shopify import shopify as shopify_schema
 
 
 def patch_shopify_with_limits():
@@ -552,6 +554,24 @@ class BasicHelper:
             shopify.ShopifyResource.activate_session(api_session)
             self._api = shopify
         return self._api
+
+    def update_meta(self, owner_id: str, value, namespace: str, key: str, value_type: str = 'json'):
+        op = Operation(shopify_schema.mutation_type, 'UpdateCodeMeta')
+        mutation = op.metafields_set(metafields=[dict(
+            owner_id=owner_id,
+            namespace=namespace,
+            key=key,
+            type=value_type,
+            value=value
+        )])
+        mutation.user_errors()
+        mutation.metafields.id()
+        res = self.gql.fetch_data(op)['metafieldsSet']
+        if len(res['userErrors']) > 0:
+            msg = dumps(res['userErrors'])
+            self.logger.error('UpdateMetaError: %s', msg)
+            return False, res['userErrors']
+        return True, res['metafields'][0]['id'].split('/')[-1]
 
 ############################
 # Custom method start here #

@@ -14,7 +14,9 @@ import {
     useTranslate,
     useCartLines,
     useAppMetafields,
+    useDiscountCodes,
     useApplyCartLinesChange,
+    useApplyDiscountCodeChange,
 } from '@shopify/checkout-ui-extensions-react';
 import isEmpty from 'lodash/isEmpty'
 
@@ -25,9 +27,11 @@ function App() {
     const items = useCartLines(),
         metaData = useAppMetafields(),
         applyCartLinesChange = useApplyCartLinesChange(),
-        translate = useTranslate();
+        applyDiscountCodeChange = useApplyDiscountCodeChange(),
+        translate = useTranslate(),
+        discountCodes = useDiscountCodes();
 
-    const [exists, setExists] = useState(false)
+    const [exist, setExist] = useState(false)
     const [qualify, setQualify] = useState(false)
     const [conf, setConfig] = useState({})
     const [error, setError] = useState(false)
@@ -51,18 +55,6 @@ function App() {
             this[fn](items, pre_requirements, value)
         }
 
-        checkGiftProduct = (items, target, attr_key) => {
-            let item = items.find(item => {
-                let pid = parseInt(item.merchandise.product.id.split('/').pop())
-                return (pid === target.pid && item.attributes.find(attr => attr.key === attr_key))
-            })
-            if (!item) return
-            this.log('Found')
-            this.log(item)
-            setExists(true)
-        }
-
-
         getHashString = (pid, vid, secret_number) => {
             let number = parseInt('1' + pid.toString().slice(-10))
             number += parseInt(secret_number.toString() + vid.toString().slice(-5))
@@ -71,7 +63,7 @@ function App() {
 
         logStatus = () => {
             this.log(`Qualify: ${qualify}`)
-            this.log(`Exists: ${exists}`)
+            this.log(`Exist: ${exist}`)
         }
 
         showLoading = () => {
@@ -88,7 +80,7 @@ function App() {
             let amount = 0
             items.forEach(item => {
                 let pid = parseInt(item.merchandise.product.id.split('/').pop())
-                if (pre_requirements.find(o => o.pid === pid)) {
+                if (pre_requirements.find(o => o === pid)) {
                     amount += this.toCent(item.cost.totalAmount.amount)
                 }
             })
@@ -99,7 +91,7 @@ function App() {
             let quantity = 0
             items.forEach(item => {
                 let pid = parseInt(item.merchandise.product.id.split('/').pop())
-                if (pre_requirements.find(o => o.pid === pid)) {
+                if (pre_requirements.find(o => o === pid)) {
                     quantity += item.quantity
                 }
             })
@@ -108,6 +100,7 @@ function App() {
 
         addItem = async () => {
             setAdding(true)
+            // Add Item
             const result = await applyCartLinesChange({
                 type: 'addCartLine',
                 merchandiseId: `gid://shopify/ProductVariant/${conf.target.vid}`,
@@ -117,11 +110,21 @@ function App() {
                     value: helper.getHashString(conf.target.pid, conf.target.vid, conf.secret_number)
                 }]
             })
-            setAdding(false)
+            // Add Discount Code
+            const code_result = await applyDiscountCodeChange({
+                type: 'addDiscountCode',
+                code: conf.code
+            })
             if (result.type === 'error') {
                 setError(true)
-                this.log(result, 'Error')
+                this.log(result, 'AddItemError')
             }
+            if (!error && code_result.type === 'error') {
+                setError(true)
+                this.log(code_result, 'AddDiscountCodeError')
+            }
+            setExist(true)
+            setAdding(false)
         }
     }
 
@@ -147,17 +150,55 @@ function App() {
     useEffect(() => {
         setLoading(true)
         if (isEmpty(conf) || isEmpty(items)) return
-        if (conf?.enable === true) {
+        if (conf?.status === true) {
             helper.checkQualify(conf.method, items, conf.pre_requirements, conf.value)
-            helper.checkGiftProduct(items, conf.target, conf.attr_key)
+            // Qualify -> Check GWP, Check Discount Code
+            if (!qualify) {
+                const clearData = async (items, target, attr_key, code) => {
+                    let item = items.find(item => {
+                        let pid = parseInt(item.merchandise.product.id.split('/').pop())
+                        if (pid !== target.pid) return false
+                        if (item.cost.totalAmount === 0) return true
+                        let attr = item.attributes.find(attr => attr.key === attr_key)
+                        if (!attr) return false
+                        return true
+                    })
+                    let found_code = discountCodes.find(o => o.code === code)
+                    setLoading(true)
+                    let result;
+                    if (found_code) {
+                        result = await applyDiscountCodeChange({
+                            type: 'removeDiscountCode',
+                            code: conf.code
+                        })
+                        if (!error && result.type === 'error') {
+                            setError(true)
+                            this.log(result, 'RemoveCodeError')
+                        }
+                    }
+                    if (item && (conf.force_remove || item.cost.totalAmount === 0)) {
+                        result = await applyCartLinesChange({
+                            type: "removeCartLine",
+                            id: item.id,
+                            quantity: item.quantity
+                        })
+                        if (!error && result.type === 'error') {
+                            setError(true)
+                            this.log(result, 'RemoveItemError')
+                        }
+                    }
+                    setLoading(false)
+                }
+                clearData(items, conf.target, conf.attr_key, conf.code).catch((err) => helper.log(err))
+            }
         }
         setLoading(false)
-    }, [items, conf])
+    }, [items, conf, discountCodes])
 
     // Loading
     if (loading) return helper.showLoading()
 
-    if (qualify && !exists) {
+    if (qualify && !exist) {
         helper.logStatus()
         return (
             <BlockStack spacing="loose">

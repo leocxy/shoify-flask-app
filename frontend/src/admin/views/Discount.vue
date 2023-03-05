@@ -206,7 +206,7 @@ export default {
         },
         generateCode: function () {
             this.isSaving = true
-            this.$http.get(getApi('discount_code', 'generate')).then(({data}) => {
+            this.$http.get(getApi('generate_code')).then(({data}) => {
                 this.form.code = data.data
                 this.isSaving = false
             }).catch(this.errorHandle)
@@ -230,11 +230,13 @@ export default {
         },
         deleteCode: function () {
             this.isSaving = true
-            this.$http.delete(getApi('discount_code', `${this.code_id}`)).then(() => {
-                this.$pToast.open({message: 'Discount code has been deleted!'})
-                this.isSaving = false
-                redirectAdmin({path: '/discounts', newContext: false})
-            }).catch(this.errorHandle)
+            this.$confirm('Are you sure you want to delete this code?').then(() => {
+                this.$http.delete(getApi('discount_code', `${this.code_id}`)).then(() => {
+                    this.$pToast.open({message: 'Discount code has been deleted!'})
+                    this.isSaving = false
+                    redirectAdmin({path: '/discounts', newContext: false})
+                }).catch(this.errorHandle)
+            }).catch(() => this.isSaving = false)
         },
         showModal: function () {
             let name = this.form.code || this.form.title

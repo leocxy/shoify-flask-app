@@ -7,9 +7,6 @@
             <PStackItem>
                 <PButton primary @click="testAlert">Test Alert</PButton>
             </PStackItem>
-            <PStackItem>
-                <PButton @click="$router.push({name: 'gift-with-purchase'})">GWP</PButton>
-            </PStackItem>
         </PStack>
     </PEmptyState>
 </template>

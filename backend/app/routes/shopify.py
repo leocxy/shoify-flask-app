@@ -30,7 +30,7 @@ basic_bp = Blueprint(
 )
 
 docs_bp = Blueprint(
-    'app_docs',
+    'docs',
     __name__,
     url_prefix='/docs',
     static_url_path='',

@@ -28,19 +28,6 @@ def get_gwp_data():
     return jsonify(data=obj.get_data())
 
 
-@gwp_bp.post('/script', endpoint='generate_script')
-@check_jwt
-def generate_ruby_script():
-    """ PUT data and re-generate the ruby script """
-    data = request.get_json(silent=True)
-    rs, resp = form_validate(data, GWPHelper.get_schema())
-    if not rs:
-        return resp
-    # generate ruby script
-    obj = GWPHelper(g.store_id)
-    return jsonify(data=obj.generate_ruby_script(data))
-
-
 @gwp_bp.post('', endpoint='save_data')
 @check_jwt
 def save_data():
@@ -54,6 +41,17 @@ def save_data():
     if not rs:
         return jsonify(400, msg, data)
     return jsonify(data=data)
+
+
+@gwp_bp.delete('<int:code_id>', endpoint='delete_data')
+@check_jwt
+def delete_data(code_id):
+    """ Delete GWP Data """
+    obj = GWPHelper(g.store_id)
+    rs, msg, data = obj.delete_data(code_id)
+    if not rs:
+        return jsonify(400, msg, data)
+    return jsonify()
 
 
 __all__ = gwp_bp

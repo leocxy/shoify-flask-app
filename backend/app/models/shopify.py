@@ -115,6 +115,8 @@ class GiftWithPurchase(db.Model, BasicMethod):
     __tablename__ = 'gift_with_purchases'
     id = db.Column(db.Integer, primary_key=True)
     store_id = db.Column(db.Integer, db.ForeignKey('stores.id'), index=True)
+    code_id = db.Column(db.BigInteger)
+    code = db.Column(db.String(255))
     mid = db.Column(db.BigInteger)
     method = db.Column(db.SmallInteger)
     value = db.Column(db.Integer)
@@ -146,6 +148,8 @@ class GiftWithPurchase(db.Model, BasicMethod):
             con2 = GiftWithPurchaseItems.id > cursor
             count = self.items.filter_by(**con1).filter(con2).limit(1).count()
         return dict(
+            code=self.code,
+            code_id=self.code_id,
             enable=self.status == 1,
             method=self.method,
             value=value,

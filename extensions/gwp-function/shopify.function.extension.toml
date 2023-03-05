@@ -7,5 +7,5 @@ command = "cargo wasi build --release"
 path = "target/wasm32-wasi/release/gwp-function.wasm"
 
 [ui.paths]
-create = "/gift-with-purchase"
-details = "/gift-with-purchase"
+create = "/ext/gift-with-purchase/create"
+details = "/ext/gift-with-purchase/:id"

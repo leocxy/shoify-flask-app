@@ -19,11 +19,12 @@ from app.schemas.shopify import shopify as shopify_schema
 
 
 class DiscountHelper(BasicHelper):
-    def __init__(self, store_id: int, log_name: str = 'discount_helper', env_key: str = 'SHOPIFY_PS_BUNDLE_SALES_ID'):
+    def __init__(self, store_id: int, log_name: str = 'discount_helper', fn_id: str = None):
         super(DiscountHelper, self).__init__(store_id, log_name)
-        self._function_id = environ.get(env_key, None)
+        fn_id = fn_id if fn_id is not None else 'SHOPIFY_FUNCTION_EXAMPLE_ID'
+        self._function_id = environ.get(fn_id, None)
         if self._function_id is None:
-            raise Exception('Can not load function ID from config')
+            raise Exception('Can`t get the function ID from config: {}'.format(fn_id))
         # much match the `input.graphql`
         self._ns = 'test-function'
         self._key = 'test-config'
@@ -108,23 +109,6 @@ class DiscountHelper(BasicHelper):
             return self._delete_auto_code(record)
         return self._delete_code(record)
 
-    def update_meta(self, owner_id: str, json_str: str):
-        op = Operation(shopify_schema.mutation_type, 'UpdateCodeMeta')
-        mutation = op.metafields_set(metafields=[dict(
-            owner_id=owner_id,
-            namespace=self._ns,
-            key=self._key,
-            type='json',
-            value=json_str
-        )])
-        mutation.user_errors()
-        res = self.gql.fetch_data(op)['metafieldsSet']
-        if len(res['userErrors']) > 0:
-            msg = dumps(res['userErrors'])
-            self.logger.error('UpdateMetaError: %s', msg)
-            return False, res['userErrors']
-        return True, None
-
     def _create_auto_code(self, record: DiscountCode, json_str: str):
         op = Operation(shopify_schema.mutation_type, 'CreateAutoCode')
         mutation = op.discount_automatic_app_create(
@@ -169,7 +153,13 @@ class DiscountHelper(BasicHelper):
             self.logger.error('AutomaticCodeUpdateError: %s', msg)
             return False, res['userErrors']
         # update meta
-        rs, msg = self.update_meta(code_id, json_str)
+        rs, msg = self.update_meta(
+            owner_id=code_id,
+            value=json_str,
+            namespace=self._ns,
+            key=self._key,
+            value_type='json'
+        )
         if not rs:
             return rs, msg
         db.session.commit()
@@ -235,7 +225,13 @@ class DiscountHelper(BasicHelper):
             self.logger.error('CodeUpdateError: %s', msg)
             return False, res['userErrors']
         # Update the meta
-        rs, msg = self.update_meta(code_id, json_str)
+        rs, msg = self.update_meta(
+            owner_id=code_id,
+            namespace=self._ns,
+            key=self._key,
+            value_type='json',
+            value=json_str
+        )
         if not rs:
             return rs, msg
         db.session.commit()

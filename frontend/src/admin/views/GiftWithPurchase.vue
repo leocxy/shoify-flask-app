@@ -3,10 +3,17 @@
         <PLayoutAnnotatedSection title="Step 1: Choosing the method">
             <div slot="description">This guy is lazy, he leave nothing here.</div>
             <PCard sectioned title="Method">
-                <PButton slot="children" :loading="isSaving" @click="generateScript" primary size="slim">
-                    Generate Ruby Script
+                <PButton slot="children" :loading="isSaving" destructive size="slim" v-if="form.code_id">
+                    Delete
                 </PButton>
                 <PFormLayout>
+                    <ValidationProvider name="Discount Code" rules="required" v-slot="{errors}">
+                        <PTextField label="Discount code" v-model="form.code" :error="errors[0]"
+                                    help-text="Once the GWP added to the cart via Checkout UI, it will be apply automatic"
+                                    connected>
+                            <PButton slot="connectedRight" :disabled="isSaving" @click="generateCode">Generate</PButton>
+                        </PTextField>
+                    </ValidationProvider>
                     <PCheckbox
                         id="gwp_status"
                         :checked="form.enable === true"
@@ -150,28 +157,11 @@
                         <PFieldError v-if="errors.length > 0">{{ errors[0] }}</PFieldError>
                     </ValidationProvider>
                 </PTextContainer>
-                <PButtonGroup slot="footer" segmented>
-                    <PButton primary :loading="isSaving" @click="selectTarget">Pick product</PButton>
-                </PButtonGroup>
-            </PCard>
-        </PLayoutAnnotatedSection>
-        <PLayoutAnnotatedSection title="Step 4: Ruby Script for Script Editor">
-            <div slot="description">This guy is lazy, he leave nothing here.</div>
-            <PCard sectioned title="Ruby Script">
-                <PButton slot="children" :loading="isSaving" @click="generateScript" primary size="slim">
-                    Generate Ruby Script
-                </PButton>
-                <PTextContainer v-if="ruby_script === ''">
-                    <PTextStyle variation="negative">No Data</PTextStyle>
-                </PTextContainer>
-                <div v-else>
-                    <PTextStyle variation="positive">### Start Here ###</PTextStyle>
-                    <div v-html="compileMarkdown" class="code-container"></div>
-                    <PTextStyle variation="positive">### End Here ###</PTextStyle>
-                </div>
                 <PButtonGroup slot="footer">
-                    <PButton primary :loading="isSaving" @click="saveData">Save</PButton>
-                    <PButton :loading="isSaving" @click="$router.go(-1)">Cancel</PButton>
+                    <PButton primary :loading="isSaving" @click="selectTarget">Pick product</PButton>
+                    <PButton :loading="isSaving" @click="saveData">Save</PButton>
+                    <PButton v-if="code_id || form.code_id" destructive :loading="isSaving" @click="deleteData">Delete
+                    </PButton>
                 </PButtonGroup>
             </PCard>
         </PLayoutAnnotatedSection>
@@ -181,7 +171,6 @@
 <script>
 import {ValidationObserver, ValidationProvider, extend} from "vee-validate"
 import {required} from 'vee-validate/dist/rules'
-import {marked} from 'marked'
 import {getApi} from "../store/getters"
 import common from "../utils/common"
 import {redirectAdmin, productPicker} from "../store/actions"
@@ -205,10 +194,13 @@ extend('integer', {
 
 export default {
     name: "GiftWithPurchase",
+    props: ['code_id'],
     mixins: [common],
     components: {ValidationObserver, ValidationProvider},
     data: () => ({
         form: {
+            code: null,
+            code_id: null,
             enable: false,
             method: 1, // 1 for quantity, 2 for total amount
             value: null,
@@ -218,16 +210,9 @@ export default {
             force_remove: false, // remove the target product automatic ?
             secret_number: null, // Script for script editor, need this to verify the discount price
         },
-        ruby_script: '',
-        ruby_template: `\`\`\`ruby\n{nil}\n\`\`\`\n`,
-        markdown: null,
         isSaving: false
     }),
-    computed: {
-        compileMarkdown: function () {
-            return marked(this.ruby_script, {sanitize: true})
-        }
-    },
+    computed: {},
     methods: {
         changeMethod: function (e) {
             e = parseInt(e.value)
@@ -275,13 +260,10 @@ export default {
                 }
             })
         },
-        generateScript: async function () {
-            let valid = await this.$refs.form.validate()
-            if (!valid) return
+        generateCode: function () {
             this.isSaving = true
-            this.$http.post(getApi('gwp', 'script'), this.form).then(({data}) => {
-                this.ruby_script = this.ruby_template.replace('{nil}', data.data)
-                this.$pToast.open({message: 'Ruby script updated!'})
+            this.$http.get(getApi('generate_code')).then(({data}) => {
+                this.form.code = data.data
                 this.isSaving = false
             }).catch(this.errorHandle)
         },
@@ -291,26 +273,35 @@ export default {
             this.isSaving = true
             this.$http.post(getApi('gwp'), this.form).then(({data}) => {
                 data = data.data
-                this.ruby_script = this.ruby_template.replace('{nil}', data.script)
-                delete data['script']
-                this.form = {...this.form, ...data}
+                this.form.code_id = data.code_id
                 this.$pToast.open({message: 'Gift with purchase data hav been saved!'})
                 this.isSaving = false
             }).catch(this.errorHandle)
+        },
+        deleteData: function () {
+            this.isSaving = true
+            this.$confirm(('Do you want to delete the GWP discount code?').then(() => {
+                let code_id = this.code_id || this.form.code_id
+                if (!code_id) return this.isSaving = false
+                this.$http.delete(getApi('gwp', `${code_id}`)).then(() => {
+                    this.$pToast.open({message: 'Code has been deleted!'})
+                    this.isSaving = false
+                    redirectAdmin({path: '/discounts', newContext: false})
+                }).catch(this.errorHandle)
+            }).catch(() => this.isSaving = false))
         },
         loadData: function () {
             this.isSaving = true
             this.$http.get(getApi('gwp')).then(({data}) => {
                 data = data.data
                 if (isEmpty(data)) return this.isSaving = false
-                if (data?.script !== undefined) this.ruby_script = this.ruby_template.replace('{nil}', data.script)
-                delete data['script']
                 this.form = {...this.form, ...data}
                 this.isSaving = false
             }).catch(this.errorHandle)
         }
     },
     mounted: function () {
+        this.form.code_id = this.code_id || null
         this.loadData()
         this.$emit('title', 'Gift with Purchase')
     }

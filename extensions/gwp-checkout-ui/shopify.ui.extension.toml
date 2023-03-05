@@ -6,12 +6,12 @@ extension_points = [
   'Checkout::CartLines::RenderAfter',
 ]
 
-[capabilities]
-block_progress = true
+#[capabilities]
+#block_progress = true
 
 [[metafields]]
 namespace = "gwp-test"
-key = "gwp-test"
+key = "config"
 
 # [[metafields]]
 # namespace = "my-namespace"

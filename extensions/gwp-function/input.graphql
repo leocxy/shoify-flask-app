@@ -3,7 +3,7 @@ query Input {
         lines {
             id
             quantity
-            attribute { key, value }
+            attribute(key: "_gwp_item") { key, value }
             cost {
                 totalAmount { amount }
             }
@@ -19,7 +19,7 @@ query Input {
         }
     }
     discountNode {
-        metafield(namespace: "$app:gwp", key: "configs") {
+        metafield(namespace: "gwp-test", key: "config") {
             value
         }
     }
