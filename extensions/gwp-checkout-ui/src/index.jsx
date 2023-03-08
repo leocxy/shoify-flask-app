@@ -84,7 +84,7 @@ function App() {
                     amount += this.toCent(item.cost.totalAmount.amount)
                 }
             })
-            setQualify(this.toCent(value) <= amount)
+            setQualify(value <= amount)
         }
 
         checkQuantity = (items, pre_requirements, value) => {

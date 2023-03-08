@@ -280,15 +280,13 @@ export default {
         },
         deleteData: function () {
             this.isSaving = true
-            this.$confirm(('Do you want to delete the GWP discount code?').then(() => {
-                let code_id = this.code_id || this.form.code_id
-                if (!code_id) return this.isSaving = false
-                this.$http.delete(getApi('gwp', `${code_id}`)).then(() => {
-                    this.$pToast.open({message: 'Code has been deleted!'})
-                    this.isSaving = false
-                    redirectAdmin({path: '/discounts', newContext: false})
-                }).catch(this.errorHandle)
-            }).catch(() => this.isSaving = false))
+            let code_id = this.code_id || this.form.code_id
+            if (!code_id) return this.isSaving = false
+            this.$http.delete(getApi('gwp', `${code_id}`)).then(() => {
+                this.$pToast.open({message: 'Code has been deleted!'})
+                this.isSaving = false
+                redirectAdmin({path: '/discounts', newContext: false})
+            }).catch(this.errorHandle)
         },
         loadData: function () {
             this.isSaving = true
