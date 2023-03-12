@@ -1,29 +1,5 @@
 query Input {
   cart {
-    attribute {
-      key
-      value
-    }
-    cost {
-      subtotalAmount {
-        amount
-      }
-      totalAmount {
-        amount
-      }
-    }
-    buyerIdentity {
-      email
-      customer {
-        amountSpent {
-          amount
-        }
-        numberOfOrders
-        metafield(namespace: "test-function", key: "test-config") {
-          value
-        }
-      }
-    }
     lines {
       quantity
       cost {
@@ -36,11 +12,9 @@ query Input {
         subtotalAmount {
           amount
         }
-        totalAmount {
-          amount
-        }
       }
       merchandise {
+        __typename
         ...on ProductVariant {
           id
           sku

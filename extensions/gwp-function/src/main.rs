@@ -60,13 +60,10 @@ fn function(input: input::ResponseData) -> Result<output::FunctionResult> {
     // debug message
     eprintln!("Config: {:#?}", &config);
 
-    // check configs
-    if config.status == false || config.secret_number <= 0 || config.pid == 0 || config.value == 0 {
-        return Ok(no_discount);
-    }
-
     let cart_lines = input.cart.lines;
-    if cart_lines.is_empty() {
+
+    // check configs
+    if config.status == false || config.secret_number <= 0 || config.pid == 0 || config.value == 0 || cart_lines.is_empty() {
         return Ok(no_discount);
     }
 
