@@ -1,3 +1,5 @@
 # This file stores configurations for your Shopify app.
 name = "PS - Scaffold Demo"
-scopes = "write_discounts"
+scopes = "read_products,write_products,read_discounts,write_discounts"
+extension_directories = ["extensions/*"]
+web_directories = ["frontend", "backend"]

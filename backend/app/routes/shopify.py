@@ -53,7 +53,7 @@ def install():
     state = uuid.uuid4().hex
     query_params = dict(
         client_id=environ.get('SHOPIFY_API_KEY'),
-        scope=environ.get('APP_SCOPES'),
+        scope=environ.get('SCOPES'),
         redirect_uri=redirect_uri,
         state=state
     )

@@ -1,0 +1,5 @@
+type = "frontend"
+
+[commands]
+dev = "yarn serve"
+build = "yarn build"

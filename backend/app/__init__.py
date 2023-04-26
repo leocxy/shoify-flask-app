@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Project: app-sherry-kitchen
+@Project: app-scaffold
 @File: __init__.py.py
 @Author: Leo Chen <leo.cxy88@gmail.com>
 @Date: 2020-10-20 09:29
@@ -15,10 +15,10 @@ from pytz import timezone
 from logging.config import dictConfig
 from dotenv import load_dotenv
 
-__version__ = '0.0.1'
+__version__ = '0.1.1'
 __author__ = 'Leo Chen'
 __email__ = 'leo.cxy88@gmail.com'
-__copyright__ = 'Copyright © Pocketsquare'
+__copyright__ = 'Copyright © PocketSquare'
 # Global Setting
 app = None
 db = None

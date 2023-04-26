@@ -2,6 +2,8 @@
 
 This is Shopify Function which generate by @shopify/cli + @shopify/app
 
+
+
 ### Packages
 
 - @shopify/cli: ^3.20.1
@@ -41,6 +43,7 @@ When I said `current folder`, mean the current folder.
 1. [Build a discount experience](https://shopify.dev/apps/discounts/create)
 2. [Automatic discount tutorial](https://github.com/Shopify/function-examples/tree/main/sample-apps/discount-functions-sample-app)
 3. [Discount tutorial](https://github.com/Shopify/function-examples/tree/main/sample-apps/discounts-tutorial)
+4. [Bundles](https://shopify.dev/docs/apps/selling-strategies/bundles/getting-started)
 
 ### Example with crate shopify_function
 // https://github.com/Shopify/shopify-function-rust/blob/main/example/src/main.rs

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''
-@Project: app-sherry-kitchen
+"""
+@Project: app-scaffold
 @File: base.py
 @Author: Leo Chen <leo.cxy88@gmail.com>
 @Date: 2020-10-20 09:35
-'''
+"""
 from sgqlc.operation import Operation
 from sgqlc.endpoint.http import HTTPEndpoint
 from urllib.error import HTTPError, URLError
@@ -590,7 +590,7 @@ class BasicHelper:
 #     encrypt_key = hash[:16]
 #     signature_key = hash[16:32]
 #
-#     # Genreate Token
+#     # Generate Token
 #     data['created_at'] = datetime.utcnow().replace(microsecond=0).isoformat()
 #     data = dumps(data)
 #     iv = get_random_bytes(AES.block_size)
