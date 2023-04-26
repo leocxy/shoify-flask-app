@@ -4,26 +4,65 @@
   "private": true,
   "author": "Leo Chen <leo.cxy88@gmail.com>",
   "scripts": {
-    "serve": "yarn shopify app dev",
-    "build": "yarn shopify app build",
-    "deploy": "yarn shopify app deploy"
+    "serve": "cd frontend && vue-cli-service serve",
+    "build": "cd frontend && vue-cli-service build",
+    "lint": "cd frontend && vue-cli-service lint",
+    "app:serve": "yarn shopify app dev",
+    "app:build": "yarn shopify app build",
+    "app:deploy": "yarn shopify app deploy"
   },
   "dependencies": {
+    "@hulkapps/polaris-vue": "^3.0.9",
     "@shopify/app": "^3.39.0",
+    "@shopify/app-bridge": "^3.0.0",
     "@shopify/checkout-ui-extensions-react": "^0.22.0",
-    "@shopify/cli": "^3.39.0"
+    "@shopify/cli": "^3.39.0",
+    "core-js": "^3.6.5",
+    "react": "^17.0.0",
+    "vue": "^2.6.11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
+    "axios": "^1.2.1",
+    "babel-eslint": "^10.1.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "6.4.1",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.30.0",
+    "eslint-plugin-vue": "^7.13.0",
+    "eslint-webpack-plugin": "^3.0.1",
+    "lodash": "^4.17.20",
+    "marked": "^4.2.12",
+    "sass": "^1.58.0",
+    "sass-loader": "^10.0.0",
+    "vee-validate": "3",
+    "vue-fragment": "^1.5.1",
+    "vue-router": "^3.4.9",
+    "vue-simple-alert": "^1.1.1",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-merge": "^5.2.0"
+  },
   "eslintConfig": {
     "root": true,
     "env": {
       "node": true
     },
-    "extends": [],
-    "parserOptions": {},
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
     "rules": {}
   },
-  "browserslist": [],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
   "engines": {
     "node": "^18",
     "yarn": "1.x"
