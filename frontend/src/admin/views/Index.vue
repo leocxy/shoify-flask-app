@@ -1,11 +1,20 @@
 <template>
     <PEmptyState
-        heading="Empty State Page"
+        heading="Scaffold Example"
         image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg">
-        <p>Track and receive your incoming inventory from suppliers.</p>
+        <PTextContainer>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+            Aenean massa. Cum
+            sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+            justo. Nullam dictum felis eu pede mollis pretium.
+        </PTextContainer>
         <PStack slot="actions" spacing="tight" distribution="center" alignment="center">
             <PStackItem>
                 <PButton primary @click="testAlert">Test Alert</PButton>
+            </PStackItem>
+            <PStackItem>
+                <PButton @click="$router.push({name: 'gwp'})">Gift with purchase</PButton>
             </PStackItem>
         </PStack>
     </PEmptyState>
