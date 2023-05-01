@@ -7,12 +7,12 @@ const routes = [
     {
         path: '/ext/gift-with-purchase/create',
         name: 'gwp',
-        component: () => import('../views/GiftWithPurchase')
+        component: () => import('../views/promotion/GiftWithPurchase')
     },
     {
         path: '/ext/gift-with-purchase/:code_id',
         name: 'gwp.edit',
-        component: () => import('../views/GiftWithPurchase'),
+        component: () => import('../views/promotion/GiftWithPurchase'),
         props: true
     },
     {
@@ -24,6 +24,22 @@ const routes = [
         path: '/ext/discount_code/:code_id',
         name: 'discount.edit',
         component: () => import('../views/Discount'),
+        props: true
+    },
+    {
+        path: '/promotion/bundle_sale',
+        name: 'bundleSale',
+        component: () => import('../views/promotion/bundles/Index')
+    },
+    {
+        path: '/promotion/bundle_sale/create',
+        name: 'bundleSale.create',
+        component: () => import('../views/promotion/bundles/Create')
+    },
+    {
+        path: '/promotion/bundle_sale/:id',
+        name: 'bundleSale.edit',
+        component: () => import('../views/promotion/bundles/Create'),
         props: true
     },
     {path: '*', component: () => import('../views/Index')}

@@ -341,7 +341,7 @@ def check_jwt(fn):
     """ Check JWT Session Token """
 
     def before(*args, **kwargs):
-        store_id = 1 if getenv(
+        store_id = 2 if getenv(
             'FLASK_ENV', 'production') == 'development' else None
         if store_id:
             store = Store.query.filter_by(id=store_id).first()

@@ -171,9 +171,9 @@
 <script>
 import {ValidationObserver, ValidationProvider, extend} from "vee-validate"
 import {required} from 'vee-validate/dist/rules'
-import {getApi} from "../store/getters"
-import common from "../utils/common"
-import {redirectAdmin, productPicker} from "../store/actions"
+import {getApi} from "../../store/getters"
+import common from "../../utils/common"
+import {redirectAdmin, productPicker} from "../../store/actions"
 import isEmpty from 'lodash/isEmpty'
 
 extend('required', required)

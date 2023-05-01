@@ -60,3 +60,7 @@ yarn ext:server --reset
 https://your-domain.com/install?shop=your-store.myshopify.com
 
 ---
+
+### JSON Schema
+
+https://json-schema.org/learn/getting-started-step-by-step

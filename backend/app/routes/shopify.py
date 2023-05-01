@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Project: app-sherry-kitchen
+@Project: app-scaffold
 @File: shopify.py
 @Author: Leo Chen <leo.cxy88@gmail.com>
 @Date: 2020-10-20 09:40

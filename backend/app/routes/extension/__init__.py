@@ -16,6 +16,8 @@ def register_sub_routes(app):
     app.register_blueprint(admin_bp)
     from .gwp import gwp_bp
     app.register_blueprint(gwp_bp)
+    from .bundles import bundles_bp
+    app.register_blueprint(bundles_bp)
 
 
 __all__ = register_sub_routes

@@ -9,5 +9,6 @@ export default Vue.observable({
         {name: 'generate_code', url: '/admin/common/generate_code'},
         {name: 'discount_code', url: '/admin/discount_code'},
         {name: 'gwp', url: '/admin/gift_with_purchase'},
+        {name: 'bundles', url: '/admin/bundles'},
     ]
 })

@@ -13,7 +13,7 @@ from datetime import datetime
 # custom modules
 from app import db
 from app.utils.base import BasicHelper
-from app.models.shopify import GiftWithPurchase, GiftWithPurchaseItems
+from app.models.gwp import GiftWithPurchase, GiftWithPurchaseItems
 from app.schemas.shopify import shopify as shopify_schema
 
 
