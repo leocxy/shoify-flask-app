@@ -27,18 +27,18 @@ const routes = [
         props: true
     },
     {
-        path: '/promotion/bundle_sale',
-        name: 'bundleSale',
+        path: '/promotion/bundles',
+        name: 'bundles',
         component: () => import('../views/promotion/bundles/Index')
     },
     {
-        path: '/promotion/bundle_sale/create',
-        name: 'bundleSale.create',
+        path: '/promotion/bundles/create',
+        name: 'bundles.create',
         component: () => import('../views/promotion/bundles/Create')
     },
     {
-        path: '/promotion/bundle_sale/:id',
-        name: 'bundleSale.edit',
+        path: '/promotion/bundles/:id',
+        name: 'bundles.edit',
         component: () => import('../views/promotion/bundles/Create'),
         props: true
     },

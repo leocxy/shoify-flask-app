@@ -14,7 +14,7 @@
                         <PButtonGroup>
                             <PButton plain icon="ExportMinor">Export</PButton>
                             <PButton plain icon="ImportMinor">Import</PButton>
-                            <input style="display: none" type="file" ref="import_file" @change="importCsv"/>
+                            <input style="display: none" type="file" ref="import_file" @change="importExcel"/>
                         </PButtonGroup>
                     </PStackItem>
                 </PStack>
@@ -34,11 +34,12 @@
                                 </PButtonGroup>
                             </div>
                         </div>
+                        <div class="Polaris-Labelled__HelpText">Query via title,product title, and sku ...</div>
                     </div>
                 </PFormLayout>
                 <VueTable
                     :api-url="getApi('bundles')"
-                    load-on-start
+                    :load-on-start="true"
                     :fields="table_fields"
                     data-path="data.data"
                     pagination-path="data"
@@ -95,6 +96,13 @@
                     </div>
                 </VueTable>
             </PCardSection>
+            <div slot="footer" class="footer">
+                <VueTablePagination ref="pagination" class="pagination-block"
+                                     @vuetable-pagination:change-page="onChangePage" />
+                <PButtonGroup>
+                    <PButton primary :loading="isSaving" @click="$router.push({name: 'bundles.create'})">Create</PButton>
+                </PButtonGroup>
+            </div>
         </PCard>
     </PLayoutAnnotatedSection>
 </template>
@@ -132,16 +140,13 @@ export default {
             dataClass: 'left aligned'
         }],
         params: {
-            name: null,
+            query: null,
         },
         isSaving: false,
     }),
     methods: {
         btnStatus: function (e) {
             this.isSaving = e
-        },
-        importCsv: function () {
-
         },
         queryData: function () {
             this.$refs.datatable.refresh()
@@ -158,9 +163,34 @@ export default {
         deleteRecord: function () {
 
         },
+        importExcel: function () {
+
+        },
+        exportExcel: function () {
+
+        }
     },
     mounted: function () {
 
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.footer {
+    .pagination-block {
+        margin-bottom: 15px !important;
+    }
+
+    .Polaris-ButtonGroup {
+        float: right;
+        clear: both;
+
+        &:after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+    }
+}
+</style>

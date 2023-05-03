@@ -17,7 +17,7 @@
                 <PButton @click="$router.push({name: 'gwp'})">Gift with purchase</PButton>
             </PStackItem>
             <PStackItem>
-                <PButton @click="$router.push({name: 'bundleSale'})">Bundles</PButton>
+                <PButton @click="$router.push({name: 'bundles'})">Bundles</PButton>
             </PStackItem>
         </PStack>
     </PEmptyState>

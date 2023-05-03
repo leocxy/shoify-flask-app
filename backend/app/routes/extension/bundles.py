@@ -8,8 +8,9 @@
 """
 from flask import Blueprint, g, request
 # Custom modules
-from app.utils.base import check_jwt, refresh_jwt_token as jsonify, form_validate
+from app.utils.base import check_jwt, refresh_jwt_token as jsonify, form_validate, paginate_response
 from app.utils.bundles import BundleHelper
+from app.models.bundles import Bundle
 
 bundles_bp = Blueprint('admin_bundles', __name__, url_prefix='/admin/bundles')
 
@@ -27,6 +28,27 @@ def meta_definition_actions():
     if not rs:
         return jsonify(400, message, data)
     return jsonify(data=data)
+
+
+@bundles_bp.route('', methods=['GET', 'POST'], endpoint='actions')
+@check_jwt
+def default_actions():
+    if request.method == 'GET':
+        query = Bundle.query.filter_by(store_id=g.store_id)
+        count = int(request.args.get('count', 0))
+        # Query
+        if val := request.args.get('query'):
+            query = query.filter(
+                (Bundle.title.like('%{}%'.format(val))) | \
+                (Bundle.product_title.like('%{}%'.format(val))) | \
+                (Bundle.sku.like('%{}%'.format(val)))
+            )
+        if count == 1:
+            return jsonify(data=query.count())
+        paginate = query.order_by(Bundle.id.desc()).paginate(error_out=False)
+        return paginate_response(paginate)
+    else:
+        obj = BundleHelper(g.store_id)
 
 
 __all__ = bundles_bp

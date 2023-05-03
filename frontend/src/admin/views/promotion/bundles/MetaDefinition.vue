@@ -3,6 +3,7 @@
         <VueTable
             :data="table_data"
             :fields="table_fields"
+            :load-on-start="false"
             data-path="data.data"
             pagination-path="data"
             :per-page="10"

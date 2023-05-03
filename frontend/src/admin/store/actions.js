@@ -6,10 +6,7 @@ import {ResourcePicker, Redirect, Loading} from "@shopify/app-bridge/actions";
 const redirectAdmin = function (payload) {
     if (isEmpty(state.bridge)) return;
     const redirect = Redirect.create(state.bridge);
-    redirect.dispatch(Redirect.Action.ADMIN_PATH, {
-        path: payload?.path || payload,
-        newContext: payload?.newContext === undefined ? true : payload.newContext
-    })
+    redirect.dispatch(Redirect.Action.ADMIN_PATH, payload)
 }
 
 const redirectRemote = function (payload) {
