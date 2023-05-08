@@ -40,6 +40,7 @@
                 </PFormLayout>
                 <PButtonGroup slot="footer">
                     <PButton :loading="isSaving" primary @click="saveRecord">Save</PButton>
+                    <PButton :loading="isSaving" destructive @click="$router.push({name: 'bundles'})">Cancel</PButton>
                 </PButtonGroup>
             </PCard>
             <PCard sectioned>
@@ -86,6 +87,7 @@
                 <PButtonGroup slot="footer">
                     <PButton :loading="isSaving" @click="pickParentVariant">Pick a variant</PButton>
                     <PButton :loading="isSaving" primary @click="saveRecord">Save</PButton>
+                    <PButton :loading="isSaving" destructive @click="$router.push({name: 'bundles'})">Cancel</PButton>
                 </PButtonGroup>
             </PCard>
             <PCard sectioned>
@@ -110,6 +112,7 @@
                 <PButtonGroup slot="footer">
                     <PButton :loading="isSaving" @click="pickChildVariants">Pick variants</PButton>
                     <PButton :loading="isSaving" primary @click="saveRecord">Save</PButton>
+                    <PButton :loading="isSaving" destructive @click="$router.push({name: 'bundles'})">Cancel</PButton>
                 </PButtonGroup>
             </PCard>
         </PLayoutAnnotatedSection>
@@ -267,6 +270,17 @@ export default {
             this.total_discount = v
             this.calculateByDiscount()
         },
+        editRecord: function () {
+            this.$http.get(getApi('bundles', `${this.record_id}`)).then(({data}) => {
+                data = data.data
+                this.parent = data.parent
+                this.children = data.children
+                this.total_price = data.total_price
+                this.total_discount = data.total_discount
+                this.name = data.name
+                this.$pToast.open({message: 'Data loaded!'})
+            }).catch(this.errorHandle)
+        },
         saveRecord: function () {
             this.$refs.observer.validate().then(res => {
                 console.log(res, 'test')
@@ -306,78 +320,81 @@ export default {
         }
     },
     mounted: function () {
-        this.parent = {
-            pid: 8257514406196,
-            vid: 45010329174324,
-            title: "Selling Plans Ski Wax",
-            image: "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/snowboard_wax.png?v=1682981701",
-            sku: "",
-            barcode: null
+        // this.parent = {
+        //     pid: 8257514406196,
+        //     vid: 45010329174324,
+        //     title: "Selling Plans Ski Wax",
+        //     image: "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/snowboard_wax.png?v=1682981701",
+        //     sku: "",
+        //     barcode: null
+        // }
+        // this.children = [
+        //     {
+        //         "pid": 8257514012980,
+        //         "vid": 45010328486196,
+        //         "title": "Ice",
+        //         "image": null,
+        //         "sku": "",
+        //         "barcode": null,
+        //         "origin_price": 69995,
+        //         "price": 69995,
+        //         "quantity": 1,
+        //         "discount": null
+        //     },
+        //     {
+        //         "pid": 8257514012980,
+        //         "vid": 45010328584500,
+        //         "title": "Powder",
+        //         "image": null,
+        //         "sku": "",
+        //         "barcode": null,
+        //         "origin_price": 69995,
+        //         "price": 69995,
+        //         "quantity": 1,
+        //         "discount": null
+        //     },
+        //     {
+        //         "pid": 8257514406196,
+        //         "vid": 45010329272628,
+        //         "title": "Sample Selling Plans Ski Wax",
+        //         "image": "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/sample-normal-wax.png?v=1682981701",
+        //         "sku": "",
+        //         "barcode": null,
+        //         "origin_price": 994,
+        //         "price": 994,
+        //         "quantity": 1,
+        //         "discount": null
+        //     },
+        //     {
+        //         "pid": 8257514406196,
+        //         "vid": 45010329174324,
+        //         "title": "Selling Plans Ski Wax",
+        //         "image": "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/snowboard_wax.png?v=1682981701",
+        //         "sku": "",
+        //         "barcode": null,
+        //         "origin_price": 2495,
+        //         "price": 2495,
+        //         "quantity": 1,
+        //         "discount": null
+        //     },
+        //     {
+        //         "pid": 8257514406196,
+        //         "vid": 45010329207092,
+        //         "title": "Special Selling Plans Ski Wax",
+        //         "image": "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/wax-special.png?v=1682981701",
+        //         "sku": "",
+        //         "barcode": null,
+        //         "origin_price": 4995,
+        //         "price": 4995,
+        //         "quantity": 1,
+        //         "discount": null
+        //     }
+        // ]
+        // this.recalculate()
+        if (this.id) {
+            this.record_id = this.id
+            this.editRecord()
         }
-        this.children = [
-            {
-                "pid": 8257514012980,
-                "vid": 45010328486196,
-                "title": "Ice",
-                "image": null,
-                "sku": "",
-                "barcode": null,
-                "origin_price": 69995,
-                "price": 69995,
-                "quantity": 1,
-                "discount": null
-            },
-            {
-                "pid": 8257514012980,
-                "vid": 45010328584500,
-                "title": "Powder",
-                "image": null,
-                "sku": "",
-                "barcode": null,
-                "origin_price": 69995,
-                "price": 69995,
-                "quantity": 1,
-                "discount": null
-            },
-            {
-                "pid": 8257514406196,
-                "vid": 45010329272628,
-                "title": "Sample Selling Plans Ski Wax",
-                "image": "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/sample-normal-wax.png?v=1682981701",
-                "sku": "",
-                "barcode": null,
-                "origin_price": 994,
-                "price": 994,
-                "quantity": 1,
-                "discount": null
-            },
-            {
-                "pid": 8257514406196,
-                "vid": 45010329174324,
-                "title": "Selling Plans Ski Wax",
-                "image": "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/snowboard_wax.png?v=1682981701",
-                "sku": "",
-                "barcode": null,
-                "origin_price": 2495,
-                "price": 2495,
-                "quantity": 1,
-                "discount": null
-            },
-            {
-                "pid": 8257514406196,
-                "vid": 45010329207092,
-                "title": "Special Selling Plans Ski Wax",
-                "image": "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/wax-special.png?v=1682981701",
-                "sku": "",
-                "barcode": null,
-                "origin_price": 4995,
-                "price": 4995,
-                "quantity": 1,
-                "discount": null
-            }
-        ]
-        this.recalculate()
-        this.record_id = this.id ? this.id : null
     }
 }
 </script>

@@ -24,7 +24,7 @@
                     <div>
                         <div class="Polaris-Connected">
                             <div class="Polaris-Connected__Item Polaris-Connected__Item--primary">
-                                <input type="text" class="Polaris-TextField__Input" v-model="params.name"
+                                <input type="text" class="Polaris-TextField__Input" v-model="params.query"
                                        @keyup.enter="queryData">
                                 <div class="Polaris-TextField__Backdrop"></div>
                             </div>
@@ -34,7 +34,7 @@
                                 </PButtonGroup>
                             </div>
                         </div>
-                        <div class="Polaris-Labelled__HelpText">Query via title,product title, and sku ...</div>
+                        <div class="Polaris-Labelled__HelpText">Query via name, title, and sku (Parent Variant)...</div>
                     </div>
                 </PFormLayout>
                 <VueTable
@@ -49,27 +49,29 @@
                     :css="tableCss"
                     :append-params="params"
                     @vuetable:pagination-data="onPaginationData">
-                    <template slot="title" slot-scope="{rowData}">
+                    <template slot="name" slot-scope="{rowData}">
                         <PStack spacing="tight">
                             <PStackItem>
                                 <PSkeletonThumbnail v-if="rowData.image === null"/>
                                 <PThumbnail v-else :source="rowData.image"/>
                             </PStackItem>
                             <PStackItem>
-                                <PStack vertical alignment="leading" spacing="tight">
+                                <PStack vertical alignment="leading" spacing="extraTight">
                                     <PStackItem>
-                                        ID:
-                                        <PTextStyle variation="positive">{{ rowData.id }}</PTextStyle>
+                                        <PLink @click="openVariantPage(rowData)">Name: {{
+                                            rowData.name.length > 50 ? rowData.name.substring(0, 47) + '...' : rowData.name
+                                            }}</PLink>
                                     </PStackItem>
                                     <PStackItem>
                                         Title: {{
-                                            rowData.title.length > 50 ? rowData.title.substring(0, 47) + '...' : rowData.title
+                                            rowData.product_title.length > 50 ? rowData.product_title.substring(0, 47) + '...' : rowData.product_title
                                         }}
                                     </PStackItem>
                                     <PStackItem>
-                                        Product Title: {{
-                                            rowData.product_title.length > 50 ? rowData.product_title.substring(0, 47) + '...' : rowData.product_title
-                                        }}
+                                        <PTextContainer>
+                                            <span v-if="rowData.sku && rowData.sku.length > 0">SKU: {{ rowData.sku}}&nbsp;</span>
+                                            <span v-if="rowData.barcdoe && rowData.barcode.length > 0">Barcode: {{ rowData.barcode }}</span>
+                                        </PTextContainer>
                                     </PStackItem>
                                 </PStack>
                             </PStackItem>
@@ -101,6 +103,7 @@
                                      @vuetable-pagination:change-page="onChangePage" />
                 <PButtonGroup>
                     <PButton primary :loading="isSaving" @click="$router.push({name: 'bundles.create'})">Create</PButton>
+                    <PButton :loading="isSaving" destructive @click="$router.push({path: '/'})">Cancel</PButton>
                 </PButtonGroup>
             </div>
         </PCard>
@@ -110,6 +113,7 @@
 <script>
 import common from "../../../utils/common"
 import table from "../../../utils/table"
+import {redirectAdmin} from "../../../store/actions"
 import {getApi} from "../../../store/getters"
 import MetaDefinition from './MetaDefinition'
 
@@ -119,8 +123,8 @@ export default {
     components: {MetaDefinition},
     data: () => ({
         table_fields: [{
-            name: '__slot:title',
-            title: 'Title',
+            name: '__slot:name',
+            title: 'Parent Variant',
             titleClass: 'left aligned',
             dataClass: 'left aligned'
         }, {
@@ -151,17 +155,31 @@ export default {
         queryData: function () {
             this.$refs.datatable.refresh()
         },
+        openVariantPage: function (obj) {
+            return redirectAdmin({
+                path: `/products/${obj.pid}/variants/${obj.vid}`,
+                newContext: true
+            })
+        },
         toggleStatus: function () {
 
         },
-        editRecord: function () {
-
+        editRecord: function (id) {
+            this.$router.push({name: 'bundles.edit', params: {id}})
         },
         refreshRecord: function () {
 
         },
-        deleteRecord: function () {
-
+        deleteRecord: function (id) {
+            this.$confirm('This action can`t be reverted! Do you want to continue this action?').then(val => {
+                if (!val) return
+                this.isSaving = true
+                this.$http.delete(getApi('bundles', `${id}`)).then(() => {
+                    this.$refs.datatable.refresh()
+                    this.isSaving = false
+                    this.$pToast.open({message: 'Record has been deleted, refreshing...'})
+                }).catch(this.errorHandle)
+            }).catch(() => {})
         },
         importExcel: function () {
 
