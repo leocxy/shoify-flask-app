@@ -19,17 +19,21 @@
                             :error="errors[0]"
                             help-text="Name of the bundles, you can search this record via the name."/>
                     </ValidationProvider>
-                    <PStack vertical>
+                    <PStack vertical v-if="false">
                         <PStackItem>
                             <PRadioButton
                                 id="disable" label="Disable"
+                                value="0"
                                 help-text="Disabled the bundles"
+                                @change="changeStatus"
                                 name="status" :checked="status === 0"/>
                         </PStackItem>
                         <PStackItem>
                             <PRadioButton
                                 id="enable" label="Enable"
+                                value="1"
                                 help-text="Enable the bundles"
+                                @change="changeStatus"
                                 name="status" :checked="status === 1"/>
                         </PStackItem>
                     </PStack>
@@ -66,7 +70,7 @@
                             <PStack vertical spacing="extraTight">
                                 <PStackItem>
                                     Title:
-                                    <PLink @click="openVariantPage(parent)">{{ parent.product_title }}</PLink>
+                                    <PLink @click="openVariantPage(parent)">{{ parent.title }}</PLink>
                                 </PStackItem>
                                 <PStackItem>
                                     SKU:
@@ -96,6 +100,7 @@
                     :is-saving="isSaving"
                     :variants="children"
                     :total_price="total_price"
+                    :origin_price="origin_price"
                     :total_discount="total_discount"
                     @edit-price="editTotalPrice"
                     @edit-discount="editDiscount"
@@ -117,6 +122,7 @@ import {required} from 'vee-validate/dist/rules'
 import cloneDeep from "lodash/cloneDeep"
 import multiply from 'lodash/multiply'
 import divide from 'lodash/divide'
+import {getApi} from "../../../store/getters"
 import common from "../../../utils/common"
 import curd from "../../../utils/curd"
 import {variantPicker, redirectAdmin} from "../../../store/actions"
@@ -129,11 +135,13 @@ export default {
     mixins: [common, curd],
     components: {ChildVariants},
     data: () => ({
+        record_id: null,
         name: null,
-        status: 0,
+        status: 1,
         total_price: 0,
         total_discount: 0,
-        parent: {pid: null, vid: null, product_title: null, image: null, sku: null, barcode: null},
+        origin_price: 0,
+        parent: {pid: null, vid: null, title: null, image: null, sku: null, barcode: null},
         children: [],
         isSaving: false
     }),
@@ -144,8 +152,11 @@ export default {
                 newContext: true
             })
         },
+        changeStatus: function (v) {
+            this.status = parseInt(v.value)
+        },
         removeParentVariant: function () {
-            this.parent = {pid: null, vid: null, product_title: null, image: null, sku: null, barcode: null}
+            this.parent = {pid: null, vid: null, title: null, image: null, sku: null, barcode: null}
         },
         pickParentVariant: function () {
             variantPicker({
@@ -155,7 +166,7 @@ export default {
                         return {
                             pid: parseInt(v.product.id.split('/').pop()),
                             vid: parseInt(v.id.split('/').pop()),
-                            product_title: v.title,
+                            title: v.title,
                             image: v.image?.id ? v.image.originalSrc : null,
                             sku: v.sku,
                             barcode: v.barcode,
@@ -226,6 +237,7 @@ export default {
             this.total_discount = parseFloat(multiply(total_discount, 100).toFixed(2))
             console.log('debug', total_discount, this.total_discount, total_price, origin_total)
             this.total_price = total_price
+            this.origin_price = origin_total
             variants.forEach(v => {
                 v.price = parseInt(multiply(v.origin_price, total_discount))
                 v.discount = this.total_discount
@@ -235,13 +247,15 @@ export default {
         },
         calculateByDiscount: function (variants) {
             variants = variants ? variants : this.children
-            let total_price = 0, discount = multiply(this.total_discount, 0.01);
+            let total_price = 0, discount = multiply(this.total_discount, 0.01), origin_total = 0;
             variants.forEach(v => {
                 v.price = parseInt(multiply(v.origin_price, discount))
                 v.discount = this.total_discount
                 total_price += parseInt(multiply(v.price, v.quantity))
+                origin_total += parseInt(multiply(v.origin_price, v.quantity))
             })
             this.total_price = total_price
+            this.origin_price = origin_total
             // @todo 补差价 0.01 之类的
             return variants
         },
@@ -257,22 +271,45 @@ export default {
             this.$refs.observer.validate().then(res => {
                 console.log(res, 'test')
                 if (!res) return this.$pToast.open({message: 'Something wrong with the form!', error: true})
-                // this.isSaving = true
                 // Create or Update
+                this.record_id === null ? this.createRecord() : this.updateRecord()
             })
         },
         createRecord: function () {
-
+            this.isSaving = true
+            this.$http.post(getApi('bundles'), {
+                name: this.name,
+                parent: this.parent,
+                children: this.children,
+                total_price: this.total_price,
+                total_discount: this.total_discount,
+                status: this.status,
+            }).then(({data}) => {
+                this.record_id = data.data?.record_id || null
+                this.isSaving = false
+                this.$pToast.open({message: 'Saved successfully!', success: true})
+            }).catch(this.errorHandle)
         },
         updateRecord: function () {
-
+            this.isSaving = true
+            this.$http.put(getApi('bundles', this.record_id), {
+                name: this.name,
+                parent: this.parent,
+                children: this.children,
+                total_price: this.total_price,
+                total_discount: this.total_discount,
+                status: this.status,
+            }).then(() => {
+                this.isSaving = false
+                this.$pToast.open({message: 'Updated successfully!', success: true})
+            }).catch(this.errorHandle)
         }
     },
     mounted: function () {
         this.parent = {
             pid: 8257514406196,
             vid: 45010329174324,
-            product_title: "Selling Plans Ski Wax",
+            title: "Selling Plans Ski Wax",
             image: "https://cdn.shopify.com/s/files/1/0760/7985/7972/products/snowboard_wax.png?v=1682981701",
             sku: "",
             barcode: null
@@ -339,6 +376,8 @@ export default {
                 "discount": null
             }
         ]
+        this.recalculate()
+        this.record_id = this.id ? this.id : null
     }
 }
 </script>

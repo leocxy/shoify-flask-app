@@ -70,18 +70,20 @@
         <PFormLayout style="margin-top: -0.5rem">
             <PFormLayoutGroup>
                 <PTextField
-                    label="Total Price"
+                    id="total_price"
                     type="number"
                     :value="formatPrice(total_price)"
                     @input="editTotal"
-                    prefix="$"
-                    floating-label />
+                    prefix="$">
+                    <PLabel slot="label" id="total_price">
+                        Total RRP: ${{ formatPrice(origin_price) }}
+                    </PLabel>
+                </PTextField>
                 <PTextField
                     label="Discount"
                     type="number"
                     :value="total_discount"
                     @input="editDiscount"
-                    floating-label
                     prefix="%" />
             </PFormLayoutGroup>
         </PFormLayout>
@@ -96,7 +98,7 @@ import {slice, orderBy} from "lodash"
 
 export default {
     name: "ChildVariants",
-    props: ['isSaving', 'variants', 'total_price', 'total_discount'],
+    props: ['isSaving', 'variants', 'total_price', 'origin_price', 'total_discount'],
     mixins: [common, table],
     data: () => ({
         query_string: '',

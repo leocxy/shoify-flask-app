@@ -21,6 +21,7 @@ class Bundle(db.Model, BasicMethod):
     store_id = db.Column(db.Integer, db.ForeignKey('stores.id'))
     pid = db.Column(db.BigInteger, comment="Shopify Product ID")
     vid = db.Column(db.BigInteger, comment='Shopify Variant ID')
+    meta_id = db.Column(db.String(255), comment='Split with comma')
     title = db.Column(db.String(255))
     product_title = db.Column(db.String(255))
     image = db.Column(db.String(1024))
@@ -28,6 +29,8 @@ class Bundle(db.Model, BasicMethod):
     barcode = db.Column(db.String(128), index=True)
     status = db.Column(db.SmallInteger, default=0, comment='0:disable 1:enable')
     message = db.Column(db.String(255))
+    total_price = db.Column(db.Integer, comment='Cent')
+    total_discount = db.Column(db.Numeric(6, 2, asdecimal=False), comment='percentage')
     created_at = db.Column(db.DateTime, default=current_time)
     updated_at = db.Column(db.DateTime, default=current_time, onupdate=current_time)
     items = db.relationship('BundleItem', backref="bundles", lazy='dynamic')
@@ -37,14 +40,40 @@ class Bundle(db.Model, BasicMethod):
             id=self.id,
             pid=self.pid,
             vid=self.vid,
-            title=self.title,
+            name=self.title,
             product_title=self.product_title,
             image=self.image,
             sku=self.sku,
             barcode=self.barcode,
             status=self.status,
             message=self.message,
-            updated_at=self.updated_at.strftime('%Y-%m-%d %H:%M:%S'))
+            total_price=self.total_price,
+            total_discount=float('{:0.2f}'.format(self.total_discount)) if self.total_discount else 0,
+            updated_at=self.updated_at.strftime('%Y-%m-%d %H:%M:%S')
+        )
+
+    def get_all(self):
+        children = []
+        for item in self.items.limit(1000).all():
+            item = item.to_dict()
+            del item['id']
+            children.append(item)
+        return dict(
+            record_id=self.id,
+            name=self.title,
+            status=self.status,
+            total_price=self.total_price,
+            total_discount=self.total_discount,
+            parent=dict(
+                pid=self.pid,
+                vid=self.vid,
+                title=self.product_title,
+                image=self.image,
+                sku=self.sku,
+                barcode=self.barcode,
+            ),
+            children=children
+        )
 
 
 class BundleItem(db.Model, BasicMethod):
@@ -59,8 +88,11 @@ class BundleItem(db.Model, BasicMethod):
     parent_id = db.Column(db.Integer, db.ForeignKey('bundles.id'))
     pid = db.Column(db.BigInteger, comment="Item's Product ID")
     vid = db.Column(db.BigInteger, comment="Item's Variant ID")
+    meta_id = db.Column(db.BigInteger)
     title = db.Column(db.String(255), comment='Variant`s title')
     image = db.Column(db.String(1024))
+    sku = db.Column(db.String(128), index=True)
+    barcode = db.Column(db.String(128), index=True)
     origin_price = db.Column(db.BigInteger, comment="Origin Price, Cent")
     price = db.Column(db.BigInteger, comment="Cent")
     discount = db.Column(db.Numeric(5, 2), comment='Percentage')
@@ -75,8 +107,10 @@ class BundleItem(db.Model, BasicMethod):
             pid=self.pid,
             title=self.title,
             image=self.image,
+            sku=self.sku,
+            barcode=self.barcode,
             price=self.price,
             origin_price=self.origin_price,
             quantity=self.quantity,
-            discount=self.dicount
+            discount=self.discount,
         )

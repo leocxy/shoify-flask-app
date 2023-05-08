@@ -48,7 +48,40 @@ def default_actions():
         paginate = query.order_by(Bundle.id.desc()).paginate(error_out=False)
         return paginate_response(paginate)
     else:
+        data = request.get_json(silent=True)
+        rs, res = form_validate(data, BundleHelper.get_schema())
+        if not rs:
+            return res
         obj = BundleHelper(g.store_id)
+        rs, msg, data = obj.create_or_update_record(**data)
+        if not rs:
+            return jsonify(400, msg, data)
+        return jsonify(data=data)
+
+
+@bundles_bp.route('/<int:record_id>', methods=['GET', 'PUT', 'DELETE'], endpoint='record_curd')
+@check_jwt
+def record_curd(record_id):
+    if request.method == 'GET':
+        record = Bundle.query.filter_by(store_id=g.store_id, id=record_id).first()
+        if not record:
+            return jsonify(400, 'Record not found')
+        rs = True
+        msg = None
+        data = record.get_all()
+    elif request.method == 'DELETE':
+        obj = BundleHelper(g.store_id)
+        rs, msg, data = obj.delete_record(record_id)
+    else:
+        data = request.get_json(silent=True)
+        rs, res = form_validate(data, BundleHelper.get_schema())
+        if not rs:
+            return res
+        obj = BundleHelper(g.store_id)
+        rs, msg, data = obj.create_or_update_record(*data, record_id=record_id)
+    if not rs:
+        return jsonify(400, msg, data)
+    return jsonify(data=data)
 
 
 __all__ = bundles_bp
