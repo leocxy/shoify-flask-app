@@ -12,35 +12,6 @@ Shopify Function is using [Rust](https://www.rust-lang.org/)
 
 ### Structure
 
-├── README.md
-├── backend 
-│ ├── README.md
-│ ├── app
-│ ├── migrations
-│ ├── requirements.txt
-│ ├── tests
-│ ├── tmp
-│ ├── uwsgi.ini
-│ ├── uwsgi.ini.heroku
-│ ├── uwsgi.ini.local
-│ ├── uwsgi.ini.sample
-│ └── wsgi.py
-├── extensions
-│ ├── README.md
-│ ├── ps-bundle-sales
-│ └── ps-gwp
-├── frontend
-│ ├── README.md
-│ ├── babel.config.js
-│ ├── config
-│ ├── dist
-│ ├── src
-│ ├── vue.config.js
-│ └── yarn-error.log
-├── package.json
-├── shopify.app.toml
-└── yarn.lock 
-
 `root/backend` for the backend files
 `root/extensions` for shopify extensions folder
 `root/frontend` for Admin UI/Docs
