@@ -1,3 +1,7 @@
+## Important
+
+This repository has been deprecated. It has been migrated to [flask-shopify-utils](https://github.com/leocxy/flask-shopify-utils)
+
 ### Instruction
 
 This repository created by Leo Chen <leo.cxy88@gmail.com>.
@@ -10,29 +14,29 @@ Shopify Function is using [Rust](https://www.rust-lang.org/)
 
 ├── README.md
 ├── backend 
-│   ├── README.md
-│   ├── app
-│   ├── migrations
-│   ├── requirements.txt
-│   ├── tests
-│   ├── tmp
-│   ├── uwsgi.ini
-│   ├── uwsgi.ini.heroku
-│   ├── uwsgi.ini.local
-│   ├── uwsgi.ini.sample
-│   └── wsgi.py
+│ ├── README.md
+│ ├── app
+│ ├── migrations
+│ ├── requirements.txt
+│ ├── tests
+│ ├── tmp
+│ ├── uwsgi.ini
+│ ├── uwsgi.ini.heroku
+│ ├── uwsgi.ini.local
+│ ├── uwsgi.ini.sample
+│ └── wsgi.py
 ├── extensions
-│   ├── README.md
-│   ├── ps-bundle-sales
-│   └── ps-gwp
+│ ├── README.md
+│ ├── ps-bundle-sales
+│ └── ps-gwp
 ├── frontend
-│   ├── README.md
-│   ├── babel.config.js
-│   ├── config
-│   ├── dist
-│   ├── src
-│   ├── vue.config.js
-│   └── yarn-error.log
+│ ├── README.md
+│ ├── babel.config.js
+│ ├── config
+│ ├── dist
+│ ├── src
+│ ├── vue.config.js
+│ └── yarn-error.log
 ├── package.json
 ├── shopify.app.toml
 └── yarn.lock 
